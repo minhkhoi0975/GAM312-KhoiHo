@@ -113,8 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBodyComponent: {fileID: 7338738367500575410}
   Camera: {fileID: 5960279337123051362}
-  MoveSpeed: 30
+  BaseMoveSpeed: 30
   TurnRate: 10
+  DashSpeedMultiplier: 30
+  MaxDashDuration: 1
 --- !u!54 &7338738367500575410
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -274,8 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterMesh: {fileID: 1008049789354553718}
-  SensitivityX: 500
-  SensitivityY: 100
 --- !u!1 &4727538791981050017
 GameObject:
   m_ObjectHideFlags: 0

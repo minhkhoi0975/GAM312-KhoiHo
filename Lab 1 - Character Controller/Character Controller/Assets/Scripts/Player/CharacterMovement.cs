@@ -13,37 +13,36 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Rigidbody RigidBodyComponent;
     [SerializeField] private Camera Camera;
 
-    [SerializeField] private float MoveSpeed = 3.0f; // How fast the character moves.
-    [SerializeField] private float TurnRate = 4.0f;           // How fast the character turns.
+    [SerializeField] private float BaseMoveSpeed = 30.0f; // How fast the character moves normally (without dash).
+    [SerializeField] private float TurnRate = 10.0f;      // How fast the character turns.
 
+    [SerializeField] private float DashSpeedMultiplier = 2.0f;  // DashSpeed = MoveSpeed * DashSpeedMultiplier.
 
-    private bool bIsGrounded = true;
+    private bool bDashButtonPressed;  // Is the dash button pressed?
 
     // Start is called before the first frame update
     void Start()
     {
-       
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        bIsGrounded = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        bIsGrounded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateDashButton();
     }
-
 
     private void FixedUpdate()
     {
         HandleMovement();
+    }
+
+    // Update whether the dash button is pressed or not.
+    void UpdateDashButton()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            bDashButtonPressed = true;
+        }
     }
 
     void HandleMovement()
@@ -55,27 +54,39 @@ public class CharacterMovement : MonoBehaviour
         // Calculate the move direction relative to the character.
         Vector3 LocalMoveDirection = new Vector3(Horizontal, 0.0f, Vertical).normalized;
 
-        if (LocalMoveDirection.magnitude >= 0.1f) // Prevent the character from turning when the player does not press any keys.
+        if (LocalMoveDirection.magnitude > 0.0f)
         {
-            // ** Rotate the character. **
-
-            // Find the rotation angle relative to the player.
-            float RotationAngleInDegrees = Mathf.Atan2(LocalMoveDirection.x, LocalMoveDirection.z) * Mathf.Rad2Deg;
-
-            // We need to add the camera's y-rotation so that the character's rotation is dependent on the camera's rotation.
-            RotationAngleInDegrees += Camera.transform.eulerAngles.y; 
+            // Find the charater's new Y rotation.
+            float NewRotationY = Mathf.Atan2(LocalMoveDirection.x, LocalMoveDirection.z) * Mathf.Rad2Deg + Camera.transform.eulerAngles.y;
 
             // Rotate the character smoothly.
-            RigidBodyComponent.rotation = Quaternion.Lerp(RigidBodyComponent.rotation, Quaternion.Euler(0.0f, RotationAngleInDegrees, 0.0f), Time.fixedDeltaTime * TurnRate);
-
-
-            // ** Move the character. **
+            RigidBodyComponent.rotation = Quaternion.Lerp(RigidBodyComponent.rotation, Quaternion.Euler(0.0f, NewRotationY, 0.0f), Time.fixedDeltaTime * TurnRate);
 
             // Calculate the move direction relative to the world.
-            Vector3 WorldMoveDirection = Quaternion.Euler(0.0f, RotationAngleInDegrees, 0.0f) * Vector3.forward;
+            Vector3 WorldMoveDirection = Quaternion.Euler(0.0f, NewRotationY, 0.0f) * Vector3.forward;
+
+            // Calculate the move speed.
+            float MoveSpeed = BaseMoveSpeed;
+
+            // Use dash speed if the player presses the Dash key.
+            if(bDashButtonPressed)
+            {
+                MoveSpeed *= DashSpeedMultiplier;
+                bDashButtonPressed = false;
+            }
 
             // Move the character.
-            RigidBodyComponent.AddForce(WorldMoveDirection * MoveSpeed * Time.deltaTime, ForceMode.VelocityChange);
+            RigidBodyComponent.AddForce(WorldMoveDirection * MoveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        }
+        else if(bDashButtonPressed) // If the player does not press WASD but does press the Dash key, dash forward.
+        {
+            // Get the forward direction relative to the world.
+            Vector3 WorldMoveDirection = RigidBodyComponent.rotation * Vector3.forward;
+
+            // Dash forward.
+            RigidBodyComponent.AddForce(WorldMoveDirection * BaseMoveSpeed * DashSpeedMultiplier * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+            bDashButtonPressed = false;
         }
     }
 }
