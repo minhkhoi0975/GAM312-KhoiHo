@@ -11,8 +11,6 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private GameObject CharacterMesh;
-    [SerializeField] private float SensitivityX = 100.0f;
-    [SerializeField] private float SensitivityY = 100.0f;
 
     private Vector3 DistanceVector;
 
@@ -29,25 +27,12 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        RotateCamera();
-        MoveCamera();   
+        MoveCamera(); 
     }
 
     void MoveCamera()
     {
         // Keep the same distance from the camera to the character.
         this.transform.position = CharacterMesh.transform.position + DistanceVector;
-
-        // Make sure that the camera looks at the character mesh.
-        transform.LookAt(CharacterMesh.transform);
-    }
-
-    void RotateCamera()
-    {
-        float MouseX = Input.GetAxis("Mouse X");
-        float MouseY = Input.GetAxis("Mouse Y");
-
-        Quaternion CameraRotation = Quaternion.AngleAxis(MouseX * SensitivityX * Time.deltaTime, CharacterMesh.transform.up);
-        DistanceVector = CameraRotation * DistanceVector;
     }
 }

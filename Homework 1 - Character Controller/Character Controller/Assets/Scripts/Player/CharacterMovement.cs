@@ -57,12 +57,24 @@ public class CharacterMovement : MonoBehaviour
 
         if (LocalMoveDirection.magnitude >= 0.1f) // Prevent the character from turning when the player does not press any keys.
         {
-            // Rotate the character.
-            float RotationAngleInDegrees = Mathf.Atan2(LocalMoveDirection.x, LocalMoveDirection.z) * Mathf.Rad2Deg + Camera.transform.eulerAngles.y;
+            // ** Rotate the character. **
+
+            // Find the rotation angle relative to the player.
+            float RotationAngleInDegrees = Mathf.Atan2(LocalMoveDirection.x, LocalMoveDirection.z) * Mathf.Rad2Deg;
+
+            // We need to add the camera's y-rotation so that the character's rotation is dependent on the camera's rotation.
+            RotationAngleInDegrees += Camera.transform.eulerAngles.y; 
+
+            // Rotate the character smoothly.
             RigidBodyComponent.rotation = Quaternion.Lerp(RigidBodyComponent.rotation, Quaternion.Euler(0.0f, RotationAngleInDegrees, 0.0f), Time.fixedDeltaTime * TurnRate);
 
-            // Move the character.
+
+            // ** Move the character. **
+
+            // Calculate the move direction relative to the world.
             Vector3 WorldMoveDirection = Quaternion.Euler(0.0f, RotationAngleInDegrees, 0.0f) * Vector3.forward;
+
+            // Move the character.
             RigidBodyComponent.AddForce(WorldMoveDirection * MoveSpeed * Time.deltaTime, ForceMode.VelocityChange);
         }
     }
