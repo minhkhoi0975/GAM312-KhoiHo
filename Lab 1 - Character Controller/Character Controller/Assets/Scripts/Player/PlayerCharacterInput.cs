@@ -13,8 +13,12 @@ public class PlayerCharacterInput : MonoBehaviour
 {
     [SerializeField] Character characterComponent;
 
+    // Movement
     float verticalAxis, horizontalAxis;
     bool dashButtonDown;
+
+    // Object attraction
+    bool attractObjectButtonDown;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +41,12 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             dashButtonDown = true;
         }
+
+        // Attract a movable object.
+        if (Input.GetButton("AttractObject"))
+        {
+            attractObjectButtonDown = true;
+        }
     }
 
     private void FixedUpdate()
@@ -52,6 +62,13 @@ public class PlayerCharacterInput : MonoBehaviour
         else
         {
             characterComponent.Move(new Vector3(horizontalAxis, 0.0f, verticalAxis));
+        }
+
+        // Attract movable object
+        if(attractObjectButtonDown)
+        {
+            characterComponent.AttractObject();
+            attractObjectButtonDown = false;
         }
     }
 }

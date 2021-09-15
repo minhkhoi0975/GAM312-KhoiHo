@@ -111,7 +111,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008049789354553718}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -131,9 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBodyComponent: {fileID: 7338738367500575410}
   cameraComponent: {fileID: 5960279337123051362}
-  baseMoveSpeed: 30
+  baseMoveSpeed: 40
   turnRate: 10
   dashSpeedMultiplier: 15
+  maxAttractionDistance: 10
+  attractionForce: 30
 --- !u!114 &3451181189227275843
 MonoBehaviour:
   m_ObjectHideFlags: 0

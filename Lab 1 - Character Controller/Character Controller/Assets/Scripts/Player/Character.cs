@@ -14,10 +14,17 @@ public class Character : MonoBehaviour
     [SerializeField] private Rigidbody rigidBodyComponent;
     [SerializeField] private Camera cameraComponent;
 
+    // Movement
     [SerializeField] private float baseMoveSpeed = 30.0f; // How fast the character moves normally (without dash).
     [SerializeField] private float turnRate = 10.0f;      // How fast the character turns.
 
-    [SerializeField] private float dashSpeedMultiplier = 15.0f;  // dashSpeed = moveSpeed * dashSpeedMultiplier.
+    
+    [SerializeField] private float dashSpeedMultiplier = 15.0f;
+
+    // Object attraction
+    [Tooltip("How far away can a MoveableObject be attracted by this character?")]
+    [SerializeField]float maxAttractionDistance = 20.0f;
+    [SerializeField]float attractionForce = 10.0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -81,6 +88,39 @@ public class Character : MonoBehaviour
         else
         {
             Dash(rigidBodyComponent.transform.forward);
+        }
+    }
+
+    // Attract a moveable object.
+    public void AttractObject()
+    {
+        // Ray cast at the character's forward direction.
+        RaycastHit hitInfo;
+        bool rayCastHit = Physics.Raycast(transform.position, transform.forward, out hitInfo, maxAttractionDistance);
+        
+        // Does the ray hit an object?
+        if(rayCastHit)
+        {
+            // Get the hit game object.
+            GameObject hitGameObject = hitInfo.transform.gameObject;
+
+            // Display the hit game object.
+            Debug.Log(hitGameObject);
+
+            // Check if the game object is movable.
+            if(hitGameObject.CompareTag("MovableObject"))
+            {
+                Rigidbody rigidBodyComponent = hitGameObject.GetComponent<Rigidbody>();
+                if(rigidBodyComponent)
+                {
+                    Vector3 attractionDirection = (transform.position - hitGameObject.transform.position).normalized;
+                    rigidBodyComponent.AddForce(attractionDirection * attractionForce, ForceMode.Force);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("No object is found.");
         }
     }
 }

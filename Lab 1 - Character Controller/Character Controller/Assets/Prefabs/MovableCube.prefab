@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3525190744186256687}
   - component: {fileID: 3525190744186256672}
   m_Layer: 0
-  m_Name: MoveableCube
-  m_TagString: DynamicObject
+  m_Name: MovableCube
+  m_TagString: MovableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
