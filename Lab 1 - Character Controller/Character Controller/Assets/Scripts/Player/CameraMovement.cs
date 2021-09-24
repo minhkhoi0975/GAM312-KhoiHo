@@ -10,9 +10,9 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject CharacterMesh;
+    [SerializeField] private GameObject characterMesh;
 
-    private Vector3 DistanceVector;
+    private Vector3 cameraOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        DistanceVector = this.transform.position - CharacterMesh.transform.position;
+        cameraOffset = this.transform.position - characterMesh.transform.position;
     }
 
     // Update is called once per frame
@@ -33,6 +33,6 @@ public class CameraMovement : MonoBehaviour
     void MoveCamera()
     {
         // Keep the same distance from the camera to the character.
-        this.transform.position = CharacterMesh.transform.position + DistanceVector;
+        this.transform.position = characterMesh.transform.position + cameraOffset;
     }
 }
