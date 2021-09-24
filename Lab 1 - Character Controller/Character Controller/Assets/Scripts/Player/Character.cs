@@ -113,7 +113,7 @@ public class Character : MonoBehaviour
                 Rigidbody rigidBodyComponent = hitGameObject.GetComponent<Rigidbody>();
                 if(rigidBodyComponent)
                 {
-                    Vector3 attractionDirection = -transform.forward;
+                    Vector3 attractionDirection = hitInfo.normal;
                     rigidBodyComponent.AddForce(attractionDirection * attractiveForce, ForceMode.Force);
                 }
             }
