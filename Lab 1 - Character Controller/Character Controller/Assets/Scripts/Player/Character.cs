@@ -23,8 +23,8 @@ public class Character : MonoBehaviour
 
     // Object attraction
     [Tooltip("How far away can a MoveableObject be attracted by this character?")]
-    [SerializeField]float maxAttractionDistance = 20.0f;
-    [SerializeField]float attractionForce = 10.0f;
+    [SerializeField]float maxAttractionDistance = 10.0f;
+    [SerializeField]float attractionForce = 30.0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +32,11 @@ public class Character : MonoBehaviour
         if(!rigidBodyComponent)
         {
             rigidBodyComponent = GetComponent<Rigidbody>();
+        }
+
+        if(!cameraComponent)
+        {
+            cameraComponent = FindObjectOfType<Camera>();
         }
     }
 
@@ -113,7 +118,7 @@ public class Character : MonoBehaviour
                 Rigidbody rigidBodyComponent = hitGameObject.GetComponent<Rigidbody>();
                 if(rigidBodyComponent)
                 {
-                    Vector3 attractionDirection = (transform.position - hitGameObject.transform.position).normalized;
+                    Vector3 attractionDirection = -transform.forward;
                     rigidBodyComponent.AddForce(attractionDirection * attractionForce, ForceMode.Force);
                 }
             }

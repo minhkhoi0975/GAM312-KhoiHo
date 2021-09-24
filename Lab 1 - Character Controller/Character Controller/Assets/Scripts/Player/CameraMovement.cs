@@ -10,9 +10,17 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject characterMesh;
+    [SerializeField] private GameObject character;
 
     private Vector3 cameraOffset;
+
+    private void Awake()
+    {
+        if(!character)
+        {
+            character = GameObject.FindGameObjectWithTag("Character");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +29,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        cameraOffset = this.transform.position - characterMesh.transform.position;
+        cameraOffset = this.transform.position - character.transform.position;
     }
 
     // Update is called once per frame
@@ -33,6 +41,6 @@ public class CameraMovement : MonoBehaviour
     void MoveCamera()
     {
         // Keep the same distance from the camera to the character.
-        this.transform.position = characterMesh.transform.position + cameraOffset;
+        this.transform.position = character.transform.position + cameraOffset;
     }
 }
