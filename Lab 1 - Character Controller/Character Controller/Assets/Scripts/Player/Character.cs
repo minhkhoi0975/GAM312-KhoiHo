@@ -12,19 +12,17 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidBodyComponent;
-    [SerializeField] private Camera cameraComponent;
+    [SerializeField] private Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX = -90).
 
     // Movement
-    [SerializeField] private float baseMoveSpeed = 30.0f; // How fast the character moves normally (without dash).
-    [SerializeField] private float turnRate = 10.0f;      // How fast the character turns.
-
-    
-    [SerializeField] private float dashSpeedMultiplier = 15.0f;
+    [SerializeField] private float baseMovementSpeed = 60.0f; // How fast the character moves normally (without dash).
+    [SerializeField] private float rotationalSpeed = 10.0f;   // How fast the character turns.
+    [SerializeField] private float dashSpeedMultiplier = 15.0f;  // dashSpeed = baseMoveSpeed * dashSpeedMultiplier.
 
     // Object attraction
     [Tooltip("How far away can a MoveableObject be attracted by this character?")]
     [SerializeField]float maxAttractionDistance = 10.0f;
-    [SerializeField]float attractionForce = 30.0f;
+    [SerializeField]float attractiveForce = 60.0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,27 +39,24 @@ public class Character : MonoBehaviour
     }
 
     // Move the character in direction relative to the player.
-    public void Move(Vector3 relativeMoveDirection)
+    public void Move(Vector3 relativeMovementDirection)
     {
         // Normalize the move direction to prevent fast diagonal movement.
-        relativeMoveDirection = relativeMoveDirection.normalized;
+        relativeMovementDirection = relativeMovementDirection.normalized;
 
-        if (relativeMoveDirection.magnitude > 0.0f)
-        {
+        if (relativeMovementDirection.magnitude > 0.0f)
+        {    
             // Find the charater's new world Y rotation.
-            float newWorldRotationY = Mathf.Atan2(relativeMoveDirection.x, relativeMoveDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
+            float newWorldRotationY = Mathf.Atan2(relativeMovementDirection.x, relativeMovementDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
 
             // Rotate the character smoothly.
-            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * turnRate);
+            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
 
             // Calculate the move direction relative to the world.
             Vector3 worldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
-            // Calculate the move speed.
-            float MoveSpeed = baseMoveSpeed;
-
             // Move the character.
-            rigidBodyComponent.AddForce(worldMoveDirection * MoveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rigidBodyComponent.AddForce(worldMoveDirection * baseMovementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
     }
 
@@ -78,16 +73,16 @@ public class Character : MonoBehaviour
             float newWorldRotationY = Mathf.Atan2(relativeMoveDirection.x, relativeMoveDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
 
             // Rotate the character smoothly.
-            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * turnRate);
+            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
 
             // Calculate the move direction relative to the world.
             Vector3 WorldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
             // Calculate the dash speed.
-            float DashSpeed = baseMoveSpeed * dashSpeedMultiplier;
+            float DashSpeed = baseMovementSpeed * dashSpeedMultiplier;
 
             // Dash.
-            rigidBodyComponent.AddForce(WorldMoveDirection * DashSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rigidBodyComponent.AddForce(WorldMoveDirection * DashSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);       
         }
         // If the player does not press any move buttons, make the character dash forward.
         else
@@ -119,7 +114,7 @@ public class Character : MonoBehaviour
                 if(rigidBodyComponent)
                 {
                     Vector3 attractionDirection = -transform.forward;
-                    rigidBodyComponent.AddForce(attractionDirection * attractionForce, ForceMode.Force);
+                    rigidBodyComponent.AddForce(attractionDirection * attractiveForce, ForceMode.Force);
                 }
             }
         }

@@ -33,8 +33,8 @@ public class PlayerCharacterInput : MonoBehaviour
     void Update()
     {
         // Movement.
-        verticalAxis = Input.GetAxis("Vertical");
-        horizontalAxis = Input.GetAxis("Horizontal");
+        verticalAxis = Input.GetAxisRaw("Vertical");
+        horizontalAxis = Input.GetAxisRaw("Horizontal");
 
         // Dash.
         if(Input.GetButtonDown("Dash"))
