@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Character))]
 public class PlayerCharacterInput : MonoBehaviour
 {
-    [SerializeField] Character characterComponent;
+    [SerializeField] Character character;
 
     // Movement
     float verticalAxis, horizontalAxis;
@@ -23,9 +23,9 @@ public class PlayerCharacterInput : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(!characterComponent)
+        if(!character)
         {
-            characterComponent = GetComponent<Character>();
+            character = GetComponent<Character>();
         }
     }
 
@@ -39,6 +39,10 @@ public class PlayerCharacterInput : MonoBehaviour
         // Dash.
         if(Input.GetButtonDown("Dash"))
         {
+            // Cannot dash if the character is pushing an object.
+            if (character.CharacterHand.PushedGameObject)
+                return;
+
             dashButtonDown = true;
         }
 
@@ -47,27 +51,50 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             attractObjectButtonDown = true;
         }
+
+        // Pick up or drop an object.
+        if(Input.GetButtonDown("Interact"))
+        {
+            if(!character.CharacterHand.PushedGameObject)
+            {
+                character.PickUpObject();
+            }
+            else
+            {
+                character.DropObject();
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         // Movement.
-
+        Vector3 relativeMoveDirection = new Vector3(horizontalAxis, 0.0f, verticalAxis);
         // If the player presses the dash button, dash. Otherwise, move normally.
-        if(dashButtonDown)
+        if (dashButtonDown)
         {
-            characterComponent.Dash(new Vector3(horizontalAxis, 0.0f, verticalAxis));
+            // character.Dash(new Vector3(horizontalAxis, 0.0f, verticalAxis));
+
+            // Player does not presses WASD? Dash forward.
+            if (relativeMoveDirection.magnitude == 0.0f)
+            {
+                character.Move(relativeMoveDirection, character.BaseMovementSpeed * character.DashSpeedMultiplier, character.RotationalSpeed);
+            }
+            else
+            {
+                character.Move(transform.forward, character.BaseMovementSpeed * character.DashSpeedMultiplier, character.RotationalSpeed);
+            }
             dashButtonDown = false;
         }
         else
         {
-            characterComponent.Move(new Vector3(horizontalAxis, 0.0f, verticalAxis));
+            character.Move(relativeMoveDirection, character.BaseMovementSpeed, character.RotationalSpeed);
         }
 
         // Attract movable object
         if(attractObjectButtonDown)
         {
-            characterComponent.AttractObject();
+            character.AttractObject();
             attractObjectButtonDown = false;
         }
     }

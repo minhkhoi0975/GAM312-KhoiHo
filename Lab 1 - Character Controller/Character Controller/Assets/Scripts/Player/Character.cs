@@ -11,13 +11,55 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Character : MonoBehaviour
 {
+    // Components
     [SerializeField] private Rigidbody rigidBodyComponent;
     [SerializeField] private Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX = -90).
 
+    [SerializeField] private CharacterFoot characterFoot;     // Referfence to character's foot.
+    public CharacterFoot CharacterFoot
+    {
+        get
+        {
+            return characterFoot;
+        }
+    }
+
+    [SerializeField] private CharacterHand characterHand;     // Reference to character's hand.
+    public CharacterHand CharacterHand
+    {
+        get
+        {
+            return characterHand;
+        }
+    }
+
     // Movement
     [SerializeField] private float baseMovementSpeed = 60.0f; // How fast the character moves normally (without dash).
+    public float BaseMovementSpeed
+    {
+        get
+        {
+            return baseMovementSpeed;
+        }
+    }
+
     [SerializeField] private float rotationalSpeed = 10.0f;   // How fast the character turns.
+    public float RotationalSpeed
+    {
+        get
+        {
+            return rotationalSpeed;
+        }
+    }
+
     [SerializeField] private float dashSpeedMultiplier = 15.0f;  // dashSpeed = baseMoveSpeed * dashSpeedMultiplier.
+    public float DashSpeedMultiplier
+    {
+        get
+        {
+            return dashSpeedMultiplier;
+        }
+    }
 
     // Object attraction
     [Tooltip("How far away can a MoveableObject be attracted by this character?")]
@@ -36,10 +78,32 @@ public class Character : MonoBehaviour
         {
             cameraComponent = FindObjectOfType<Camera>();
         }
+
+        if(!characterFoot)
+        {
+            characterFoot = GetComponentInChildren<CharacterFoot>();
+        }
+
+        if(!characterHand)
+        {
+            characterHand = GetComponentInChildren<CharacterHand>();
+        }
     }
 
+    private void Update()
+    {
+        if(characterFoot.IsGrounded)
+        {
+            rigidBodyComponent.useGravity = false;
+        }
+        else
+        {
+            rigidBodyComponent.useGravity = true;
+        }
+    }
+    
     // Move the character in direction relative to the player.
-    public void Move(Vector3 relativeMovementDirection)
+    public void Move(Vector3 relativeMovementDirection, float movementSpeed, float rotationalSpeed)
     {
         // Normalize the move direction to prevent fast diagonal movement.
         relativeMovementDirection = relativeMovementDirection.normalized;
@@ -55,8 +119,18 @@ public class Character : MonoBehaviour
             // Calculate the move direction relative to the world.
             Vector3 worldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
+            // Check if there is a wall in front of the player.
+            // If there is, move along the wall.
+            RaycastHit wallRayCastHitInfo;
+            bool wallRayCastHit = Physics.Raycast(transform.position, transform.forward, out wallRayCastHitInfo, 0.1f);
+
+            if(wallRayCastHit)
+            {
+                worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, wallRayCastHitInfo.normal).normalized;
+            }
+
             // Move the character.
-            rigidBodyComponent.AddForce(worldMoveDirection * baseMovementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
     }
 
@@ -95,8 +169,9 @@ public class Character : MonoBehaviour
     public void AttractObject()
     {
         // Ray cast at the character's forward direction.
+        // The start position of the ray is at the middle of the character's mesh.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(transform.position, transform.forward, out hitInfo, maxAttractionDistance);
+        bool rayCastHit = Physics.Raycast(transform.position + transform.up, transform.forward, out hitInfo, maxAttractionDistance);
         
         // Does the ray hit an object?
         if(rayCastHit)
@@ -122,5 +197,26 @@ public class Character : MonoBehaviour
         {
             Debug.Log("No object is found.");
         }
+    }
+
+    public void PickUpObject()
+    {
+        // Ray cast to check if there is an object in front of the character.
+        RaycastHit hitInfo;
+        bool rayCastHit = Physics.Raycast(transform.position + transform.up, transform.forward, out hitInfo, 0.8f);
+
+        if(rayCastHit && hitInfo.collider.CompareTag("MovableObject") && hitInfo.collider.GetComponent<Rigidbody>())
+        {
+            characterHand.PickUpObject(hitInfo.collider.gameObject);
+        }
+        else
+        {
+            Debug.Log("Object not found.");
+        }
+    }
+
+    public void DropObject()
+    {
+        characterHand.DropObject();
     }
 }
