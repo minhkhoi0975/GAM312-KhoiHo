@@ -47,7 +47,7 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Attract a movable object.
-        if (Input.GetButton("AttractObject"))
+        if (Input.GetButton("AttractObject") && !character.CharacterHand.PushedGameObject)
         {
             attractObjectButtonDown = true;
         }
@@ -57,11 +57,11 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             if(!character.CharacterHand.PushedGameObject)
             {
-                character.PickUpObject();
+                character.StartPushingObject();
             }
             else
             {
-                character.DropObject();
+                character.StopPushingObject();
             }
         }
     }
@@ -73,10 +73,8 @@ public class PlayerCharacterInput : MonoBehaviour
         // If the player presses the dash button, dash. Otherwise, move normally.
         if (dashButtonDown)
         {
-            // character.Dash(new Vector3(horizontalAxis, 0.0f, verticalAxis));
-
             // Player does not presses WASD? Dash forward.
-            if (relativeMoveDirection.magnitude == 0.0f)
+            if (relativeMoveDirection.magnitude != 0.0f)
             {
                 character.Move(relativeMoveDirection, character.BaseMovementSpeed * character.DashSpeedMultiplier, character.RotationalSpeed);
             }

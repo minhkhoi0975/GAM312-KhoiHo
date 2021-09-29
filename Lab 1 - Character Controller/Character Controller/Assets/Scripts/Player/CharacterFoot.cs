@@ -10,13 +10,11 @@ using UnityEngine;
 
 public class CharacterFoot : MonoBehaviour
 {
-    public float maxSlopeAngle = 60.0f; // The max angle of the slopes on which the character can stand.
+    // The max angle of the slope on which the character can stand.
+    public float maxSlopeAngle = 60.0f; 
 
-    bool isGrounded = false;        // Is the character on the ground?
-    bool isOnSlope = false;
-    RaycastHit groundInfo;          // Information about the ground the character stands on.
-    float slopeAngle;
-
+    // Is the character on the ground?
+    bool isGrounded = false;        
     public bool IsGrounded
     {
         get
@@ -25,6 +23,8 @@ public class CharacterFoot : MonoBehaviour
         }
     }
 
+    // Is this character on a slope?
+    bool isOnSlope = false;         
     public bool IsOnSlope
     {
         get
@@ -33,6 +33,8 @@ public class CharacterFoot : MonoBehaviour
         }
     }
 
+    // Information about the ground the character stands on.
+    RaycastHit groundInfo;          
     public RaycastHit GroundInfo
     {
         get
@@ -41,6 +43,8 @@ public class CharacterFoot : MonoBehaviour
         }
     }
 
+    // The slope angle of the ground the character stands on.
+    float slopeAngle;               
     public float SlopeAngle
     {
         get
@@ -51,12 +55,20 @@ public class CharacterFoot : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateIsGrounded();
+    }
+
+    // Update whether the character is on the ground.
+    void UpdateIsGrounded()
+    {
+        // Perform a ray cast downward.
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, out groundInfo, 0.2f);
 
-        if(isGrounded)
+        if (isGrounded)
         {
+            // Calculate the slope angle and determine whether the character is on a slope or not.
             slopeAngle = Vector3.Angle(groundInfo.normal, Vector3.up);
-            if(slopeAngle >= 1.0f && slopeAngle <= maxSlopeAngle)
+            if (slopeAngle >= 1.0f && slopeAngle <= maxSlopeAngle)
             {
                 isOnSlope = true;
             }

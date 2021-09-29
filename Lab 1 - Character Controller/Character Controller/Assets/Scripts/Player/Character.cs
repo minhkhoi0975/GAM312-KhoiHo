@@ -114,54 +114,22 @@ public class Character : MonoBehaviour
             float newWorldRotationY = Mathf.Atan2(relativeMovementDirection.x, relativeMovementDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
 
             // Rotate the character smoothly.
-            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
+            if (!characterHand.PushedGameObject)
+            {
+                rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
+            }
 
-            // Calculate the move direction relative to the world.
+            // Calculate the world movement direction.
             Vector3 worldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
-            // Check if there is a wall in front of the player.
-            // If there is, move along the wall.
-            RaycastHit wallRayCastHitInfo;
-            bool wallRayCastHit = Physics.Raycast(transform.position, transform.forward, out wallRayCastHitInfo, 0.1f);
-
-            if(wallRayCastHit)
+            // If the character is on a slope, project worldMoveDirection on slope surface.
+            if(characterFoot.IsOnSlope)
             {
-                worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, wallRayCastHitInfo.normal).normalized;
+                worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, characterFoot.GroundInfo.normal).normalized;
             }
 
             // Move the character.
             rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        }
-    }
-
-    // Dash the character in direction relative to the player.
-    // If the direction is 0, dash forward.
-    public void Dash(Vector3 relativeMoveDirection)
-    {
-        // Normalize the move direction to prevent fast diagonal movement.
-        relativeMoveDirection = relativeMoveDirection.normalized;
-
-        if (relativeMoveDirection.magnitude > 0.0f)
-        {
-            // Find the charater's new Y rotation.
-            float newWorldRotationY = Mathf.Atan2(relativeMoveDirection.x, relativeMoveDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
-
-            // Rotate the character smoothly.
-            rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
-
-            // Calculate the move direction relative to the world.
-            Vector3 WorldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
-
-            // Calculate the dash speed.
-            float DashSpeed = baseMovementSpeed * dashSpeedMultiplier;
-
-            // Dash.
-            rigidBodyComponent.AddForce(WorldMoveDirection * DashSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);       
-        }
-        // If the player does not press any move buttons, make the character dash forward.
-        else
-        {
-            Dash(rigidBodyComponent.transform.forward);
         }
     }
 
@@ -199,15 +167,16 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void PickUpObject()
+    public void StartPushingObject()
     {
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(transform.position + transform.up, transform.forward, out hitInfo, 0.8f);
 
+        // A movable object is in front of the character. Let's push it.
         if(rayCastHit && hitInfo.collider.CompareTag("MovableObject") && hitInfo.collider.GetComponent<Rigidbody>())
         {
-            characterHand.PickUpObject(hitInfo.collider.gameObject);
+            characterHand.StartPushingObject(hitInfo.collider.gameObject);
         }
         else
         {
@@ -215,8 +184,8 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void DropObject()
+    public void StopPushingObject()
     {
-        characterHand.DropObject();
+        characterHand.StopPushingObject();
     }
 }
