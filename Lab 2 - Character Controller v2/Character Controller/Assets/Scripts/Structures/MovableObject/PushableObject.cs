@@ -61,6 +61,7 @@ public class PushableObject : MonoBehaviour
 
         // Push/pull the object.
         rigidBody.AddRelativeForce(relativePushingForwardDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        Debug.Log(transform.TransformDirection(relativePushingForwardDirection));
 
         // Rotate the object around the object itself.
         Quaternion currentRotation = rigidBody.rotation;

@@ -25,6 +25,8 @@ public class CharacterHand : MonoBehaviour
     }
 
     // The initial drag of the pushed object.
+    // When an object is pushed, its drag is set to 0.
+    // Use this variable to reset drag when the object stops being pushed by the player.
     float pushedGameObjectInitialDrag;
     public float PushedGameObjectInitialDrag
     {
@@ -42,6 +44,9 @@ public class CharacterHand : MonoBehaviour
         }
     }
 
+    // Start pushing an object.
+    // gameObject is the object to be pushed.
+    // initialPushingDirection is the initial direction in world space from the player to the pushed object.
     public void StartPushingObject(GameObject gameObject, Vector3 initialPushingDirection)
     {
         // I'm current pushing an object. I cannot push another one.
