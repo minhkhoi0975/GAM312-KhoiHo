@@ -46,7 +46,7 @@ public class CharacterHand : MonoBehaviour
 
     // Start pushing an object.
     // gameObject is the object to be pushed.
-    // initialPushingDirection is the initial direction in world space from the player to the pushed object.
+    // initialPushingDirection is the initial pushing direction in world space.
     public void StartPushingObject(GameObject gameObject, Vector3 initialPushingDirection)
     {
         // I'm current pushing an object. I cannot push another one.
