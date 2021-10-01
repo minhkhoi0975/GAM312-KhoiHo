@@ -24,9 +24,10 @@ public class PushableObject : MonoBehaviour
     [HideInInspector] public Character pusher;
 
     // If the character pushes forward, then the object should move in this direction.
-    [HideInInspector] public Vector3 relativePushingForwardDirection;
+    [HideInInspector] public Vector3 relativePushingDirection;
 
-    // Used to attach the character to the pushed object.
+    // The position of the character relative to the pushed object.
+    // Used for attaching the character to the pushed object.
     [HideInInspector] public Vector3 relativeAttachmentPosition;
 
     public Rigidbody RigidBody
@@ -43,9 +44,6 @@ public class PushableObject : MonoBehaviour
         {
             rigidBody = GetComponent<Rigidbody>();
         }
-
-        // Set pushingForwardDirection to be the forward vector relative to this game object.
-        relativePushingForwardDirection = transform.forward;
     }
 
     public void FixedUpdate()
@@ -60,8 +58,8 @@ public class PushableObject : MonoBehaviour
             return;
 
         // Push/pull the object.
-        rigidBody.AddRelativeForce(relativePushingForwardDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        Debug.Log(transform.TransformDirection(relativePushingForwardDirection));
+        rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        Debug.Log(transform.TransformDirection(relativePushingDirection));
 
         // Rotate the object around the object itself.
         Quaternion currentRotation = rigidBody.rotation;
@@ -70,6 +68,7 @@ public class PushableObject : MonoBehaviour
     }
 
     // Update the pusher's transform.
+    // Make sure that the pusher moves with the pushed object and looks at the object.
     public void UpdatePusherTransform()
     {
         if (!pusher)
@@ -88,7 +87,7 @@ public class PushableObject : MonoBehaviour
         pusherRigidBody.position = transform.TransformPoint(relativeAttachmentPosition);
 
         // Make the pusher look at the pushed object.
-        Vector3 lookDirection = transform.TransformDirection(relativePushingForwardDirection);
+        Vector3 lookDirection = transform.TransformDirection(relativePushingDirection);
         Quaternion lookQuaternion = Quaternion.Euler(0.0f, Quaternion.LookRotation(lookDirection).eulerAngles.y, 0.0f);
         pusherRigidBody.rotation = Quaternion.Slerp(pusherRigidBody.rotation, lookQuaternion, 0.5f);
     }

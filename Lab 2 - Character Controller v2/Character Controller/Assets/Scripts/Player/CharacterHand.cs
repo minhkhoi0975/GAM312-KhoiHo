@@ -63,17 +63,16 @@ public class CharacterHand : MonoBehaviour
         if (!pushable)
             return;
 
-        // The hand needs to know what game object is being pushed.
+        // The hand needs to know what game object is being pushed, and the pushed object needs to know the character that is pushing it.
         pushedGameObject = gameObject;
+        pushable.pusher = character;
 
-        // Set the pushed object's drag  to 0 to make it easy to move.
+        // Set the pushed object's drag to 0 to make it easy to move.
         pushedGameObjectInitialDrag = rigidBody.drag;
         rigidBody.drag = 0;
    
-        pushable.pusher = character;
-
-        // Set the initial pushing forward direction.
-        pushable.relativePushingForwardDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);
+        // Set the pushing direction relative to the pushed object.
+        pushable.relativePushingDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);
 
         // Set the initial position of the character relative to the pushed object.
         pushable.relativeAttachmentPosition = pushable.transform.InverseTransformPoint(character.transform.position);
