@@ -8772,7 +8772,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738067234}
-  m_Text: Hold LShift/Y to attract a yellow box.
+  m_Text: Hold LShift/B to attract a yellow box.
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
