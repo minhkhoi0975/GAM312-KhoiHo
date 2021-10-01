@@ -150,7 +150,7 @@ MonoBehaviour:
   characterFoot: {fileID: 0}
   characterHand: {fileID: 0}
   baseMovementSpeed: 150
-  rotationalSpeed: 10
+  rotationalSpeed: 15
   dashSpeedMultiplier: 15
   maxAttractionDistance: 10
   attractiveForce: 8000
@@ -208,7 +208,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4127173407720432552}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4cc4e85560f476e4cbafc558564f73a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -222,7 +222,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4127173407720432552}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4cc4e85560f476e4cbafc558564f73a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8572b1285259641b7482391035a8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 8104338878878511834}
 --- !u!1001 &8908522443334995513
 PrefabInstance:
   m_ObjectHideFlags: 0

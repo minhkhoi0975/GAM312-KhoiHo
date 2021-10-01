@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class CharacterHand : MonoBehaviour
 {
-    GameObject pushedGameObject;  // The game object being pushed.
+    // Reference to the character.
+    [SerializeField] Character character;
+    public Character Character
+    {
+        get
+        {
+            return character;
+        }
+    }
+
+    // The game object being pushed.
+    GameObject pushedGameObject;  
     public GameObject PushedGameObject
     {
         get
@@ -13,52 +24,54 @@ public class CharacterHand : MonoBehaviour
         }
     }
 
-    // The initial mass of the pushed object.
-    // Use to reset the mass when the pushed object is dropped.
-    float pushedGameObjectMash;
-
-    private void FixedUpdate()
+    // The initial drag of the pushed object.
+    float pushedGameObjectInitialDrag;
+    public float PushedGameObjectInitialDrag
     {
-        UpdatePushedObjectPosition();
+        get
+        {
+            return pushedGameObjectInitialDrag;
+        }
     }
 
-    public void StartPushingObject(GameObject gameObject)
+    private void Awake()
     {
-        // Check if gameObject is null.
-        if (!gameObject)
+        if(!character)
+        {
+            character = FindObjectOfType<Character>();
+        }
+    }
+
+    public void StartPushingObject(GameObject gameObject, Vector3 initialPushingDirection)
+    {
+        // I'm current pushing an object. I cannot push another one.
+        if (pushedGameObject)
             return;
 
-        // Check if gameObject has Rigidbody component.
+        // I cannot push this object if it has no physics.
         Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
         if (!rigidBody)
             return;
 
-        // 
+        // I cannot push this object if it is not pushable.
+        PushableObject pushable = gameObject.GetComponent<PushableObject>();
+        if (!pushable)
+            return;
+
+        // The hand needs to know what game object is being pushed.
         pushedGameObject = gameObject;
-        pushedGameObject.transform.parent = transform;
-        transform.position = rigidBody.position;
-        rigidBody.useGravity = false;
-        pushedGameObjectMash = rigidBody.mass;
-        rigidBody.mass = 0.0f;
-        rigidBody.freezeRotation = true;
-        rigidBody.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-    }
 
-    public void UpdatePushedObjectPosition()
-    {
-        if (!pushedGameObject)
-            return;
+        // Set the pushed object's drag  to 0 to make it easy to move.
+        pushedGameObjectInitialDrag = rigidBody.drag;
+        rigidBody.drag = 0;
+   
+        pushable.pusher = character;
 
-        // If pushedGameObject is too far from the hand, stop pushing it.
-        if(Vector3.Distance(pushedGameObject.transform.position, transform.position) > 5.0f)
-        {
-            StopPushingObject();
-            return;
-        }
+        // Set the initial pushing forward direction.
+        pushable.relativePushingForwardDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);
 
-        Rigidbody rigidBody = pushedGameObject.GetComponent<Rigidbody>();
-        rigidBody.position = transform.position;      
-        //rigidBody.rotation = transform.rotation;
+        // Set the initial position of the character relative to the pushed object.
+        pushable.relativeAttachmentPosition = pushable.transform.InverseTransformPoint(character.transform.position);
     }
 
     public void StopPushingObject()
@@ -66,12 +79,12 @@ public class CharacterHand : MonoBehaviour
         if (!pushedGameObject)
             return;
 
+        // Reset the drag of the pushed object.
         Rigidbody rigidBody = pushedGameObject.GetComponent<Rigidbody>();
-        rigidBody.mass = pushedGameObjectMash;
-        rigidBody.useGravity = true;
-        rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        rigidBody.drag = pushedGameObjectInitialDrag;
 
-        pushedGameObject.transform.parent = null;
+        PushableObject pushable = pushedGameObject.GetComponent<PushableObject>();
+        pushable.pusher = null;
         pushedGameObject = null;
     }
 }

@@ -127,7 +127,7 @@ public class Character : MonoBehaviour
             {
                 worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, characterFoot.GroundInfo.normal).normalized;
             }
-
+            
             // Move the character.
             rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
@@ -139,7 +139,7 @@ public class Character : MonoBehaviour
         // Ray cast at the character's forward direction.
         // The start position of the ray is at the middle of the character's mesh.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(transform.position + transform.up, transform.forward, out hitInfo, maxAttractionDistance);
+        bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, maxAttractionDistance);
         
         // Does the ray hit an object?
         if(rayCastHit)
@@ -171,12 +171,12 @@ public class Character : MonoBehaviour
     {
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(transform.position + transform.up, transform.forward, out hitInfo, 0.8f);
+        bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, 0.8f);
 
-        // A movable object is in front of the character. Let's push it.
-        if(rayCastHit && hitInfo.collider.CompareTag("MovableObject") && hitInfo.collider.GetComponent<Rigidbody>())
+        // A movable object is in front of the character. Try pushing it.
+        if(rayCastHit)
         {
-            characterHand.StartPushingObject(hitInfo.collider.gameObject);
+            characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
         }
         else
         {

@@ -40,10 +40,10 @@ public class PlayerCharacterInput : MonoBehaviour
         if(Input.GetButtonDown("Dash"))
         {
             // Cannot dash if the character is pushing an object.
-            if (character.CharacterHand.PushedGameObject)
-                return;
-
-            dashButtonDown = true;
+            if (!character.CharacterHand.PushedGameObject)
+            {
+                dashButtonDown = true;
+            }
         }
 
         // Attract a movable object.
@@ -86,7 +86,16 @@ public class PlayerCharacterInput : MonoBehaviour
         }
         else
         {
-            character.Move(relativeMoveDirection, character.BaseMovementSpeed, character.RotationalSpeed);
+            // If the character is not pushing an object, move the character relative to the camera.
+            // Otherwise, move the character and the object relative to the object.
+            if (!character.CharacterHand.PushedGameObject)
+            {
+                character.Move(relativeMoveDirection, character.BaseMovementSpeed, character.RotationalSpeed);
+            }
+            else
+            {
+                character.CharacterHand.PushedGameObject.GetComponent<PushableObject>().Move(verticalAxis, horizontalAxis);
+            }
         }
 
         // Attract movable object

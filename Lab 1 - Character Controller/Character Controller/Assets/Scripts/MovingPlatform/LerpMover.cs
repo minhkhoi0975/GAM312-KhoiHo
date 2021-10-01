@@ -50,6 +50,7 @@ public class LerpMover : MonoBehaviour
         if (other.gameObject.transform.parent.CompareTag("Character"))
         {
             other.gameObject.transform.parent.parent = movingPlatform.transform;
+            Debug.Log("Player enters platform.");
         }
 
         else if(other.CompareTag("MovableObject") && other.gameObject.transform.root == null)
@@ -63,9 +64,10 @@ public class LerpMover : MonoBehaviour
         if(other.gameObject.transform.parent.CompareTag("Character"))
         {
             other.gameObject.transform.parent.parent = null;
+            Debug.Log("Player leaves platform.");
         }
 
-        else if (other.CompareTag("MovableObject"))
+        else if (other.CompareTag("MovableObject") && other.gameObject.transform.root == gameObject)
         {
             other.gameObject.transform.parent = null;
         }
@@ -77,8 +79,6 @@ public class LerpMover : MonoBehaviour
         {
             StartCoroutine("Move");
         }
-
-        Debug.Log(t);
     }
 
     IEnumerator Move()
