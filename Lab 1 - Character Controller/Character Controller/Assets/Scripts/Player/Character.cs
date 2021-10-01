@@ -167,6 +167,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Start pushing a movable object.
     public void StartPushingObject()
     {
         // Ray cast to check if there is an object in front of the character.
@@ -184,6 +185,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Stop pushing a movable object.
     public void StopPushingObject()
     {
         characterHand.StopPushingObject();

@@ -53,6 +53,7 @@ public class PushableObject : MonoBehaviour
         UpdatePusherTransform();
     }
 
+    // Move the object in a direction relative to the object itself.
     public void Move(float verticalAxis, float horizontalAxis = 0.0f)
     {
         if (!pusher)
