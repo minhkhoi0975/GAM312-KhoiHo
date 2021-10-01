@@ -83,6 +83,7 @@ public class CharacterHand : MonoBehaviour
         Rigidbody rigidBody = pushedGameObject.GetComponent<Rigidbody>();
         rigidBody.drag = pushedGameObjectInitialDrag;
 
+        // Detach the pushed object from the character.
         PushableObject pushable = pushedGameObject.GetComponent<PushableObject>();
         pushable.pusher = null;
         pushedGameObject = null;
