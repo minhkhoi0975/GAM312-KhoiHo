@@ -58,13 +58,21 @@ public class PushableObject : MonoBehaviour
             return;
 
         // Push/pull the object.
-        rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        Debug.Log(transform.TransformDirection(relativePushingDirection));
+        if (verticalAxis != 0.0f)
+        {
+            rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+            // Fix the pushed object not moving sometimes.
+            RigidBody.AddForce(new Vector3(0.0F, 0.3f, 0.0f), ForceMode.VelocityChange);
+        }
 
         // Rotate the object around the object itself.
-        Quaternion currentRotation = rigidBody.rotation;
-        Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y + horizontalAxis * rotationalSpeed * Time.fixedDeltaTime, currentRotation.eulerAngles.z);
-        rigidBody.MoveRotation(newRotation);
+        if (horizontalAxis != 0.0f)
+        {
+            Quaternion currentRotation = rigidBody.rotation;
+            Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y + horizontalAxis * rotationalSpeed * Time.fixedDeltaTime, currentRotation.eulerAngles.z);
+            rigidBody.MoveRotation(newRotation);
+        }
     }
 
     // Update the pusher's transform.

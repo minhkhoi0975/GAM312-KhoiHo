@@ -159,5 +159,5 @@ MonoBehaviour:
   rotationalSpeed: 80
   rigidBody: {fileID: 0}
   pusher: {fileID: 0}
-  relativePushingForwardDirection: {x: 0, y: 0, z: 0}
+  relativePushingDirection: {x: 0, y: 0, z: 0}
   relativeAttachmentPosition: {x: 0, y: 0, z: 0}
