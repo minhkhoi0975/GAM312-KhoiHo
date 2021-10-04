@@ -40,12 +40,12 @@ public class Inventory : MonoBehaviour
                         items[i].CurrentStackSize += newItem.CurrentStackSize;
                     }
                     // The item in the inventory is full?
-                    // Put the new item in another slot.
+                    // Put the new item in another slot in the inventory.
                     else
                     {
-                        int subtractedQuantity = items[i].itemDefinition.MaxStackSize - items[i].CurrentStackSize;
+                        int remainingQuantity = items[i].itemDefinition.MaxStackSize - items[i].CurrentStackSize;
                         items[i].CurrentStackSize = items[i].itemDefinition.MaxStackSize;
-                        newItem.CurrentStackSize -= subtractedQuantity;
+                        newItem.CurrentStackSize -= remainingQuantity;
                         items.Add(newItem);
                     }
 
