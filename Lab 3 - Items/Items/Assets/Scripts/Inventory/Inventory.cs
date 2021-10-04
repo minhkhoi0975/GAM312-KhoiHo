@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     // Armors being equipped by the player and not in the backpack.
     ItemInstance armorHead;
-    ItemInstance armorFeet;
+    ItemInstance armorLegs;
     ItemInstance armorArms;
     ItemInstance armorChest;
 
@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
     ItemInstance weapon;
 
     // Add an item to the inventory.
-    public void AddToInventory(ItemInstance newItem)
+    public void AddToBackPack(ItemInstance newItem)
     {
         // The inventory is empty? Add the new item to the inventory.
         if (backpack.Count == 0)
@@ -61,13 +61,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddToInventory(ItemDefinition newItem)
+    public void AddToBackPack(ItemDefinition newItem)
     {
         // Create an instance of the new item.
         ItemInstance newItemInstance = new ItemInstance();
         newItemInstance.itemDefinition = newItem;
 
-        AddToInventory(newItemInstance);
+        AddToBackPack(newItemInstance);
     }
     
     // Remove an item at an index with the specified quantity from the inventory.
@@ -84,13 +84,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Equip an item. If the slot already has another item, swap the position of the two items.
+    // Equip an item in a slot.
+    // If the slot already has another item, swap the position of the two items.
     public void Equip(int inventoryIndex)
     {
         if (inventoryIndex < 0 || inventoryIndex >= backpack.Count)
-        {
             return;
-        }
 
         if(backpack[inventoryIndex].itemDefinition is Weapon)
         {
@@ -119,11 +118,46 @@ public class Inventory : MonoBehaviour
                     backpack[inventoryIndex] = temp;
                     break;
                 case InventorySlot.feet:
-                    temp = armorFeet;
-                    armorFeet = backpack[inventoryIndex];
+                    temp = armorLegs;
+                    armorLegs = backpack[inventoryIndex];
                     backpack[inventoryIndex] = temp;
                     break;
             }
         }
+    }
+
+    void Unequip(ref ItemInstance equipmentSlot)
+    {
+        if (equipmentSlot == null)
+            return;
+
+        ItemInstance item = equipmentSlot;
+        AddToBackPack(item);
+        equipmentSlot = null;
+    }
+
+    public void UnequipWeapon()
+    {
+        Unequip(ref weapon);
+    }
+
+    public void UnequipArmorHead()
+    {
+        Unequip(ref armorHead);
+    }
+
+    public void UnequipArmorChest()
+    {
+        Unequip(ref armorChest);
+    }
+
+    public void UnequipArmorArms()
+    {
+        Unequip(ref armorArms);
+    }
+
+    public void UnequipArmorLegs()
+    {
+        Unequip(ref armorLegs);
     }
 }
