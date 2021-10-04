@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
 
         AddToBackPack(newItemInstance);
     }
-    
+
     // Remove an item at an index with the specified quantity from the inventory.
     // If the quantity is lower than 0, then the whole item is removed from the inventory.
     public void RemoveFromInventory(int inventoryIndex, int quantity = -1)
@@ -91,7 +91,7 @@ public class Inventory : MonoBehaviour
         if (inventoryIndex < 0 || inventoryIndex >= backpack.Count)
             return;
 
-        if(backpack[inventoryIndex].itemDefinition is Weapon)
+        if (backpack[inventoryIndex].itemDefinition is Weapon)
         {
             ItemInstance temp = weapon;
             weapon = backpack[inventoryIndex];
