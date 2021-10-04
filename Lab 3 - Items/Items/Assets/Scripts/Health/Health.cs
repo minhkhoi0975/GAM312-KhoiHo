@@ -11,7 +11,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     // Maximum health.
-    [SerializeField] float maxHealth;
+    [SerializeField] float maxHealth = 100.0f;
     public float MaxHealth
     {
         get
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
     }
 
     // Current health.
-    [SerializeField] float currentHealth;
+    [SerializeField] float currentHealth = 100.0f;
     public float CurrentHealth
     {
         get

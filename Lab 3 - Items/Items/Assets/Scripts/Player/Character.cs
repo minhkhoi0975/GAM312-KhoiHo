@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Inventory))]
 public class Character : MonoBehaviour
 {
     // Components
@@ -95,6 +97,16 @@ public class Character : MonoBehaviour
         if (!cameraComponent)
         {
             cameraComponent = FindObjectOfType<Camera>();
+        }
+
+        if(!health)
+        {
+            health = GetComponent<Health>();
+        }
+
+        if(!inventory)
+        {
+            inventory = GetComponent<Inventory>();
         }
 
         if (!characterFoot)
@@ -207,5 +219,11 @@ public class Character : MonoBehaviour
     public void StopPushingObject()
     {
         characterHand.StopPushingObject();
+    }
+
+    // Attack
+    public void Attack()
+    {
+
     }
 }

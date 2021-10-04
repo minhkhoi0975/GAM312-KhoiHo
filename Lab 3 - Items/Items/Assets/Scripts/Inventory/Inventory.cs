@@ -12,11 +12,17 @@ public enum InventorySlot
 
 public class Inventory : MonoBehaviour
 {
+    // Items in the backpack.
     List<ItemInstance> items;
+
+    // Armors being equipped by the player and not in the backpack.
     ItemInstance head;
     ItemInstance feet;
-    ItemInstance hand;
+    ItemInstance arms;
     ItemInstance chest;
+
+    // Weapon being equipped by the player and not in the backpack.
+    ItemInstance weapon;
 
     // Add an item to the inventory.
     public void AddToInventory(ItemInstance newItem)
