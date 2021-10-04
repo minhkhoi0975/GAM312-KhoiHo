@@ -14,6 +14,7 @@ public enum ItemType
     Weapon = 1 << 1
 }
 
+[CreateAssetMenu(fileName = "New Item", menuName = "Items/Create New Item")]
 public class ItemDefinition : ScriptableObject
 {
     public string name;

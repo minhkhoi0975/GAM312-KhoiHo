@@ -25,4 +25,10 @@ public class ItemInstance
             currentStackSize = value < 1 ? 1 : (value > itemDefinition.MaxStackSize ? itemDefinition.MaxStackSize : value);  
         }
     }
+
+    // Check if this item belongs to a definition.
+    public bool BelongToItemDefinition(ItemDefinition itemDefinition)
+    {
+        return this.itemDefinition = itemDefinition;
+    }
 }
