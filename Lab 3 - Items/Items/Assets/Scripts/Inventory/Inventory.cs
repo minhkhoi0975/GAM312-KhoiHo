@@ -13,13 +13,13 @@ public enum InventorySlot
 public class Inventory : MonoBehaviour
 {
     // Items in the backpack.
-    List<ItemInstance> items;
+    List<ItemInstance> backpack;
 
     // Armors being equipped by the player and not in the backpack.
-    ItemInstance head;
-    ItemInstance feet;
-    ItemInstance arms;
-    ItemInstance chest;
+    ItemInstance armorHead;
+    ItemInstance armorFeet;
+    ItemInstance armorArms;
+    ItemInstance armorChest;
 
     // Weapon being equipped by the player and not in the backpack.
     ItemInstance weapon;
@@ -28,31 +28,31 @@ public class Inventory : MonoBehaviour
     public void AddToInventory(ItemInstance newItem)
     {
         // The inventory is empty? Add the new item to the inventory.
-        if (items.Count == 0)
+        if (backpack.Count == 0)
         {
-            items.Add(newItem);
+            backpack.Add(newItem);
         }
         else
         {
             // Find the item in the inventory that matches the new item.
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < backpack.Count; i++)
             {
-                if (items[i].itemDefinition == newItem.itemDefinition)
+                if (backpack[i].itemDefinition == newItem.itemDefinition)
                 {
                     // The item in the inventory has enough empty space for the new item? 
                     // Merge that item and the new item into 1.
-                    if (items[i].CurrentStackSize + newItem.CurrentStackSize <= items[i].itemDefinition.MaxStackSize)
+                    if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                     {
-                        items[i].CurrentStackSize += newItem.CurrentStackSize;
+                        backpack[i].CurrentStackSize += newItem.CurrentStackSize;
                     }
                     // The item in the inventory is full?
                     // Put the new item in another slot in the inventory.
                     else
                     {
-                        int remainingQuantity = items[i].itemDefinition.MaxStackSize - items[i].CurrentStackSize;
-                        items[i].CurrentStackSize = items[i].itemDefinition.MaxStackSize;
+                        int remainingQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
+                        backpack[i].CurrentStackSize = backpack[i].itemDefinition.MaxStackSize;
                         newItem.CurrentStackSize -= remainingQuantity;
-                        items.Add(newItem);
+                        backpack.Add(newItem);
                     }
 
                     return;
@@ -74,13 +74,56 @@ public class Inventory : MonoBehaviour
     // If the quantity is lower than 0, then the whole item is removed from the inventory.
     public void RemoveFromInventory(int inventoryIndex, int quantity = -1)
     {
-        if (quantity < 0 || quantity >= items[inventoryIndex].CurrentStackSize)
+        if (quantity < 0 || quantity >= backpack[inventoryIndex].CurrentStackSize)
         {
-            items.RemoveAt(inventoryIndex);
+            backpack.RemoveAt(inventoryIndex);
         }
         else
         {
-            items[inventoryIndex].CurrentStackSize -= quantity;
+            backpack[inventoryIndex].CurrentStackSize -= quantity;
+        }
+    }
+
+    // Equip an item. If the slot already has another item, swap the position of the two items.
+    public void Equip(int inventoryIndex)
+    {
+        if (inventoryIndex < 0 || inventoryIndex >= backpack.Count)
+        {
+            return;
+        }
+
+        if(backpack[inventoryIndex].itemDefinition is Weapon)
+        {
+            ItemInstance temp = weapon;
+            weapon = backpack[inventoryIndex];
+            backpack[inventoryIndex] = temp;
+        }
+        else if (backpack[inventoryIndex].itemDefinition is Armor)
+        {
+            ItemInstance temp;
+            switch (((Armor)(backpack[inventoryIndex].itemDefinition)).equipmentSlot)
+            {
+                case InventorySlot.head:
+                    temp = armorHead;
+                    armorHead = backpack[inventoryIndex];
+                    backpack[inventoryIndex] = temp;
+                    break;
+                case InventorySlot.chest:
+                    temp = armorChest;
+                    armorChest = backpack[inventoryIndex];
+                    backpack[inventoryIndex] = temp;
+                    break;
+                case InventorySlot.arms:
+                    temp = armorArms;
+                    armorArms = backpack[inventoryIndex];
+                    backpack[inventoryIndex] = temp;
+                    break;
+                case InventorySlot.feet:
+                    temp = armorFeet;
+                    armorFeet = backpack[inventoryIndex];
+                    backpack[inventoryIndex] = temp;
+                    break;
+            }
         }
     }
 }
