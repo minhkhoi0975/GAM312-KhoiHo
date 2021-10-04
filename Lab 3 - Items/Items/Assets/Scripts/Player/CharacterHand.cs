@@ -1,3 +1,9 @@
+/**
+ * CharacterHand.cs
+ * Description: This script checks if the character is pushing an object.
+ * Programmer: Khoi Ho
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +21,7 @@ public class CharacterHand : MonoBehaviour
     }
 
     // The game object being pushed.
-    GameObject pushedGameObject;  
+    GameObject pushedGameObject;
     public GameObject PushedGameObject
     {
         get
@@ -38,7 +44,7 @@ public class CharacterHand : MonoBehaviour
 
     private void Awake()
     {
-        if(!character)
+        if (!character)
         {
             character = FindObjectOfType<Character>();
         }
@@ -70,7 +76,7 @@ public class CharacterHand : MonoBehaviour
         // Set the pushed object's drag to 0 to make it easy to move.
         pushedGameObjectInitialDrag = rigidBody.drag;
         rigidBody.drag = 0;
-   
+
         // Set the pushing direction relative to the pushed object.
         pushable.relativePushingDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);
 

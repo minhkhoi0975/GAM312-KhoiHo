@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
-        if(!character)
+        if (!character)
         {
             character = GameObject.FindGameObjectWithTag("Character");
         }
@@ -31,7 +31,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        MoveCamera(); 
+        MoveCamera();
     }
 
     void MoveCamera()

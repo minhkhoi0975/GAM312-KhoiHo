@@ -40,7 +40,7 @@ public class PushableObject : MonoBehaviour
 
     private void Awake()
     {
-        if(!rigidBody)
+        if (!rigidBody)
         {
             rigidBody = GetComponent<Rigidbody>();
         }

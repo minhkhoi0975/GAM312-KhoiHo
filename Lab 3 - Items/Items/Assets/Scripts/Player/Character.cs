@@ -12,10 +12,28 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     // Components
-    [SerializeField] private Rigidbody rigidBodyComponent;
-    [SerializeField] private Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX = -90).
+    [SerializeField] Rigidbody rigidBodyComponent;
+    [SerializeField] Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX = -90).
 
-    [SerializeField] private CharacterFoot characterFoot;     // Referfence to character's foot.
+    [SerializeField] Health health;                   // Reference to character's health component.
+    public Health Health
+    {
+        get
+        {
+            return health;
+        }
+    }
+
+    [SerializeField] Inventory inventory;            // Reference to character's inventory.
+    public Inventory Inventory
+    {
+        get
+        {
+            return inventory;
+        }
+    }
+
+    [SerializeField] CharacterFoot characterFoot;     // Referfence to character's foot.
     public CharacterFoot CharacterFoot
     {
         get
@@ -24,7 +42,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] private CharacterHand characterHand;     // Reference to character's hand.
+    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
     public CharacterHand CharacterHand
     {
         get
@@ -34,7 +52,7 @@ public class Character : MonoBehaviour
     }
 
     // Movement
-    [SerializeField] private float baseMovementSpeed = 60.0f; // How fast the character moves normally (without dash).
+    [SerializeField] float baseMovementSpeed = 60.0f; // How fast the character moves normally (without dash).
     public float BaseMovementSpeed
     {
         get
@@ -43,7 +61,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] private float rotationalSpeed = 10.0f;   // How fast the character turns.
+    [SerializeField] float rotationalSpeed = 10.0f;   // How fast the character turns.
     public float RotationalSpeed
     {
         get
@@ -52,7 +70,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] private float dashSpeedMultiplier = 15.0f;  // dashSpeed = baseMoveSpeed * dashSpeedMultiplier.
+    [SerializeField] float dashSpeedMultiplier = 15.0f;  // dashSpeed = baseMoveSpeed * dashSpeedMultiplier.
     public float DashSpeedMultiplier
     {
         get
@@ -63,28 +81,28 @@ public class Character : MonoBehaviour
 
     // Object attraction
     [Tooltip("How far away can a MoveableObject be attracted by this character?")]
-    [SerializeField]float maxAttractionDistance = 10.0f;
-    [SerializeField]float attractiveForce = 60.0f;
+    [SerializeField] float maxAttractionDistance = 10.0f;
+    [SerializeField] float attractiveForce = 60.0f;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if(!rigidBodyComponent)
+        if (!rigidBodyComponent)
         {
             rigidBodyComponent = GetComponent<Rigidbody>();
         }
 
-        if(!cameraComponent)
+        if (!cameraComponent)
         {
             cameraComponent = FindObjectOfType<Camera>();
         }
 
-        if(!characterFoot)
+        if (!characterFoot)
         {
             characterFoot = GetComponentInChildren<CharacterFoot>();
         }
 
-        if(!characterHand)
+        if (!characterHand)
         {
             characterHand = GetComponentInChildren<CharacterHand>();
         }
@@ -92,7 +110,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if(characterFoot.IsGrounded)
+        if (characterFoot.IsGrounded)
         {
             rigidBodyComponent.useGravity = false;
         }
@@ -101,7 +119,7 @@ public class Character : MonoBehaviour
             rigidBodyComponent.useGravity = true;
         }
     }
-    
+
     // Move the character in direction relative to the player.
     public void Move(Vector3 relativeMovementDirection, float movementSpeed, float rotationalSpeed)
     {
@@ -109,7 +127,7 @@ public class Character : MonoBehaviour
         relativeMovementDirection = relativeMovementDirection.normalized;
 
         if (relativeMovementDirection.magnitude > 0.0f)
-        {    
+        {
             // Find the charater's new world Y rotation.
             float newWorldRotationY = Mathf.Atan2(relativeMovementDirection.x, relativeMovementDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
 
@@ -123,11 +141,11 @@ public class Character : MonoBehaviour
             Vector3 worldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
             // If the character is on a slope, project worldMoveDirection on slope surface.
-            if(characterFoot.IsOnSlope)
+            if (characterFoot.IsOnSlope)
             {
                 worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, characterFoot.GroundInfo.normal).normalized;
             }
-            
+
             // Move the character.
             rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
@@ -140,9 +158,9 @@ public class Character : MonoBehaviour
         // The start position of the ray is at the middle of the character's mesh.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, maxAttractionDistance);
-        
+
         // Does the ray hit an object?
-        if(rayCastHit)
+        if (rayCastHit)
         {
             // Get the hit game object.
             GameObject hitGameObject = hitInfo.transform.gameObject;
@@ -151,10 +169,10 @@ public class Character : MonoBehaviour
             Debug.Log(hitGameObject);
 
             // Check if the game object is movable.
-            if(hitGameObject.CompareTag("MovableObject"))
+            if (hitGameObject.CompareTag("MovableObject"))
             {
                 Rigidbody rigidBodyComponent = hitGameObject.GetComponent<Rigidbody>();
-                if(rigidBodyComponent)
+                if (rigidBodyComponent)
                 {
                     Vector3 attractionDirection = hitInfo.normal;
                     rigidBodyComponent.AddForce(attractionDirection * attractiveForce, ForceMode.Force);
@@ -175,7 +193,7 @@ public class Character : MonoBehaviour
         bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, 0.8f);
 
         // A movable object is in front of the character. Try pushing it.
-        if(rayCastHit)
+        if (rayCastHit)
         {
             characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
         }

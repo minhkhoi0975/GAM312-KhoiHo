@@ -52,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -147,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBodyComponent: {fileID: 0}
   cameraComponent: {fileID: 0}
+  health: {fileID: 0}
+  inventory: {fileID: 0}
   characterFoot: {fileID: 0}
   characterHand: {fileID: 0}
   baseMovementSpeed: 150

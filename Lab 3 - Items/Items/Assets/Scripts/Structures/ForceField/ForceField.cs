@@ -16,7 +16,7 @@ public class ForceField : MonoBehaviour
     void Update()
     {
         // All triggers are active? Disable the force field.
-        if(AreAllTriggersActive())
+        if (AreAllTriggersActive())
         {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
@@ -33,7 +33,7 @@ public class ForceField : MonoBehaviour
     {
         for (int i = 0; i < triggers.Count; i++)
         {
-            if(!triggers[i].IsActive)
+            if (!triggers[i].IsActive)
             {
                 return false;
             }

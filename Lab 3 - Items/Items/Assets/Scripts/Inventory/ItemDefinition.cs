@@ -14,12 +14,12 @@ public enum ItemType
     Weapon = 1 << 1
 }
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Items/Create New Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "Items/Create a new Item")]
 public class ItemDefinition : ScriptableObject
 {
     public string name;
 
-    private int maxStackSize = 1;
+    [SerializeField] int maxStackSize = 1;
     public int MaxStackSize
     {
         get

@@ -23,7 +23,7 @@ public class PlayerCharacterInput : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(!character)
+        if (!character)
         {
             character = GetComponent<Character>();
         }
@@ -37,7 +37,7 @@ public class PlayerCharacterInput : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("Horizontal");
 
         // Dash.
-        if(Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash"))
         {
             // Cannot dash if the character is pushing an object.
             if (!character.CharacterHand.PushedGameObject)
@@ -53,9 +53,9 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Pick up or drop an object.
-        if(Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
-            if(!character.CharacterHand.PushedGameObject)
+            if (!character.CharacterHand.PushedGameObject)
             {
                 character.StartPushingObject();
             }
@@ -99,7 +99,7 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Attract movable object
-        if(attractObjectButtonDown)
+        if (attractObjectButtonDown)
         {
             character.AttractObject();
             attractObjectButtonDown = false;

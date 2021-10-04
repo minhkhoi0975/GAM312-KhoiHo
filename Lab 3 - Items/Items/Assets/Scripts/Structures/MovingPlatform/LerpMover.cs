@@ -54,7 +54,7 @@ public class LerpMover : MonoBehaviour
         }
 
         // Attach a movable object to the moving platform.
-        else if(other.CompareTag("MovableObject") && other.gameObject.transform.root == null)
+        else if (other.CompareTag("MovableObject") && other.gameObject.transform.root == null)
         {
             other.gameObject.transform.parent = movingPlatform.transform;
         }
@@ -63,7 +63,7 @@ public class LerpMover : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Detach the character from the platform.
-        if(other.gameObject.transform.parent.CompareTag("Character"))
+        if (other.gameObject.transform.parent.CompareTag("Character"))
         {
             other.gameObject.transform.parent.parent = null;
             Debug.Log("Player leaves platform.");
@@ -78,7 +78,7 @@ public class LerpMover : MonoBehaviour
 
     private void Update()
     {
-        if(canMove)
+        if (canMove)
         {
             StartCoroutine("Move");
         }

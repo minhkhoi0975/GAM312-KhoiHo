@@ -1,6 +1,6 @@
 /**
  * CharacterFoot.cs
- * Description: This script check if the character stands on something.
+ * Description: This script checks if the character stands on something.
  * Programmer: Khoi Ho
  */
 
@@ -11,10 +11,10 @@ using UnityEngine;
 public class CharacterFoot : MonoBehaviour
 {
     // The max angle of the slope on which the character can stand.
-    public float maxSlopeAngle = 60.0f; 
+    public float maxSlopeAngle = 60.0f;
 
     // Is the character on the ground?
-    bool isGrounded = false;        
+    bool isGrounded = false;
     public bool IsGrounded
     {
         get
@@ -24,7 +24,7 @@ public class CharacterFoot : MonoBehaviour
     }
 
     // Is this character on a slope?
-    bool isOnSlope = false;         
+    bool isOnSlope = false;
     public bool IsOnSlope
     {
         get
@@ -34,7 +34,7 @@ public class CharacterFoot : MonoBehaviour
     }
 
     // Information about the ground the character stands on.
-    RaycastHit groundInfo;          
+    RaycastHit groundInfo;
     public RaycastHit GroundInfo
     {
         get
@@ -44,7 +44,7 @@ public class CharacterFoot : MonoBehaviour
     }
 
     // The slope angle of the ground the character stands on.
-    float slopeAngle;               
+    float slopeAngle;
     public float SlopeAngle
     {
         get
