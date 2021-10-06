@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInstance
+public class ItemInstance: ScriptableObject
 {
     // What is the definition of this item instance?
     public ItemDefinition itemDefinition;

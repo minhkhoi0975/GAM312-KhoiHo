@@ -13,16 +13,16 @@ public enum InventorySlot
 public class Inventory : MonoBehaviour
 {
     // Items in the backpack.
-    List<ItemInstance> backpack;
+    public List<ItemInstance> backpack;
 
     // Armors being equipped by the player and not in the backpack.
-    ItemInstance armorHead;
-    ItemInstance armorLegs;
-    ItemInstance armorArms;
-    ItemInstance armorChest;
+    public ItemInstance armorHead;
+    public ItemInstance armorLegs;
+    public ItemInstance armorArms;
+    public ItemInstance armorChest;
 
     // Weapon being equipped by the player and not in the backpack.
-    ItemInstance weapon;
+    public ItemInstance weapon;
 
     // Add an item to the inventory.
     public void AddToBackPack(ItemInstance newItem)
@@ -86,42 +86,58 @@ public class Inventory : MonoBehaviour
 
     // Equip an item in a slot.
     // If the slot already has another item, swap the position of the two items.
-    public void Equip(int inventoryIndex)
+    public void Equip(int backpackIndex)
     {
-        if (inventoryIndex < 0 || inventoryIndex >= backpack.Count)
+        if (backpackIndex < 0 || backpackIndex >= backpack.Count)
             return;
 
-        if (backpack[inventoryIndex].itemDefinition is Weapon)
+        if (backpack[backpackIndex].itemDefinition is Weapon)
         {
-            ItemInstance temp = weapon;
-            weapon = backpack[inventoryIndex];
-            backpack[inventoryIndex] = temp;
+            if (weapon)
+            {
+                weapon.itemDefinition.OnUnequipped(gameObject.transform.parent.gameObject);
+                ItemInstance temp = weapon;
+                weapon = backpack[backpackIndex];
+                backpack[backpackIndex] = temp;
+                weapon.itemDefinition.OnEquipped(gameObject.transform.parent.gameObject);
+            }
+            else
+            {
+                weapon = backpack[backpackIndex];
+                backpack[backpackIndex] = null;
+                weapon.itemDefinition.OnEquipped(gameObject.transform.parent.gameObject);
+            }
         }
-        else if (backpack[inventoryIndex].itemDefinition is Armor)
+        else if (backpack[backpackIndex].itemDefinition is Armor)
         {
-            ItemInstance temp;
-            switch (((Armor)(backpack[inventoryIndex].itemDefinition)).equipmentSlot)
+            ItemInstance armorSlot = null;
+            switch (((Armor)(backpack[backpackIndex].itemDefinition)).equipmentSlot)
             {
                 case InventorySlot.head:
-                    temp = armorHead;
-                    armorHead = backpack[inventoryIndex];
-                    backpack[inventoryIndex] = temp;
+                    armorSlot = armorHead;
                     break;
                 case InventorySlot.chest:
-                    temp = armorChest;
-                    armorChest = backpack[inventoryIndex];
-                    backpack[inventoryIndex] = temp;
+                    armorSlot = armorChest;
                     break;
                 case InventorySlot.arms:
-                    temp = armorArms;
-                    armorArms = backpack[inventoryIndex];
-                    backpack[inventoryIndex] = temp;
+                    armorSlot = armorArms;
                     break;
                 case InventorySlot.feet:
-                    temp = armorLegs;
-                    armorLegs = backpack[inventoryIndex];
-                    backpack[inventoryIndex] = temp;
+                    armorSlot = armorLegs;
                     break;
+            }
+
+            if(armorSlot)
+            {
+                armorSlot.itemDefinition.OnUnequipped(gameObject.transform.parent.gameObject);
+                ItemInstance temp = armorSlot;
+                armorSlot = backpack[backpackIndex];
+                backpack[backpackIndex] = temp;
+                armorSlot.itemDefinition.OnEquipped(gameObject.transform.parent.gameObject);
+            }
+            else
+            {
+
             }
         }
     }
@@ -131,6 +147,7 @@ public class Inventory : MonoBehaviour
         if (equipmentSlot == null)
             return;
 
+        equipmentSlot.itemDefinition.OnUnequipped(gameObject.transform.parent.gameObject);
         ItemInstance item = equipmentSlot;
         AddToBackPack(item);
         equipmentSlot = null;

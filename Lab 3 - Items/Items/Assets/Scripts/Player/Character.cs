@@ -54,12 +54,16 @@ public class Character : MonoBehaviour
     }
 
     // Movement
-    [SerializeField] float baseMovementSpeed = 60.0f; // How fast the character moves normally (without dash).
+    [SerializeField] float baseMovementSpeed = 60.0f; // How fast the character moves without dashing or pushing an object.
     public float BaseMovementSpeed
     {
         get
         {
             return baseMovementSpeed;
+        }
+        set
+        {
+            baseMovementSpeed = value < 0 ? 0 : value;
         }
     }
 

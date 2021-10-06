@@ -52,4 +52,34 @@ public class ItemDefinition : ScriptableObject
             type = type & ~itemType;
         }
     }
+
+    // Called when the item is equipped by the character.
+    virtual public void OnEquipped(Character character)
+    {
+        if (character)
+        {
+            Debug.Log(character.gameObject.name + " has equipped " + name + ".");
+        }
+    }
+
+    virtual public void OnEquipped(GameObject characterGameObject)
+    {
+        Character character = characterGameObject.GetComponent<Character>();
+        OnEquipped(character);
+    }
+
+    // Called when the item is no longer equipped by the character.
+    virtual public void OnUnequipped(Character character)
+    {
+        if (character)
+        {
+            Debug.Log(character.gameObject.name + " has unequipped " + name + ".");
+        }
+    }
+
+    virtual public void OnUnequipped(GameObject characterGameObject)
+    {
+        Character character = characterGameObject.GetComponent<Character>();
+        OnUnequipped(character);
+    }
 }
