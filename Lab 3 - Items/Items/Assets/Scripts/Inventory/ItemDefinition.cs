@@ -58,14 +58,22 @@ public class ItemDefinition : ScriptableObject
     {
         if (character)
         {
-            Debug.Log(character.gameObject.name + " has equipped " + name + ".");
+            Debug.Log(character.gameObject.name + " has equipped " + name);
         }
     }
 
     virtual public void OnEquipped(GameObject characterGameObject)
     {
+        if (!characterGameObject)
+        {
+            return;
+        }
+
         Character character = characterGameObject.GetComponent<Character>();
-        OnEquipped(character);
+        if (character)
+        {
+            OnEquipped(character);
+        }
     }
 
     // Called when the item is no longer equipped by the character.
@@ -73,13 +81,21 @@ public class ItemDefinition : ScriptableObject
     {
         if (character)
         {
-            Debug.Log(character.gameObject.name + " has unequipped " + name + ".");
+            Debug.Log(character.gameObject.name + " has unequipped " + name);
         }
     }
 
     virtual public void OnUnequipped(GameObject characterGameObject)
     {
+        if (!characterGameObject)
+        {
+            return;
+        }
+
         Character character = characterGameObject.GetComponent<Character>();
-        OnUnequipped(character);
+        if (character)
+        {
+            OnUnequipped(character);
+        }
     }
 }

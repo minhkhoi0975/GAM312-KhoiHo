@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Boots
   maxStackSize: 1
-  bonusHealth: 10
-  baseMovementSpeedMofifier: 0
+  healthModifier: 20
+  movementSpeedModifier: 10
   equipmentSlot: 3

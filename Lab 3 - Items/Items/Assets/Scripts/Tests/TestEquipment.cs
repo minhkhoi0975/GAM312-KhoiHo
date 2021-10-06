@@ -14,29 +14,55 @@ public class TestEquipment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Create item instances.
-        ItemInstance armorHeadInstance = new ItemInstance();
-        armorHeadInstance.itemDefinition = armorHead;
+        if(character == null)
+        {
+            character = GetComponent<Character>();
+        }
 
-        ItemInstance armorChestInstance = new ItemInstance();
-        armorChestInstance.itemDefinition = armorChest;
+        if (character)
+        {
+            // Create item instances.
+            ItemInstance armorHeadInstance = ScriptableObject.CreateInstance<ItemInstance>();
+            armorHeadInstance.itemDefinition = armorHead;
 
-        ItemInstance armorArmsInstance = new ItemInstance();
-        armorArmsInstance.itemDefinition = armorArms;
+            ItemInstance armorChestInstance = ScriptableObject.CreateInstance<ItemInstance>();
+            armorChestInstance.itemDefinition = armorChest;
 
-        ItemInstance armorLegsInstance = new ItemInstance();
-        armorLegsInstance.itemDefinition = armorLegs;
+            ItemInstance armorArmsInstance = ScriptableObject.CreateInstance<ItemInstance>();
+            armorArmsInstance.itemDefinition = armorArms;
 
-        // Add item instances to backpack.
-        character.Inventory.backpack.Add(armorHeadInstance);
-        character.Inventory.backpack.Add(armorChestInstance);
-        character.Inventory.backpack.Add(armorArmsInstance);
-        character.Inventory.backpack.Add(armorLegsInstance);
+            ItemInstance armorLegsInstance = ScriptableObject.CreateInstance<ItemInstance>();
+            armorLegsInstance.itemDefinition = armorLegs;
 
-        // Equip items.
-        character.Inventory.Equip(0);
-        character.Inventory.Equip(1);
-        character.Inventory.Equip(2);
-        character.Inventory.Equip(3);
+            // Add item instances to backpack.
+            character.Inventory.backpack.Add(armorHeadInstance);
+            character.Inventory.backpack.Add(armorChestInstance);
+            character.Inventory.backpack.Add(armorArmsInstance);
+            character.Inventory.backpack.Add(armorLegsInstance);
+
+            // Equip items.
+            character.Inventory.Equip(0);
+            character.Inventory.Equip(0);
+            character.Inventory.Equip(0);
+            character.Inventory.Equip(0);
+            
+            // Print character's new max health and movement speed.
+            Debug.Log("Character's new max health: " + character.Health.MaxHealth);
+            Debug.Log("Character's new movement speed: " + character.BaseMovementSpeed);
+
+            // Unequip items.
+            character.Inventory.UnequipArmorArms();
+            character.Inventory.UnequipArmorChest();
+            character.Inventory.UnequipArmorHead();
+            character.Inventory.UnequipArmorLegs();
+
+            // Print character's new max health and movement speed.
+            Debug.Log("Character's new max health: " + character.Health.MaxHealth);
+            Debug.Log("Character's new movement speed: " + character.BaseMovementSpeed);
+        }
+        else
+        {
+            Debug.LogError("Character component is not found");
+        }
     }
 }

@@ -1554,6 +1554,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1661782888}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1470459612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228463600266611084, guid: 3aac5ee326ffe6340b1af97a54b1db48,
+    type: 3}
+  m_PrefabInstance: {fileID: 362359220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470459614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470459612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  armorHead: {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
+  armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
+  armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
+  armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
 --- !u!1001 &1481411517
 PrefabInstance:
   m_ObjectHideFlags: 0

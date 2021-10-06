@@ -54,7 +54,7 @@ public class Armor : ItemDefinition
         character.Health.CurrentHealth = character.Health.CurrentHealth > character.Health.MaxHealth ? character.Health.MaxHealth : character.Health.CurrentHealth;
 
         // Reset movement speed.
-        character.BaseMovementSpeed += movementSpeedModifier;
+        character.BaseMovementSpeed -= movementSpeedModifier;
 
         base.OnUnequipped(character);
     }

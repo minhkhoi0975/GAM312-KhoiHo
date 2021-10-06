@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Armor
   maxStackSize: 1
-  bonusHealth: 50
-  baseMovementSpeedMofifier: 0
+  healthModifier: 50
+  movementSpeedModifier: 10
   equipmentSlot: 1
