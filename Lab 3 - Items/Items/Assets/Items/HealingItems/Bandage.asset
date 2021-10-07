@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
-  m_Name: Gaunlets
+  m_Script: {fileID: 11500000, guid: 37ee2128cd5e39b44aa725220e23dbe0, type: 3}
+  m_Name: Bandage
   m_EditorClassIdentifier: 
-  name: Gaunlets
+  name: Bandage
   maxStackSize: 1
-  type: 1
-  healthModifier: 10
-  movementSpeedModifier: 0
-  equipmentSlot: 2
+  type: 4
+  healthRestored: 30

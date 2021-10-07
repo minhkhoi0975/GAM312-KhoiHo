@@ -67,6 +67,11 @@ public class Weapon : ItemDefinition
         }
     }
 
+    private void Awake()
+    {
+        SetType(ItemType.Weapon, true);
+    }
+
     // Calculate the damage caused by the weapon.
     public float GetDamage()
     {

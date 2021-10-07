@@ -8,10 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Flags]
 public enum ItemType
 {
     Armor = 1 << 0,
-    Weapon = 1 << 1
+    Weapon = 1 << 1,
+    Consumable = 1 << 2
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Items/Create a new Item")]
@@ -32,16 +34,16 @@ public class ItemDefinition : ScriptableObject
         }
     }
 
-    ItemType type;
+    public ItemType type;
 
     // Does this item belong to an item type?
-    bool IsOfType(ItemType itemType)
+    public bool IsOfType(ItemType itemType)
     {
         return (int)(type & itemType) != 0;
     }
 
     // Make the item to belong to or not belong to an item type.
-    void SetType(ItemType itemType, bool IsOfType = true)
+    public void SetType(ItemType itemType, bool IsOfType = true)
     {
         if (IsOfType)
         {
@@ -96,6 +98,29 @@ public class ItemDefinition : ScriptableObject
         if (character)
         {
             OnUnequipped(character);
+        }
+    }
+
+    // Called when the item is consumed by the character.
+    virtual public void OnConsumed(Character character)
+    {
+        if (character)
+        {
+            Debug.Log(character.gameObject.name + " has consumed " + name);
+        }
+    }
+
+    virtual public void OnConsumed(GameObject characterGameObject)
+    {
+        if (!characterGameObject)
+        {
+            return;
+        }
+
+        Character character = characterGameObject.GetComponent<Character>();
+        if (character)
+        {
+            OnConsumed(character);
         }
     }
 }

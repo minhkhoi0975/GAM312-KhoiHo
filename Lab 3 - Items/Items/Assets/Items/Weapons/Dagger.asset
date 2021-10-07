@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   name: Dagger
+  maxStackSize: 1
+  type: 2
   range: 1.5
   baseDamage: 10
   criticalDamageMultiplier: 1.5

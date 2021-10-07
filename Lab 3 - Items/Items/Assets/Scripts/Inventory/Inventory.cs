@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InventorySlot
-{
-    head,
-    chest,
-    arms,
-    feet
-}
-
 public class Inventory : MonoBehaviour
 {
     // Items in the backpack.
@@ -109,29 +101,29 @@ public class Inventory : MonoBehaviour
             return;
 
         // Equip a weapon.
-        if (backpack[backpackIndex].itemDefinition is Weapon)
+        if (backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Weapon))
         {
             Equip(backpackIndex, ref weapon);
         }
 
         // Equip an armor.
-        else if (backpack[backpackIndex].itemDefinition is Armor)
+        else if (backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Armor))
         {
-            switch (((Armor)(backpack[backpackIndex].itemDefinition)).equipmentSlot)
+            switch (((Armor)(backpack[backpackIndex].itemDefinition)).armorSlot)
             {
-                case InventorySlot.head:
+                case ArmorSlot.head:
                     Equip(backpackIndex, ref armorHead);
                     break;
 
-                case InventorySlot.chest:
+                case ArmorSlot.chest:
                     Equip(backpackIndex, ref armorChest);
                     break;
 
-                case InventorySlot.arms:
+                case ArmorSlot.arms:
                     Equip(backpackIndex, ref armorArms);
                     break;
 
-                case InventorySlot.feet:
+                case ArmorSlot.feet:
                     Equip(backpackIndex, ref armorLegs);
                     break;
             }
@@ -177,5 +169,29 @@ public class Inventory : MonoBehaviour
     public void UnequipArmorLegs()
     {
         Unequip(ref armorLegs);
+    }
+
+    // Consule an item in the backpack.
+    public void Consume(int backpackIndex)
+    {
+        if (backpackIndex < 0 || backpackIndex >= backpack.Count)
+            return;
+
+        ItemInstance item = backpack[backpackIndex];
+        if(item && item.itemDefinition.IsOfType(ItemType.Consumable))
+        {
+            item.itemDefinition.OnConsumed(GetComponent<Character>());
+
+            // I have used up the item. Remove it from the inventory.
+            if(item.CurrentStackSize == 1)
+            {
+                backpack.RemoveAt(backpackIndex);
+            }
+            // If the item is not used up, decrement its quantity.
+            else
+            {
+                item.CurrentStackSize--;
+            }
+        }
     }
 }

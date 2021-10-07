@@ -8,6 +8,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ArmorSlot
+{
+    head,
+    chest,
+    arms,
+    feet
+}
+
 [CreateAssetMenu(fileName = "New Armor", menuName = "Items/Create a new Armor")]
 public class Armor : ItemDefinition
 {
@@ -32,7 +40,12 @@ public class Armor : ItemDefinition
     }
 
     // How is this armor equipped?
-    public InventorySlot equipmentSlot;
+    public ArmorSlot armorSlot;
+
+    private void Awake()
+    {
+        SetType(ItemType.Armor, true);
+    }
 
     // Called when the item is equipped by the character.
     public override void OnEquipped(Character character) 

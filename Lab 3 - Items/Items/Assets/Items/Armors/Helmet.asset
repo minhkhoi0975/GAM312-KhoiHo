@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Helmet
   maxStackSize: 1
-  bonusHealth: 10
-  baseMovementSpeedMofifier: 10
+  type: 1
+  healthModifier: 20
+  movementSpeedModifier: 0
   equipmentSlot: 0
