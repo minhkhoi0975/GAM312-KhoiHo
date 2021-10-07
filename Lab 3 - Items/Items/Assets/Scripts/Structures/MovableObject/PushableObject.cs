@@ -12,10 +12,10 @@ using UnityEngine;
 public class PushableObject : MonoBehaviour
 {
     // The movement speed of the object when it is being pushed.
-    [SerializeField] float movementSpeed = 90.0f;
+    [SerializeField] float pushingForce = 40.0f;
 
     // The rotational speed of the object when it is being pushed.
-    [SerializeField] float rotationalSpeed = 180.0f;
+    [SerializeField] float rotationalSpeed = 80.0f;
 
     // The rigid body of this object.
     [SerializeField] Rigidbody rigidBody;
@@ -60,10 +60,16 @@ public class PushableObject : MonoBehaviour
         // Push/pull the object.
         if (verticalAxis != 0.0f)
         {
-            rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+            // Prevent the pushed object from moving too fast.
+            if(rigidBody.velocity.magnitude > 10.0f)
+            {
+                rigidBody.velocity = rigidBody.velocity.normalized * 10.0f;
+            }
 
             // Fix the pushed object not moving sometimes.
-            RigidBody.AddForce(new Vector3(0.0F, 0.3f, 0.0f), ForceMode.VelocityChange);
+            RigidBody.AddForce(new Vector3(0.0F, 0.5f, 0.0f), ForceMode.VelocityChange);
         }
 
         // Rotate the object around the object itself.
