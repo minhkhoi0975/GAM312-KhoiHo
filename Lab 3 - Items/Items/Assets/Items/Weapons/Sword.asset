@@ -17,5 +17,5 @@ MonoBehaviour:
   type: 2
   range: 2.5
   baseDamage: 20
-  criticalDamageMultiplier: 1.5
+  criticalDamageMultiplier: 1.2
   criticalChance: 40
