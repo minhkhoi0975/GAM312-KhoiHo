@@ -13,27 +13,13 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class Character : MonoBehaviour
 {
-    // Components
-    [SerializeField] Rigidbody rigidBodyComponent;
-    [SerializeField] Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX = -90).
+    // Camera
+    [Header("Camera")]
+    [SerializeField] Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX is close to -90).
 
-    [SerializeField] Health health;                   // Reference to character's health component.
-    public Health Health
-    {
-        get
-        {
-            return health;
-        }
-    }
-
-    [SerializeField] Inventory inventory;            // Reference to character's inventory.
-    public Inventory Inventory
-    {
-        get
-        {
-            return inventory;
-        }
-    }
+    // Physics
+    [Header("Physics")]
+    [SerializeField] Rigidbody rigidBodyComponent;    // Reference to character's rigid body.
 
     [SerializeField] CharacterFoot characterFoot;     // Referfence to character's foot.
     public CharacterFoot CharacterFoot
@@ -44,16 +30,28 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
-    public CharacterHand CharacterHand
+    [Header("Health")]
+    [SerializeField] Health health;                   // Reference to character's health component.
+    public Health Health
     {
         get
         {
-            return characterHand;
+            return health;
+        }
+    }
+
+    [Header("Inventory")]
+    [SerializeField] Inventory inventory;            // Reference to character's inventory.
+    public Inventory Inventory
+    {
+        get
+        {
+            return inventory;
         }
     }
 
     // Movement
+    [Header("Movement")]
     [SerializeField] float baseMovementSpeed = 60.0f; // How fast the character moves without dashing or pushing an object.
     public float BaseMovementSpeed
     {
@@ -83,12 +81,56 @@ public class Character : MonoBehaviour
         {
             return dashSpeedMultiplier;
         }
+        set
+        {
+            dashSpeedMultiplier = value < 0 ? 0 : value;
+        }
     }
 
     // Object attraction
+    [Header("Object Attraction")]
     [Tooltip("How far away can a MoveableObject be attracted by this character?")]
     [SerializeField] float maxAttractionDistance = 10.0f;
     [SerializeField] float attractiveForce = 60.0f;
+
+    // Object pushing
+    [Header("Object Pushing")]
+    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
+    public CharacterHand CharacterHand
+    {
+        get
+        {
+            return characterHand;
+        }
+    }
+
+    // Combat
+    [Header("Combat")]
+    [SerializeField] float unarmedDamage = 10.0f;
+    public float UnarmedDamage
+    {
+        get
+        {
+            return unarmedDamage;
+        }
+        set
+        {
+            unarmedDamage = value < 0 ? 0 : value;
+        }
+    }
+
+    [SerializeField] float unarmedAttackRange = 0.8f;
+    public float UnarmedAttackRange
+    {
+        get
+        {
+            return unarmedAttackRange;
+        }
+        set
+        {
+            unarmedAttackRange = value < 0 ? 0 : value;
+        }
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -228,6 +270,44 @@ public class Character : MonoBehaviour
     // Attack
     public void Attack()
     {
+        float damage;
+        float attackRange;
 
+        // Check whether the character is armed. If not, use unarmed damage and attack range.
+        ItemInstance equippedWeapon = Inventory.weapon;
+        if(!equippedWeapon)
+        {
+            damage = unarmedDamage;
+            attackRange = unarmedAttackRange;
+        }
+        else
+        {
+            damage = ((Weapon)(equippedWeapon.itemDefinition)).GetDamage();
+            attackRange = ((Weapon)(equippedWeapon.itemDefinition)).Range;
+        }
+
+        // Ray cast forward to "melee attack" the enemy.
+        RaycastHit hitInfo;
+        bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, attackRange);
+
+        // If ray cast hit, cause damage to the hit object if it has Health component.
+        if(rayCastHit)
+        {
+            Health health = hitInfo.collider.GetComponent<Health>();
+            if(!health)
+            {
+                health = hitInfo.collider.GetComponentInParent<Health>();
+            }
+
+            if(health)
+            {
+                health.TakeDamage(damage);
+                Debug.Log("Hit target's remaining health: " + health.CurrentHealth);
+            }     
+        }    
+        else
+        {
+            Debug.Log("The attack did not hit anything.");
+        }
     }
 }

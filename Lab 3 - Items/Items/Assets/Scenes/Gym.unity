@@ -1577,6 +1577,7 @@ MonoBehaviour:
   armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
   armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
   armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
+  weapon: {fileID: 11400000, guid: 96cb2758676d8c246b31bfb9479f2ec3, type: 2}
 --- !u!1001 &1481411517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1584,6 +1585,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 417773596}
     m_Modifications:
+    - target: {fileID: 3525190744186256672, guid: 78bee512bf348ce4abe3bf71b39a7692,
+        type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3525190744186256673, guid: 78bee512bf348ce4abe3bf71b39a7692,
         type: 3}
       propertyPath: m_Name
@@ -2254,6 +2260,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 417773596}
     m_Modifications:
+    - target: {fileID: 3525190744186256672, guid: 78bee512bf348ce4abe3bf71b39a7692,
+        type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3525190744186256673, guid: 78bee512bf348ce4abe3bf71b39a7692,
         type: 3}
       propertyPath: m_Name
@@ -2762,6 +2773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 417773596}
     m_Modifications:
+    - target: {fileID: 3525190744186256672, guid: 78bee512bf348ce4abe3bf71b39a7692,
+        type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3525190744186256673, guid: 78bee512bf348ce4abe3bf71b39a7692,
         type: 3}
       propertyPath: m_Name

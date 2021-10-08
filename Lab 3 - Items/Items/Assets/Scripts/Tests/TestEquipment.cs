@@ -6,10 +6,12 @@ public class TestEquipment : MonoBehaviour
 {
     public Character character;
 
-    public Armor armorHead;
-    public Armor armorChest;
-    public Armor armorArms;
-    public Armor armorLegs;
+    public ItemDefinition armorHead;
+    public ItemDefinition armorChest;
+    public ItemDefinition armorArms;
+    public ItemDefinition armorLegs;
+
+    public Weapon weapon;
 
     // Start is called before the first frame update
     void Start()
@@ -22,43 +24,57 @@ public class TestEquipment : MonoBehaviour
         if (character)
         {
             // Create item instances.
-            ItemInstance armorHeadInstance = ScriptableObject.CreateInstance<ItemInstance>();
-            armorHeadInstance.itemDefinition = armorHead;
+            ItemInstance helmet = ScriptableObject.CreateInstance<ItemInstance>();
+            helmet.itemDefinition = armorHead;
 
-            ItemInstance armorChestInstance = ScriptableObject.CreateInstance<ItemInstance>();
-            armorChestInstance.itemDefinition = armorChest;
+            ItemInstance armor = ScriptableObject.CreateInstance<ItemInstance>();
+            armor.itemDefinition = armorChest;
 
-            ItemInstance armorArmsInstance = ScriptableObject.CreateInstance<ItemInstance>();
-            armorArmsInstance.itemDefinition = armorArms;
+            ItemInstance gauntlets = ScriptableObject.CreateInstance<ItemInstance>();
+            gauntlets.itemDefinition = armorArms;
 
-            ItemInstance armorLegsInstance = ScriptableObject.CreateInstance<ItemInstance>();
-            armorLegsInstance.itemDefinition = armorLegs;
+            ItemInstance boots = ScriptableObject.CreateInstance<ItemInstance>();
+            boots.itemDefinition = armorLegs;
+
+            ItemInstance sword = ScriptableObject.CreateInstance<ItemInstance>();
+            sword.itemDefinition = weapon;
 
             // Add item instances to backpack.
-            character.Inventory.backpack.Add(armorHeadInstance);
-            character.Inventory.backpack.Add(armorChestInstance);
-            character.Inventory.backpack.Add(armorArmsInstance);
-            character.Inventory.backpack.Add(armorLegsInstance);
+            character.Inventory.backpack.Add(helmet);
+            character.Inventory.backpack.Add(armor);
+            character.Inventory.backpack.Add(gauntlets);
+            character.Inventory.backpack.Add(boots);
+            character.Inventory.backpack.Add(sword);
 
             // Equip items.
             character.Inventory.Equip(0);
             character.Inventory.Equip(0);
             character.Inventory.Equip(0);
             character.Inventory.Equip(0);
-            
+            character.Inventory.Equip(0);
+
             // Print character's new max health and movement speed.
             Debug.Log("Character's new max health: " + character.Health.MaxHealth);
             Debug.Log("Character's new movement speed: " + character.BaseMovementSpeed);
+            if (character.Inventory.weapon)
+            {
+                Debug.Log("Character's carrying " + character.Inventory.weapon.itemDefinition.name);
+            }
 
             // Unequip items.
             character.Inventory.UnequipArmorArms();
             character.Inventory.UnequipArmorChest();
             character.Inventory.UnequipArmorHead();
             character.Inventory.UnequipArmorLegs();
+            //character.Inventory.UnequipWeapon();
 
             // Print character's new max health and movement speed.
             Debug.Log("Character's new max health: " + character.Health.MaxHealth);
             Debug.Log("Character's new movement speed: " + character.BaseMovementSpeed);
+            if (!character.Inventory.weapon)
+            {
+                Debug.Log("Character is unarmed");
+            }
         }
         else
         {
