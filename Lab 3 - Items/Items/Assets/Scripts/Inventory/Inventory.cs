@@ -178,19 +178,26 @@ public class Inventory : MonoBehaviour
             return;
 
         ItemInstance item = backpack[backpackIndex];
-        if(item && item.itemDefinition.IsOfType(ItemType.Consumable))
+        if(item)
         {
-            item.itemDefinition.OnConsumed(GetComponent<Character>());
-
-            // I have used up the item. Remove it from the inventory.
-            if(item.CurrentStackSize == 1)
+            if (item.itemDefinition.IsOfType(ItemType.Consumable))
             {
-                backpack.RemoveAt(backpackIndex);
+                item.itemDefinition.OnConsumed(GetComponent<Character>());
+
+                // I have used up the item. Remove it from the inventory.
+                if (item.CurrentStackSize == 1)
+                {
+                    backpack.RemoveAt(backpackIndex);
+                }
+                // If the item is not used up, decrement its quantity.
+                else
+                {
+                    item.CurrentStackSize--;
+                }
             }
-            // If the item is not used up, decrement its quantity.
             else
             {
-                item.CurrentStackSize--;
+                Debug.Log("Cannot consume the item since it is not Consumable.");
             }
         }
     }

@@ -31,7 +31,8 @@ public class TestEquipment : MonoBehaviour
 
         if (character)
         {
-            TestEquippingArmorAndWeapon();
+            // TestEquippingArmorAndWeapon();
+            TestHealingItem();
         }
         else
         {
@@ -97,7 +98,24 @@ public class TestEquipment : MonoBehaviour
 
     public void TestHealingItem()
     {
+        // Create 10 bandages.
         ItemInstance bandage = ScriptableObject.CreateInstance<ItemInstance>();
-        bandage.itemDefinition = armorHead;
+        bandage.itemDefinition = healingItem;
+        bandage.CurrentStackSize = 10;
+
+        // Add the bandages in the backpack.
+        character.Inventory.AddToBackPack(bandage);
+
+        // Set character's health to 10.
+        character.Health.CurrentHealth = 10;
+        Debug.Log("Character's current health: " + character.Health.CurrentHealth);
+
+        // Use 5 bandages.
+        for(int i = 1; i <= 5; i++)
+        {
+            character.Inventory.Consume(0);
+            Debug.Log("Remaining stack size: " + bandage.CurrentStackSize);
+            Debug.Log("Character's current health: " + character.Health.CurrentHealth);
+        }     
     }
 }
