@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject gameObjectToDestroy;
 
     // How long before objectToDestroy is destroyed, in seconds.
-    [SerializeField] float destroyDelayTimeInSeconds = 3.0f;
+    [SerializeField] float destroyDelayTimeInSeconds = 0.0f;
 
     private void Awake()
     {

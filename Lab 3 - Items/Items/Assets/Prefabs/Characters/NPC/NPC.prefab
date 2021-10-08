@@ -175,7 +175,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   gameObjectToDestroy: {fileID: 2228463600266611084}
-  destroyDelayTimeInSeconds: 3
+  destroyDelayTimeInSeconds: 0
 --- !u!114 &1623792058676853221
 MonoBehaviour:
   m_ObjectHideFlags: 0
