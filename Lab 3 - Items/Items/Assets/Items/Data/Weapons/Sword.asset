@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed7ed7187ad2334ba7c46f06a8ee1c5, type: 3}
-  m_Name: Dagger
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  name: Dagger
+  name: Sword
   maxStackSize: 1
   type: 2
-  range: 1.5
-  baseDamage: 10
-  criticalDamageMultiplier: 1.5
-  criticalChance: 30
+  mesh: {fileID: 7445754547994923273, guid: 618ad93e1636eb2468732c689e28bcc4, type: 3}
+  range: 2.5
+  baseDamage: 20
+  criticalDamageMultiplier: 1.2
+  criticalChance: 40

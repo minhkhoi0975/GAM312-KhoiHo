@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
-  m_Name: Boots
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  name: Boots
+  name: Helmet
   maxStackSize: 1
   type: 1
+  mesh: {fileID: 7445754547994923273, guid: 894ff4c513591da4aa372f8141206576, type: 3}
   healthModifier: 20
-  movementSpeedModifier: -10
-  equipmentSlot: 3
+  movementSpeedModifier: 0
+  armorSlot: 0

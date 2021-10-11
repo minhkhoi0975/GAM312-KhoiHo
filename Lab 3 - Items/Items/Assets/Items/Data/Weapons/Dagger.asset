@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
-  m_Name: Helmet
+  m_Script: {fileID: 11500000, guid: 4ed7ed7187ad2334ba7c46f06a8ee1c5, type: 3}
+  m_Name: Dagger
   m_EditorClassIdentifier: 
-  name: Helmet
+  name: Dagger
   maxStackSize: 1
-  type: 1
-  healthModifier: 20
-  movementSpeedModifier: 0
-  equipmentSlot: 0
+  type: 2
+  mesh: {fileID: 7445754547994923273, guid: 888cdf1e68f4a594aa5398a8cec2a638, type: 3}
+  range: 1.5
+  baseDamage: 10
+  criticalDamageMultiplier: 1.5
+  criticalChance: 30

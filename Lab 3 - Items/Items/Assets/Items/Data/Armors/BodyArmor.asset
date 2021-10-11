@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
-  m_Name: Armor
+  m_Name: BodyArmor
   m_EditorClassIdentifier: 
-  name: Armor
+  name: Body Armor
   maxStackSize: 1
   type: 1
+  mesh: {fileID: 7445754547994923273, guid: caed7758a573a0340bca79bd0bad32c7, type: 3}
   healthModifier: 50
   movementSpeedModifier: -20
-  equipmentSlot: 1
+  armorSlot: 1

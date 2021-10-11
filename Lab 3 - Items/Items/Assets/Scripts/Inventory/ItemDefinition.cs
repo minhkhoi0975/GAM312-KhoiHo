@@ -36,6 +36,9 @@ public class ItemDefinition : ScriptableObject
 
     public ItemType type;
 
+    // The visual representation of the item. Has NO effect on gameplay.
+    public GameObject mesh; 
+
     // Does this item belong to an item type?
     public bool IsOfType(ItemType itemType)
     {

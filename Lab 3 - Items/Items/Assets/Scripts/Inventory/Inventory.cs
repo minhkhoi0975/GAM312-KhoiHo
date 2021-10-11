@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     // Items in the backpack.
     public List<ItemInstance> backpack;
 
+    [Header("Equipment")]
+
     // Armors being equipped by the player and not in the backpack.
     public ItemInstance armorHead;
     public ItemInstance armorLegs;
@@ -15,6 +17,28 @@ public class Inventory : MonoBehaviour
 
     // Weapon being equipped by the player and not in the backpack.
     public ItemInstance weapon;
+
+    [Header("Item Dropping")]
+
+    // If the character drops an item, where is the item dropped?
+    [SerializeField] Transform dropTransform;
+
+    // Pick-up prefab.
+    [SerializeField] GameObject pickupPrefab;
+
+    private void Awake()
+    {
+        if(!pickupPrefab)
+        {
+            pickupPrefab = (GameObject)Resources.Load("Prefabs/PickUp/PickUp", typeof(GameObject));
+        }
+    }
+
+    // Check whether a backpack index is valid.
+    public bool IsBackPackIndexValid(int backpackIndex)
+    {
+        return backpackIndex >= 0 && backpackIndex < backpack.Count;
+    }
 
     // Add an item to the backpack.
     public void AddToBackPack(ItemInstance newItem)
@@ -63,7 +87,7 @@ public class Inventory : MonoBehaviour
 
     // Remove an item at an index with the specified quantity from the inventory.
     // If the quantity is lower than 0, then the whole item is removed from the inventory.
-    public void RemoveFromBackPack(int backpackIndex, int quantity = -1)
+    public void RemoveFromBackPack(int backpackIndex, int quantity = 1)
     {
         if (quantity < 0 || quantity >= backpack[backpackIndex].CurrentStackSize)
         {
@@ -78,7 +102,7 @@ public class Inventory : MonoBehaviour
     // Equip an item in a slot.
     void Equip(int backpackIndex, ref ItemInstance equipmentSlot)
     {
-        if (backpackIndex < 0 || backpackIndex >= backpack.Count)
+        if (!IsBackPackIndexValid(backpackIndex))
             return;
 
         // Unequip the current item in the equipment slot.
@@ -97,7 +121,7 @@ public class Inventory : MonoBehaviour
 
     public void Equip(int backpackIndex)
     {
-        if (backpackIndex < 0 || backpackIndex >= backpack.Count)
+        if (!IsBackPackIndexValid(backpackIndex))
             return;
 
         // Equip a weapon.
@@ -131,21 +155,6 @@ public class Inventory : MonoBehaviour
     }
 
     // Unequip an item.
-    void Unequip(ref ItemInstance equipmentSlot)
-    {
-        if (equipmentSlot == null)
-            return;
-
-        // Remove attribute bonuses from the item.
-        equipmentSlot.itemDefinition.OnUnequipped(GetComponent<Character>());
-
-        // But the item back to the backpack.
-        ItemInstance item = equipmentSlot;
-        AddToBackPack(item);
-
-        equipmentSlot = null;
-    }
-
     public void UnequipWeapon()
     {
         Unequip(ref weapon);
@@ -171,10 +180,25 @@ public class Inventory : MonoBehaviour
         Unequip(ref armorLegs);
     }
 
-    // Consule an item in the backpack.
+    void Unequip(ref ItemInstance equipmentSlot)
+    {
+        if (equipmentSlot == null)
+            return;
+
+        // Remove attribute bonuses from the item.
+        equipmentSlot.itemDefinition.OnUnequipped(GetComponent<Character>());
+
+        // But the item back to the backpack.
+        ItemInstance item = equipmentSlot;
+        AddToBackPack(item);
+
+        equipmentSlot = null;
+    }
+
+    // Consume an item in the backpack.
     public void Consume(int backpackIndex)
     {
-        if (backpackIndex < 0 || backpackIndex >= backpack.Count)
+        if (!IsBackPackIndexValid(backpackIndex))
             return;
 
         ItemInstance item = backpack[backpackIndex];
@@ -200,5 +224,63 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Cannot consume the item since it is not Consumable.");
             }
         }
+    }
+
+    // Drop an item in the backpack.
+    public void DropItemInPackack(int backpackIndex, int quantity)
+    {
+        if (!IsBackPackIndexValid(backpackIndex))
+            return;
+
+        // Create an item instance for the pick-up.
+        ItemInstance pickUpInfo = ScriptableObject.CreateInstance<ItemInstance>();
+        pickUpInfo.itemDefinition = backpack[backpackIndex].itemDefinition;
+        if(quantity < 0 || quantity >= backpack[backpackIndex].CurrentStackSize)
+        {
+            pickUpInfo.CurrentStackSize = backpack[backpackIndex].CurrentStackSize;
+            backpack.RemoveAt(backpackIndex);
+        }
+        else
+        {
+            pickUpInfo.CurrentStackSize = quantity;
+            backpack[backpackIndex].CurrentStackSize -= quantity;
+        }
+
+        // Create a pick-up object.
+        GameObject pickUpObject = Instantiate(pickupPrefab, dropTransform.position, Quaternion.identity);
+        pickUpObject.GetComponent<PickUp>().ItemInstance = pickUpInfo;
+
+        Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
+    }
+
+    // Drop an item in an equipment slot.
+    public void DropWeapon()
+    {
+        DropItemInEquipmentSlot(ref weapon);
+    }
+
+    public void DropArmorHead()
+    {
+        DropItemInEquipmentSlot(ref armorHead);
+    }
+
+    public void DropArmorChest()
+    {
+        DropItemInEquipmentSlot(ref armorChest);
+    }
+
+    public void DropArmorArms()
+    {
+        DropItemInEquipmentSlot(ref armorArms);
+    }
+
+    public void DropArmorLegs()
+    {
+        DropItemInEquipmentSlot(ref armorLegs);
+    }
+
+    void DropItemInEquipmentSlot(ref ItemInstance equipmentSlot)
+    {
+        
     }
 }

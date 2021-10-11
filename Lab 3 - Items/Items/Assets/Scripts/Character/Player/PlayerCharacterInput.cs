@@ -55,7 +55,7 @@ public class PlayerCharacterInput : MonoBehaviour
             attractObjectButtonDown = true;
         }
 
-        // Pick up or drop an object.
+        // Start or stop pushing an object.
         if (Input.GetButtonDown("Interact"))
         {
             if (!character.CharacterHand.PushedGameObject)
@@ -66,6 +66,12 @@ public class PlayerCharacterInput : MonoBehaviour
             {
                 character.StopPushingObject();
             }
+        }
+
+        // Drop an item.
+        if(Input.GetButtonDown("DropItem"))
+        {
+            character.Inventory.DropItemInPackack(0, -1);
         }
 
         // Attack (keyboard)

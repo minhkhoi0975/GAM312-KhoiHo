@@ -31,8 +31,8 @@ public class TestEquipment : MonoBehaviour
 
         if (character)
         {
-            // TestEquippingArmorAndWeapon();
-            TestHealingItem();
+            TestEquippingArmorAndWeapon();
+            //TestHealingItem();
         }
         else
         {
