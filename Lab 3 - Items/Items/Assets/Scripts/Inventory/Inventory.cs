@@ -155,6 +155,21 @@ public class Inventory : MonoBehaviour
     }
 
     // Unequip an item.
+    void Unequip(ref ItemInstance equipmentSlot)
+    {
+        if (equipmentSlot == null)
+            return;
+
+        // Remove attribute bonuses from the item.
+        equipmentSlot.itemDefinition.OnUnequipped(GetComponent<Character>());
+
+        // But the item back to the backpack.
+        ItemInstance item = equipmentSlot;
+        AddToBackPack(item);
+
+        equipmentSlot = null;
+    }
+
     public void UnequipWeapon()
     {
         Unequip(ref weapon);
@@ -178,21 +193,6 @@ public class Inventory : MonoBehaviour
     public void UnequipArmorLegs()
     {
         Unequip(ref armorLegs);
-    }
-
-    void Unequip(ref ItemInstance equipmentSlot)
-    {
-        if (equipmentSlot == null)
-            return;
-
-        // Remove attribute bonuses from the item.
-        equipmentSlot.itemDefinition.OnUnequipped(GetComponent<Character>());
-
-        // But the item back to the backpack.
-        ItemInstance item = equipmentSlot;
-        AddToBackPack(item);
-
-        equipmentSlot = null;
     }
 
     // Consume an item in the backpack.
@@ -227,7 +227,7 @@ public class Inventory : MonoBehaviour
     }
 
     // Drop an item in the backpack.
-    public void DropItemInPackack(int backpackIndex, int quantity)
+    public void DropItemInPackack(int backpackIndex, int quantity = -1)
     {
         if (!IsBackPackIndexValid(backpackIndex))
             return;
@@ -254,6 +254,18 @@ public class Inventory : MonoBehaviour
     }
 
     // Drop an item in an equipment slot.
+    void DropItemInEquipmentSlot(ref ItemInstance equipmentSlot)
+    {
+        if (!equipmentSlot)
+            return;
+
+        // Unequip the item.
+        Unequip(ref equipmentSlot);
+
+        // Drop the item.
+        DropItemInPackack(backpack.Count - 1);
+    }
+
     public void DropWeapon()
     {
         DropItemInEquipmentSlot(ref weapon);
@@ -277,10 +289,5 @@ public class Inventory : MonoBehaviour
     public void DropArmorLegs()
     {
         DropItemInEquipmentSlot(ref armorLegs);
-    }
-
-    void DropItemInEquipmentSlot(ref ItemInstance equipmentSlot)
-    {
-        
     }
 }

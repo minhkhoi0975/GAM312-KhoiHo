@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c18a2dd180148468104decc44de8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 30
+  pushingForce: 100
   rotationalSpeed: 80
   rigidBody: {fileID: 0}
   pusher: {fileID: 0}
