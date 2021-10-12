@@ -10,18 +10,32 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    // Info about the pick-up.
-    [SerializeField] ItemInstance itemInstance;
-    public ItemInstance ItemInstance
+    // Item Definition
+    [SerializeField] ItemDefinition itemDefinition;
+    public ItemDefinition ItemDefinition
     {
         get
         {
-            return itemInstance;
+            return itemDefinition;
         }
         set
         {
-            itemInstance = value;
+            itemDefinition = value;
             UpdateMesh();
+        }
+    }
+
+    // Quantity of the pick-up.
+    [SerializeField] int currentStackSize = 1;
+    public int CurrentStackSize
+    {
+        get
+        {
+            return currentStackSize;
+        }
+        set
+        {
+            currentStackSize = value < 0 ? 0 : (value > itemDefinition.MaxStackSize ? itemDefinition.MaxStackSize : value);
         }
     }
 
@@ -30,9 +44,30 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Character"))
+        Debug.Log(other.name + " has entered the trigger");
+
+        // Get the Character component of the other game object.
+        Character characterComponent = other.GetComponent<Character>();
+        if(!characterComponent)
         {
-            Destroy(gameObject);
+            characterComponent = other.GetComponentInParent<Character>();
+        }
+
+        if(characterComponent)
+        {
+            // Get the inventory of the character.
+            Inventory characterInventory = characterComponent.gameObject.GetComponent<Inventory>();
+
+            // Add the item to the backpack.
+            if(characterInventory)
+            {
+                ItemInstance pickedUpItem = new ItemInstance();
+                pickedUpItem.itemDefinition = itemDefinition;
+                pickedUpItem.CurrentStackSize = currentStackSize;
+
+                characterInventory.AddToBackPack(pickedUpItem);
+                Destroy(gameObject);
+            }      
         }
     }
 
@@ -52,9 +87,26 @@ public class PickUp : MonoBehaviour
         }
 
         // Create a new visual.
-        if(itemInstance)
+        if(itemDefinition)
         {
-            mesh = Instantiate(itemInstance.itemDefinition.mesh, transform);
+            mesh = Instantiate(itemDefinition.mesh, transform);
         }
+    }
+
+    public void SetPickUp(ItemInstance itemInstance)
+    {
+        this.itemDefinition = itemInstance.itemDefinition;
+        this.currentStackSize = itemInstance.CurrentStackSize;
+
+        UpdateMesh();
+    }
+
+    public void SetPickUp(ItemDefinition itemDefinition, int quantity = 1)
+    {
+        ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();
+        itemInstance.itemDefinition = itemDefinition;
+        itemInstance.CurrentStackSize = quantity;
+
+        SetPickUp(itemInstance);
     }
 }

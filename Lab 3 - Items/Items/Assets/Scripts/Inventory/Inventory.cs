@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
     // Add an item to the backpack.
     public void AddToBackPack(ItemInstance newItem)
     {
-        if (!newItem)
+        if (!newItem || newItem.CurrentStackSize == 0)
             return;
 
         // Find the item in the inventory that matches the new item.
@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
                 if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                 {
                     backpack[i].CurrentStackSize += newItem.CurrentStackSize;
-                    return;
+                    break;
                 }
                 // The item in the inventory is full?
                 // Put the new item in another slot in the inventory.
@@ -70,7 +70,12 @@ public class Inventory : MonoBehaviour
         }
 
         // The remaining quantity is added at the end of the backpack.
-        backpack.Add(newItem);
+        if (newItem.CurrentStackSize > 0)
+        {
+            backpack.Add(newItem);
+        }
+
+        Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to backpack");
     }
 
     public void AddToBackPack(ItemDefinition newItem)
@@ -248,7 +253,7 @@ public class Inventory : MonoBehaviour
 
         // Create a pick-up object.
         GameObject pickUpObject = Instantiate(pickupPrefab, dropTransform.position, Quaternion.identity);
-        pickUpObject.GetComponent<PickUp>().ItemInstance = pickUpInfo;
+        pickUpObject.GetComponent<PickUp>().SetPickUp(pickUpInfo);
 
         Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
     }

@@ -72,6 +72,7 @@ public class PlayerCharacterInput : MonoBehaviour
         if(Input.GetButtonDown("DropItem"))
         {
             character.Inventory.DropItemInPackack(0, -1);
+            //character.Inventory.DropWeapon();
         }
 
         // Attack (keyboard)

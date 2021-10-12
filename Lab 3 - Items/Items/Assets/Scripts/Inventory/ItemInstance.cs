@@ -22,7 +22,7 @@ public class ItemInstance: ScriptableObject
         }
         set
         {
-            currentStackSize = value < 1 ? 1 : (value > itemDefinition.MaxStackSize ? itemDefinition.MaxStackSize : value);
+            currentStackSize = value < 0 ? 0 : (value > itemDefinition.MaxStackSize ? itemDefinition.MaxStackSize : value);
         }
     }
 
