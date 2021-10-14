@@ -68,11 +68,33 @@ public class PlayerCharacterInput : MonoBehaviour
             }
         }
 
-        // Drop an item.
+        // Drop an equipped item in this priorty order: weapon, armorHead, armorArms, armorLegs, armorChest, first item in backpack.
         if(Input.GetButtonDown("DropItem"))
         {
-            character.Inventory.DropItemInPackack(0, -1);
-            //character.Inventory.DropWeapon();
+            if(character.Inventory.weapon)
+            {
+                character.Inventory.DropWeapon();
+            }
+            else if(character.Inventory.armorHead)
+            {
+                character.Inventory.DropArmorHead();
+            }
+            else if (character.Inventory.armorArms)
+            {
+                character.Inventory.DropArmorArms();
+            }
+            else if (character.Inventory.armorLegs)
+            {
+                character.Inventory.DropArmorLegs();
+            }
+            else if (character.Inventory.armorChest)
+            {
+                character.Inventory.DropArmorChest();
+            }
+            else
+            {
+                character.Inventory.DropItemInPackack(0, -1);
+            }
         }
 
         // Attack (keyboard)

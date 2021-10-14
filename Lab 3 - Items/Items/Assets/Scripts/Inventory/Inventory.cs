@@ -105,26 +105,30 @@ public class Inventory : MonoBehaviour
     }
 
     // Equip an item in a slot.
-    void Equip(int backpackIndex, ref ItemInstance equipmentSlot)
+    // If onlyEquipIfEmpty is true, the character only equips the item if equipmentSlot is empty. Otherwise, the character unequips the current item in equipmentSlot before equipping a new item. 
+    void Equip(int backpackIndex, ref ItemInstance equipmentSlot, bool onlyEquipIfEmpty = false)
     {
         if (!IsBackPackIndexValid(backpackIndex))
             return;
 
-        // Unequip the current item in the equipment slot.
-        if(equipmentSlot)
+        // Unequip the current item in the equipment slot if onlyEquipIfEmpty is true.
+        if (equipmentSlot)
         {
-            Unequip(ref equipmentSlot);
+            if (onlyEquipIfEmpty)
+                return;
+            else
+                Unequip(ref equipmentSlot);
         }
 
         // Equip the selected item in the backpack.
         equipmentSlot = backpack[backpackIndex];
         backpack.RemoveAt(backpackIndex);
 
-        // Make changes to character's properties.
+        // Make changes to the character's properties.
         equipmentSlot.itemDefinition.OnEquipped(GetComponent<Character>());
     }
 
-    public void Equip(int backpackIndex)
+    public void Equip(int backpackIndex, bool onlyEquipIfEmpty = false)
     {
         if (!IsBackPackIndexValid(backpackIndex))
             return;
@@ -132,7 +136,7 @@ public class Inventory : MonoBehaviour
         // Equip a weapon.
         if (backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Weapon))
         {
-            Equip(backpackIndex, ref weapon);
+            Equip(backpackIndex, ref weapon, onlyEquipIfEmpty);
         }
 
         // Equip an armor.
@@ -141,19 +145,19 @@ public class Inventory : MonoBehaviour
             switch (((Armor)(backpack[backpackIndex].itemDefinition)).armorSlot)
             {
                 case ArmorSlot.head:
-                    Equip(backpackIndex, ref armorHead);
+                    Equip(backpackIndex, ref armorHead, onlyEquipIfEmpty);
                     break;
 
                 case ArmorSlot.chest:
-                    Equip(backpackIndex, ref armorChest);
+                    Equip(backpackIndex, ref armorChest, onlyEquipIfEmpty);
                     break;
 
                 case ArmorSlot.arms:
-                    Equip(backpackIndex, ref armorArms);
+                    Equip(backpackIndex, ref armorArms, onlyEquipIfEmpty);
                     break;
 
                 case ArmorSlot.feet:
-                    Equip(backpackIndex, ref armorLegs);
+                    Equip(backpackIndex, ref armorLegs, onlyEquipIfEmpty);
                     break;
             }
         }
@@ -168,7 +172,7 @@ public class Inventory : MonoBehaviour
         // Remove attribute bonuses from the item.
         equipmentSlot.itemDefinition.OnUnequipped(GetComponent<Character>());
 
-        // But the item back to the backpack.
+        // Put the item back to the backpack.
         ItemInstance item = equipmentSlot;
         AddToBackPack(item);
 
@@ -237,6 +241,22 @@ public class Inventory : MonoBehaviour
         if (!IsBackPackIndexValid(backpackIndex))
             return;
 
+        // Ray cast to check if there is an obstacle in front of this object.
+        // If there is, drop the item at the hit position. Otherwise, drop the item at dropTransform.
+        Vector3 dropPosition;
+        RaycastHit hitInfo;
+        Vector3 rayCastStartPosition = transform.position + new Vector3(0.0f, 1.2f, 0.0f);
+        bool rayCastHit = Physics.Raycast(rayCastStartPosition, dropTransform.position - rayCastStartPosition, out hitInfo, Vector3.Distance(transform.position, dropTransform.position));
+
+        if(rayCastHit)
+        {
+            dropPosition = hitInfo.point;
+        }
+        else
+        {
+            dropPosition = dropTransform.position;
+        }
+
         // Create an item instance for the pick-up.
         ItemInstance pickUpInfo = ScriptableObject.CreateInstance<ItemInstance>();
         pickUpInfo.itemDefinition = backpack[backpackIndex].itemDefinition;
@@ -252,7 +272,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Create a pick-up object.
-        GameObject pickUpObject = Instantiate(pickupPrefab, dropTransform.position, Quaternion.identity);
+        GameObject pickUpObject = Instantiate(pickupPrefab, dropPosition, Quaternion.identity);
         pickUpObject.GetComponent<PickUp>().SetPickUp(pickUpInfo);
 
         Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);

@@ -81,6 +81,7 @@ public class TestEquipment : MonoBehaviour
         }
 
         // Unequip items.
+        /*
         character.Inventory.UnequipArmorArms();
         character.Inventory.UnequipArmorChest();
         character.Inventory.UnequipArmorHead();
@@ -94,6 +95,7 @@ public class TestEquipment : MonoBehaviour
         {
             Debug.Log("Character is unarmed");
         }
+        */
     }
 
     public void TestHealingItem()
