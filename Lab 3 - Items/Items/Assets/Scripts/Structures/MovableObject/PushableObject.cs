@@ -60,18 +60,11 @@ public class PushableObject : MonoBehaviour
         // Push/pull the object.
         if (verticalAxis != 0.0f)
         {
+            // Don't make the pushed object move too fast.
             if (rigidBody.velocity.magnitude < 10.0f)
             {
                 rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
-
-            /*
-            // Prevent the pushed object from moving too fast.
-            if(rigidBody.velocity.magnitude > 10.0f)
-            {
-                rigidBody.velocity = rigidBody.velocity.normalized * 10.0f;
-            }
-            */
 
             // Fix the pushed object not moving sometimes.
             RigidBody.AddForce(new Vector3(0.0F, 0.5f, 0.0f), ForceMode.VelocityChange);

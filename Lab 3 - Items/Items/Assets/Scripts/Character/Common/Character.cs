@@ -175,7 +175,7 @@ public class Character : MonoBehaviour
         else
         {
             rigidBodyComponent.useGravity = true;
-        }
+        }   
     }
 
     // Move the character in direction relative to the player.
