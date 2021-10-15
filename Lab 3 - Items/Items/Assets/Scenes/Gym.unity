@@ -210,6 +210,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1615960199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &191373228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228463600266611084, guid: 0b226a6e10547924d92d16ae26cfe526,
+    type: 3}
+  m_PrefabInstance: {fileID: 424054281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &191373233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191373228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  armorHead: {fileID: 0}
+  armorChest: {fileID: 0}
+  armorArms: {fileID: 0}
+  armorLegs: {fileID: 0}
+  weapon: {fileID: 0}
+  healingItem: {fileID: 0}
 --- !u!4 &205696146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8214252461770193095, guid: 533ee1d5027f8ff4b94f129e62f3392d,
@@ -365,6 +390,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b226a6e10547924d92d16ae26cfe526, type: 3}
+--- !u!1 &287940282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228463600266611084, guid: 0b226a6e10547924d92d16ae26cfe526,
+    type: 3}
+  m_PrefabInstance: {fileID: 266641624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &287940287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287940282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  armorHead: {fileID: 0}
+  armorChest: {fileID: 0}
+  armorArms: {fileID: 0}
+  armorLegs: {fileID: 0}
+  weapon: {fileID: 0}
+  healingItem: {fileID: 0}
 --- !u!850595691 &340446083
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1517,6 +1567,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 736386688}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &739209843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228463600266611084, guid: 0b226a6e10547924d92d16ae26cfe526,
+    type: 3}
+  m_PrefabInstance: {fileID: 707446614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &739209848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739209843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  armorHead: {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
+  armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
+  armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
+  armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
+  weapon: {fileID: 0}
+  healingItem: {fileID: 0}
 --- !u!4 &795403142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3525190744186256684, guid: 78bee512bf348ce4abe3bf71b39a7692,
@@ -2183,6 +2258,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6961c1df39036f4e9fabd436f0a6c83, type: 3}
+--- !u!1 &1399568370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228463600266611084, guid: 0b226a6e10547924d92d16ae26cfe526,
+    type: 3}
+  m_PrefabInstance: {fileID: 2001103191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1399568375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399568370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  armorHead: {fileID: 0}
+  armorChest: {fileID: 0}
+  armorArms: {fileID: 0}
+  armorLegs: {fileID: 0}
+  weapon: {fileID: 0}
+  healingItem: {fileID: 0}
 --- !u!4 &1408345319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8359478825400320730, guid: f6961c1df39036f4e9fabd436f0a6c83,

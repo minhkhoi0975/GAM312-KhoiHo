@@ -19,13 +19,13 @@ public enum ArmorSlot
 [CreateAssetMenu(fileName = "New Armor", menuName = "Items/Create a new Armor")]
 public class Armor : ItemDefinition
 {
-    // The amount of max health added to character's health when this armor is equipped.
-    [SerializeField] float healthModifier = 10.0f;
-    public float HealthModifier
+    // The amount of damage resistance added to character's damage resistance.
+    [SerializeField] float damageResistance = 2.0f;
+    public float DamageResistance
     {
         get
         {
-            return healthModifier;
+            return damageResistance;
         }
     }
 
@@ -50,8 +50,8 @@ public class Armor : ItemDefinition
     // Called when the item is equipped by the character.
     public override void OnEquipped(Character character) 
     {
-        // Modify health.
-        character.Health.MaxHealth += HealthModifier;
+        // Modify damage resistance.
+        character.Health.DamageResistance += DamageResistance;
 
         // Modify movement speed.
         character.BaseMovementSpeed += movementSpeedModifier;
@@ -62,11 +62,10 @@ public class Armor : ItemDefinition
     // Called when the item is no longer equipped by the character.
     public override void OnUnequipped(Character character)
     {
-        // Reset health.
-        character.Health.MaxHealth -= HealthModifier;
-        character.Health.CurrentHealth = character.Health.CurrentHealth > character.Health.MaxHealth ? character.Health.MaxHealth : character.Health.CurrentHealth;
+        // Restore damage resistance.
+        character.Health.DamageResistance -= DamageResistance;
 
-        // Reset movement speed.
+        // Restore movement speed.
         character.BaseMovementSpeed -= movementSpeedModifier;
 
         base.OnUnequipped(character);

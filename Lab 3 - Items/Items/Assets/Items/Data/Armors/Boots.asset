@@ -16,6 +16,6 @@ MonoBehaviour:
   maxStackSize: 1
   type: 1
   mesh: {fileID: 7445754547994923273, guid: f775c303991315246a3f9b86393c747e, type: 3}
-  healthModifier: 20
-  movementSpeedModifier: 50
+  damageResistance: 2
+  movementSpeedModifier: 150
   armorSlot: 3

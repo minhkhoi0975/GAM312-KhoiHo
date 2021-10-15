@@ -38,6 +38,20 @@ public class Health : MonoBehaviour
         }
     }
 
+    // Damage resistance (when the game object takes damage, this amount is subtracted from damage.
+    [SerializeField] float damageResistance = 0.0f;
+    public float DamageResistance
+    {
+        get
+        {
+            return damageResistance;
+        }
+        set
+        {
+            damageResistance = value < 0 ? 0 : value;
+        }
+    }
+
     // When health goes below 0, this game object is destroyed.
     // By default, destroy the object that contains Health component.
     [SerializeField] GameObject gameObjectToDestroy;
@@ -54,9 +68,15 @@ public class Health : MonoBehaviour
     }
 
     // Take damage.
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damageFromSource)
     {
-        CurrentHealth -= damage;
+        float finalDamage = damageFromSource - damageResistance;
+        Debug.Log("Damage: " + damageFromSource + " - " + damageResistance + " = " + finalDamage);
+
+        if (finalDamage > 0)
+        {
+            CurrentHealth -= finalDamage;
+        }
 
         // Health goes below zero? Destroy root component.
         if(CurrentHealth == 0)
