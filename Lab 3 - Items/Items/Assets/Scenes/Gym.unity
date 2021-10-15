@@ -223,7 +223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191373228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287940282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
@@ -1590,8 +1590,8 @@ MonoBehaviour:
   armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
   armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
   armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
-  weapon: {fileID: 0}
-  healingItem: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 96cb2758676d8c246b31bfb9479f2ec3, type: 2}
+  healingItem: {fileID: 11400000, guid: 71dcfb0566328f14aa9a82afbd874299, type: 2}
 --- !u!4 &795403142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3525190744186256684, guid: 78bee512bf348ce4abe3bf71b39a7692,
@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399568370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 

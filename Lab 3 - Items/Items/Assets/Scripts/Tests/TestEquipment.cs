@@ -71,7 +71,7 @@ public class TestEquipment : MonoBehaviour
         character.Inventory.Equip(0);
         character.Inventory.Equip(0);
         character.Inventory.Equip(0);
-
+        
         // Print character's new max health and movement speed.
         Debug.Log("Character's new max health: " + character.Health.MaxHealth);
         Debug.Log("Character's new movement speed: " + character.BaseMovementSpeed);
