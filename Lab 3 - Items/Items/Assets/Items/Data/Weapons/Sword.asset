@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Sword
   maxStackSize: 1
   type: 2
+  icon: {fileID: 21300000, guid: 724bba050168f924b86a6c5f921910ce, type: 3}
   mesh: {fileID: 7445754547994923273, guid: 618ad93e1636eb2468732c689e28bcc4, type: 3}
   range: 2.5
   baseDamage: 20

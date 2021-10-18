@@ -56,15 +56,17 @@ public class Inventory : MonoBehaviour
                 if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                 {
                     backpack[i].CurrentStackSize += newItem.CurrentStackSize;
-                    break;
+                    Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + i + ".");
+                    return;
                 }
                 // The item in the inventory is full?
                 // Put the new item in another slot in the inventory.
                 else
                 {
-                    int remainingQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
+                    int insertedQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
                     backpack[i].CurrentStackSize = backpack[i].itemDefinition.MaxStackSize;
-                    newItem.CurrentStackSize -= remainingQuantity;
+                    newItem.CurrentStackSize -= insertedQuantity;
+                    Debug.Log(insertedQuantity + "x" + newItem.itemDefinition.name + " has been added to slot " + i + "." + newItem.CurrentStackSize + " remaining.");
                 }
             }
         }
@@ -73,9 +75,8 @@ public class Inventory : MonoBehaviour
         if (newItem.CurrentStackSize > 0)
         {
             backpack.Add(newItem);
-        }
-
-        Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to backpack");
+            Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
+        }     
     }
 
     public void AddToBackPack(ItemDefinition newItem)
@@ -210,12 +211,17 @@ public class Inventory : MonoBehaviour
         if (!IsBackPackIndexValid(backpackIndex))
             return;
 
+        // Only characters can consume the item.
+        Character character = GetComponent<Character>();
+        if (!character)
+            return;
+
         ItemInstance item = backpack[backpackIndex];
         if(item)
         {
             if (item.itemDefinition.IsOfType(ItemType.Consumable))
             {
-                item.itemDefinition.OnConsumed(GetComponent<Character>());
+                item.itemDefinition.OnConsumed(character);
 
                 // I have used up the item. Remove it from the inventory.
                 if (item.CurrentStackSize == 1)

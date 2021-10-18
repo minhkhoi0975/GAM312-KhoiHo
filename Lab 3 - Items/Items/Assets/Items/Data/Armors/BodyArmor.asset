@@ -15,7 +15,8 @@ MonoBehaviour:
   name: Body Armor
   maxStackSize: 1
   type: 1
+  icon: {fileID: 21300000, guid: 0463d1d58a751c947bcdc23441b68fc0, type: 3}
   mesh: {fileID: 7445754547994923273, guid: caed7758a573a0340bca79bd0bad32c7, type: 3}
-  healthModifier: 50
+  damageResistance: 2
   movementSpeedModifier: -20
   armorSlot: 1

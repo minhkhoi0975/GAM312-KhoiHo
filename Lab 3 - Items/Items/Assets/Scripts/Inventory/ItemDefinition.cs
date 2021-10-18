@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Flags]
 public enum ItemType
@@ -35,6 +36,9 @@ public class ItemDefinition : ScriptableObject
     }
 
     public ItemType type;
+
+    // The icon of the item in the inventory.
+    public Sprite icon;
 
     // The visual representation of the item. Has NO effect on gameplay.
     public GameObject mesh; 

@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Gaunlets
   maxStackSize: 1
   type: 1
+  icon: {fileID: 21300000, guid: 0463d1d58a751c947bcdc23441b68fc0, type: 3}
   mesh: {fileID: 7445754547994923273, guid: 8577db3efb0d8ff4f8b6dcc0f8157101, type: 3}
   damageResistance: 2
   movementSpeedModifier: 0
