@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    // Called when the inventory is changed (an item is added, removed, equipped, etc.)
+    public delegate void InventoryUpdated();
+    public InventoryUpdated inventoryUpdatedCallback;
+
     // Items in the backpack.
     public List<ItemInstance> backpack;
 
@@ -26,14 +30,6 @@ public class Inventory : MonoBehaviour
     // Pick-up prefab.
     [SerializeField] GameObject pickupPrefab;
 
-    private void Awake()
-    {
-        if(!pickupPrefab)
-        {
-            pickupPrefab = (GameObject)Resources.Load("Prefabs/PickUp/PickUp", typeof(GameObject));
-        }
-    }
-
     // Check whether a backpack index is valid.
     public bool IsBackPackIndexValid(int backpackIndex)
     {
@@ -51,16 +47,18 @@ public class Inventory : MonoBehaviour
         {
             if (backpack[i].itemDefinition == newItem.itemDefinition)
             {
-                // The item in the inventory has enough empty space for the new item? 
+                // The same item in the inventory has enough empty space for the new item? 
                 // Merge that item and the new item into 1.
                 if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                 {
                     backpack[i].CurrentStackSize += newItem.CurrentStackSize;
                     Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + i + ".");
+
+                    inventoryUpdatedCallback();
                     return;
                 }
                 // The item in the inventory is full?
-                // Put the new item in another slot in the inventory.
+                // Move to another slot in the inventory.
                 else
                 {
                     int insertedQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
@@ -76,7 +74,9 @@ public class Inventory : MonoBehaviour
         {
             backpack.Add(newItem);
             Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
-        }     
+        }
+
+        inventoryUpdatedCallback();
     }
 
     public void AddToBackPack(ItemDefinition newItem)
@@ -103,6 +103,8 @@ public class Inventory : MonoBehaviour
         {
             backpack[backpackIndex].CurrentStackSize -= quantity;
         }
+
+        inventoryUpdatedCallback();
     }
 
     // Equip an item in a slot.
@@ -127,6 +129,8 @@ public class Inventory : MonoBehaviour
 
         // Make changes to the character's properties.
         equipmentSlot.itemDefinition.OnEquipped(GetComponent<Character>());
+
+        inventoryUpdatedCallback();
     }
 
     public void Equip(int backpackIndex, bool onlyEquipIfEmpty = false)
@@ -178,6 +182,8 @@ public class Inventory : MonoBehaviour
         AddToBackPack(item);
 
         equipmentSlot = null;
+
+        inventoryUpdatedCallback();
     }
 
     public void UnequipWeapon()
@@ -239,6 +245,8 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Cannot consume the item since it is not Consumable.");
             }
         }
+
+        inventoryUpdatedCallback();
     }
 
     // Drop an item in the backpack.
@@ -282,6 +290,8 @@ public class Inventory : MonoBehaviour
         pickUpObject.GetComponent<PickUp>().SetPickUp(pickUpInfo);
 
         Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
+
+        inventoryUpdatedCallback();
     }
 
     // Drop an item in an equipment slot.

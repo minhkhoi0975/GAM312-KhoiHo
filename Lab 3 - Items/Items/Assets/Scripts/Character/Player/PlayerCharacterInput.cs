@@ -21,7 +21,7 @@ public class PlayerCharacterInput : MonoBehaviour
     bool attractObjectButtonDown;
 
     // Combat
-    bool attackButtonDown; // Used for Xbox One controller. Triggers are axes, not buttons.
+    bool attackButtonDown; // Used for Xbox One controller.
 
     // Start is called before the first frame update
     void Awake()
@@ -104,13 +104,12 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Attack (Xbox One controller)
-        if(Input.GetAxisRaw("AttackController") == 1.0f)
+        if(Input.GetAxis("AttackController") == 1.0f)
         {
             if (!attackButtonDown)
             {
                 character.Attack();
                 attackButtonDown = true;
-                Debug.Log("Attack!");
             }
         }
         else

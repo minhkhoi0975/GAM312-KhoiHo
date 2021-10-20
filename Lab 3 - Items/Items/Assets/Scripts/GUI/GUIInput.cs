@@ -25,7 +25,7 @@ public class GUIInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Open/Close the inventory.
+        // Open/Close the inventory (keyboard).
         if(Input.GetButtonDown("Inventory"))
         {
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);

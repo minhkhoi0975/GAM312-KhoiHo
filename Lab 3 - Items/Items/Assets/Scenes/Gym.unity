@@ -2864,6 +2864,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6961c1df39036f4e9fabd436f0a6c83, type: 3}
+--- !u!1 &1259586916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7840093817201985048, guid: faa986f38cbd8354ab976bd720e4f078,
+    type: 3}
+  m_PrefabInstance: {fileID: 8108249225931751818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1264243019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,7 +3923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab44807e99861e43ade44699804d7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
+  inventoryPanel: {fileID: 1259586916}
 --- !u!1001 &1607557069
 PrefabInstance:
   m_ObjectHideFlags: 0

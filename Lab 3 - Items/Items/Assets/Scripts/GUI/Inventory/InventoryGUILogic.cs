@@ -26,13 +26,11 @@ public class InventoryGUILogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateGUI();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateGUI();
+        if (inventory)
+        {
+            inventory.inventoryUpdatedCallback += UpdateGUI;
+            UpdateGUI();
+        }
     }
 
     void UpdateGUI()
@@ -87,11 +85,11 @@ public class InventoryGUILogic : MonoBehaviour
             }
         }
 
-        CreateItemSlot(inventory.armorHead, headSlot.transform, ItemSlotType.Head, -1);
-        CreateItemSlot(inventory.armorChest, chestSlot.transform, ItemSlotType.Chest, -1);
-        CreateItemSlot(inventory.armorArms, armsSlot.transform, ItemSlotType.Arms, -1);
-        CreateItemSlot(inventory.armorLegs, legsSlot.transform, ItemSlotType.Legs, -1);
-        CreateItemSlot(inventory.weapon, weaponSlot.transform, ItemSlotType.Weapon, -1);
+        CreateItemSlot(inventory.armorHead, headSlot.transform, ItemSlotType.Head);
+        CreateItemSlot(inventory.armorChest, chestSlot.transform, ItemSlotType.Chest);
+        CreateItemSlot(inventory.armorArms, armsSlot.transform, ItemSlotType.Arms);
+        CreateItemSlot(inventory.armorLegs, legsSlot.transform, ItemSlotType.Legs);
+        CreateItemSlot(inventory.weapon, weaponSlot.transform, ItemSlotType.Weapon);
 
         // Update the backpack.
         // + Destroy the children of Content in BackpackScrollView.
@@ -104,33 +102,12 @@ public class InventoryGUILogic : MonoBehaviour
 
         for (int i = 0; i < inventory.backpack.Count; i++)
         {
-            /*
-            // Create an item slot.
-            GameObject itemSlot = Instantiate(itemSlotPrefab, backpackScrollViewContent.transform);
-
-            ItemSlotLogic itemSlotLogic = itemSlot.GetComponent<ItemSlotLogic>();
-
-            // Set the slot type.
-            itemSlotLogic.itemSlotType = ItemSlotType.Backpack;
-
-            // Set the index of the item slot.
-            itemSlotLogic.index = i;
-
-            // Set the icon of the item slot.
-            itemSlotLogic.icon.sprite = inventory.backpack[i].itemDefinition.icon;
-
-            // Set the name of the item slot.
-            // If the stack size is greater than 1, add the stack size after the name of the item.
-            itemSlotLogic.itemName.text = inventory.backpack[i].itemDefinition.name;
-            itemSlotLogic.itemName.text += (inventory.backpack[i].CurrentStackSize > 1 ? " (" + inventory.backpack[i].CurrentStackSize + ")" : "");
-            */
-
             CreateItemSlot(inventory.backpack[i], backpackScrollViewContent.transform, ItemSlotType.Backpack, i);
         }
     }
 
     // Create an item slot.
-    GameObject CreateItemSlot(ItemInstance itemInstance, Transform parentTransform, ItemSlotType itemSlotType, int index)
+    GameObject CreateItemSlot(ItemInstance itemInstance, Transform parentTransform, ItemSlotType itemSlotType, int index = -1)
     {
         if (!itemInstance)
             return null;
@@ -139,6 +116,9 @@ public class InventoryGUILogic : MonoBehaviour
         GameObject itemSlot = Instantiate(itemSlotPrefab, parentTransform);
 
         ItemSlotLogic itemSlotLogic = itemSlot.GetComponent<ItemSlotLogic>();
+
+        // Make the item slot reference to the inventory.
+        itemSlotLogic.inventory = inventory;
 
         // If the item slot type is Backpack, set the index of the item slot to match the index in the character's backpack.
         itemSlotLogic.itemSlotType = itemSlotType;
