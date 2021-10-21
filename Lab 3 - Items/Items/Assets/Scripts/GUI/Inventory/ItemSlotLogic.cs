@@ -22,10 +22,13 @@ public enum ItemSlotType
 
 public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
 {
+    // Reference to the Drop Item panel.
+    public DropItemPanelLogic dropItemPanel;
+
     // Reference to the inventory.
     public Inventory inventory;
 
-    // References to the icon and the name of the item.
+    // The icon and the name of the item.
     public Image icon;
     public Text itemName;
 
@@ -34,7 +37,7 @@ public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
 
     // If the item is equipped, the index is -1.
     // Otherwise, return the index of the item in the backpack.
-    public int index = 0;
+    public int backpackIndex = 0;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -61,15 +64,15 @@ public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
             {
                 inventory.UnequipWeapon();
             }
-            else if (index >= 0)
+            else if (backpackIndex >= 0)
             {
-                if (inventory.backpack[index].itemDefinition.IsOfType(ItemType.Consumable))
+                if (inventory.backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Consumable))
                 {
-                    inventory.Consume(index);
+                    inventory.Consume(backpackIndex);
                 }
                 else
                 {
-                    inventory.Equip(index);
+                    inventory.Equip(backpackIndex);
                 }
             }
         }
@@ -97,9 +100,31 @@ public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
             {
                 inventory.DropWeapon();
             }
-            else if (index >= 0)
+            else if (backpackIndex >= 0)
             {
-                inventory.DropItemInPackack(index);
+                // If the stack size is only 1, drop the item immediately.
+                // Otherwise, display the Drop Item panel.
+                if (inventory.backpack[backpackIndex].CurrentStackSize == 1)
+                {
+                    inventory.DropItemInPackack(backpackIndex, 1);
+                }
+                else
+                {
+                    // Let the Drop Item panel know the player's inventory.
+                    if (!dropItemPanel.inventory)
+                    {
+                        dropItemPanel.inventory = inventory;
+                    }
+
+                    // Let the Drop Item panel know which item in the backpack is currently selected.
+                    dropItemPanel.backpackIndex = backpackIndex;
+
+                    // Set options of how many items to be dropped.
+                    dropItemPanel.SetDropDownOptions(inventory.backpack[backpackIndex].CurrentStackSize);
+
+                    // Display the Drop Item Panel.
+                    dropItemPanel.gameObject.SetActive(true);
+                }
             }
         }
     }

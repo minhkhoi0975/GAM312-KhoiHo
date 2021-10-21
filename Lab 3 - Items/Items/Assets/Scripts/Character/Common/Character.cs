@@ -106,7 +106,7 @@ public class Character : MonoBehaviour
 
     // Combat
     [Header("Combat")]
-    [SerializeField] float unarmedDamage = 10.0f;
+    [SerializeField] float unarmedDamage = 5.0f;
     public float UnarmedDamage
     {
         get
@@ -119,7 +119,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] float unarmedAttackRange = 0.8f;
+    [SerializeField] float unarmedAttackRange = 1.2f;
     public float UnarmedAttackRange
     {
         get

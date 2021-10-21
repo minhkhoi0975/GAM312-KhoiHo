@@ -160,7 +160,7 @@ MonoBehaviour:
   maxAttractionDistance: 10
   attractiveForce: 8000
   characterHand: {fileID: 1308971320555853229}
-  unarmedDamage: 10
+  unarmedDamage: 5
   unarmedAttackRange: 1.2
 --- !u!114 &6148106624201655973
 MonoBehaviour:
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  damageResistance: 0
   gameObjectToDestroy: {fileID: 2228463600266611084}
   destroyDelayTimeInSeconds: 0
 --- !u!114 &1623792058676853221

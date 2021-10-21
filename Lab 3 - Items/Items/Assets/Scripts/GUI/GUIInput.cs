@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GUIInput : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GUIInput : MonoBehaviour
     {
         if(!inventoryPanel)
         {
-            inventoryPanel = FindObjectOfType<InventoryGUILogic>().gameObject;
+            inventoryPanel = FindObjectOfType<InventoryPanelLogic>().gameObject;
         }
     }
 
@@ -29,6 +30,15 @@ public class GUIInput : MonoBehaviour
         if(Input.GetButtonDown("Inventory"))
         {
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+
+            if(inventoryPanel.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
         }
     }
 }

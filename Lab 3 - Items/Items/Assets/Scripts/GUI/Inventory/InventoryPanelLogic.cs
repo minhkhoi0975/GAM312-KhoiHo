@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryGUILogic : MonoBehaviour
+public class InventoryPanelLogic : MonoBehaviour
 {
     // Reference to the player character's inventory.
     public Inventory inventory;
@@ -22,6 +22,17 @@ public class InventoryGUILogic : MonoBehaviour
 
     // Prefab for an item slot.
     public GameObject itemSlotPrefab;
+
+    // Reference to the Drop Item panel.
+    public DropItemPanelLogic dropItemPanel;
+
+    private void Awake()
+    {
+        if (!dropItemPanel)
+        {
+            dropItemPanel = GetComponentInChildren<DropItemPanelLogic>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +54,7 @@ public class InventoryGUILogic : MonoBehaviour
 
         // Update the equipment.
         // + Destroy the children of equipment objects.
-        // + Create new childrens of equipment objects.
+        // + Create new children of equipment objects.
 
         foreach (Transform childTransform in headSlot.transform)
         {
@@ -117,18 +128,21 @@ public class InventoryGUILogic : MonoBehaviour
 
         ItemSlotLogic itemSlotLogic = itemSlot.GetComponent<ItemSlotLogic>();
 
-        // Make the item slot reference to the inventory.
+        // Make the item slot reference the Drop Item quantity.
+        itemSlotLogic.dropItemPanel = dropItemPanel;
+
+        // Make the item slot reference the player's inventory.
         itemSlotLogic.inventory = inventory;
 
         // If the item slot type is Backpack, set the index of the item slot to match the index in the character's backpack.
         itemSlotLogic.itemSlotType = itemSlotType;
         if (itemSlotType == ItemSlotType.Backpack)
         {
-            itemSlotLogic.index = index;
+            itemSlotLogic.backpackIndex = index;
         }
         else
         {
-            itemSlotLogic.index = -1;
+            itemSlotLogic.backpackIndex = -1;
         }
 
         // Set the icon of the item slot.

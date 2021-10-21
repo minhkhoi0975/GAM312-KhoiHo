@@ -39,6 +39,16 @@ public class Armor : ItemDefinition
         }
     }
 
+    // The amount added to character's dashSpeedMultiplier when this armor is equipped.
+    [SerializeField] float bonusDashSpeedMultiplier;
+    public float BonusDashSpeedMultiplier
+    {
+        get
+        {
+            return bonusDashSpeedMultiplier;
+        }
+    }
+
     // How is this armor equipped?
     public ArmorSlot armorSlot;
 
@@ -56,6 +66,9 @@ public class Armor : ItemDefinition
         // Modify movement speed.
         character.BaseMovementSpeed += movementSpeedModifier;
 
+        // Modify dash speed multiplier.
+        character.DashSpeedMultiplier += bonusDashSpeedMultiplier;
+
         base.OnEquipped(character);
     }
 
@@ -67,6 +80,9 @@ public class Armor : ItemDefinition
 
         // Restore movement speed.
         character.BaseMovementSpeed -= movementSpeedModifier;
+
+        // Restore dash speed multiplier.
+        character.DashSpeedMultiplier -= bonusDashSpeedMultiplier;
 
         base.OnUnequipped(character);
     }

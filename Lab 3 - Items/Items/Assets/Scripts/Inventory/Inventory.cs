@@ -52,9 +52,9 @@ public class Inventory : MonoBehaviour
                 if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                 {
                     backpack[i].CurrentStackSize += newItem.CurrentStackSize;
-                    Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + i + ".");
+                    //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + i + ".");
 
-                    inventoryUpdatedCallback();
+                    inventoryUpdatedCallback?.Invoke();
                     return;
                 }
                 // The item in the inventory is full?
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
                     int insertedQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
                     backpack[i].CurrentStackSize = backpack[i].itemDefinition.MaxStackSize;
                     newItem.CurrentStackSize -= insertedQuantity;
-                    Debug.Log(insertedQuantity + "x" + newItem.itemDefinition.name + " has been added to slot " + i + "." + newItem.CurrentStackSize + " remaining.");
+                    //Debug.Log(insertedQuantity + "x" + newItem.itemDefinition.name + " has been added to slot " + i + "." + newItem.CurrentStackSize + " remaining.");
                 }
             }
         }
@@ -73,10 +73,10 @@ public class Inventory : MonoBehaviour
         if (newItem.CurrentStackSize > 0)
         {
             backpack.Add(newItem);
-            Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
+            //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
         }
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     public void AddToBackPack(ItemDefinition newItem)
@@ -104,7 +104,7 @@ public class Inventory : MonoBehaviour
             backpack[backpackIndex].CurrentStackSize -= quantity;
         }
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     // Equip an item in a slot.
@@ -130,7 +130,7 @@ public class Inventory : MonoBehaviour
         // Make changes to the character's properties.
         equipmentSlot.itemDefinition.OnEquipped(GetComponent<Character>());
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     public void Equip(int backpackIndex, bool onlyEquipIfEmpty = false)
@@ -183,7 +183,7 @@ public class Inventory : MonoBehaviour
 
         equipmentSlot = null;
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     public void UnequipWeapon()
@@ -223,7 +223,7 @@ public class Inventory : MonoBehaviour
             return;
 
         ItemInstance item = backpack[backpackIndex];
-        if(item)
+        if (item)
         {
             if (item.itemDefinition.IsOfType(ItemType.Consumable))
             {
@@ -246,7 +246,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     // Drop an item in the backpack.
@@ -262,7 +262,7 @@ public class Inventory : MonoBehaviour
         Vector3 rayCastStartPosition = transform.position + new Vector3(0.0f, 1.2f, 0.0f);
         bool rayCastHit = Physics.Raycast(rayCastStartPosition, dropTransform.position - rayCastStartPosition, out hitInfo, Vector3.Distance(transform.position, dropTransform.position));
 
-        if(rayCastHit)
+        if (rayCastHit)
         {
             dropPosition = hitInfo.point;
         }
@@ -274,7 +274,7 @@ public class Inventory : MonoBehaviour
         // Create an item instance for the pick-up.
         ItemInstance pickUpInfo = ScriptableObject.CreateInstance<ItemInstance>();
         pickUpInfo.itemDefinition = backpack[backpackIndex].itemDefinition;
-        if(quantity < 0 || quantity >= backpack[backpackIndex].CurrentStackSize)
+        if (quantity < 0 || quantity >= backpack[backpackIndex].CurrentStackSize)
         {
             pickUpInfo.CurrentStackSize = backpack[backpackIndex].CurrentStackSize;
             backpack.RemoveAt(backpackIndex);
@@ -291,7 +291,7 @@ public class Inventory : MonoBehaviour
 
         Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
 
-        inventoryUpdatedCallback();
+        inventoryUpdatedCallback?.Invoke();
     }
 
     // Drop an item in an equipment slot.

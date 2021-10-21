@@ -35,6 +35,10 @@ public class PlayerCharacterInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Don't receive input if the game is paused.
+        if (Time.timeScale == 0.0f)
+            return;
+
         // Movement.
         verticalAxis = Input.GetAxisRaw("Vertical");
         horizontalAxis = Input.GetAxisRaw("Horizontal");

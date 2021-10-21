@@ -10,6 +10,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ForceFieldTrigger : MonoBehaviour
 {
+    // Reference to the force field.
+    public ForceField forceField;
+
+    // Reference to the collider of the trigger.
     [SerializeField] Collider collider;
 
     // The trigger is active if there is at least 1 object in the trigger.
@@ -36,8 +40,14 @@ public class ForceFieldTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Add the object to objectsInTrigger.
         objectsInTrigger.Add(other.gameObject);
+
+        // Make the trigger active.
         isActive = true;
+
+        // Update the status of the force field.
+        forceField.UpdateForceFieldStatus();
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,5 +60,8 @@ public class ForceFieldTrigger : MonoBehaviour
         {
             isActive = false;
         }
+
+        // Update the status of the force field.
+        forceField.UpdateForceFieldStatus();
     }
 }

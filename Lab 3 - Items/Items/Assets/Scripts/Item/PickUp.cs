@@ -21,7 +21,7 @@ public class PickUp : MonoBehaviour
         set
         {
             itemDefinition = value;
-            UpdateMesh();
+            UpdatePickUpVisual();
         }
     }
 
@@ -39,25 +39,25 @@ public class PickUp : MonoBehaviour
         }
     }
 
-    // Reference to the visual of the pick-up.
-    GameObject mesh; 
+    // Reference to the visual presentation of the pick-up.
+    GameObject mesh;
 
     private void OnTriggerEnter(Collider other)
     {
         // Get the Character component of the other game object.
         Character characterComponent = other.GetComponent<Character>();
-        if(!characterComponent)
+        if (!characterComponent)
         {
             characterComponent = other.GetComponentInParent<Character>();
         }
 
-        if(characterComponent)
+        if (characterComponent)
         {
             // Get the inventory of the character.
             Inventory characterInventory = characterComponent.gameObject.GetComponent<Inventory>();
 
-            
-            if(characterInventory)
+
+            if (characterInventory)
             {
                 // Add the item to the backpack.
                 ItemInstance pickedUpItem = ScriptableObject.CreateInstance<ItemInstance>();
@@ -69,6 +69,8 @@ public class PickUp : MonoBehaviour
                 // Try equipping the item.
                 characterInventory.Equip(characterInventory.backpack.Count - 1, true);
 
+                Debug.Log("Picked up " + currentStackSize + "x" + itemDefinition.name);
+
                 // Destroy the pick-up.
                 Destroy(gameObject);
             }
@@ -78,31 +80,34 @@ public class PickUp : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        UpdateMesh();
+        UpdatePickUpVisual();
     }
 
     // Update the visual representation of the pickup.
-    public void UpdateMesh()
+    public void UpdatePickUpVisual()
     {
         // Remove the old visual.
-        if(mesh)
+        if (mesh)
         {
             Destroy(mesh);
         }
 
         // Create a new visual.
-        if(itemDefinition)
+        if (itemDefinition)
         {
             mesh = Instantiate(itemDefinition.mesh, transform);
         }
     }
 
+    // Set the properties of the pick-up.
     public void SetPickUp(ItemInstance itemInstance)
     {
+        // Set the info about the pick-up.
         this.itemDefinition = itemInstance.itemDefinition;
         this.currentStackSize = itemInstance.CurrentStackSize;
 
-        UpdateMesh();
+        // Update the visual presentation of the pickup.
+        UpdatePickUpVisual();
     }
 
     public void SetPickUp(ItemDefinition itemDefinition, int quantity = 1)

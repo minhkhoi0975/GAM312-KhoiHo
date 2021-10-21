@@ -19,4 +19,5 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: f775c303991315246a3f9b86393c747e, type: 3}
   damageResistance: 2
   movementSpeedModifier: 150
+  bonusDashSpeedMultiplier: 1
   armorSlot: 3

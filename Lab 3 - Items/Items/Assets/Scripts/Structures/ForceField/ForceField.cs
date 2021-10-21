@@ -12,8 +12,22 @@ public class ForceField : MonoBehaviour
     // These triggers must be active so that the force field is disabled.
     [SerializeField] List<ForceFieldTrigger> triggers;
 
+    private void Start()
+    {
+        // Make all triggers reference to this force field.
+        foreach (ForceFieldTrigger trigger in triggers)
+        {
+            trigger.forceField = this;
+        }
+    }
+
     // Update is called once per frame
     void Update()
+    {
+        UpdateForceFieldStatus();
+    }
+
+    public void UpdateForceFieldStatus()
     {
         // All triggers are active? Disable the force field.
         if (AreAllTriggersActive())
@@ -31,9 +45,9 @@ public class ForceField : MonoBehaviour
     // Check if all the triggers are active.
     public bool AreAllTriggersActive()
     {
-        for (int i = 0; i < triggers.Count; i++)
+        foreach (ForceFieldTrigger trigger in triggers)
         {
-            if (!triggers[i].IsActive)
+            if (!trigger.IsActive)
             {
                 return false;
             }
