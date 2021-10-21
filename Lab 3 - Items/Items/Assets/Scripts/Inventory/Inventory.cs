@@ -250,7 +250,7 @@ public class Inventory : MonoBehaviour
     }
 
     // Drop an item in the backpack.
-    public void DropItemInPackack(int backpackIndex, int quantity = -1)
+    public void DropItemInBackpack(int backpackIndex, int quantity = -1)
     {
         if (!IsBackPackIndexValid(backpackIndex))
             return;
@@ -304,7 +304,7 @@ public class Inventory : MonoBehaviour
         Unequip(ref equipmentSlot);
 
         // Drop the item.
-        DropItemInPackack(backpack.Count - 1);
+        DropItemInBackpack(backpack.Count - 1);
     }
 
     public void DropWeapon()

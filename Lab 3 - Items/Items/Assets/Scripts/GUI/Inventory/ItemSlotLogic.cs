@@ -106,7 +106,7 @@ public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
                 // Otherwise, display the Drop Item panel.
                 if (inventory.backpack[backpackIndex].CurrentStackSize == 1)
                 {
-                    inventory.DropItemInPackack(backpackIndex, 1);
+                    inventory.DropItemInBackpack(backpackIndex, 1);
                 }
                 else
                 {

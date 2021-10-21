@@ -31,22 +31,16 @@ public class DropItemPanelLogic : MonoBehaviour
         {
             dropQuantityDropDown.options.Add(new Dropdown.OptionData((i + 1).ToString()));
         }
-
-        // Make the dropdown select the first option.
-        dropQuantityDropDown.value = 0;
     }
 
     // Drop item.
     public void DropItem()
     {
-        if (backpackIndex >= 0)
-        {
-            // Get the drop quantity from the dropdown.
-            int dropQuantity = dropQuantityDropDown.value + 1;
+        // Get the drop quantity from the dropdown.
+        int dropQuantity = dropQuantityDropDown.value + 1;
 
-            // Drop item.
-            inventory.DropItemInPackack(backpackIndex, dropQuantity);
-        }
+        // Drop item.
+        inventory.DropItemInBackpack(backpackIndex, dropQuantity);
 
         // Close the panel.
         gameObject.SetActive(false);

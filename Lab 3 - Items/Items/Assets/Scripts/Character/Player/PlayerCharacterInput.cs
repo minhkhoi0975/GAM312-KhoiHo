@@ -97,7 +97,7 @@ public class PlayerCharacterInput : MonoBehaviour
             }
             else
             {
-                character.Inventory.DropItemInPackack(0, -1);
+                character.Inventory.DropItemInBackpack(0, -1);
             }
         }
 
