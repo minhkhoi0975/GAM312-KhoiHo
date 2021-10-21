@@ -44,34 +44,33 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Get the Character component of the other game object.
-        Character characterComponent = other.GetComponent<Character>();
-        if (!characterComponent)
+        // Get the player input component of the other game object to check whether the other object is a player character.
+        PlayerCharacterInput playerInputComponent = other.GetComponent<PlayerCharacterInput>();
+        if (!playerInputComponent)
         {
-            characterComponent = other.GetComponentInParent<Character>();
+            playerInputComponent = other.GetComponentInParent<PlayerCharacterInput>();
         }
 
-        if (characterComponent)
+        if (playerInputComponent)
         {
-            // Get the inventory of the character.
-            Inventory characterInventory = characterComponent.gameObject.GetComponent<Inventory>();
+            // Get the inventory of the player character.
+            Inventory inventory = playerInputComponent.gameObject.GetComponent<Inventory>();
 
-
-            if (characterInventory)
+            if (inventory)
             {
                 // Add the item to the backpack.
                 ItemInstance pickedUpItem = ScriptableObject.CreateInstance<ItemInstance>();
                 pickedUpItem.itemDefinition = itemDefinition;
                 pickedUpItem.CurrentStackSize = currentStackSize;
 
-                characterInventory.AddToBackPack(pickedUpItem);
+                inventory.AddToBackPack(pickedUpItem);
 
                 // Try equipping the item.
-                characterInventory.Equip(characterInventory.backpack.Count - 1, true);
+                inventory.Equip(inventory.backpack.Count - 1, true);
 
                 Debug.Log("Picked up " + currentStackSize + "x" + itemDefinition.name);
 
-                // Destroy the pick-up.
+                // Destroy the pick-up object.
                 Destroy(gameObject);
             }
         }

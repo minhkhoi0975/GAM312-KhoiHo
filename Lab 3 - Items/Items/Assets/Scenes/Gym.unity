@@ -223,18 +223,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191373228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  armorHead: {fileID: 0}
-  armorChest: {fileID: 0}
-  armorArms: {fileID: 0}
-  armorLegs: {fileID: 0}
-  weapon: {fileID: 0}
-  healingItem: {fileID: 0}
+  inventory: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
 --- !u!4 &205696146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8214252461770193095, guid: 533ee1d5027f8ff4b94f129e62f3392d,
@@ -257,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 2689417454744612425, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
       propertyPath: currentStackSize
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2961695528550091406, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
@@ -563,18 +559,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287940282}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  armorHead: {fileID: 0}
-  armorChest: {fileID: 0}
-  armorArms: {fileID: 0}
-  armorLegs: {fileID: 0}
-  weapon: {fileID: 0}
-  healingItem: {fileID: 0}
+  inventory: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
+  - {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
+  - {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
+  - {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
 --- !u!1001 &299838030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,6 +723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090434034205710227, guid: 3aac5ee326ffe6340b1af97a54b1db48,
+        type: 3}
+      propertyPath: currentHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7217646592359028575, guid: 3aac5ee326ffe6340b1af97a54b1db48,
         type: 3}
@@ -1296,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 2689417454744612425, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
       propertyPath: currentStackSize
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2961695528550091406, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
@@ -2077,13 +2077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  armorHead: {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
-  armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
-  armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
-  armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
-  weapon: {fileID: 11400000, guid: 96cb2758676d8c246b31bfb9479f2ec3, type: 2}
-  healingItem: {fileID: 11400000, guid: 71dcfb0566328f14aa9a82afbd874299, type: 2}
+  inventory: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
+  - {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
 --- !u!4 &795403142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3525190744186256684, guid: 78bee512bf348ce4abe3bf71b39a7692,
@@ -2629,7 +2626,7 @@ PrefabInstance:
     - target: {fileID: 2689417454744612425, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
       propertyPath: currentStackSize
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2961695528550091406, guid: 533ee1d5027f8ff4b94f129e62f3392d,
         type: 3}
@@ -3191,18 +3188,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399568370}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  armorHead: {fileID: 0}
-  armorChest: {fileID: 0}
-  armorArms: {fileID: 0}
-  armorLegs: {fileID: 0}
-  weapon: {fileID: 0}
-  healingItem: {fileID: 0}
+  inventory: {fileID: 0}
+  items: []
 --- !u!4 &1408345319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8359478825400320730, guid: f6961c1df39036f4e9fabd436f0a6c83,
@@ -3239,13 +3231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2fc3c812a926f41be6fcd0e3a5a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  armorHead: {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
-  armorChest: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
-  armorArms: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
-  armorLegs: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
-  weapon: {fileID: 11400000, guid: 96cb2758676d8c246b31bfb9479f2ec3, type: 2}
-  healingItem: {fileID: 11400000, guid: 71dcfb0566328f14aa9a82afbd874299, type: 2}
+  inventory: {fileID: 0}
+  items: []
 --- !u!114 &1470459615 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1623792058676853221, guid: 3aac5ee326ffe6340b1af97a54b1db48,
