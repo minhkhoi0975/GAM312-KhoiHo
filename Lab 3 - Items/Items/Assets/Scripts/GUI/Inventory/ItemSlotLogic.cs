@@ -44,87 +44,103 @@ public class ItemSlotLogic : MonoBehaviour, IPointerClickHandler
         // Left Click.
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (itemSlotType == ItemSlotType.Head)
-            {
-                inventory.UnequipArmorHead();
-            }
-            else if (itemSlotType == ItemSlotType.Chest)
-            {
-                inventory.UnequipArmorChest();
-            }
-            else if (itemSlotType == ItemSlotType.Arms)
-            {
-                inventory.UnequipArmorArms();
-            }
-            else if (itemSlotType == ItemSlotType.Legs)
-            {
-                inventory.UnequipArmorLegs();
-            }
-            else if (itemSlotType == ItemSlotType.Weapon)
-            {
-                inventory.UnequipWeapon();
-            }
-            else if (backpackIndex >= 0)
-            {
-                if (inventory.backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Consumable))
-                {
-                    inventory.Consume(backpackIndex);
-                }
-                else
-                {
-                    inventory.Equip(backpackIndex);
-                }
-            }
+            OnLeftClicked();
         }
 
         // Right Click.
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (itemSlotType == ItemSlotType.Head)
+            OnRightClicked();
+        }
+    }
+
+    // The item slot is in the equipment panel? Unequip the item.
+    // The item slot is in the backpack scrollview? Equip the item.
+    public void OnLeftClicked()
+    {
+        if (itemSlotType == ItemSlotType.Head)
+        {
+            inventory.UnequipArmorHead();
+        }
+        else if (itemSlotType == ItemSlotType.Chest)
+        {
+            inventory.UnequipArmorChest();
+        }
+        else if (itemSlotType == ItemSlotType.Arms)
+        {
+            inventory.UnequipArmorArms();
+        }
+        else if (itemSlotType == ItemSlotType.Legs)
+        {
+            inventory.UnequipArmorLegs();
+        }
+        else if (itemSlotType == ItemSlotType.Weapon)
+        {
+            inventory.UnequipWeapon();
+        }
+        else if (backpackIndex >= 0)
+        {
+            if (inventory.backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Consumable))
             {
-                inventory.DropArmorHead();
+                inventory.Consume(backpackIndex);
             }
-            else if (itemSlotType == ItemSlotType.Chest)
+            else
             {
-                inventory.DropArmorChest();
+                inventory.Equip(backpackIndex);
             }
-            else if (itemSlotType == ItemSlotType.Arms)
+        }
+    }
+
+    // Drop the item.
+    public void OnRightClicked()
+    {
+        if (itemSlotType == ItemSlotType.Head)
+        {
+            inventory.DropArmorHead();
+        }
+        else if (itemSlotType == ItemSlotType.Chest)
+        {
+            inventory.DropArmorChest();
+        }
+        else if (itemSlotType == ItemSlotType.Arms)
+        {
+            inventory.DropArmorArms();
+        }
+        else if (itemSlotType == ItemSlotType.Legs)
+        {
+            inventory.DropArmorLegs();
+        }
+        else if (itemSlotType == ItemSlotType.Weapon)
+        {
+            inventory.DropWeapon();
+        }
+        else if (backpackIndex >= 0)
+        {
+            // If the stack size is only 1, drop the item immediately.
+            // Otherwise, display the Drop Item panel.
+            if (inventory.backpack[backpackIndex].CurrentStackSize == 1)
             {
-                inventory.DropArmorArms();
+                inventory.DropItemInBackpack(backpackIndex, 1);
             }
-            else if (itemSlotType == ItemSlotType.Legs)
+            else
             {
-                inventory.DropArmorLegs();
-            }
-            else if (itemSlotType == ItemSlotType.Weapon)
-            {
-                inventory.DropWeapon();
-            }
-            else if (backpackIndex >= 0)
-            {
-                // If the stack size is only 1, drop the item immediately.
-                // Otherwise, display the Drop Item panel.
-                if (inventory.backpack[backpackIndex].CurrentStackSize == 1)
+                // Let the Drop Item panel know the player's inventory.
+                if (!dropItemPanel.inventory)
                 {
-                    inventory.DropItemInBackpack(backpackIndex, 1);
+                    dropItemPanel.inventory = inventory;
                 }
-                else
-                {
-                    // Let the Drop Item panel know the player's inventory.
-                    if (!dropItemPanel.inventory)
-                    {
-                        dropItemPanel.inventory = inventory;
-                    }
 
-                    // Let the Drop Item panel know which item in the backpack is currently selected.
-                    dropItemPanel.backpackIndex = backpackIndex;
+                // Let the Drop Item panel know which item in the backpack is currently selected.
+                dropItemPanel.backpackIndex = backpackIndex;
 
-                    // Set options of how many items to be dropped.
-                    dropItemPanel.SetDropDownOptions(inventory.backpack[backpackIndex].CurrentStackSize);
+                // Set options of how many items to be dropped.
+                dropItemPanel.SetDropDownOptions(inventory.backpack[backpackIndex].CurrentStackSize);
 
-                    // Display the Drop Item Panel.
-                    dropItemPanel.gameObject.SetActive(true);
-                }
+                // Display the Drop Item Panel.
+                dropItemPanel.gameObject.SetActive(true);
+
+                // Make the event system select the dropdown of the Drop Item panel.
+                dropItemPanel.gameObject.GetComponentInChildren<Dropdown>().Select();
             }
         }
     }

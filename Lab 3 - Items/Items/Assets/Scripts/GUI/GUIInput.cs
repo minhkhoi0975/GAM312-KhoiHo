@@ -12,14 +12,19 @@ using UnityEngine.EventSystems;
 
 public class GUIInput : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    // Reference to the inventory panel.
+    public InventoryPanelLogic inventoryPanel;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        if (!inventoryPanel)
+        {
+            inventoryPanel = GetComponent<InventoryPanelLogic>();
+        }
         if(!inventoryPanel)
         {
-            inventoryPanel = FindObjectOfType<InventoryPanelLogic>().gameObject;
+            inventoryPanel = GetComponentInChildren<InventoryPanelLogic>();
         }
     }
 
@@ -29,9 +34,18 @@ public class GUIInput : MonoBehaviour
         // Open/Close the inventory (keyboard).
         if(Input.GetButtonDown("Inventory"))
         {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+            // Show the inventory UI.
+            inventoryPanel.gameObject.SetActive(!inventoryPanel.gameObject.activeSelf);
 
-            if(inventoryPanel.activeSelf)
+            // Make the event system select the first item slot in the inventory UI.
+            ItemSlotLogic firstItemSlot = inventoryPanel.gameObject.GetComponentInChildren<ItemSlotLogic>();
+            if (firstItemSlot)
+            {
+                firstItemSlot.gameObject.GetComponent<Button>().Select();
+                firstItemSlot.gameObject.GetComponent<Button>().OnSelect(null);
+            }
+
+            if(inventoryPanel.gameObject.activeSelf)
             {
                 Time.timeScale = 0.0f;
             }
