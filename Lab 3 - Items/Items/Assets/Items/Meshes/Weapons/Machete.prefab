@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2342196206003278559}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: Machete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8921676222279194073}
-  m_Text: Sword
+  m_Text: Machete
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
