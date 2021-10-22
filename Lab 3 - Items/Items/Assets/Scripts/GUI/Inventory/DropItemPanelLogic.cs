@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DropItemPanelLogic : MonoBehaviour
@@ -49,6 +50,8 @@ public class DropItemPanelLogic : MonoBehaviour
         // Enable the equipment panel and backpack scrollview.
         inventoryPanel.equipmentPanel.SetActive(true);
         inventoryPanel.backpackScrollview.SetActive(true);
+
+        inventoryPanel.MakeEventSystemSelectFirstSlot();
     }
 
     // Cancel dropping item.
@@ -60,5 +63,7 @@ public class DropItemPanelLogic : MonoBehaviour
         // Enable the equipment panel and backpack scrollview.
         inventoryPanel.equipmentPanel.SetActive(true);
         inventoryPanel.backpackScrollview.SetActive(true);
+
+        inventoryPanel.MakeEventSystemSelectFirstSlot();
     }
 }

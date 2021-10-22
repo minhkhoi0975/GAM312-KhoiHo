@@ -39,13 +39,7 @@ public class GUIInput : MonoBehaviour
 
             if(inventoryPanel.gameObject.activeSelf)
             {
-                // Make the event system select the first item slot in the inventory UI.
-                ItemSlotLogic firstItemSlot = inventoryPanel.gameObject.GetComponentInChildren<ItemSlotLogic>(true);
-                if (firstItemSlot)
-                {
-                    firstItemSlot.gameObject.GetComponent<Button>().Select();
-                    firstItemSlot.gameObject.GetComponent<Button>().OnSelect(null);
-                }
+                inventoryPanel.MakeEventSystemSelectFirstSlot();
 
                 Time.timeScale = 0.0f;
             }

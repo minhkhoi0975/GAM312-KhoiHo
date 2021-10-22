@@ -104,8 +104,7 @@ public class InventoryPanelLogic : MonoBehaviour
         // Make the event system select the first item slot button in the inventory UI.
         if(itemSlotButtons.Count > 0)
         {
-            GameObject itemSlotButton = itemSlotButtons[0];
-            EventSystem.current.SetSelectedGameObject(itemSlotButton);
+            EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
         }
     }
 
@@ -143,5 +142,17 @@ public class InventoryPanelLogic : MonoBehaviour
         itemSlotLogic.itemName.text += (itemInstance.CurrentStackSize > 1 ? " (" + itemInstance.CurrentStackSize + ")" : "");
 
         return itemSlot;
+    }
+
+    // Make the event system select the first item slot button.
+    public void MakeEventSystemSelectFirstSlot()
+    {
+        if(itemSlotButtons.Count > 0)
+        {
+            EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
+
+            // Highlight the button to let the player know which button is selected.
+            itemSlotButtons[0].GetComponent<Button>().OnSelect(null);
+        }
     }
 }
