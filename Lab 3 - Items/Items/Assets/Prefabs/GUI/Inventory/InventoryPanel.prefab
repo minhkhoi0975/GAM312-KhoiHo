@@ -180,9 +180,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 0.09803922, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.09803922, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -756,10 +756,10 @@ RectTransform:
   m_Father: {fileID: 4921768168663045980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -18.052}
-  m_SizeDelta: {x: -1186.2418, y: -675.9349}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 733.7582, y: 360.78998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7981223062313039609
 CanvasRenderer:
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.22940499, b: 0.9811321, a: 1}
+  m_Color: {r: 0, g: 0.08871651, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -811,8 +811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612966a81e0a3fe44976ecad59594d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 6702435667985989123}
   dropQuantityDropDown: {fileID: 2276357652856291556}
-  inventory: {fileID: 0}
   backpackIndex: 0
 --- !u!1 &4490208193846029557
 GameObject:
@@ -1198,9 +1198,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 0.09803922, a: 1}
+    m_PressedColor: {r: 0, g: 0.6509804, b: 0.07450981, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.098039225, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1489,9 +1489,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 0.09699106, a: 1}
+    m_PressedColor: {r: 0, g: 0.6509434, b: 0.07525037, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.098039225, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2006,14 +2006,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
-  headSlot: {fileID: 3250638968030236799}
-  chestSlot: {fileID: 1940759710557019158}
-  armsSlot: {fileID: 8910738756039093774}
-  legsSlot: {fileID: 8861906377491588099}
-  weaponSlot: {fileID: 7967285491552194974}
-  backpackScrollViewContent: {fileID: 8108249225816110078}
-  itemSlotPrefab: {fileID: 8439932551002707782, guid: f26d7c7068d62274c9ec2e7f0f94cf3f,
+  headSlotTransform: {fileID: 6173808643544984247}
+  chestSlotTransform: {fileID: 6262199659534285769}
+  armsSlotTransform: {fileID: 875313394957727975}
+  legsSlotTransform: {fileID: 1730753715352635672}
+  weaponSlotTransform: {fileID: 8433519133332765861}
+  backpackScrollViewContentTransform: {fileID: 8108249225816110079}
+  itemSlotButtonPrefab: {fileID: 8439932551002707782, guid: f26d7c7068d62274c9ec2e7f0f94cf3f,
     type: 3}
+  equipmentPanel: {fileID: 5252410192740557502}
+  backpackScrollview: {fileID: 8108249225949349031}
   dropItemPanel: {fileID: 3722440411425407064}
 --- !u!1 &7967285491552194974
 GameObject:
@@ -2129,7 +2131,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 0, y: 331.4871}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6710120887781793149
 CanvasRenderer:
@@ -2459,7 +2461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1241.0038, y: -18.052}
+  m_AnchoredPosition: {x: 1241.0038, y: -18.054}
   m_SizeDelta: {x: 841.8278, y: 749.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8108249225949349051
@@ -2995,9 +2997,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 0.09803922, a: 1}
+    m_PressedColor: {r: 0, g: 0.6509804, b: 0.07450981, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.098039225, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

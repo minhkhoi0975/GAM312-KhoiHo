@@ -37,20 +37,27 @@ public class GUIInput : MonoBehaviour
             // Show the inventory UI.
             inventoryPanel.gameObject.SetActive(!inventoryPanel.gameObject.activeSelf);
 
-            // Make the event system select the first item slot in the inventory UI.
-            ItemSlotLogic firstItemSlot = inventoryPanel.gameObject.GetComponentInChildren<ItemSlotLogic>();
-            if (firstItemSlot)
-            {
-                firstItemSlot.gameObject.GetComponent<Button>().Select();
-                firstItemSlot.gameObject.GetComponent<Button>().OnSelect(null);
-            }
-
             if(inventoryPanel.gameObject.activeSelf)
             {
+                // Make the event system select the first item slot in the inventory UI.
+                ItemSlotLogic firstItemSlot = inventoryPanel.gameObject.GetComponentInChildren<ItemSlotLogic>(true);
+                if (firstItemSlot)
+                {
+                    firstItemSlot.gameObject.GetComponent<Button>().Select();
+                    firstItemSlot.gameObject.GetComponent<Button>().OnSelect(null);
+                }
+
                 Time.timeScale = 0.0f;
             }
             else
             {
+                // When closing the inventory, close the Drop Item panel as well.
+                DropItemPanelLogic dropItemPanel = inventoryPanel.gameObject.GetComponentInChildren<DropItemPanelLogic>(true);
+                if (dropItemPanel)
+                {
+                    dropItemPanel.gameObject.SetActive(false);
+                }
+
                 Time.timeScale = 1.0f;
             }
         }

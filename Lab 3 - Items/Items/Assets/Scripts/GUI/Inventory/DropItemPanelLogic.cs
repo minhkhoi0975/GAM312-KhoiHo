@@ -11,11 +11,11 @@ using UnityEngine.UI;
 
 public class DropItemPanelLogic : MonoBehaviour
 {
+    // Reference to the Inventory panel.
+    public InventoryPanelLogic inventoryPanel;
+
     // Reference to the drop quantity dropdown.
     public Dropdown dropQuantityDropDown;
-
-    // Reference to the player's inventory.
-    public Inventory inventory;
 
     // The index of the selected item in the backpack.
     public int backpackIndex = -1;
@@ -30,6 +30,7 @@ public class DropItemPanelLogic : MonoBehaviour
         for (int i = 0; i < maxDropQuantity; i++)
         {
             dropQuantityDropDown.options.Add(new Dropdown.OptionData((i + 1).ToString()));
+            dropQuantityDropDown.value = i;
         }
     }
 
@@ -40,10 +41,14 @@ public class DropItemPanelLogic : MonoBehaviour
         int dropQuantity = dropQuantityDropDown.value + 1;
 
         // Drop item.
-        inventory.DropItemInBackpack(backpackIndex, dropQuantity);
+        inventoryPanel.inventory.DropItemInBackpack(backpackIndex, dropQuantity);
 
         // Close the panel.
         gameObject.SetActive(false);
+
+        // Enable the equipment panel and backpack scrollview.
+        inventoryPanel.equipmentPanel.SetActive(true);
+        inventoryPanel.backpackScrollview.SetActive(true);
     }
 
     // Cancel dropping item.
@@ -51,5 +56,9 @@ public class DropItemPanelLogic : MonoBehaviour
     {
         // Close the panel.
         gameObject.SetActive(false);
+
+        // Enable the equipment panel and backpack scrollview.
+        inventoryPanel.equipmentPanel.SetActive(true);
+        inventoryPanel.backpackScrollview.SetActive(true);
     }
 }

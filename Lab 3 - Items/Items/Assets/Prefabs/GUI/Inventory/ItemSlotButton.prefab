@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6720415562604123923}
   - component: {fileID: 893389553803424127}
   - component: {fileID: 886101496580774056}
+  - component: {fileID: 7246936028340042756}
   m_Layer: 5
   m_Name: ItemSlotButton
   m_TagString: Untagged
@@ -214,11 +215,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fef7fcc37259c440a2d4dc401aa58b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropItemPanel: {fileID: 0}
   inventory: {fileID: 0}
   icon: {fileID: 1964188987544070276}
   itemName: {fileID: 3338816671362957727}
   itemSlotType: 5
-  index: 0
+  backpackIndex: 0
+--- !u!114 &7246936028340042756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439932551002707782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832ff328240d5f3458be46622f2a43ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8464128811041440649
 GameObject:
   m_ObjectHideFlags: 0

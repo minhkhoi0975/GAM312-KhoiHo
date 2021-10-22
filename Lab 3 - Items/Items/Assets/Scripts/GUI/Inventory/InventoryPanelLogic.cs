@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryPanelLogic : MonoBehaviour
@@ -14,14 +15,30 @@ public class InventoryPanelLogic : MonoBehaviour
     // Reference to the player character's inventory.
     public Inventory inventory;
 
-    // References to the equipment slots.
-    public GameObject headSlot, chestSlot, armsSlot, legsSlot, weaponSlot;
+    // References to the transforms of the item slots in the equipment panel.
+    public Transform headSlotTransform, chestSlotTransform, armsSlotTransform, legsSlotTransform, weaponSlotTransform;
 
-    // Reference to the content of the backpack scroll view.
-    public GameObject backpackScrollViewContent;
+    // Reference to the transform of the content of the backpack scroll view.
+    public Transform backpackScrollViewContentTransform;
 
-    // Prefab for an item slot.
-    public GameObject itemSlotPrefab;
+    // Reference to all item slot buttons.
+    List<GameObject> itemSlotButtons = new List<GameObject>();
+    public List<GameObject> ItemSlotButtons
+    {
+        get
+        {
+            return itemSlotButtons;
+        }
+    }
+
+    // Prefab for an item slot button.
+    public GameObject itemSlotButtonPrefab;
+
+    // Reference to the Equipment panel object.
+    public GameObject equipmentPanel;
+
+    // Reference to the Backpack scrollview object.
+    public GameObject backpackScrollview;
 
     // Reference to the Drop Item panel.
     public DropItemPanelLogic dropItemPanel;
@@ -32,13 +49,10 @@ public class InventoryPanelLogic : MonoBehaviour
         {
             dropItemPanel = GetComponentInChildren<DropItemPanelLogic>();
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         if (inventory)
         {
+            // When the inventory is updated, make sure that the GUI is also updated.
             inventory.inventoryUpdatedCallback += UpdateGUI;
             UpdateGUI();
         }
@@ -52,93 +66,68 @@ public class InventoryPanelLogic : MonoBehaviour
             return;
         }
 
-        // Update the equipment.
-        // + Destroy the children of equipment objects.
-        // + Create new children of equipment objects.
-
-        foreach (Transform childTransform in headSlot.transform)
+        // Destroy old item slot buttons.
+        foreach(GameObject itemSlotButton in itemSlotButtons)
         {
-            if (childTransform.gameObject.GetComponent<ItemSlotLogic>())
-            {
-                Destroy(childTransform.gameObject);
-            }
+            Destroy(itemSlotButton);
+        }
+        itemSlotButtons.Clear();
+
+        // Create new item slot buttons in the equipment panel.
+        if (inventory.armorHead)
+        {
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorHead, headSlotTransform, ItemSlotType.Head));
+        }
+        if (inventory.armorChest)
+        {
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorChest, chestSlotTransform, ItemSlotType.Chest));
+        }
+        if (inventory.armorArms)
+        {
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorArms, armsSlotTransform, ItemSlotType.Arms));
+        }
+        if (inventory.armorLegs)
+        {
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorLegs, legsSlotTransform, ItemSlotType.Legs));
+        }
+        if (inventory.weapon)
+        {
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.weapon, weaponSlotTransform, ItemSlotType.Weapon));
         }
 
-        foreach (Transform childTransform in chestSlot.transform)
-        {
-            if (childTransform.gameObject.GetComponent<ItemSlotLogic>())
-            {
-                Destroy(childTransform.gameObject);
-            }
-        }
-
-        foreach (Transform childTransform in armsSlot.transform)
-        {
-            if (childTransform.gameObject.GetComponent<ItemSlotLogic>())
-            {
-                Destroy(childTransform.gameObject);
-            }
-        }
-
-        foreach (Transform childTransform in legsSlot.transform)
-        {
-            if (childTransform.gameObject.GetComponent<ItemSlotLogic>())
-            {
-                Destroy(childTransform.gameObject);
-            }
-        }
-
-        foreach (Transform childTransform in weaponSlot.transform)
-        {
-            if (childTransform.gameObject.GetComponent<ItemSlotLogic>())
-            {
-                Destroy(childTransform.gameObject);
-            }
-        }
-
-        CreateItemSlot(inventory.armorHead, headSlot.transform, ItemSlotType.Head);
-        CreateItemSlot(inventory.armorChest, chestSlot.transform, ItemSlotType.Chest);
-        CreateItemSlot(inventory.armorArms, armsSlot.transform, ItemSlotType.Arms);
-        CreateItemSlot(inventory.armorLegs, legsSlot.transform, ItemSlotType.Legs);
-        CreateItemSlot(inventory.weapon, weaponSlot.transform, ItemSlotType.Weapon);
-
-        // Update the backpack.
-        // + Destroy the children of Content in BackpackScrollView.
-        // + Create new childrens of Content in BackpackScrollView.
-
-        foreach (Transform childTransform in backpackScrollViewContent.transform)
-        {
-            Destroy(childTransform.gameObject);
-        }
-
+        // Create new item slot buttons in the backpack scrollview.
         for (int i = 0; i < inventory.backpack.Count; i++)
         {
-            CreateItemSlot(inventory.backpack[i], backpackScrollViewContent.transform, ItemSlotType.Backpack, i);
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.backpack[i], backpackScrollViewContentTransform, ItemSlotType.Backpack, i));
+        }
+
+        // Make the event system select the first item slot button in the inventory UI.
+        if(itemSlotButtons.Count > 0)
+        {
+            GameObject itemSlotButton = itemSlotButtons[0];
+            EventSystem.current.SetSelectedGameObject(itemSlotButton);
         }
     }
 
-    // Create an item slot.
-    GameObject CreateItemSlot(ItemInstance itemInstance, Transform parentTransform, ItemSlotType itemSlotType, int index = -1)
+    // Create an item slot button.
+    GameObject CreateItemSlotButton(ItemInstance itemInstance, Transform parentTransform, ItemSlotType itemSlotType, int backpackIndex = -1)
     {
         if (!itemInstance)
             return null;
 
         // Instantiate an item slot.
-        GameObject itemSlot = Instantiate(itemSlotPrefab, parentTransform);
+        GameObject itemSlot = Instantiate(itemSlotButtonPrefab, parentTransform);
 
         ItemSlotLogic itemSlotLogic = itemSlot.GetComponent<ItemSlotLogic>();
 
-        // Make the item slot reference the Drop Item quantity.
-        itemSlotLogic.dropItemPanel = dropItemPanel;
-
-        // Make the item slot reference the player's inventory.
-        itemSlotLogic.inventory = inventory;
+        // Make the item slot reference the Inventory panel.
+        itemSlotLogic.inventoryPanel = this;
 
         // If the item slot type is Backpack, set the index of the item slot to match the index in the character's backpack.
         itemSlotLogic.itemSlotType = itemSlotType;
         if (itemSlotType == ItemSlotType.Backpack)
         {
-            itemSlotLogic.backpackIndex = index;
+            itemSlotLogic.backpackIndex = backpackIndex;
         }
         else
         {
