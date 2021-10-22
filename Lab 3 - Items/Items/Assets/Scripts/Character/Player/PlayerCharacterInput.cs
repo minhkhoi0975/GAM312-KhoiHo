@@ -73,13 +73,13 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Drop an equipped item in this priorty order: weapon, armorHead, armorArms, armorLegs, armorChest, first item in backpack.
-        if(Input.GetButtonDown("DropItem"))
+        if (Input.GetButtonDown("DropItem"))
         {
-            if(character.Inventory.weapon)
+            if (character.Inventory.weapon)
             {
                 character.Inventory.DropWeapon();
             }
-            else if(character.Inventory.armorHead)
+            else if (character.Inventory.armorHead)
             {
                 character.Inventory.DropArmorHead();
             }
@@ -102,13 +102,13 @@ public class PlayerCharacterInput : MonoBehaviour
         }
 
         // Attack (keyboard)
-        if(Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Attack"))
         {
             character.Attack();
         }
 
         // Attack (Xbox One controller)
-        if(Input.GetAxis("AttackController") == 1.0f)
+        if (Input.GetAxis("AttackController") == 1.0f)
         {
             if (!attackButtonDown)
             {

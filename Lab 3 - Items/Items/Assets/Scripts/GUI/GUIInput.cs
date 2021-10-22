@@ -22,7 +22,7 @@ public class GUIInput : MonoBehaviour
         {
             inventoryPanel = GetComponent<InventoryPanelLogic>();
         }
-        if(!inventoryPanel)
+        if (!inventoryPanel)
         {
             inventoryPanel = GetComponentInChildren<InventoryPanelLogic>(true);
         }
@@ -32,12 +32,12 @@ public class GUIInput : MonoBehaviour
     void Update()
     {
         // Open/Close the inventory (keyboard).
-        if(Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory"))
         {
             // Show the inventory UI.
             inventoryPanel.gameObject.SetActive(!inventoryPanel.gameObject.activeSelf);
 
-            if(inventoryPanel.gameObject.activeSelf)
+            if (inventoryPanel.gameObject.activeSelf)
             {
                 inventoryPanel.MakeEventSystemSelectFirstSlot();
 

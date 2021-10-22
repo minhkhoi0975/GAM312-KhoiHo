@@ -67,7 +67,7 @@ public class InventoryPanelLogic : MonoBehaviour
         }
 
         // Destroy old item slot buttons.
-        foreach(GameObject itemSlotButton in itemSlotButtons)
+        foreach (GameObject itemSlotButton in itemSlotButtons)
         {
             Destroy(itemSlotButton);
         }
@@ -102,7 +102,7 @@ public class InventoryPanelLogic : MonoBehaviour
         }
 
         // Make the event system select the first item slot button in the inventory UI.
-        if(itemSlotButtons.Count > 0)
+        if (itemSlotButtons.Count > 0)
         {
             EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
         }
@@ -147,7 +147,7 @@ public class InventoryPanelLogic : MonoBehaviour
     // Make the event system select the first item slot button.
     public void MakeEventSystemSelectFirstSlot()
     {
-        if(itemSlotButtons.Count > 0)
+        if (itemSlotButtons.Count > 0)
         {
             EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
 

@@ -58,7 +58,7 @@ public class Armor : ItemDefinition
     }
 
     // Called when the item is equipped by the character.
-    public override void OnEquipped(Character character) 
+    public override void OnEquipped(Character character)
     {
         // Modify damage resistance.
         character.Health.DamageResistance += DamageResistance;

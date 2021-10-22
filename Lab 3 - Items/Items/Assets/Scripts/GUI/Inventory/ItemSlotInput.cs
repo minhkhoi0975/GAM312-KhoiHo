@@ -17,7 +17,7 @@ public class ItemSlotInput : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     void Awake()
     {
-        if(!itemSlotLogic)
+        if (!itemSlotLogic)
         {
             itemSlotLogic = GetComponent<ItemSlotLogic>();
         }
@@ -31,7 +31,7 @@ public class ItemSlotInput : MonoBehaviour, IPointerClickHandler, IPointerEnterH
             return;
 
         // If the player presses Enter, treat the input as clicking the left mouse button.
-        if(Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit"))
         {
             itemSlotLogic.OnLeftClicked();
         }

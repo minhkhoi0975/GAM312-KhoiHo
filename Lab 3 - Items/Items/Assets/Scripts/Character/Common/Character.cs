@@ -145,12 +145,12 @@ public class Character : MonoBehaviour
             cameraComponent = FindObjectOfType<Camera>();
         }
 
-        if(!health)
+        if (!health)
         {
             health = GetComponent<Health>();
         }
 
-        if(!inventory)
+        if (!inventory)
         {
             inventory = GetComponent<Inventory>();
         }
@@ -175,7 +175,7 @@ public class Character : MonoBehaviour
         else
         {
             rigidBodyComponent.useGravity = true;
-        }   
+        }
     }
 
     // Move the character in direction relative to the player.
@@ -275,7 +275,7 @@ public class Character : MonoBehaviour
 
         // Check whether the character is armed. If not, use unarmed damage and attack range.
         ItemInstance equippedWeapon = Inventory.weapon;
-        if(!equippedWeapon)
+        if (!equippedWeapon)
         {
             damage = unarmedDamage;
             attackRange = unarmedAttackRange;
@@ -291,20 +291,20 @@ public class Character : MonoBehaviour
         bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, attackRange);
 
         // If ray cast hit, cause damage to the hit object if it has Health component.
-        if(rayCastHit)
+        if (rayCastHit)
         {
             Health health = hitInfo.collider.GetComponent<Health>();
-            if(!health)
+            if (!health)
             {
                 health = hitInfo.collider.GetComponentInParent<Health>();
             }
 
-            if(health)
+            if (health)
             {
                 health.TakeDamage(damage);
                 Debug.Log("Hit target's remaining health: " + health.CurrentHealth);
-            }     
-        }    
+            }
+        }
         else
         {
             Debug.Log("The attack did not hit anything.");

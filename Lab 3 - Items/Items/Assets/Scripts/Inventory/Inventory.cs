@@ -261,7 +261,7 @@ public class Inventory : MonoBehaviour
         AddToBackPack(itemInstance);
 
         // If autoEquip is true, try equipping the item.
-        if(autoEquip)
+        if (autoEquip)
         {
             Equip(backpack.Count - 1, true);
         }

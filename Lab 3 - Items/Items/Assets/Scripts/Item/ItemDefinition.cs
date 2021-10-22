@@ -41,7 +41,7 @@ public class ItemDefinition : ScriptableObject
     public Sprite icon;
 
     // The visual representation of the item. Has NO effect on gameplay.
-    public GameObject mesh; 
+    public GameObject mesh;
 
     // Does this item belong to an item type?
     public bool IsOfType(ItemType itemType)

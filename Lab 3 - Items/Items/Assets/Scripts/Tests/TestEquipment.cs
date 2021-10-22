@@ -20,12 +20,12 @@ public class TestEquipment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!inventory)
+        if (!inventory)
         {
             inventory = GetComponent<Inventory>();
         }
 
-        if(inventory)
+        if (inventory)
         {
             TestEquippingArmorAndWeapon();
         }
@@ -33,7 +33,7 @@ public class TestEquipment : MonoBehaviour
 
     public void TestEquippingArmorAndWeapon()
     {
-        foreach(ItemDefinition item in items)
+        foreach (ItemDefinition item in items)
         {
             // Create an item instance.
             ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();

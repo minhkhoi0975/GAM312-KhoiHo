@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        if(!gameObjectToDestroy)
+        if (!gameObjectToDestroy)
         {
             gameObjectToDestroy = gameObject;
         }
@@ -79,7 +79,7 @@ public class Health : MonoBehaviour
         }
 
         // Health goes below zero? Destroy root component.
-        if(CurrentHealth == 0)
+        if (CurrentHealth == 0)
         {
             StartCoroutine("Die");
         }
