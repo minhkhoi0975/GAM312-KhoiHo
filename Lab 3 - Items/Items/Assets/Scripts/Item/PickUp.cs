@@ -56,22 +56,10 @@ public class PickUp : MonoBehaviour
             // Get the inventory of the player character.
             Inventory inventory = playerInputComponent.gameObject.GetComponent<Inventory>();
 
+            // If the player character has an inventory, pick the item up.
             if (inventory)
             {
-                // Add the item to the backpack.
-                ItemInstance pickedUpItem = ScriptableObject.CreateInstance<ItemInstance>();
-                pickedUpItem.itemDefinition = itemDefinition;
-                pickedUpItem.CurrentStackSize = currentStackSize;
-
-                inventory.AddToBackPack(pickedUpItem);
-
-                // Try equipping the item.
-                inventory.Equip(inventory.backpack.Count - 1, true);
-
-                Debug.Log("Picked up " + currentStackSize + "x" + itemDefinition.name);
-
-                // Destroy the pick-up object.
-                Destroy(gameObject);
+                inventory.PickUpItem(this);
             }
         }
     }

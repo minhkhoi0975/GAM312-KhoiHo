@@ -249,6 +249,27 @@ public class Inventory : MonoBehaviour
         inventoryUpdatedCallback?.Invoke();
     }
 
+    // Pick up an item
+    public void PickUpItem(PickUp pickUp, bool autoEquip = true)
+    {
+        // Create an item instance.
+        ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();
+        itemInstance.itemDefinition = pickUp.ItemDefinition;
+        itemInstance.CurrentStackSize = pickUp.CurrentStackSize;
+
+        // Add the item instance to the backpack.
+        AddToBackPack(itemInstance);
+
+        // If autoEquip is true, try equipping the item.
+        if(autoEquip)
+        {
+            Equip(backpack.Count - 1, true);
+        }
+
+        // Destroy the pick-up object.
+        Destroy(pickUp.gameObject);
+    }
+
     // Drop an item in the backpack.
     public void DropItemInBackpack(int backpackIndex, int quantity = -1)
     {
