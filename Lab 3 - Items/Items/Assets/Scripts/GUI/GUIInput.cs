@@ -24,7 +24,7 @@ public class GUIInput : MonoBehaviour
         }
         if(!inventoryPanel)
         {
-            inventoryPanel = GetComponentInChildren<InventoryPanelLogic>();
+            inventoryPanel = GetComponentInChildren<InventoryPanelLogic>(true);
         }
     }
 

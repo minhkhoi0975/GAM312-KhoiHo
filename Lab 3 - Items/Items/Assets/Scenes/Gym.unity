@@ -834,45 +834,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7840093817201985048, guid: faa986f38cbd8354ab976bd720e4f078,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8108249225816110079, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 840
       objectReference: {fileID: 0}
     - target: {fileID: 8108249225969057776, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249225969057776, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249225969057776, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8108249226158101531, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249226158101531, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249226957905432, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249226957905432, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249226991041795, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
@@ -882,12 +887,12 @@ PrefabInstance:
     - target: {fileID: 8108249227157440448, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108249227157440448, guid: faa986f38cbd8354ab976bd720e4f078,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faa986f38cbd8354ab976bd720e4f078, type: 3}
@@ -4069,7 +4074,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab44807e99861e43ade44699804d7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
+  inventoryPanel: {fileID: 1585622929}
+--- !u!114 &1585622929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6702435667985989123, guid: faa986f38cbd8354ab976bd720e4f078,
+    type: 3}
+  m_PrefabInstance: {fileID: 342803954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc76ad8a4f872f4488c61a8a9d662d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1607557069
 PrefabInstance:
   m_ObjectHideFlags: 0
