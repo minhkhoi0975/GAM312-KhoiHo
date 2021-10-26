@@ -43,6 +43,12 @@ public class ItemDefinition : ScriptableObject
     // The visual representation of the item. Has NO effect on gameplay.
     public GameObject mesh;
 
+    // How are the stats modified when the character consumes this item?
+    public List<Stat> consumeStatChanges;
+
+    // How are the stats modified when the character equips this item?
+    public List<Stat> equipStatChanges;
+
     // Does this item belong to an item type?
     public bool IsOfType(ItemType itemType)
     {

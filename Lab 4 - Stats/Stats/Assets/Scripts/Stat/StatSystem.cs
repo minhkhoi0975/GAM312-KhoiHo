@@ -8,40 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StatType
-{
-    // Movement
-    MoveSpeed,
-    DashSpeedMultiplier,
-
-    // Health
-    MaxHealth,
-    DamageResistance,
-
-    // Combat
-    Damage,
-    AttackRange
-}
-
-[System.Serializable]
-public class Stat
-{
-    StatType statType;
-    public StatType StatType
-    {
-        get
-        {
-            return statType;
-        }
-    }
-
-    // The initial value of the stat without any modifiers.
-    public float initialValue;
-
-    // The current value of the stat.
-    public float currentValue;
-}
-
 public class StatSystem : MonoBehaviour
 {
     // List of all stats of this game object.
@@ -64,7 +30,7 @@ public class StatSystem : MonoBehaviour
     // Modifer a stat by adding the value of statModifier to the current value of the stat.
     public void ChangeStat(Stat statModifier)
     {
-        ChangeStat(statModifier.StatType, statModifier.currentValue);
+        ChangeStat(statModifier.statType, statModifier.currentValue);
     }
 
     public void ChangeStat(StatType stat, float value)
