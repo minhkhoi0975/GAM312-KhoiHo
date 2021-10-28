@@ -31,6 +31,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
+    public CharacterHand CharacterHand
+    {
+        get
+        {
+            return characterHand;
+        }
+    }
+
     [Header("Health")]
     [SerializeField] Health health;                   // Reference to character's health component.
     public Health Health
@@ -58,17 +67,6 @@ public class Character : MonoBehaviour
         get
         {
             return statSystem;
-        }
-    }
-
-    // Object pushing
-    [Header("Object Pushing")]
-    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
-    public CharacterHand CharacterHand
-    {
-        get
-        {
-            return characterHand;
         }
     }
 

@@ -18,7 +18,7 @@ public class HealingItem : ItemDefinition
 
     public override void OnConsumed(Character character)
     {
-        character.Health.CurrentHealth += healthRestored;
+        character.Health.Heal(healthRestored);
 
         base.OnConsumed(character);
     }

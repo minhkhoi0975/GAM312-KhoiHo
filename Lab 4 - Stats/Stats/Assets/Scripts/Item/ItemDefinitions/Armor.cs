@@ -61,7 +61,8 @@ public class Armor : ItemDefinition
     public override void OnEquipped(Character character)
     {
         // Modify damage resistance.
-        character.Health.DamageResistance += DamageResistance;
+        //character.Health.DamageResistance += DamageResistance;
+        character.StatSystem.stats[StatType.DamageResistance].PernamentBonusValue += DamageResistance;
 
         // Modify movement speed.
         // character.BaseMovementSpeed += movementSpeedModifier;
@@ -76,7 +77,8 @@ public class Armor : ItemDefinition
     public override void OnUnequipped(Character character)
     {
         // Restore damage resistance.
-        character.Health.DamageResistance -= DamageResistance;
+        // character.Health.DamageResistance -= DamageResistance;
+        character.StatSystem.stats[StatType.DamageResistance].PernamentBonusValue -= DamageResistance;
 
         // Restore movement speed.
         // character.BaseMovementSpeed -= movementSpeedModifier;

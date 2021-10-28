@@ -21,6 +21,7 @@ public enum StatType
     TelekinesisDistance,
 
     // Health
+    CurrentHealth,
     MaxHealth,
     DamageResistance,
 
@@ -68,8 +69,8 @@ public class Stat
     }
 
     // The minimum and maximum values of the stat.
-    [SerializeField] [Range(float.MinValue, float.MaxValue)] public float minValue = float.MinValue;
-    [SerializeField] [Range(float.MinValue, float.MaxValue)] public float maxValue = float.MaxValue;
+    [Range(float.MinValue, float.MaxValue)] public float minValue = float.MinValue;
+    [Range(float.MinValue, float.MaxValue)] public float maxValue = float.MaxValue;
 
     // List of all modifiers that affect the stat.
     [SerializeField] List<StatModifier> statModifiers = new List<StatModifier>();
@@ -81,8 +82,11 @@ public class Stat
         }
     }
 
+    // Has the stat been recently modified?
+    bool isStatModified = true;
+
     // The current value of the stat.
-    [SerializeField] float currentValue;
+    float currentValue;
     public float CurrentValue
     {
         get
@@ -96,8 +100,20 @@ public class Stat
         }
     }
 
-    // Has the stat been recently modified?
-    bool isStatModified = true;
+    // Get the current value of the stat.
+    // If including modifiers is true, the current value is baseValue + permanentBonusValue + bonuses from modifiers.
+    // Otherwise, then the current value is baseValue + permanentBonusValue.
+    float getCurrentValue(bool includingModifiers = true)
+    {
+        if (includingModifiers)
+        {
+            return CurrentValue;
+        }
+        else
+        {
+            return baseValue + pernamentBonusValue;
+        }
+    }
 
     // Add a modifier to the stat.
     public void AddModifier(StatModifier modifier)

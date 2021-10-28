@@ -154,10 +154,10 @@ MonoBehaviour:
   cameraComponent: {fileID: 0}
   rigidBodyComponent: {fileID: 4007531377331874112}
   characterFoot: {fileID: 6108833310886059335}
+  characterHand: {fileID: 1308971320555853229}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
   statSystem: {fileID: 611682381439544625}
-  characterHand: {fileID: 1308971320555853229}
 --- !u!114 &6148106624201655973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,9 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a2bee344c00c04584b79e0363bccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  damageResistance: 0
+  statSystem: {fileID: 0}
   gameObjectToDestroy: {fileID: 2228463600266611084}
   destroyDelayTimeInSeconds: 0
 --- !u!114 &1623792058676853221
@@ -251,70 +249,66 @@ MonoBehaviour:
     minValue: 40
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 60
   - statType: 1
     baseValue: 0
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 15
   - statType: 4
     baseValue: 0
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 10
   - statType: 3
     baseValue: 0
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 8000
   - statType: 5
+    baseValue: 100
+    pernamentBonusValue: 0
+    minValue: 0
+    maxValue: 3.4028235e+38
+    statModifiers: []
+  - statType: 6
     baseValue: 100
     pernamentBonusValue: 0
     minValue: 50
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 100
-  - statType: 6
+  - statType: 7
     baseValue: 0
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 100
-  - statType: 7
-    baseValue: 5
+  - statType: 11
+    baseValue: 1.2
     pernamentBonusValue: 0
-    minValue: 5
+    minValue: 1.2
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 0
   - statType: 8
-    baseValue: 0
+    baseValue: 5
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 100
     statModifiers: []
-    currentValue: 5
   - statType: 9
     baseValue: 0
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 0
   - statType: 10
-    baseValue: 1.2
+    baseValue: 1
     pernamentBonusValue: 0
-    minValue: 1.2
+    minValue: 1
     maxValue: 3.4028235e+38
     statModifiers: []
-    currentValue: 0
 --- !u!1 &4127173407720432552
 GameObject:
   m_ObjectHideFlags: 0

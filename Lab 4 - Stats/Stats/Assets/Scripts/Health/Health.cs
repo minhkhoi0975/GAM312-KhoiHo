@@ -10,46 +10,49 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Maximum health.
-    [SerializeField] float maxHealth = 100.0f;
-    public float MaxHealth
-    {
-        get
-        {
-            return maxHealth;
-        }
-        set
-        {
-            maxHealth = maxHealth < 0.0f ? 0.0f : value;
-        }
-    }
-
-    // Current health.
-    [SerializeField] float currentHealth = 100.0f;
+    // We need to reference the stat system in order to get current health, maximum health and damage resistance.
+    public StatSystem statSystem;
     public float CurrentHealth
     {
         get
         {
-            return currentHealth;
-        }
-        set
-        {
-            currentHealth = value < 0 ? 0 : (value > maxHealth ? maxHealth : value);
+            return statSystem.stats[StatType.CurrentHealth].CurrentValue;
         }
     }
 
-    // Damage resistance (when the game object takes damage, this amount is subtracted from damage.
-    [SerializeField] float damageResistance = 0.0f;
+    public float MaxHealth
+    {
+        get
+        {
+            return statSystem.stats[StatType.MaxHealth].CurrentValue;
+        }
+    }
+
     public float DamageResistance
     {
         get
         {
-            return damageResistance;
+            return statSystem.stats[StatType.DamageResistance].CurrentValue;
         }
-        set
+    }
+
+    public void IncreaseCurrentHealth(float amount)
+    {
+        Stat currentHealthStat = statSystem.stats[StatType.CurrentHealth];
+        Stat maxHealthStat = statSystem.stats[StatType.MaxHealth];
+
+        currentHealthStat.PernamentBonusValue += amount;
+
+        if(currentHealthStat.CurrentValue > maxHealthStat.CurrentValue)
         {
-            damageResistance = value < 0 ? 0 : value;
+            float redundantHealth = maxHealthStat.CurrentValue - currentHealthStat.CurrentValue;
+            currentHealthStat.PernamentBonusValue -= redundantHealth;
         }
+    }
+
+    public void DecreaseCurrentHealth(float amount)
+    {
+        statSystem.stats[StatType.CurrentHealth].PernamentBonusValue -= amount;
     }
 
     // When health goes below 0, this game object is destroyed.
@@ -61,6 +64,15 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        if(!statSystem)
+        {
+            statSystem = GetComponent<StatSystem>();
+        }
+        if(!statSystem)
+        {
+            statSystem = GetComponentInChildren<StatSystem>(true);
+        }
+
         if (!gameObjectToDestroy)
         {
             gameObjectToDestroy = gameObject;
@@ -70,12 +82,12 @@ public class Health : MonoBehaviour
     // Take damage.
     public void TakeDamage(float damageFromSource)
     {
-        float finalDamage = damageFromSource - damageResistance;
-        Debug.Log("Damage: " + damageFromSource + " - " + damageResistance + " = " + finalDamage);
+        float finalDamage = damageFromSource - DamageResistance;
+        Debug.Log("Damage: " + damageFromSource + " - " + DamageResistance + " = " + finalDamage);
 
         if (finalDamage > 0)
         {
-            CurrentHealth -= finalDamage;
+            DecreaseCurrentHealth(finalDamage);
         }
 
         // Health goes below zero? Destroy root component.
@@ -85,9 +97,9 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Heal(float health)
+    public void Heal(float amount)
     {
-        CurrentHealth += health;
+        IncreaseCurrentHealth(amount);
     }
 
     public virtual IEnumerator Die()

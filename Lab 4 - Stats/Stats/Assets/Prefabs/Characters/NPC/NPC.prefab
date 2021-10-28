@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 8104338878878511834}
   - component: {fileID: 5090434034205710227}
   - component: {fileID: 1623792058676853221}
+  - component: {fileID: 1079737995526698681}
+  - component: {fileID: 4622865326480178194}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Character
@@ -153,10 +155,8 @@ MonoBehaviour:
   characterFoot: {fileID: 6108833310886059335}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
-  rotationalSpeed: 15
+  statSystem: {fileID: 0}
   characterHand: {fileID: 1308971320555853229}
-  unarmedDamage: 10
-  unarmedAttackRange: 0.8
 --- !u!114 &5090434034205710227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  statSystem: {fileID: 1079737995526698681}
   currentHealth: 100
   damageResistance: 0
   gameObjectToDestroy: {fileID: 2228463600266611084}
@@ -187,14 +188,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backpack: []
-  armorHead: {fileID: 0}
-  armorLegs: {fileID: 0}
-  armorArms: {fileID: 0}
-  armorChest: {fileID: 0}
-  weapon: {fileID: 0}
+  armorHead:
+    itemDefinition: {fileID: 0}
+    currentStackSize: 0
+  armorLegs:
+    itemDefinition: {fileID: 0}
+    currentStackSize: 0
+  armorArms:
+    itemDefinition: {fileID: 0}
+    currentStackSize: 0
+  armorChest:
+    itemDefinition: {fileID: 0}
+    currentStackSize: 0
+  weapon:
+    itemDefinition: {fileID: 0}
+    currentStackSize: 0
   dropTransform: {fileID: 6886903301584150644}
   pickupPrefab: {fileID: 2961695528550091406, guid: 533ee1d5027f8ff4b94f129e62f3392d,
     type: 3}
+--- !u!114 &1079737995526698681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228463600266611084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34dde70685b163a42b97128d1efdaa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4622865326480178194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228463600266611084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f70d0ce9ae6854a8e33c0cd89487a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statSystem: {fileID: 0}
+  startingStats:
+  - statType: 5
+    baseValue: 100
+    pernamentBonusValue: 0
+    minValue: 0
+    maxValue: 3.4028235e+38
+    statModifiers: []
+  - statType: 6
+    baseValue: 100
+    pernamentBonusValue: 0
+    minValue: 100
+    maxValue: 3.4028235e+38
+    statModifiers: []
+  - statType: 7
+    baseValue: 0
+    pernamentBonusValue: 0
+    minValue: 0
+    maxValue: 3.4028235e+38
+    statModifiers: []
 --- !u!1 &4127173407720432552
 GameObject:
   m_ObjectHideFlags: 0
