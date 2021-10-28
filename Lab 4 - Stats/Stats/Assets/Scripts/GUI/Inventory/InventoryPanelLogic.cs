@@ -101,10 +101,10 @@ public class InventoryPanelLogic : MonoBehaviour
             itemSlotButtons.Add(CreateItemSlotButton(inventory.backpack[i], backpackScrollViewContentTransform, ItemSlotType.Backpack, i));
         }
 
-        // Make the event system select the first item slot button in the inventory UI.
-        if (itemSlotButtons.Count > 0)
+        // If the Inventory panel is active, make the event system select the first item slot button.
+        if (gameObject.activeInHierarchy)
         {
-            EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
+            MakeEventSystemSelectFirstSlot();
         }
     }
 
@@ -147,9 +147,24 @@ public class InventoryPanelLogic : MonoBehaviour
     // Make the event system select the first item slot button.
     public void MakeEventSystemSelectFirstSlot()
     {
+        MakeEventSystemSelectItemSlot(0);
+    }
+
+    // Make the event system select a particular item slot button.
+    public void MakeEventSystemSelectItemSlot(int itemSlotButtonIndex)
+    {
         if (itemSlotButtons.Count > 0)
         {
-            EventSystem.current.SetSelectedGameObject(itemSlotButtons[0]);
+            int index;
+
+            if (itemSlotButtonIndex < 0)
+                index = 0;
+            else if (itemSlotButtonIndex >= itemSlotButtons.Count)
+                index = itemSlotButtons.Count - 1;
+            else
+                index = itemSlotButtonIndex;
+
+            EventSystem.current.SetSelectedGameObject(itemSlotButtons[index]);
 
             // Highlight the button to let the player know which button is selected.
             itemSlotButtons[0].GetComponent<Button>().OnSelect(null);

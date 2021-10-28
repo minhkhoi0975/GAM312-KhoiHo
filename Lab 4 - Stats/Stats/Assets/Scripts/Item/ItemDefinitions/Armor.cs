@@ -64,10 +64,10 @@ public class Armor : ItemDefinition
         character.Health.DamageResistance += DamageResistance;
 
         // Modify movement speed.
-        character.BaseMovementSpeed += movementSpeedModifier;
+        // character.BaseMovementSpeed += movementSpeedModifier;
 
         // Modify dash speed multiplier.
-        character.DashSpeedMultiplier += bonusDashSpeedMultiplier;
+        // character.DashSpeedMultiplier += bonusDashSpeedMultiplier;
 
         base.OnEquipped(character);
     }
@@ -79,10 +79,10 @@ public class Armor : ItemDefinition
         character.Health.DamageResistance -= DamageResistance;
 
         // Restore movement speed.
-        character.BaseMovementSpeed -= movementSpeedModifier;
+        // character.BaseMovementSpeed -= movementSpeedModifier;
 
         // Restore dash speed multiplier.
-        character.DashSpeedMultiplier -= bonusDashSpeedMultiplier;
+        // character.DashSpeedMultiplier -= bonusDashSpeedMultiplier;
 
         base.OnUnequipped(character);
     }

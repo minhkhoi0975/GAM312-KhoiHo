@@ -11,6 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Inventory))]
+[RequireComponent(typeof(StatSystem))]
 public class Character : MonoBehaviour
 {
     // Camera
@@ -50,48 +51,15 @@ public class Character : MonoBehaviour
         }
     }
 
-    // Movement
-    [Header("Movement")]
-    [SerializeField] float baseMovementSpeed = 60.0f; // How fast the character moves without dashing or pushing an object.
-    public float BaseMovementSpeed
+    [Header("Stats")]
+    [SerializeField] StatSystem statSystem;           // Reference to the stat system component.
+    public StatSystem StatSystem
     {
         get
         {
-            return baseMovementSpeed;
-        }
-        set
-        {
-            baseMovementSpeed = value < 0 ? 0 : value;
+            return statSystem;
         }
     }
-
-    [SerializeField] float rotationalSpeed = 10.0f;   // How fast the character turns.
-    public float RotationalSpeed
-    {
-        get
-        {
-            return rotationalSpeed;
-        }
-    }
-
-    [SerializeField] float dashSpeedMultiplier = 15.0f;  // dashSpeed = baseMoveSpeed * dashSpeedMultiplier.
-    public float DashSpeedMultiplier
-    {
-        get
-        {
-            return dashSpeedMultiplier;
-        }
-        set
-        {
-            dashSpeedMultiplier = value < 0 ? 0 : value;
-        }
-    }
-
-    // Object attraction
-    [Header("Object Attraction")]
-    [Tooltip("How far away can a MoveableObject be attracted by this character?")]
-    [SerializeField] float maxAttractionDistance = 10.0f;
-    [SerializeField] float attractiveForce = 60.0f;
 
     // Object pushing
     [Header("Object Pushing")]
@@ -101,34 +69,6 @@ public class Character : MonoBehaviour
         get
         {
             return characterHand;
-        }
-    }
-
-    // Combat
-    [Header("Combat")]
-    [SerializeField] float unarmedDamage = 5.0f;
-    public float UnarmedDamage
-    {
-        get
-        {
-            return unarmedDamage;
-        }
-        set
-        {
-            unarmedDamage = value < 0 ? 0 : value;
-        }
-    }
-
-    [SerializeField] float unarmedAttackRange = 1.2f;
-    public float UnarmedAttackRange
-    {
-        get
-        {
-            return unarmedAttackRange;
-        }
-        set
-        {
-            unarmedAttackRange = value < 0 ? 0 : value;
         }
     }
 
@@ -155,6 +95,11 @@ public class Character : MonoBehaviour
             inventory = GetComponent<Inventory>();
         }
 
+        if(!statSystem)
+        {
+            statSystem = GetComponent<StatSystem>();
+        }
+
         if (!characterFoot)
         {
             characterFoot = GetComponentInChildren<CharacterFoot>();
@@ -179,12 +124,12 @@ public class Character : MonoBehaviour
     }
 
     // Move the character in direction relative to the player.
-    public void Move(Vector3 relativeMovementDirection, float movementSpeed, float rotationalSpeed)
+    public void Move(Vector3 relativeMovementDirection, float movementSpeed)
     {
         // Normalize the move direction to prevent fast diagonal movement.
         relativeMovementDirection = relativeMovementDirection.normalized;
 
-        if (relativeMovementDirection.magnitude > 0.0f)
+        if (relativeMovementDirection.magnitude > 0.0f && movementSpeed > 0.0f)
         {
             // Find the charater's new world Y rotation.
             float newWorldRotationY = Mathf.Atan2(relativeMovementDirection.x, relativeMovementDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
@@ -192,7 +137,7 @@ public class Character : MonoBehaviour
             // Rotate the character smoothly.
             if (!characterHand.PushedGameObject)
             {
-                rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * rotationalSpeed);
+                rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * 15.0f);
             }
 
             // Calculate the world movement direction.
@@ -209,8 +154,8 @@ public class Character : MonoBehaviour
         }
     }
 
-    // Attract a moveable object.
-    public void AttractObject()
+    // Perform telekinesis.
+    public void PerformTelekinesis(float maxAttractionDistance, float attractiveForce)
     {
         // Ray cast at the character's forward direction.
         // The start position of the ray is at the middle of the character's mesh.
@@ -268,24 +213,8 @@ public class Character : MonoBehaviour
     }
 
     // Attack
-    public void Attack()
+    public void Attack(float attackRange, float damage, float criticalDamageMultiplier = 0.0f, float criticalChance = 0.0f)
     {
-        float damage;
-        float attackRange;
-
-        // Check whether the character is armed. If not, use unarmed damage and attack range.
-        ItemInstance equippedWeapon = Inventory.weapon;
-        if (!equippedWeapon)
-        {
-            damage = unarmedDamage;
-            attackRange = unarmedAttackRange;
-        }
-        else
-        {
-            damage = ((Weapon)(equippedWeapon.itemDefinition)).GetDamage();
-            attackRange = ((Weapon)(equippedWeapon.itemDefinition)).Range;
-        }
-
         // Ray cast forward to "melee attack" the enemy.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(transform.position + new Vector3(0.0f, 1.2f, 0.0f), transform.forward, out hitInfo, attackRange);
@@ -301,13 +230,31 @@ public class Character : MonoBehaviour
 
             if (health)
             {
-                health.TakeDamage(damage);
+                // Calculate the final damage.
+                float finalDamage = GetFinalDamage(damage, criticalDamageMultiplier, criticalChance);
+
+                // Hit character takes damage.
+                health.TakeDamage(finalDamage);
                 Debug.Log("Hit target's remaining health: " + health.CurrentHealth);
             }
         }
         else
         {
             Debug.Log("The attack did not hit anything.");
+        }
+    }
+
+    float GetFinalDamage(float damage, float criticalDamageMultiplier = 0.0f, float criticalChance = 0.0f)
+    {
+        float percentage = Random.Range(0.0f, 100.0f);
+
+        if (percentage <= criticalChance)
+        {
+            return damage * criticalDamageMultiplier;
+        }
+        else
+        {
+            return damage;
         }
     }
 }

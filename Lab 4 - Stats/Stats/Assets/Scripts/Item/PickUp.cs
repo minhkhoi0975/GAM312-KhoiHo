@@ -61,7 +61,7 @@ public class PickUp : MonoBehaviour
             {
                 inventory.PickUpItem(this);
             }
-        }
+        }    
     }
 
     // Start is called before the first frame update
@@ -99,9 +99,7 @@ public class PickUp : MonoBehaviour
 
     public void SetPickUp(ItemDefinition itemDefinition, int quantity = 1)
     {
-        ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();
-        itemInstance.itemDefinition = itemDefinition;
-        itemInstance.CurrentStackSize = quantity;
+        ItemInstance itemInstance = new ItemInstance(itemDefinition, quantity);
 
         SetPickUp(itemInstance);
     }

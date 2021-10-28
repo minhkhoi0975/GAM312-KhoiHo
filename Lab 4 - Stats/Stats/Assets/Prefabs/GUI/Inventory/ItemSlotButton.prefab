@@ -215,8 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fef7fcc37259c440a2d4dc401aa58b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItemPanel: {fileID: 0}
-  inventory: {fileID: 0}
+  inventoryPanel: {fileID: 0}
   icon: {fileID: 1964188987544070276}
   itemName: {fileID: 3338816671362957727}
   itemSlotType: 5
@@ -233,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832ff328240d5f3458be46622f2a43ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSlotLogic: {fileID: 886101496580774056}
 --- !u!1 &8464128811041440649
 GameObject:
   m_ObjectHideFlags: 0

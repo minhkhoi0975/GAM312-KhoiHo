@@ -104,7 +104,11 @@ public class PlayerCharacterInput : MonoBehaviour
         // Attack (keyboard)
         if (Input.GetButtonDown("Attack"))
         {
-            character.Attack();
+            float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
+            float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
+            float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
+            float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
+            character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
         }
 
         // Attack (Xbox One controller)
@@ -112,7 +116,11 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             if (!attackButtonDown)
             {
-                character.Attack();
+                float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
+                float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
+                float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
+                float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
+                character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
                 attackButtonDown = true;
             }
         }
@@ -126,17 +134,22 @@ public class PlayerCharacterInput : MonoBehaviour
     {
         // Movement.
         Vector3 relativeMoveDirection = new Vector3(horizontalAxis, 0.0f, verticalAxis);
+        float movementSpeed = character.StatSystem.GetCurrentValue(StatType.MovementSpeed);
+        float dashSpeedMultiplier = character.StatSystem.GetCurrentValue(StatType.DashSpeedMultiplier);
+
         // If the player presses the dash button, dash. Otherwise, move normally.
         if (dashButtonDown)
-        {
+        {         
             // Player does not presses WASD? Dash forward.
             if (relativeMoveDirection.magnitude != 0.0f)
             {
-                character.Move(relativeMoveDirection, character.BaseMovementSpeed * character.DashSpeedMultiplier, character.RotationalSpeed);
+                //character.Move(relativeMoveDirection, character.BaseMovementSpeed * character.DashSpeedMultiplier);
+                character.Move(relativeMoveDirection, movementSpeed * dashSpeedMultiplier);
             }
             else
             {
-                character.Move(transform.forward, character.BaseMovementSpeed * character.DashSpeedMultiplier, character.RotationalSpeed);
+                // character.Move(transform.forward, character.BaseMovementSpeed * character.DashSpeedMultiplier);
+                character.Move(transform.forward, movementSpeed * dashSpeedMultiplier);
             }
             dashButtonDown = false;
         }
@@ -146,7 +159,8 @@ public class PlayerCharacterInput : MonoBehaviour
             // Otherwise, move the character and the object relative to the object.
             if (!character.CharacterHand.PushedGameObject)
             {
-                character.Move(relativeMoveDirection, character.BaseMovementSpeed, character.RotationalSpeed);
+                //character.Move(relativeMoveDirection, character.BaseMovementSpeed);
+                character.Move(relativeMoveDirection, movementSpeed);
             }
             else
             {
@@ -154,10 +168,13 @@ public class PlayerCharacterInput : MonoBehaviour
             }
         }
 
-        // Attract movable object
+        // Perform telekinesis.
         if (attractObjectButtonDown)
         {
-            character.AttractObject();
+            float telekinesisDistance = character.StatSystem.stats[StatType.TelekinesisDistance].CurrentValue;
+            float telekinesisForce = character.StatSystem.stats[StatType.TelekinesisForce].CurrentValue;
+
+            character.PerformTelekinesis(telekinesisDistance, telekinesisForce);
             attractObjectButtonDown = false;
         }
     }

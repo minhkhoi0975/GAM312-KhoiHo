@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public InventoryUpdated inventoryUpdatedCallback;
 
     // Items in the backpack.
-    public List<ItemInstance> backpack;
+    public List<ItemInstance> backpack = new List<ItemInstance>();
 
     [Header("Equipment")]
 
@@ -52,10 +52,8 @@ public class Inventory : MonoBehaviour
                 if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
                 {
                     backpack[i].CurrentStackSize += newItem.CurrentStackSize;
-                    //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + i + ".");
-
-                    inventoryUpdatedCallback?.Invoke();
-                    return;
+                    newItem.CurrentStackSize = 0;
+                    break;
                 }
                 // The item in the inventory is full?
                 // Move to another slot in the inventory.
@@ -85,8 +83,7 @@ public class Inventory : MonoBehaviour
             return;
 
         // Create an instance of the new item.
-        ItemInstance newItemInstance = new ItemInstance();
-        newItemInstance.itemDefinition = newItem;
+        ItemInstance newItemInstance = new ItemInstance(newItem);
 
         AddToBackPack(newItemInstance);
     }
@@ -253,9 +250,7 @@ public class Inventory : MonoBehaviour
     public void PickUpItem(PickUp pickUp, bool autoEquip = true)
     {
         // Create an item instance.
-        ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();
-        itemInstance.itemDefinition = pickUp.ItemDefinition;
-        itemInstance.CurrentStackSize = pickUp.CurrentStackSize;
+        ItemInstance itemInstance = new ItemInstance(pickUp.ItemDefinition, pickUp.CurrentStackSize);
 
         // Add the item instance to the backpack.
         AddToBackPack(itemInstance);
@@ -293,8 +288,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Create an item instance for the pick-up.
-        ItemInstance pickUpInfo = ScriptableObject.CreateInstance<ItemInstance>();
-        pickUpInfo.itemDefinition = backpack[backpackIndex].itemDefinition;
+        ItemInstance pickUpInfo = new ItemInstance(backpack[backpackIndex].itemDefinition);
         if (quantity < 0 || quantity >= backpack[backpackIndex].CurrentStackSize)
         {
             pickUpInfo.CurrentStackSize = backpack[backpackIndex].CurrentStackSize;

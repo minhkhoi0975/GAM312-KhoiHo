@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed7ed7187ad2334ba7c46f06a8ee1c5, type: 3}
+  m_Name: DemonSword
+  m_EditorClassIdentifier: 
+  name: Demon Sword
+  maxStackSize: 1
+  type: 2
+  icon: {fileID: 21300000, guid: 724bba050168f924b86a6c5f921910ce, type: 3}
+  mesh: {fileID: 7445754547994923273, guid: a86272d266557ee46a19ef6a2b8309e6, type: 3}
+  consumeStatChanges: []
+  equipStatChanges:
+  - {fileID: 11400000, guid: b026e0454cc31804c85447e05b8bee21, type: 2}
+  - {fileID: 11400000, guid: 7fd4a332dafca314a86116dadf24c738, type: 2}
+  - {fileID: 11400000, guid: c2a84b263e19f154a8359450d8de6374, type: 2}
+  - {fileID: 11400000, guid: 9787c727929f6974a9a9f1741bbfaca9, type: 2}
+  range: 0.5
+  baseDamage: 5
+  criticalDamageMultiplier: 1
+  criticalChance: 0

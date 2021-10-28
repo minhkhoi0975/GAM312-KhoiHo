@@ -44,10 +44,10 @@ public class ItemDefinition : ScriptableObject
     public GameObject mesh;
 
     // How are the stats modified when the character consumes this item?
-    public List<Stat> consumeStatChanges;
+    public List<StatModifier> consumeStatChanges;
 
     // How are the stats modified when the character equips this item?
-    public List<Stat> equipStatChanges;
+    public List<StatModifier> equipStatChanges;
 
     // Does this item belong to an item type?
     public bool IsOfType(ItemType itemType)
@@ -73,6 +73,11 @@ public class ItemDefinition : ScriptableObject
     {
         if (character)
         {
+            foreach(StatModifier statModifer in equipStatChanges)
+            {
+                character.StatSystem.AddModifier(statModifer);
+            }
+
             Debug.Log(character.gameObject.name + " has equipped " + name);
         }
     }
@@ -96,6 +101,11 @@ public class ItemDefinition : ScriptableObject
     {
         if (character)
         {
+            foreach (StatModifier statModifer in equipStatChanges)
+            {
+                character.StatSystem.RemoveModifier(statModifer);
+            }
+
             Debug.Log(character.gameObject.name + " has unequipped " + name);
         }
     }
@@ -119,6 +129,11 @@ public class ItemDefinition : ScriptableObject
     {
         if (character)
         {
+            foreach (StatModifier statModifer in consumeStatChanges)
+            {
+                character.StatSystem.AddModifier(statModifer);
+            }
+
             Debug.Log(character.gameObject.name + " has consumed " + name);
         }
     }

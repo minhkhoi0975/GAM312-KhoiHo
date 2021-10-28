@@ -8,12 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInstance : ScriptableObject
+[System.Serializable]
+public class ItemInstance
 {
+    public ItemInstance(ItemDefinition itemDefinition, int currentStackSize = 1)
+    {
+        this.itemDefinition = itemDefinition;
+        this.CurrentStackSize = currentStackSize;
+    }
+
     // What is the definition of this item instance?
     public ItemDefinition itemDefinition;
 
-    private int currentStackSize = 1;
+    [SerializeField] int currentStackSize = 1;
     public int CurrentStackSize
     {
         get
@@ -30,5 +37,26 @@ public class ItemInstance : ScriptableObject
     public bool BelongToItemDefinition(ItemDefinition itemDefinition)
     {
         return this.itemDefinition = itemDefinition;
+    }
+
+    // Use the ! operator to check whether the item instance is valid or not.
+    public static bool operator !(ItemInstance itemInstance)
+    {
+        return itemInstance == null || itemInstance.itemDefinition == null;
+    }
+
+    // Use the boolean implicit operator to check whether the item instance is valid or not.
+    public static implicit operator bool(ItemInstance itemInstance)
+    {
+        return itemInstance != null && itemInstance.itemDefinition != null;
+    }
+
+    // Implicitly convert ItemInstance into ItemDefinition
+    public static implicit operator ItemDefinition(ItemInstance itemInstance)
+    {
+        if (itemInstance == null)
+            return null;
+
+        return itemInstance.itemDefinition;
     }
 }

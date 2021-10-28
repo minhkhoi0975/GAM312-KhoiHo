@@ -36,8 +36,7 @@ public class TestEquipment : MonoBehaviour
         foreach (ItemDefinition item in items)
         {
             // Create an item instance.
-            ItemInstance itemInstance = ScriptableObject.CreateInstance<ItemInstance>();
-            itemInstance.itemDefinition = item;
+            ItemInstance itemInstance = new ItemInstance(item);
 
             // Add the item to the backpack.
             inventory.AddToBackPack(itemInstance);
