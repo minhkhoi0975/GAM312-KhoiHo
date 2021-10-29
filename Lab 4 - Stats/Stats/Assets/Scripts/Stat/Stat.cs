@@ -49,11 +49,11 @@ public class Stat
         set
         {
             baseValue = value;
-            isStatModified = true;
+            UpdateCurrentValue();
         }
     }
 
-    // The pernament bonus value of the stat.
+    // The pernament bonus value of the stat. Changed when a PermanentBonus modifier is applied to the stat.
     [SerializeField] float pernamentBonusValue = 0.0f;
     public float PernamentBonusValue
     {
@@ -64,7 +64,7 @@ public class Stat
         set
         {
             pernamentBonusValue = value;
-            isStatModified = true;
+            UpdateCurrentValue();
         }
     }
 
@@ -82,8 +82,8 @@ public class Stat
         }
     }
 
-    // Has the stat been recently modified?
-    bool isStatModified = true;
+    // Has the stat modifier been recently updated?
+    bool isStatUpdated = true;
 
     // The current value of the stat.
     float currentValue;
@@ -91,23 +91,24 @@ public class Stat
     {
         get
         {
-            if(isStatModified)
-            {
-                UpdateCurrentValue();
-            }
-
-            return currentValue;
+            return GetCurrentValue();
         }
     }
 
     // Get the current value of the stat.
     // If including modifiers is true, the current value is baseValue + permanentBonusValue + bonuses from modifiers.
     // Otherwise, then the current value is baseValue + permanentBonusValue.
-    float getCurrentValue(bool includingModifiers = true)
+    float GetCurrentValue(bool includingModifiers = true)
     {
         if (includingModifiers)
         {
-            return CurrentValue;
+            // If the stat has been recently updated, recalculate the current value.
+            if(isStatUpdated)
+            {
+                UpdateCurrentValue();
+            }
+
+            return currentValue;
         }
         else
         {
@@ -132,7 +133,6 @@ public class Stat
         {
             this.statModifiers.Add(modifier);
         }
-        this.isStatModified = statToCopy.isStatModified;
         this.currentValue = statToCopy.currentValue;
     }
 
@@ -150,8 +150,7 @@ public class Stat
                 statModifiers.Add(modifier);
             }
 
-            Debug.Log("Stat modified");
-            isStatModified = true;
+            UpdateCurrentValue();
         }
     }
 
@@ -160,7 +159,7 @@ public class Stat
     {
         if (statModifiers.Remove(modifier))
         {
-            isStatModified = true;
+            UpdateCurrentValue();
         }
     }
 
@@ -176,7 +175,7 @@ public class Stat
             statModifiers.Remove(modifier);
         }
 
-        isStatModified = true;
+        UpdateCurrentValue();
     }
 
     // Update the current value of the stat.
@@ -193,6 +192,6 @@ public class Stat
 
         currentValue = newCurrentValue;
 
-        isStatModified = false;
+        isStatUpdated = false;
     }
 }

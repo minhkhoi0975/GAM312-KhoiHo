@@ -57,7 +57,7 @@ public class Armor : ItemDefinition
         SetType(ItemType.Armor, true);
     }
 
-    // Called when the item is equipped by the character.
+    // Called when the item is equipped by a character.
     public override void OnEquipped(Character character)
     {
         // Modify damage resistance.
@@ -73,7 +73,7 @@ public class Armor : ItemDefinition
         base.OnEquipped(character);
     }
 
-    // Called when the item is no longer equipped by the character.
+    // Called when the item is no longer equipped by a character.
     public override void OnUnequipped(Character character)
     {
         // Restore damage resistance.

@@ -8,6 +8,9 @@ public class Inventory : MonoBehaviour
     public delegate void InventoryUpdated();
     public InventoryUpdated inventoryUpdatedCallback;
 
+    // Starting items.
+    public List<ItemInstance> startingItems = new List<ItemInstance>();
+
     // Items in the backpack.
     public List<ItemInstance> backpack = new List<ItemInstance>();
 
@@ -29,6 +32,17 @@ public class Inventory : MonoBehaviour
 
     // Pick-up prefab.
     [SerializeField] GameObject pickupPrefab;
+
+    private void Awake()
+    {
+        foreach(ItemInstance item in startingItems)
+        {
+            AddToBackPack(item);
+
+            // Try equipping the item.
+            Equip(backpack.Count - 1, true);
+        }
+    }
 
     // Check whether a backpack index is valid.
     public bool IsBackPackIndexValid(int backpackIndex)

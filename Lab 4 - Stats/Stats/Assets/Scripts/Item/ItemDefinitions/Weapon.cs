@@ -72,21 +72,32 @@ public class Weapon : ItemDefinition
         SetType(ItemType.Weapon, true);
     }
 
-    // Calculate the damage caused by the weapon.
-    public float GetDamage()
+    public override void OnEquipped(Character character)
     {
-        // Get random percentage.
-        float percentage = Random.Range(0, 100);
+        // Modify attack range.
+        character.StatSystem.stats[StatType.AttackRange].PernamentBonusValue += range;
 
-        // If the percentage is high enough, return critical damage.
-        // Otherwise, return base damage.
-        if (percentage >= criticalChance)
-        {
-            return baseDamage * criticalDamageMultiplier;
-        }
-        else
-        {
-            return baseDamage;
-        }
+        // Modify damage.
+        character.StatSystem.stats[StatType.Damage].PernamentBonusValue += baseDamage;
+
+        // Modify critical chance.
+        character.StatSystem.stats[StatType.CriticalChance].PernamentBonusValue += criticalChance;
+
+        base.OnEquipped(character);
+    }
+
+    // Called when the item is no longer equipped by a character.
+    public override void OnUnequipped(Character character)
+    {
+        // Modify attack range.
+        character.StatSystem.stats[StatType.AttackRange].PernamentBonusValue -= range;
+
+        // Modify damage.
+        character.StatSystem.stats[StatType.Damage].PernamentBonusValue -= baseDamage;
+
+        // Modify critical chance.
+        character.StatSystem.stats[StatType.CriticalChance].PernamentBonusValue -= criticalChance;
+
+        base.OnUnequipped(character);
     }
 }

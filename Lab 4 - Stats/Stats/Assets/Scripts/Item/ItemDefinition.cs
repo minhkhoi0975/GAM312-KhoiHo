@@ -44,10 +44,10 @@ public class ItemDefinition : ScriptableObject
     public GameObject mesh;
 
     // How are the stats modified when the character consumes this item?
-    public List<StatModifier> consumeStatChanges;
+    public List<StatModifier> consumeStatChanges = new List<StatModifier>();
 
     // How are the stats modified when the character equips this item?
-    public List<StatModifier> equipStatChanges;
+    public List<StatModifier> equipStatChanges = new List<StatModifier>();
 
     // Does this item belong to an item type?
     public bool IsOfType(ItemType itemType)

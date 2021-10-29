@@ -19,11 +19,8 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: a86272d266557ee46a19ef6a2b8309e6, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - {fileID: 11400000, guid: b026e0454cc31804c85447e05b8bee21, type: 2}
-  - {fileID: 11400000, guid: 7fd4a332dafca314a86116dadf24c738, type: 2}
-  - {fileID: 11400000, guid: c2a84b263e19f154a8359450d8de6374, type: 2}
   - {fileID: 11400000, guid: 9787c727929f6974a9a9f1741bbfaca9, type: 2}
   range: 0.5
-  baseDamage: 5
-  criticalDamageMultiplier: 1
+  baseDamage: 50
+  criticalDamageMultiplier: 1.2
   criticalChance: 0
