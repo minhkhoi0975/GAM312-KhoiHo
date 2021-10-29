@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: 5090434034205710227}
   - component: {fileID: 1623792058676853221}
   - component: {fileID: 611682381439544625}
-  - component: {fileID: 5516679420322804461}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Character
@@ -229,86 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34dde70685b163a42b97128d1efdaa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5516679420322804461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228463600266611084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f70d0ce9ae6854a8e33c0cd89487a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statSystem: {fileID: 611682381439544625}
-  startingStats:
-  - statType: 0
-    baseValue: 150
-    pernamentBonusValue: 0
-    minValue: 40
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 1
-    baseValue: 0
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 4
-    baseValue: 0
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 3
-    baseValue: 0
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 5
-    baseValue: 100
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 6
-    baseValue: 100
-    pernamentBonusValue: 0
-    minValue: 50
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 7
-    baseValue: 0
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 11
-    baseValue: 1.2
-    pernamentBonusValue: 0
-    minValue: 1.2
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 8
-    baseValue: 5
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 100
-    statModifiers: []
-  - statType: 9
-    baseValue: 0
-    pernamentBonusValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
-    statModifiers: []
-  - statType: 10
-    baseValue: 1
-    pernamentBonusValue: 0
-    minValue: 1
-    maxValue: 3.4028235e+38
-    statModifiers: []
+  startingStatLists:
+  - {fileID: 11400000, guid: 25692260c9c6cf94a8ab205f9624b5b6, type: 2}
+  - {fileID: 11400000, guid: 0d24afcc5360ef341b2ee058d9c1e8b3, type: 2}
+  - {fileID: 11400000, guid: ea07227bbf2bb8245b638c3a5cd1b6ed, type: 2}
+  - {fileID: 11400000, guid: 4f8da618123dacf47ad4027904ff2ed0, type: 2}
 --- !u!1 &4127173407720432552
 GameObject:
   m_ObjectHideFlags: 0

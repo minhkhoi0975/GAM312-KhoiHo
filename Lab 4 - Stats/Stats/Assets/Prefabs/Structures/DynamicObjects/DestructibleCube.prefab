@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5774917885889340597}
   - component: {fileID: 3103456178988602765}
   - component: {fileID: 3139861719348138983}
+  - component: {fileID: 5274157834773322445}
   m_Layer: 0
   m_Name: DestructibleCube
   m_TagString: Untagged
@@ -109,8 +110,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a2bee344c00c04584b79e0363bccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
-  currentHealth: 150
-  damageResistance: 0
+  statSystem: {fileID: 0}
   gameObjectToDestroy: {fileID: 7186197543345189718}
   destroyDelayTimeInSeconds: 0
+--- !u!114 &5274157834773322445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186197543345189718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34dde70685b163a42b97128d1efdaa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingStatLists:
+  - {fileID: 11400000, guid: 8bd45cdd0ef74a94e8eceab24728bdd7, type: 2}

@@ -12,21 +12,21 @@ using UnityEngine;
 public enum StatType
 {
     // Movement
-    MovementSpeed,
+    MovementSpeed = 0,
     DashSpeedMultiplier,
 
     // Moving objects
-    PushingForce,
+    PushingForce = 100,
     TelekinesisForce,
     TelekinesisDistance,
 
     // Health
-    CurrentHealth,
+    CurrentHealth = 200,
     MaxHealth,
     DamageResistance,
 
     // Combat
-    Damage,
+    Damage = 300,
     CriticalChance,
     CriticalDamageMultiplier,
     AttackRange
@@ -113,6 +113,27 @@ public class Stat
         {
             return baseValue + pernamentBonusValue;
         }
+    }
+
+    // Default constructor.
+    public Stat()
+    {
+    }
+
+    // Deep copy constructor.
+    public Stat(Stat statToCopy)
+    {
+        this.statType = statToCopy.statType;
+        this.baseValue = statToCopy.baseValue;
+        this.pernamentBonusValue = statToCopy.pernamentBonusValue;
+        this.minValue = statToCopy.minValue;
+        this.maxValue = statToCopy.maxValue;
+        foreach(StatModifier modifier in statToCopy.statModifiers)
+        {
+            this.statModifiers.Add(modifier);
+        }
+        this.isStatModified = statToCopy.isStatModified;
+        this.currentValue = statToCopy.currentValue;
     }
 
     // Add a modifier to the stat.

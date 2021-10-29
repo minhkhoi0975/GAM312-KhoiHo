@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(StatSystem))]
 public class Health : MonoBehaviour
 {
     // We need to reference the stat system in order to get current health, maximum health and damage resistance.
@@ -67,10 +68,6 @@ public class Health : MonoBehaviour
         if(!statSystem)
         {
             statSystem = GetComponent<StatSystem>();
-        }
-        if(!statSystem)
-        {
-            statSystem = GetComponentInChildren<StatSystem>(true);
         }
 
         if (!gameObjectToDestroy)

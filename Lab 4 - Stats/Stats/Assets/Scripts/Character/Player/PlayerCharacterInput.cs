@@ -53,8 +53,8 @@ public class PlayerCharacterInput : MonoBehaviour
             }
         }
 
-        // Attract a movable object.
-        if (Input.GetButton("AttractObject") && !character.CharacterHand.PushedGameObject)
+        // Perform telekinesis (attracting a movable object).
+        if (Input.GetButton("Telekinesis") && !character.CharacterHand.PushedGameObject)
         {
             attractObjectButtonDown = true;
         }
@@ -139,16 +139,14 @@ public class PlayerCharacterInput : MonoBehaviour
 
         // If the player presses the dash button, dash. Otherwise, move normally.
         if (dashButtonDown)
-        {         
+        {
             // Player does not presses WASD? Dash forward.
             if (relativeMoveDirection.magnitude != 0.0f)
             {
-                //character.Move(relativeMoveDirection, character.BaseMovementSpeed * character.DashSpeedMultiplier);
                 character.Move(relativeMoveDirection, movementSpeed * dashSpeedMultiplier);
             }
             else
             {
-                // character.Move(transform.forward, character.BaseMovementSpeed * character.DashSpeedMultiplier);
                 character.Move(transform.forward, movementSpeed * dashSpeedMultiplier);
             }
             dashButtonDown = false;
@@ -159,7 +157,6 @@ public class PlayerCharacterInput : MonoBehaviour
             // Otherwise, move the character and the object relative to the object.
             if (!character.CharacterHand.PushedGameObject)
             {
-                //character.Move(relativeMoveDirection, character.BaseMovementSpeed);
                 character.Move(relativeMoveDirection, movementSpeed);
             }
             else
