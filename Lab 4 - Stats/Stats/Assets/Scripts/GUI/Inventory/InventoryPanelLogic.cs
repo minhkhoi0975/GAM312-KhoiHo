@@ -78,9 +78,9 @@ public class InventoryPanelLogic : MonoBehaviour
         {
             itemSlotButtons.Add(CreateItemSlotButton(inventory.armorHead, headSlotTransform, ItemSlotType.Head));
         }
-        if (inventory.armorChest)
+        if (inventory.armorBody)
         {
-            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorChest, chestSlotTransform, ItemSlotType.Chest));
+            itemSlotButtons.Add(CreateItemSlotButton(inventory.armorBody, chestSlotTransform, ItemSlotType.Chest));
         }
         if (inventory.armorArms)
         {

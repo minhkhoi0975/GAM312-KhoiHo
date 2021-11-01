@@ -10,6 +10,26 @@ using UnityEngine;
 
 public class StatSystem : MonoBehaviour
 {
+    // Callback when any of the stats is changed.
+    public delegate void StatsUpdated();
+    public StatsUpdated statsUpdatedCallback;
+
+    // Callback when a stat modifer is applied to a stat.
+    public delegate void StatModifierApplied(Stat stat, StatModifier modifier);
+    public StatModifierApplied statModifierAppliedCallback;
+
+    // Callback when a pernament bonus amount is applied to a stat.
+    public delegate void PernamentBonusAmountApplied(StatType stat, float amount);
+    public PernamentBonusAmountApplied pernamentBonusAmountApplied;
+
+    // Callback when a stat modifier is removed from a stat.
+    public delegate void StatModifierRemoved(Stat stat, StatModifier modifier);
+    public StatModifierRemoved statModifierRemovedCallback;
+
+    // Callback when a stat is reset.
+    public delegate void StatReset(Stat stat);
+    public StatReset statResetCallback;
+
     // List of all stats of this game object.
     public Dictionary<StatType, Stat> stats = new Dictionary<StatType, Stat>();
 
@@ -60,12 +80,24 @@ public class StatSystem : MonoBehaviour
         }
     }
 
+    // Add a pernament bonus amount to a stat.
+    public void AddPernamentBonusAmount(StatType stat, float amount)
+    {
+        stats[stat].PernamentBonusValue += amount;
+
+        pernamentBonusAmountApplied?.Invoke(stat, amount);
+        statsUpdatedCallback?.Invoke();
+    }
+
     // Add a modifier to a stat.
     public void AddModifier(StatModifier modifier)
     {
         if (stats.ContainsKey(modifier.modifiedStatType))
         {
             stats[modifier.modifiedStatType].AddModifier(modifier);
+
+            statModifierAppliedCallback?.Invoke(stats[modifier.modifiedStatType], modifier);
+            statsUpdatedCallback?.Invoke();
         }
         else
         {
@@ -79,6 +111,9 @@ public class StatSystem : MonoBehaviour
         if (stats.ContainsKey(modifier.modifiedStatType))
         {
             stats[modifier.modifiedStatType].RemoveModifier(modifier);
+
+            statModifierRemovedCallback?.Invoke(stats[modifier.modifiedStatType], modifier);
+            statsUpdatedCallback?.Invoke();
         }
     }
 
@@ -89,6 +124,9 @@ public class StatSystem : MonoBehaviour
         {
             stats[resetStatType].ResetStat();
         }
+
+        statResetCallback?.Invoke(stats[resetStatType]);
+        statsUpdatedCallback?.Invoke();
     }
 
     // Reset all stats.

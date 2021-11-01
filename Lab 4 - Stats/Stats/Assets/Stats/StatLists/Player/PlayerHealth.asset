@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - statType: 200
-    baseValue: 100
+    baseValue: 50
     pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38

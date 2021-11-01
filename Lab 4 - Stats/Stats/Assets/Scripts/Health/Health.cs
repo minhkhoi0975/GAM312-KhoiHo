@@ -12,7 +12,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     // We need to reference the stat system in order to get current health, maximum health and damage resistance.
-    public StatSystem statSystem;
+    [SerializeField] StatSystem statSystem;
     public float CurrentHealth
     {
         get
@@ -37,25 +37,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void IncreaseCurrentHealth(float amount)
-    {
-        Stat currentHealthStat = statSystem.stats[StatType.CurrentHealth];
-        Stat maxHealthStat = statSystem.stats[StatType.MaxHealth];
-
-        currentHealthStat.PernamentBonusValue += amount;
-
-        if(currentHealthStat.CurrentValue > maxHealthStat.CurrentValue)
-        {
-            float redundantHealth = maxHealthStat.CurrentValue - currentHealthStat.CurrentValue;
-            currentHealthStat.PernamentBonusValue -= redundantHealth;
-        }
-    }
-
-    public void DecreaseCurrentHealth(float amount)
-    {
-        statSystem.stats[StatType.CurrentHealth].PernamentBonusValue -= amount;
-    }
-
     // When health goes below 0, this game object is destroyed.
     // By default, destroy the object that contains Health component.
     [SerializeField] GameObject gameObjectToDestroy;
@@ -65,7 +46,7 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        if(!statSystem)
+        if (!statSystem)
         {
             statSystem = GetComponent<StatSystem>();
         }
@@ -74,6 +55,25 @@ public class Health : MonoBehaviour
         {
             gameObjectToDestroy = gameObject;
         }
+    }
+
+    void IncreaseCurrentHealth(float amount)
+    {
+        Stat currentHealthStat = statSystem.stats[StatType.CurrentHealth];
+        Stat maxHealthStat = statSystem.stats[StatType.MaxHealth];
+
+        statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, amount);
+
+        if(currentHealthStat.CurrentValue > maxHealthStat.CurrentValue)
+        {
+            float redundantHealth = currentHealthStat.CurrentValue - maxHealthStat.CurrentValue;
+            statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, -redundantHealth);
+        }
+    }
+
+    void DecreaseCurrentHealth(float amount)
+    {
+        statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, -amount);
     }
 
     // Take damage.

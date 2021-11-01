@@ -91,7 +91,7 @@ public class PlayerCharacterInput : MonoBehaviour
             {
                 character.Inventory.DropArmorLegs();
             }
-            else if (character.Inventory.armorChest)
+            else if (character.Inventory.armorBody)
             {
                 character.Inventory.DropArmorChest();
             }

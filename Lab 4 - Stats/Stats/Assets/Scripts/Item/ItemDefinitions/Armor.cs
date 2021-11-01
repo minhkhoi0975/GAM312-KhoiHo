@@ -10,10 +10,10 @@ using UnityEngine;
 
 public enum ArmorSlot
 {
-    head,
-    chest,
-    arms,
-    feet
+    Head,
+    Body,
+    Arms,
+    Legs
 }
 
 [CreateAssetMenu(fileName = "New Armor", menuName = "Items/Create a new Armor")]

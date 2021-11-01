@@ -75,13 +75,16 @@ public class Weapon : ItemDefinition
     public override void OnEquipped(Character character)
     {
         // Modify attack range.
-        character.StatSystem.stats[StatType.AttackRange].PernamentBonusValue += range;
+        character.StatSystem.AddPernamentBonusAmount(StatType.AttackRange, range);
 
         // Modify damage.
-        character.StatSystem.stats[StatType.Damage].PernamentBonusValue += baseDamage;
+        character.StatSystem.AddPernamentBonusAmount(StatType.Damage, baseDamage);
 
         // Modify critical chance.
-        character.StatSystem.stats[StatType.CriticalChance].PernamentBonusValue += criticalChance;
+        character.StatSystem.AddPernamentBonusAmount(StatType.CriticalChance, criticalChance);
+
+        // Modifier critical damage multiplier.
+        character.StatSystem.AddPernamentBonusAmount(StatType.CriticalDamageMultiplier, criticalDamageMultiplier);
 
         base.OnEquipped(character);
     }
@@ -90,13 +93,16 @@ public class Weapon : ItemDefinition
     public override void OnUnequipped(Character character)
     {
         // Modify attack range.
-        character.StatSystem.stats[StatType.AttackRange].PernamentBonusValue -= range;
+        character.StatSystem.AddPernamentBonusAmount(StatType.AttackRange, -range);
 
         // Modify damage.
-        character.StatSystem.stats[StatType.Damage].PernamentBonusValue -= baseDamage;
+        character.StatSystem.AddPernamentBonusAmount(StatType.Damage, -baseDamage);
 
         // Modify critical chance.
-        character.StatSystem.stats[StatType.CriticalChance].PernamentBonusValue -= criticalChance;
+        character.StatSystem.AddPernamentBonusAmount(StatType.CriticalChance, -criticalChance);
+
+        // Modifier critical damage multiplier.
+        character.StatSystem.AddPernamentBonusAmount(StatType.CriticalDamageMultiplier, -criticalDamageMultiplier);
 
         base.OnUnequipped(character);
     }
