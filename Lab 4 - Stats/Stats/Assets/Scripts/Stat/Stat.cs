@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum StatType
 {
@@ -49,6 +50,7 @@ public class Stat
         set
         {
             initialBaseValue = value;
+            initialBaseValue = Mathf.Clamp(baseValue, minBaseValue, maxBaseValue);
             isStatChanged = true;
         }
     }
@@ -64,14 +66,14 @@ public class Stat
         set
         {
             baseValue = value;
-            baseValue = Mathf.Clamp(baseValue, minValue, maxValue);
+            baseValue = Mathf.Clamp(baseValue, minBaseValue, maxBaseValue);
             isStatChanged = true;
         }
     }
 
     // The minimum and maximum values of baseValue.
-    [Range(float.MinValue, float.MaxValue)] public float minValue = float.MinValue;
-    [Range(float.MinValue, float.MaxValue)] public float maxValue = float.MaxValue;
+    [FormerlySerializedAs("minValue")] [Range(float.MinValue, float.MaxValue)] public float minBaseValue = float.MinValue;
+    [FormerlySerializedAs("maxValue")] [Range(float.MinValue, float.MaxValue)] public float maxBaseValue = float.MaxValue;
 
     // List of all modifiers that affect the stat.
     [SerializeField] List<StatModifier> statModifiers = new List<StatModifier>();
@@ -122,8 +124,8 @@ public class Stat
         this.statType = statToCopy.statType;
         this.initialBaseValue = statToCopy.initialBaseValue;
         this.baseValue = statToCopy.baseValue;
-        this.minValue = statToCopy.minValue;
-        this.maxValue = statToCopy.maxValue;
+        this.minBaseValue = statToCopy.minBaseValue;
+        this.maxBaseValue = statToCopy.maxBaseValue;
         foreach(StatModifier modifier in statToCopy.statModifiers)
         {
             this.statModifiers.Add(modifier);
@@ -131,21 +133,22 @@ public class Stat
         this.currentValue = statToCopy.currentValue;
     }
 
-    // Add a bonus amount to baseValue.
-    public void AddBonusAmount(float amount)
-    {
-        BaseValue += amount;
-        isStatChanged = true;
-    }
-
     // Add a modifier to the stat.
     public void AddModifier(StatModifier modifier)
     {
-        if (modifier.modifiedStatType == statType)
+        if (modifier.statType == statType)
         {
-            if (modifier.statModifierType == StatModifierType.BaseValue)
+            if (modifier.statModifierType == StatModifierType.IncreaseBaseValue)
             {
                 BaseValue += modifier.value;
+            }
+            else if(modifier.statModifierType == StatModifierType.IncreaseMinValue)
+            {
+                minBaseValue += modifier.value;
+            }
+            else if(modifier.statModifierType == StatModifierType.IncreaseMaxValue)
+            {
+                maxBaseValue += modifier.value;
             }
             else if (modifier.statModifierType == StatModifierType.Attached)
             {

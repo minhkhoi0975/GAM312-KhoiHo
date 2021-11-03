@@ -19,15 +19,15 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: 888cdf1e68f4a594aa5398a8cec2a638, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - modifiedStatType: 303
+  - statType: 303
     statModifierType: 1
     value: 1.5
-  - modifiedStatType: 300
+  - statType: 300
     statModifierType: 1
     value: 10
-  - modifiedStatType: 301
+  - statType: 301
     statModifierType: 1
     value: 30
-  - modifiedStatType: 302
+  - statType: 302
     statModifierType: 1
     value: 1.5

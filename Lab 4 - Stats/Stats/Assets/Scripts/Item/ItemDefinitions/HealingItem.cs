@@ -15,7 +15,7 @@ public class HealingItem : ItemDefinition
     {
         SetType(ItemType.Consumable, true);
 
-        StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.BaseValue);
+        StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue);
         consumeStatChanges.Add(healthModifier);
     }
 

@@ -86,7 +86,7 @@ public class StatSystem : MonoBehaviour
     {
         if (stats.ContainsKey(stat))
         {
-            return stats[stat].minValue;
+            return stats[stat].minBaseValue;
         }
         else
         {
@@ -100,7 +100,7 @@ public class StatSystem : MonoBehaviour
     {
         if (stats.ContainsKey(stat))
         {
-            return stats[stat].maxValue;
+            return stats[stat].maxBaseValue;
         }
         else
         {
@@ -112,11 +112,11 @@ public class StatSystem : MonoBehaviour
     // Add a modifier to a stat.
     public void AddModifier(StatModifier modifier)
     {
-        if (stats.ContainsKey(modifier.modifiedStatType))
+        if (stats.ContainsKey(modifier.statType))
         {
-            stats[modifier.modifiedStatType].AddModifier(modifier);
+            stats[modifier.statType].AddModifier(modifier);
 
-            statModifierAppliedCallback?.Invoke(stats[modifier.modifiedStatType], modifier);
+            statModifierAppliedCallback?.Invoke(stats[modifier.statType], modifier);
             statsUpdatedCallback?.Invoke();
         }
         else
@@ -128,11 +128,11 @@ public class StatSystem : MonoBehaviour
     // Remove a modifier from a stat.
     public void RemoveModifier(StatModifier modifier)
     {
-        if (stats.ContainsKey(modifier.modifiedStatType))
+        if (stats.ContainsKey(modifier.statType))
         {
-            stats[modifier.modifiedStatType].RemoveModifier(modifier);
+            stats[modifier.statType].RemoveModifier(modifier);
 
-            statModifierRemovedCallback?.Invoke(stats[modifier.modifiedStatType], modifier);
+            statModifierRemovedCallback?.Invoke(stats[modifier.statType], modifier);
             statsUpdatedCallback?.Invoke();
         }
     }

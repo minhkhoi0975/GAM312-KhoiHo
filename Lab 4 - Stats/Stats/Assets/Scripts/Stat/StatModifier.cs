@@ -8,24 +8,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // How does the modifier change the stat?
 public enum StatModifierType
 {
     // The value of the modifier is added to the base value of the stat.
-    // Suitable for permanent changes to the stat (e.g. consumables).
-    BaseValue,
+    IncreaseBaseValue,
 
     // The modifier is added to statModifers.
     // Suitable for temporary changes to the stat (e.g. weapons and armors).
-    Attached,             
+    Attached,
+    
+    // The value of the modifier is added to the maximum base value of the stat.
+    IncreaseMaxValue,
+
+    // The value of the modifier is added to the minimum base value of the stat.
+    IncreaseMinValue
 }
 
 [System.Serializable]
 public class StatModifier
 {
     // The type of the stat that is modified.
-    public StatType modifiedStatType;
+    public StatType statType;
 
     // How does the modifier change the stat?
     public StatModifierType statModifierType;
@@ -39,7 +45,7 @@ public class StatModifier
 
     public StatModifier(StatType modifiedStatType, StatModifierType statModifierType, float value = 0.0f)
     {
-        this.modifiedStatType = modifiedStatType;
+        this.statType = modifiedStatType;
         this.statModifierType = statModifierType;
         this.value = value;
     }
