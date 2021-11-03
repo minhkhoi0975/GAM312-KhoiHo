@@ -53,7 +53,7 @@ public class StatPanelLogic : MonoBehaviour
         textTelekinesisForce.text = playerStats.GetCurrentValue(StatType.TelekinesisForce).ToString();
         textTelekinesisDistance.text = playerStats.GetCurrentValue(StatType.TelekinesisDistance).ToString();
 
-        textHealth.text = playerStats.GetCurrentValue(StatType.CurrentHealth).ToString() + "/" + playerStats.GetCurrentValue(StatType.MaxHealth).ToString();
+        textHealth.text = playerStats.GetCurrentValue(StatType.CurrentHealth).ToString() + "/" + playerStats.GetMaxValue(StatType.CurrentHealth).ToString();
         textDamageResistance.text = playerStats.GetCurrentValue(StatType.DamageResistance).ToString();
 
         textDamage.text = playerStats.GetCurrentValue(StatType.Damage).ToString();

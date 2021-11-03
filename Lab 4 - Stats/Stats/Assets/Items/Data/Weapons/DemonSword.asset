@@ -27,10 +27,22 @@ MonoBehaviour:
     value: 50
   - modifiedStatType: 301
     statModifierType: 1
-    value: 0
+    value: 30
   - modifiedStatType: 302
     statModifierType: 1
     value: 1.2
   - modifiedStatType: 0
     statModifierType: 1
     value: -120
+  - modifiedStatType: 303
+    statModifierType: 1
+    value: 0
+  - modifiedStatType: 300
+    statModifierType: 1
+    value: 0
+  - modifiedStatType: 301
+    statModifierType: 1
+    value: 0
+  - modifiedStatType: 302
+    statModifierType: 1
+    value: 0

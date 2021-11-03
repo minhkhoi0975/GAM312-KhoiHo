@@ -14,8 +14,12 @@ public class HealingItem : ItemDefinition
     private void Awake()
     {
         SetType(ItemType.Consumable, true);
+
+        StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.BaseValue);
+        consumeStatChanges.Add(healthModifier);
     }
 
+    /*
     public override void OnConsumed(Character character)
     {
         character.Health.Heal(healthRestored);
@@ -23,4 +27,5 @@ public class HealingItem : ItemDefinition
 
         base.OnConsumed(character);
     }
+    */
 }
