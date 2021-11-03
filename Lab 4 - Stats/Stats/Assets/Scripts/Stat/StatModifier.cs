@@ -12,12 +12,12 @@ using UnityEngine;
 // How does the modifier change the stat?
 public enum StatModifierType
 {
-    // The value of the modifier is added to pernament bonus value of the stat.
-    // This type of stat modifier is suitable for consumable items.
-    PernamentBonus,
+    // The value of the modifier is added to the base value of the stat.
+    // Suitable for permanent changes to the stat (e.g. consumables).
+    BaseValue,
 
-    // The modifier is added to statModifiers of the stat, and it can be removed from statModifers when the character unequips the item containing that stat modifier.
-    // This type of stat modifier is suitable for equippable items.
+    // The modifier is added to statModifers.
+    // Suitable for temporary changes to the stat (e.g. weapons and armors).
     Attached,             
 }
 

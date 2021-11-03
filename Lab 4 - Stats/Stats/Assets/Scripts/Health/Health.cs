@@ -17,15 +17,7 @@ public class Health : MonoBehaviour
     {
         get
         {
-            return statSystem.stats[StatType.CurrentHealth].CurrentValue;
-        }
-    }
-
-    public float MaxHealth
-    {
-        get
-        {
-            return statSystem.stats[StatType.MaxHealth].CurrentValue;
+            return statSystem.GetCurrentValue(StatType.CurrentHealth);
         }
     }
 
@@ -33,7 +25,7 @@ public class Health : MonoBehaviour
     {
         get
         {
-            return statSystem.stats[StatType.DamageResistance].CurrentValue;
+            return statSystem.GetCurrentValue(StatType.DamageResistance);
         }
     }
 
@@ -57,25 +49,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    void IncreaseCurrentHealth(float amount)
-    {
-        Stat currentHealthStat = statSystem.stats[StatType.CurrentHealth];
-        Stat maxHealthStat = statSystem.stats[StatType.MaxHealth];
-
-        statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, amount);
-
-        if(currentHealthStat.CurrentValue > maxHealthStat.CurrentValue)
-        {
-            float redundantHealth = currentHealthStat.CurrentValue - maxHealthStat.CurrentValue;
-            statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, -redundantHealth);
-        }
-    }
-
-    void DecreaseCurrentHealth(float amount)
-    {
-        statSystem.AddPernamentBonusAmount(StatType.CurrentHealth, -amount);
-    }
-
     // Take damage.
     public void TakeDamage(float damageFromSource)
     {
@@ -84,19 +57,20 @@ public class Health : MonoBehaviour
 
         if (finalDamage > 0)
         {
-            DecreaseCurrentHealth(finalDamage);
+            statSystem.stats[StatType.CurrentHealth].BaseValue -= finalDamage;
         }
 
-        // Health goes below zero? Destroy root component.
+        // Health goes below zero? Die.
         if (CurrentHealth == 0)
         {
             StartCoroutine("Die");
         }
     }
 
+    // Heal.
     public void Heal(float amount)
     {
-        IncreaseCurrentHealth(amount);
+        statSystem.stats[StatType.CurrentHealth].BaseValue += amount;
     }
 
     public virtual IEnumerator Die()

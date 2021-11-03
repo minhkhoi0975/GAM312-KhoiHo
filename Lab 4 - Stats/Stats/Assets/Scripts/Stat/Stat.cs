@@ -23,7 +23,7 @@ public enum StatType
     // Health
     CurrentHealth = 200,
     MaxHealth,
-    DamageResistance,
+    DamageResistance = 202,
 
     // Combat
     Damage = 300,
@@ -38,7 +38,22 @@ public class Stat
     // The type of the stat.
     public StatType statType;
 
-    // The initial value of the stat without any modifiers.
+    // When the stat is reset, set baseValue to this value.
+    [SerializeField] float initialBaseValue;
+    public float InitialBaseValue
+    {
+        get
+        {
+            return initialBaseValue;
+        }
+        set
+        {
+            initialBaseValue = value;
+            isStatChanged = true;
+        }
+    }
+
+    // The current value of the stat without any modifiers.
     [SerializeField] float baseValue;
     public float BaseValue
     {
@@ -49,26 +64,12 @@ public class Stat
         set
         {
             baseValue = value;
-            UpdateCurrentValue();
+            baseValue = Mathf.Clamp(baseValue, minValue, maxValue);
+            isStatChanged = true;
         }
     }
 
-    // The pernament bonus value of the stat. Changed when a PermanentBonus modifier is applied to the stat.
-    [SerializeField] float pernamentBonusValue = 0.0f;
-    public float PernamentBonusValue
-    {
-        get
-        {
-            return pernamentBonusValue;
-        }
-        set
-        {
-            pernamentBonusValue = value;
-            UpdateCurrentValue();
-        }
-    }
-
-    // The minimum and maximum values of the stat.
+    // The minimum and maximum values of baseValue.
     [Range(float.MinValue, float.MaxValue)] public float minValue = float.MinValue;
     [Range(float.MinValue, float.MaxValue)] public float maxValue = float.MaxValue;
 
@@ -82,37 +83,31 @@ public class Stat
         }
     }
 
-    // Has the stat modifier been recently updated?
-    bool isStatUpdated = true;
+    // Get the total value of the modifiers.
+    public float ModifierValue
+    {
+        get
+        {
+            float totalValue = 0;
+            foreach(StatModifier modifier in statModifiers)
+            {
+                totalValue += modifier.value;
+            }
+            return totalValue;
+        }
+    }
 
-    // The current value of the stat.
+    // Has the stat modifier been recently changed?
+    bool isStatChanged = true;
+
+    // The current value of the stat, including both the base value and the modifier value.
     float currentValue;
     public float CurrentValue
     {
         get
         {
-            return GetCurrentValue();
-        }
-    }
-
-    // Get the current value of the stat.
-    // If including modifiers is true, the current value is baseValue + permanentBonusValue + bonuses from modifiers.
-    // Otherwise, then the current value is baseValue + permanentBonusValue.
-    float GetCurrentValue(bool includingModifiers = true)
-    {
-        if (includingModifiers)
-        {
-            // If the stat has been recently updated, recalculate the current value.
-            if(isStatUpdated)
-            {
-                UpdateCurrentValue();
-            }
-
+            UpdateCurrentValue();
             return currentValue;
-        }
-        else
-        {
-            return baseValue + pernamentBonusValue;
         }
     }
 
@@ -125,8 +120,8 @@ public class Stat
     public Stat(Stat statToCopy)
     {
         this.statType = statToCopy.statType;
+        this.initialBaseValue = statToCopy.initialBaseValue;
         this.baseValue = statToCopy.baseValue;
-        this.pernamentBonusValue = statToCopy.pernamentBonusValue;
         this.minValue = statToCopy.minValue;
         this.maxValue = statToCopy.maxValue;
         foreach(StatModifier modifier in statToCopy.statModifiers)
@@ -136,21 +131,28 @@ public class Stat
         this.currentValue = statToCopy.currentValue;
     }
 
+    // Add a bonus amount to baseValue.
+    public void AddBonusAmount(float amount)
+    {
+        BaseValue += amount;
+        isStatChanged = true;
+    }
+
     // Add a modifier to the stat.
     public void AddModifier(StatModifier modifier)
     {
         if (modifier.modifiedStatType == statType)
         {
-            if (modifier.statModifierType == StatModifierType.PernamentBonus)
+            if (modifier.statModifierType == StatModifierType.BaseValue)
             {
-                pernamentBonusValue += modifier.value;
+                BaseValue += modifier.value;
             }
             else if (modifier.statModifierType == StatModifierType.Attached)
             {
                 statModifiers.Add(modifier);
             }
 
-            UpdateCurrentValue();
+            isStatChanged = true;
         }
     }
 
@@ -159,39 +161,32 @@ public class Stat
     {
         if (statModifiers.Remove(modifier))
         {
-            UpdateCurrentValue();
+            isStatChanged = true;
         }
     }
 
-    // Reset the stat to the base value.
+    // Reset the stat.
     public void ResetStat()
     {
-        // Remove the pernament bonus value.
-        pernamentBonusValue = 0;
+        // Reset baseValue.
+        baseValue = initialBaseValue;
 
         // Get rid of all the modifiers.
-        foreach (StatModifier modifier in statModifiers)
-        {
-            statModifiers.Remove(modifier);
-        }
+        statModifiers.Clear();
 
-        UpdateCurrentValue();
+        isStatChanged = true;
     }
 
     // Update the current value of the stat.
     void UpdateCurrentValue()
     {
-        float newCurrentValue = baseValue + pernamentBonusValue;
+        // No need to update the current value of the stat if it is not changed.
+        if (!isStatChanged)
+            return;
 
-        foreach(StatModifier modifier in statModifiers)
-        {
-            newCurrentValue += modifier.value;
-        }
+        // Recalculate the current value.
+        currentValue = baseValue + ModifierValue;
 
-        newCurrentValue = Mathf.Clamp(newCurrentValue, minValue, maxValue);
-
-        currentValue = newCurrentValue;
-
-        isStatUpdated = false;
+        isStatChanged = false;
     }
 }

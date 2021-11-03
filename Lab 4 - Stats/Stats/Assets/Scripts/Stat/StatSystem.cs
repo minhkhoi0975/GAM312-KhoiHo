@@ -18,10 +18,6 @@ public class StatSystem : MonoBehaviour
     public delegate void StatModifierApplied(Stat stat, StatModifier modifier);
     public StatModifierApplied statModifierAppliedCallback;
 
-    // Callback when a pernament bonus amount is applied to a stat.
-    public delegate void PernamentBonusAmountApplied(StatType stat, float amount);
-    public PernamentBonusAmountApplied pernamentBonusAmountApplied;
-
     // Callback when a stat modifier is removed from a stat.
     public delegate void StatModifierRemoved(Stat stat, StatModifier modifier);
     public StatModifierRemoved statModifierRemovedCallback;
@@ -42,14 +38,19 @@ public class StatSystem : MonoBehaviour
 
         foreach (StatList statList in startingStatLists)
         {
+            if (statList == null)
+                continue;
+
             foreach(Stat stat in statList.stats)
             {
+                if (stat == null)
+                    continue;
+
                 // Copy the stat.
                 // If we directly use the stat, it will be edited in the data file.
                 stats[stat.statType] = new Stat(stat);
             }
         }
-        Debug.Log("Total number of stats: " + stats.Count);
     }
 
     // Get the base value of a stat.
@@ -80,13 +81,32 @@ public class StatSystem : MonoBehaviour
         }
     }
 
-    // Add a pernament bonus amount to a stat.
-    public void AddPernamentBonusAmount(StatType stat, float amount)
+    // Get the minimum value of a stat.
+    public float GetMinValue(StatType stat)
     {
-        stats[stat].PernamentBonusValue += amount;
+        if (stats.ContainsKey(stat))
+        {
+            return stats[stat].minValue;
+        }
+        else
+        {
+            Debug.LogError("Cannot find the stat.");
+            return 0;
+        }
+    }
 
-        pernamentBonusAmountApplied?.Invoke(stat, amount);
-        statsUpdatedCallback?.Invoke();
+    // Get the maximum value of a stat.
+    public float GetMaxValue(StatType stat)
+    {
+        if (stats.ContainsKey(stat))
+        {
+            return stats[stat].maxValue;
+        }
+        else
+        {
+            Debug.LogError("Cannot find the stat.");
+            return 0;
+        }
     }
 
     // Add a modifier to a stat.

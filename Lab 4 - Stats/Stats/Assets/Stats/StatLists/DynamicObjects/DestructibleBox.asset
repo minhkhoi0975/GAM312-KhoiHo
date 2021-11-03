@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - statType: 200
+    initialBaseValue: 100
     baseValue: 100
-    pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
   - statType: 201
+    initialBaseValue: 100
     baseValue: 100
-    pernamentBonusValue: 0
     minValue: 100
     maxValue: 3.4028235e+38
     statModifiers: []
   - statType: 202
+    initialBaseValue: 0
     baseValue: 0
-    pernamentBonusValue: 0
     minValue: 0
     maxValue: 0
     statModifiers: []

@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - statType: 303
+    initialBaseValue: 1.2
     baseValue: 1.2
-    pernamentBonusValue: 0
     minValue: 1.2
     maxValue: 3.4028235e+38
     statModifiers: []
   - statType: 300
+    initialBaseValue: 5
     baseValue: 5
-    pernamentBonusValue: 0
     minValue: 0
     maxValue: 3.4028235e+38
     statModifiers: []
   - statType: 301
+    initialBaseValue: 0
     baseValue: 0
-    pernamentBonusValue: 0
     minValue: 0
     maxValue: 100
     statModifiers: []
   - statType: 302
+    initialBaseValue: 1
     baseValue: 1
-    pernamentBonusValue: 0
     minValue: 1
     maxValue: 3.4028235e+38
     statModifiers: []
