@@ -33,8 +33,8 @@ public class HUDPanel : MonoBehaviour
     {
         if(playerStats)
         {
-            textHealth.text = "Health: " + (int)playerStats.GetCurrentValue(StatType.CurrentHealth) + "/" + (int)playerStats.GetCurrentValue(StatType.MaxHealth);
-            textDamageResistance.text = "Damage Resistance: " + (int)playerStats.GetCurrentValue(StatType.DamageResistance);
+            textHealth.text = "HP: " + (int)playerStats.GetCurrentValue(StatType.CurrentHealth) + "/" + (int)playerStats.GetCurrentValue(StatType.MaxHealth);
+            textDamageResistance.text = "DR: " + (int)playerStats.GetCurrentValue(StatType.DamageResistance);
             textDamage.text = "Damage: " + (int)playerStats.GetCurrentValue(StatType.Damage);
         }
     }

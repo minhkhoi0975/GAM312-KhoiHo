@@ -19,8 +19,7 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: 20a1d31ab22000b4f927bcf4914a3395, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - {fileID: 11400000, guid: 515d985f71f8dc64a9cdc9537acdf229, type: 2}
-  damageResistance: 2
-  movementSpeedModifier: 10
-  bonusDashSpeedMultiplier: 0
+  - modifiedStatType: 1
+    statModifierType: 1
+    value: 20
   armorSlot: 1

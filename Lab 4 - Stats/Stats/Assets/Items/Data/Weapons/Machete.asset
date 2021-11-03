@@ -17,7 +17,17 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 21300000, guid: 724bba050168f924b86a6c5f921910ce, type: 3}
   mesh: {fileID: 7445754547994923273, guid: 618ad93e1636eb2468732c689e28bcc4, type: 3}
-  range: 2.5
-  baseDamage: 20
-  criticalDamageMultiplier: 1.2
-  criticalChance: 40
+  consumeStatChanges: []
+  equipStatChanges:
+  - modifiedStatType: 303
+    statModifierType: 1
+    value: 2.5
+  - modifiedStatType: 300
+    statModifierType: 1
+    value: 20
+  - modifiedStatType: 301
+    statModifierType: 1
+    value: 40
+  - modifiedStatType: 302
+    statModifierType: 1
+    value: 1.2

@@ -19,8 +19,18 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: a86272d266557ee46a19ef6a2b8309e6, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - {fileID: 11400000, guid: 9787c727929f6974a9a9f1741bbfaca9, type: 2}
-  range: 0.5
-  baseDamage: 50
-  criticalDamageMultiplier: 1.2
-  criticalChance: 0
+  - modifiedStatType: 303
+    statModifierType: 1
+    value: 0.5
+  - modifiedStatType: 300
+    statModifierType: 1
+    value: 50
+  - modifiedStatType: 301
+    statModifierType: 1
+    value: 0
+  - modifiedStatType: 302
+    statModifierType: 1
+    value: 1.2
+  - modifiedStatType: 0
+    statModifierType: 1
+    value: -120

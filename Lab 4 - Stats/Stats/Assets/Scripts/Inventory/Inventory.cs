@@ -36,6 +36,10 @@ public class Inventory : MonoBehaviour
     public delegate void ItemDropped(ItemInstance item);
     public ItemDropped itemDroppedCallback;
 
+    // Reference to the Character component of the game object.
+    // Only characters can pick up, equip or consume item.
+    public Character character;
+
     // Starting items.
     public List<ItemInstance> startingItems = new List<ItemInstance>();
 
@@ -63,6 +67,17 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        // Check if the game object has Character component.
+        if (!character)
+        {
+            character = GetComponent<Character>();
+        }
+        if(!character)
+        {
+            character = GetComponentInChildren<Character>();
+        }
+
+        // Add starting items to the backpack.
         foreach(ItemInstance item in startingItems)
         {
             AddToBackPack(item);
@@ -164,7 +179,6 @@ public class Inventory : MonoBehaviour
             return;
 
         // Only characters can equip the item.
-        Character character = GetComponent<Character>();
         if (!character)
             return;
 
@@ -274,7 +288,6 @@ public class Inventory : MonoBehaviour
             return;
 
         // Only characters can consume the item.
-        Character character = GetComponent<Character>();
         if (!character)
             return;
 
@@ -307,6 +320,10 @@ public class Inventory : MonoBehaviour
     public void PickUpItem(PickUp pickUp, bool autoEquip = true)
     {
         if (!pickUp)
+            return;
+
+        // Only characters can pick up items.
+        if (!character)
             return;
 
         // Create an item instance.

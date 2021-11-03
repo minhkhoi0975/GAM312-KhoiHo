@@ -21,8 +21,8 @@ public enum StatModifierType
     Attached,             
 }
 
-[CreateAssetMenu(fileName = "Stat Modifier", menuName = "Stats/Create a new Stat Modifier")]
-public class StatModifier : ScriptableObject
+[System.Serializable]
+public class StatModifier
 {
     // The type of the stat that is modified.
     public StatType modifiedStatType;
@@ -32,4 +32,15 @@ public class StatModifier : ScriptableObject
 
     // How much the stat is modified.
     public float value;
+
+    public StatModifier()
+    {
+    }
+
+    public StatModifier(StatType modifiedStatType, StatModifierType statModifierType, float value = 0.0f)
+    {
+        this.modifiedStatType = modifiedStatType;
+        this.statModifierType = statModifierType;
+        this.value = value;
+    }
 }

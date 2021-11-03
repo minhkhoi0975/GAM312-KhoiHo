@@ -155,9 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c18a2dd180148468104decc44de8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushingForce: 70
   rotationalSpeed: 80
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 3525190744186256672}
   pusher: {fileID: 0}
   relativePushingDirection: {x: 0, y: 0, z: 0}
   relativeAttachmentPosition: {x: 0, y: 0, z: 0}

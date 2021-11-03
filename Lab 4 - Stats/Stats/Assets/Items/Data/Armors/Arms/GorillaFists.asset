@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
-  m_Name: BootsOfSpeed
+  m_Name: GorillaFists
   m_EditorClassIdentifier: 
-  name: Boots of Speed
+  name: Gorilla Fists
   maxStackSize: 1
   type: 1
   icon: {fileID: 21300000, guid: 0463d1d58a751c947bcdc23441b68fc0, type: 3}
-  mesh: {fileID: 7445754547994923273, guid: 3ba7e2510b8fa8f42a384174927b2b8f, type: 3}
+  mesh: {fileID: 7445754547994923273, guid: b8b9f2dd0e1766b408fec28a91b8442d, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - modifiedStatType: 0
+  - modifiedStatType: 300
     statModifierType: 1
-    value: 150
-  armorSlot: 3
+    value: 20
+  - modifiedStatType: 100
+    statModifierType: 1
+    value: 120
+  armorSlot: 2

@@ -11,9 +11,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PushableObject : MonoBehaviour
 {
-    // The movement speed of the object when it is being pushed.
-    [SerializeField] float pushingForce = 40.0f;
-
     // The rotational speed of the object when it is being pushed.
     [SerializeField] float rotationalSpeed = 80.0f;
 
@@ -63,6 +60,7 @@ public class PushableObject : MonoBehaviour
             // Don't make the pushed object move too fast.
             if (rigidBody.velocity.magnitude < 10.0f)
             {
+                float pushingForce = pusher.StatSystem.GetCurrentValue(StatType.PushingForce);
                 rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
 
