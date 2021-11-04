@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87569766e845c04c90f7c9d944e0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 8104338878878511834}
   startingItems: []
   backpack: []
   armorHead:
@@ -232,7 +232,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2228463600266611084}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -258,8 +258,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 1298033767925471266}
+  character: {fileID: 8104338878878511834}
+  statSystem: {fileID: 1079737995526698681}
+  inventory: {fileID: 1623792058676853221}
   detectionRadius: 20
   evasionRadius: 50
+  attackDelayInSeconds: 3
 --- !u!1 &4127173407720432552
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8897120022355992417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6164730612449909457}

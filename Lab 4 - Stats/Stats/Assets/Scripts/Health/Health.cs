@@ -65,12 +65,16 @@ public class Health : MonoBehaviour
         {
             StartCoroutine("Die");
         }
+
+        statSystem.statsUpdatedCallback?.Invoke();
     }
 
     // Heal.
     public void Heal(float amount)
     {
         statSystem.stats[StatType.CurrentHealth].BaseValue += amount;
+
+        statSystem.statsUpdatedCallback?.Invoke();
     }
 
     public virtual IEnumerator Die()

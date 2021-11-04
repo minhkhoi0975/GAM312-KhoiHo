@@ -25,7 +25,10 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraOffset = this.transform.position - character.transform.position;
+        if (character)
+        {
+            cameraOffset = this.transform.position - character.transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -36,7 +39,10 @@ public class CameraMovement : MonoBehaviour
 
     void MoveCamera()
     {
-        // Keep the same distance from the camera to the character.
-        this.transform.position = character.transform.position + cameraOffset;
+        if (character)
+        {
+            // Keep the same distance from the camera to the character.
+            this.transform.position = character.transform.position + cameraOffset;
+        }
     }
 }

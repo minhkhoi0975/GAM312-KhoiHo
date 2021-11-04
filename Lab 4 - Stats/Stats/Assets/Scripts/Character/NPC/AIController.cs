@@ -22,6 +22,15 @@ public class AIController : MonoBehaviour
     // Reference to the navmesh agent.
     [SerializeField] NavMeshAgent navMeshAgent;
 
+    // Reference to the character component.
+    [SerializeField] Character character;
+
+    // Reference to the stat system.
+    [SerializeField] StatSystem statSystem;
+
+    // Reference to the inventory.
+    [SerializeField] Inventory inventory;
+
     // Current state of the enemy.
     AIState currentState = AIState.Idle;
 
@@ -37,11 +46,32 @@ public class AIController : MonoBehaviour
     // If the enemy is out of this radius, the NPC will become idle again.
     public float evasionRadius = 20.0f;
 
+    // How long the NPC has to way before next attack?
+    public float attackDelayInSeconds = 3.0f;
+
+    // Returns false when the NPC is under attack delay.
+    bool canAttack = true;
+
     private void Awake()
     {
         if (!navMeshAgent)
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        if(!character)
+        {
+            character = GetComponent<Character>();
+        }
+
+        if (!statSystem)
+        {
+            statSystem = GetComponent<StatSystem>();
+        }
+
+        if (!inventory)
+        {
+            inventory = GetComponent<Inventory>();
         }
     }
 
@@ -50,7 +80,7 @@ public class AIController : MonoBehaviour
         if (enemy == null)
         {
             PlayerCharacterInput player = FindObjectOfType<PlayerCharacterInput>();
-            if(player)
+            if (player)
             {
                 enemy = player.gameObject;
                 enemyTransform = enemy.transform;
@@ -70,23 +100,29 @@ public class AIController : MonoBehaviour
     // Update the behavior of the AI.
     void UpdateAIBehavior()
     {
-        switch(currentState)
+        switch (currentState)
         {
             case AIState.Idle:
+
                 // NPC see the enemy? Start chasing the enemy.
-                if(Vector3.Distance(enemy.transform.position, transform.position) <= detectionRadius)
+                if (enemy && Vector3.Distance(enemy.transform.position, transform.position) <= detectionRadius)
                 {
                     currentState = AIState.Alerted;
                 }
+
                 break;
 
             case AIState.Alerted:
+
                 ChaseEnemy();
+                AttackEnemy();
+
                 // The enemy is too far away? Stop chasing the enemy.
-                if (Vector3.Distance(enemy.transform.position, transform.position) >= evasionRadius)
+                if (!enemy || Vector3.Distance(enemy.transform.position, transform.position) >= evasionRadius)
                 {
                     currentState = AIState.Idle;
                 }
+
                 break;
         }
     }
@@ -97,12 +133,44 @@ public class AIController : MonoBehaviour
             return;
 
         // If the enemy moves, update the transform.
-        if(enemyTransform.position != enemy.transform.position)
+        if (enemyTransform.position != enemy.transform.position)
         {
             enemyTransform = enemy.transform;
         }
 
         // Set the destination for the NPC.
         navMeshAgent.SetDestination(enemyTransform.position);
+    }
+
+    void AttackEnemy()
+    {
+        if (!enemy || !character || !statSystem || !inventory)
+            return;
+
+        // Cannot attack if the NPC is under attack delay.
+        if (!canAttack)
+            return;
+
+        // Check if the enemy is close enough to the NPC.
+        float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+        if (distanceToEnemy > statSystem.GetCurrentValue(StatType.AttackRange))
+            return;
+
+        // Check if the NPC looks at the enemy.
+        float lookDotProduct = Vector3.Dot(transform.forward, (enemy.transform.position - transform.position).normalized);
+        if (lookDotProduct >= 0.9f)
+        {
+            character.Attack(statSystem.GetCurrentValue(StatType.AttackRange), statSystem.GetCurrentValue(StatType.Damage), 
+                statSystem.GetCurrentValue(StatType.CriticalDamageMultiplier), statSystem.GetCurrentValue(StatType.CriticalChance));
+
+            StartCoroutine(WaitBeforeNextAttack());
+        }
+    }
+
+    IEnumerator WaitBeforeNextAttack()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackDelayInSeconds);
+        canAttack = true;
     }
 }

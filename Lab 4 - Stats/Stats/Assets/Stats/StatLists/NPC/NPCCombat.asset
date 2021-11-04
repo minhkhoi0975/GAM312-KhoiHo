@@ -16,24 +16,24 @@ MonoBehaviour:
   - statType: 303
     initialBaseValue: 1.2
     baseValue: 1.2
-    minValue: 1.2
-    maxValue: 3.4028235e+38
+    minBaseValue: 1.2
+    maxBaseValue: 3.4028235e+38
     statModifiers: []
   - statType: 300
-    initialBaseValue: 5
-    baseValue: 5
-    minValue: 0
-    maxValue: 3.4028235e+38
+    initialBaseValue: 10
+    baseValue: 10
+    minBaseValue: 0
+    maxBaseValue: 3.4028235e+38
     statModifiers: []
   - statType: 301
     initialBaseValue: 0
     baseValue: 0
-    minValue: 0
-    maxValue: 100
+    minBaseValue: 0
+    maxBaseValue: 100
     statModifiers: []
   - statType: 302
     initialBaseValue: 1
     baseValue: 1
-    minValue: 1
-    maxValue: 3.4028235e+38
+    minBaseValue: 1
+    maxBaseValue: 3.4028235e+38
     statModifiers: []
