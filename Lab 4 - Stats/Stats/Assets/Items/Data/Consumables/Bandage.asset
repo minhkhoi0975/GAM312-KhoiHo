@@ -22,4 +22,3 @@ MonoBehaviour:
     statModifierType: 0
     value: 30
   equipStatChanges: []
-  healthRestored: 30

@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87569766e845c04c90f7c9d944e0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
   startingItems: []
   backpack: []
   armorHead:
@@ -196,7 +197,7 @@ MonoBehaviour:
   armorArms:
     itemDefinition: {fileID: 0}
     currentStackSize: 0
-  armorChest:
+  armorBody:
     itemDefinition: {fileID: 0}
     currentStackSize: 0
   weapon:
@@ -221,7 +222,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27cbd43b6c632324399828b8a5e12383, type: 2}
   - {fileID: 11400000, guid: 8819ec017eeb83a44bee75bcd499a1b0, type: 2}
   - {fileID: 11400000, guid: b6fede032dd1b8e498701b2b5424ccab, type: 2}
-  - {fileID: 11400000, guid: e3457d422cc8fd647bc0b843ff5e1e88, type: 2}
+  - {fileID: 0}
 --- !u!195 &1298033767925471266
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -256,7 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88842c0b42a5eb478cf6a3c6db61e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 0}
+  navMeshAgent: {fileID: 1298033767925471266}
+  detectionRadius: 20
+  evasionRadius: 50
 --- !u!1 &4127173407720432552
 GameObject:
   m_ObjectHideFlags: 0
