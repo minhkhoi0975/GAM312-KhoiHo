@@ -8,14 +8,6 @@ public class Inventory : MonoBehaviour
     public delegate void InventoryUpdated();
     public InventoryUpdated inventoryUpdatedCallback;
 
-    // Called when an item is added to the backpack.
-    public delegate void ItemAddedToBackpack(ItemInstance item);
-    public ItemAddedToBackpack itemAddedToBackpackCallback;
-
-    // Called when an item is removed from the backpack.
-    public delegate void ItemRemovedFromBackpack(ItemInstance item);
-    public ItemRemovedFromBackpack itemRemovedFromBackpackCallback;
-
     // Called when an item is equipped.
     public delegate void ItemEquipped(ItemInstance item);
     public ItemEquipped itemEquippedCallback;
@@ -131,7 +123,6 @@ public class Inventory : MonoBehaviour
             //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
         }
 
-        itemAddedToBackpackCallback?.Invoke(newItem);
         inventoryUpdatedCallback?.Invoke();
     }
 
@@ -167,7 +158,6 @@ public class Inventory : MonoBehaviour
             backpack[backpackIndex].CurrentStackSize -= quantity;
         }
 
-        itemRemovedFromBackpackCallback?.Invoke(removedItem);
         inventoryUpdatedCallback?.Invoke();
     }
 
@@ -338,10 +328,12 @@ public class Inventory : MonoBehaviour
             Equip(backpack.Count - 1, true);
         }
 
-        // Destroy the pick-up object.
-        Destroy(pickUp.gameObject);
+        // Create another copy of item instance for itemPickedUpCallback since currentStackSize of itemInstance may have been changed.
+        ItemInstance callbackItemInstance = new ItemInstance(pickUp.ItemDefinition, pickUp.CurrentStackSize);
+        itemPickedUpCallback?.Invoke(callbackItemInstance);
 
-        itemPickedUpCallback?.Invoke(itemInstance);
+        // Destroy the pick-up object.
+        Destroy(pickUp.gameObject);   
     }
 
     // Drop an item in the backpack.

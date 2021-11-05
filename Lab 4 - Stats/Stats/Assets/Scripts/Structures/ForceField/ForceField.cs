@@ -21,12 +21,6 @@ public class ForceField : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateForceFieldStatus();
-    }
-
     public void UpdateForceFieldStatus()
     {
         // All triggers are active? Disable the force field.

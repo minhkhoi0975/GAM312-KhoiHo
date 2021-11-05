@@ -46,8 +46,6 @@ public class LerpMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject + " has entered the moving platform.");
-
         // Attach a character to the moving platform.
         if (other.gameObject.transform.parent && other.gameObject.transform.parent.CompareTag("Character"))
         {
@@ -64,8 +62,6 @@ public class LerpMover : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.gameObject + " has exited the moving platform.");
-
         // Detach the character from the platform.
         if (other.gameObject.transform.parent && other.gameObject.transform.parent.CompareTag("Character"))
         {

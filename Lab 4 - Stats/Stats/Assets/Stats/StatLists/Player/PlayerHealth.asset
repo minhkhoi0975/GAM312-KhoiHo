@@ -15,13 +15,13 @@ MonoBehaviour:
   stats:
   - statType: 200
     initialBaseValue: 100
-    baseValue: 50
-    minValue: 0
-    maxValue: 100
+    baseValue: 100
+    minBaseValue: 0
+    maxBaseValue: 100
     statModifiers: []
   - statType: 202
     initialBaseValue: 0
     baseValue: 0
-    minValue: 0
-    maxValue: 3.4028235e+38
+    minBaseValue: 0
+    maxBaseValue: 3.4028235e+38
     statModifiers: []

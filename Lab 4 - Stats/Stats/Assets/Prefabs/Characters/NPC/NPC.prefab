@@ -186,7 +186,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 8104338878878511834}
-  startingItems: []
+  startingItems:
+  - itemDefinition: {fileID: 11400000, guid: 6c3f875cac22fb04cbbc4f8539f63741, type: 2}
+    currentStackSize: 1
+  - itemDefinition: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
+    currentStackSize: 1
+  - itemDefinition: {fileID: 11400000, guid: 871aad46335d7fb45b42d3492827c477, type: 2}
+    currentStackSize: 1
+  - itemDefinition: {fileID: 11400000, guid: eb825a4d69ec79b408a85c092c7327b6, type: 2}
+    currentStackSize: 1
   backpack: []
   armorHead:
     itemDefinition: {fileID: 0}
@@ -222,7 +230,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27cbd43b6c632324399828b8a5e12383, type: 2}
   - {fileID: 11400000, guid: 8819ec017eeb83a44bee75bcd499a1b0, type: 2}
   - {fileID: 11400000, guid: b6fede032dd1b8e498701b2b5424ccab, type: 2}
-  - {fileID: 0}
 --- !u!195 &1298033767925471266
 NavMeshAgent:
   m_ObjectHideFlags: 0

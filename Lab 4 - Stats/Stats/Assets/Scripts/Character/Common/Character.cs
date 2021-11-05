@@ -231,9 +231,16 @@ public class Character : MonoBehaviour
                 // Calculate the final damage.
                 float finalDamage = GetFinalDamage(damage, criticalDamageMultiplier, criticalChance);
 
-                // Hit character takes damage.
+                // Hit object takes damage.
                 health.TakeDamage(finalDamage);
                 Debug.Log("Hit target's remaining health: " + health.CurrentHealth);
+
+                // Push the hit object backward.
+                Rigidbody hitTargetRigidBody = hitInfo.rigidbody;
+                if(hitTargetRigidBody)
+                {
+                    hitTargetRigidBody.AddForce(transform.forward * 1200.0f);
+                }
             }
         }
         else
