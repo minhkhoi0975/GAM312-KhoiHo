@@ -602,11 +602,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template3D
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\duongminhkhoi.ho\GAM312-KhoiHo\Lab 4 - Stats\Stats\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00697a7341f1d801
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: Character Controller
