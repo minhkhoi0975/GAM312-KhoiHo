@@ -57,7 +57,8 @@ public class Health : MonoBehaviour
 
         if (finalDamage > 0)
         {
-            statSystem.stats[StatType.CurrentHealth].BaseValue -= finalDamage;
+            StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue, -finalDamage);
+            statSystem.AddModifier(healthModifier);
         }
 
         // Health goes below zero? Die.
@@ -65,16 +66,13 @@ public class Health : MonoBehaviour
         {
             StartCoroutine("Die");
         }
-
-        statSystem.statsUpdatedCallback?.Invoke();
     }
 
     // Heal.
     public void Heal(float amount)
     {
-        statSystem.stats[StatType.CurrentHealth].BaseValue += amount;
-
-        statSystem.statsUpdatedCallback?.Invoke();
+        StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue, amount);
+        statSystem.AddModifier(healthModifier);
     }
 
     public virtual IEnumerator Die()
