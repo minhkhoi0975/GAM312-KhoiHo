@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e665251b0cc69e4d9fea86cfafc9d7b, type: 3}
+  m_Name: PlayerPushingObject
+  m_EditorClassIdentifier: 
+  stats:
+  - statType: 100
+    initialBaseValue: 50
+    baseValue: 50
+    minValue: 0
+    maxValue: 3.4028235e+38
+    statModifiers: []
