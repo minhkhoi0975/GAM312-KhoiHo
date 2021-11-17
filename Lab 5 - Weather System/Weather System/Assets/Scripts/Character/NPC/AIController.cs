@@ -40,12 +40,6 @@ public class AIController : MonoBehaviour
     // Transform of the enemy.
     Transform enemyTransform;
 
-    // If the enemy is within this radius, the NPC will be alerted.
-    public float detectionRadius = 10.0f;
-
-    // If the enemy is out of this radius, the NPC will become idle again.
-    public float evasionRadius = 20.0f;
-
     // How long the NPC has to way before next attack?
     public float attackDelayInSeconds = 3.0f;
 
@@ -105,7 +99,7 @@ public class AIController : MonoBehaviour
             case AIState.Idle:
 
                 // NPC see the enemy? Start chasing the enemy.
-                if (enemy && Vector3.Distance(enemy.transform.position, transform.position) <= detectionRadius)
+                if (enemy && Vector3.Distance(enemy.transform.position, transform.position) <= statSystem.GetCurrentValue(StatType.DetectionRadius))
                 {
                     currentState = AIState.Alerted;
                 }
@@ -118,7 +112,7 @@ public class AIController : MonoBehaviour
                 AttackEnemy();
 
                 // The enemy is too far away? Stop chasing the enemy.
-                if (!enemy || Vector3.Distance(enemy.transform.position, transform.position) >= evasionRadius)
+                if (!enemy || Vector3.Distance(enemy.transform.position, transform.position) >= statSystem.GetCurrentValue(StatType.EvasionRadius))
                 {
                     currentState = AIState.Idle;
                 }

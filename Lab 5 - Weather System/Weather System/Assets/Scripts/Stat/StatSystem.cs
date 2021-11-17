@@ -121,16 +121,16 @@ public class StatSystem : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Cannot find the stat to add the modifier.");
+            Debug.LogWarning("Cannot find the stat to add the modifier.");
         }
     }
 
-    // Remove a modifier from a stat.
-    public void RemoveModifier(StatModifier modifier)
+    // Remove an Attached modifier from a stat.
+    public void RemoveAttachedModifier(StatModifier modifier)
     {
         if (stats.ContainsKey(modifier.statType))
         {
-            stats[modifier.statType].RemoveModifier(modifier);
+            stats[modifier.statType].RemoveAttachedModifier(modifier);
 
             statModifierRemovedCallback?.Invoke(stats[modifier.statType], modifier);
             statsUpdatedCallback?.Invoke();

@@ -21,10 +21,10 @@ public enum StatModifierType
     Attached,
     
     // The value of the modifier is added to the maximum base value of the stat.
-    IncreaseMaxValue,
+    IncreaseMaxBaseValue,
 
     // The value of the modifier is added to the minimum base value of the stat.
-    IncreaseMinValue
+    IncreaseMinBaseValue
 }
 
 [System.Serializable]

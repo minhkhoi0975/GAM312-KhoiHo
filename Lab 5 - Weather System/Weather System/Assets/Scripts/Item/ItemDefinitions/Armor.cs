@@ -26,7 +26,10 @@ public class Armor : ItemDefinition
     {
         SetType(ItemType.Armor, true);
 
-        StatModifier damageResistanceModifier = new StatModifier(StatType.DamageResistance, StatModifierType.Attached);
-        equipStatChanges.Add(damageResistanceModifier);
+        if (equipStatChanges.Count == 0)
+        {
+            StatModifier damageResistanceModifier = new StatModifier(StatType.DamageResistance, StatModifierType.Attached);
+            equipStatChanges.Add(damageResistanceModifier);
+        }
     }
 }

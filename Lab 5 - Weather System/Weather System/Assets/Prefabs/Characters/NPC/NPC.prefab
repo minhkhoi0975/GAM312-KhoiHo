@@ -230,6 +230,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27cbd43b6c632324399828b8a5e12383, type: 2}
   - {fileID: 11400000, guid: 8819ec017eeb83a44bee75bcd499a1b0, type: 2}
   - {fileID: 11400000, guid: b6fede032dd1b8e498701b2b5424ccab, type: 2}
+  - {fileID: 11400000, guid: dfc1a3a3a0e85b7458b076f3198a1574, type: 2}
 --- !u!195 &1298033767925471266
 NavMeshAgent:
   m_ObjectHideFlags: 0

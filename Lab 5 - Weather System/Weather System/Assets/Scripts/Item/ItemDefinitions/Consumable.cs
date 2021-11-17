@@ -14,7 +14,10 @@ public class Consumable : ItemDefinition
     {
         SetType(ItemType.Consumable, true);
 
-        StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue);
-        consumeStatChanges.Add(healthModifier);
+        if (consumeStatChanges.Count == 0)
+        {
+            StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue);
+            consumeStatChanges.Add(healthModifier);
+        }
     }
 }

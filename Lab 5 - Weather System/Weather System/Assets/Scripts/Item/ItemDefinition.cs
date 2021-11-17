@@ -103,7 +103,7 @@ public class ItemDefinition : ScriptableObject
         {
             foreach (StatModifier statModifer in equipStatChanges)
             {
-                character.StatSystem.RemoveModifier(statModifer);
+                character.StatSystem.RemoveAttachedModifier(statModifer);
             }
 
             Debug.Log(character.gameObject.name + " has unequipped " + name);

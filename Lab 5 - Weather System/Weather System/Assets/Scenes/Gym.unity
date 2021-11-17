@@ -231,7 +231,7 @@ PrefabInstance:
     - target: {fileID: 647850271528562868, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: m_Name
-      value: Weather
+      value: RealWorldWeather
       objectReference: {fileID: 0}
     - target: {fileID: 647850271528562868, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: cityName
-      value: akureyri
+      value: helsinki
       objectReference: {fileID: 0}
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: countryCode
-      value: is
+      value: fi
       objectReference: {fileID: 0}
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -329,8 +329,7 @@ PrefabInstance:
         type: 3}
       propertyPath: extremeParticleEffect
       value: 
-      objectReference: {fileID: 2008170373025036509, guid: 68b9ec7cbba974e468613efde298eb1c,
-        type: 3}
+      objectReference: {fileID: 100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 787a81fbc3198a74fafbb1f419d92d46, type: 3}
 --- !u!4 &205696146 stripped
@@ -4427,6 +4426,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7429575429330623303, guid: 1f6f3033a4fcd1f42b27a1cfa1255a7b,
+        type: 3}
+      propertyPath: startWeather
+      value: 
+      objectReference: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a,
+        type: 2}
     - target: {fileID: 7429575429330623303, guid: 1f6f3033a4fcd1f42b27a1cfa1255a7b,
         type: 3}
       propertyPath: particleEffectPrefab

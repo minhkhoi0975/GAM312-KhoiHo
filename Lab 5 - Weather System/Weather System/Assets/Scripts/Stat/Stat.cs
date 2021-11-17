@@ -30,7 +30,11 @@ public enum StatType
     Damage = 300,
     CriticalChance,
     CriticalDamageMultiplier,
-    AttackRange
+    AttackRange,
+
+    // AI
+    DetectionRadius = 400,
+    EvasionRadius
 }
 
 [System.Serializable]
@@ -75,13 +79,13 @@ public class Stat
     [FormerlySerializedAs("minValue")] [Range(float.MinValue, float.MaxValue)] public float minBaseValue = float.MinValue;
     [FormerlySerializedAs("maxValue")] [Range(float.MinValue, float.MaxValue)] public float maxBaseValue = float.MaxValue;
 
-    // List of all modifiers that affect the stat.
-    [SerializeField] List<StatModifier> statModifiers = new List<StatModifier>();
+    // List of all Attached modifiers that affect the stat.
+    [SerializeField] List<StatModifier> attachedStatModifiers = new List<StatModifier>();
     public List<StatModifier> StatModifiers
     {
         get
         {
-            return statModifiers;
+            return attachedStatModifiers;
         }
     }
 
@@ -91,7 +95,7 @@ public class Stat
         get
         {
             float totalValue = 0;
-            foreach(StatModifier modifier in statModifiers)
+            foreach(StatModifier modifier in attachedStatModifiers)
             {
                 totalValue += modifier.value;
             }
@@ -126,9 +130,9 @@ public class Stat
         this.baseValue = statToCopy.baseValue;
         this.minBaseValue = statToCopy.minBaseValue;
         this.maxBaseValue = statToCopy.maxBaseValue;
-        foreach(StatModifier modifier in statToCopy.statModifiers)
+        foreach(StatModifier modifier in statToCopy.attachedStatModifiers)
         {
-            this.statModifiers.Add(modifier);
+            this.attachedStatModifiers.Add(modifier);
         }
         this.currentValue = statToCopy.currentValue;
     }
@@ -142,17 +146,17 @@ public class Stat
             {
                 BaseValue += modifier.value;
             }
-            else if(modifier.statModifierType == StatModifierType.IncreaseMinValue)
+            else if(modifier.statModifierType == StatModifierType.IncreaseMinBaseValue)
             {
                 minBaseValue += modifier.value;
             }
-            else if(modifier.statModifierType == StatModifierType.IncreaseMaxValue)
+            else if(modifier.statModifierType == StatModifierType.IncreaseMaxBaseValue)
             {
                 maxBaseValue += modifier.value;
             }
             else if (modifier.statModifierType == StatModifierType.Attached)
             {
-                statModifiers.Add(modifier);
+                attachedStatModifiers.Add(modifier);
             }
 
             isStatChanged = true;
@@ -160,9 +164,9 @@ public class Stat
     }
 
     // Remove a modifier from the stat.
-    public void RemoveModifier(StatModifier modifier)
+    public void RemoveAttachedModifier(StatModifier modifier)
     {
-        if (statModifiers.Remove(modifier))
+        if (attachedStatModifiers.Remove(modifier))
         {
             isStatChanged = true;
         }
@@ -174,8 +178,8 @@ public class Stat
         // Reset baseValue.
         baseValue = initialBaseValue;
 
-        // Get rid of all the modifiers.
-        statModifiers.Clear();
+        // Get rid of all the Attached modifiers.
+        attachedStatModifiers.Clear();
 
         isStatChanged = true;
     }

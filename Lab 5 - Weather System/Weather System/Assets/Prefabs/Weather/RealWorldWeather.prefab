@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4257596367840223882}
   - component: {fileID: 5554000760342360165}
   m_Layer: 0
-  m_Name: Weather
+  m_Name: RealWorldWeather
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf65de33b98e744eb3b0dc62988401e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cityName: windham
+  stateCode: nh
+  countryCode: us
+  apiKey: c9dc7afdbcda9f01bca38d18f699f0eb
+  weatherEffectPlayer: {fileID: 0}
+  rain: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a, type: 2}
+  snow: {fileID: 11400000, guid: 5d58da1cc71299d4f8280bad782acd15, type: 2}
+  extreme: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}

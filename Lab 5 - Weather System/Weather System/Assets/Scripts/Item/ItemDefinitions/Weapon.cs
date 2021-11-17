@@ -15,14 +15,17 @@ public class Weapon : ItemDefinition
     {
         SetType(ItemType.Weapon, true);
 
-        StatModifier attackRangeModifier = new StatModifier(StatType.AttackRange, StatModifierType.Attached);
-        StatModifier damageModifier = new StatModifier(StatType.Damage, StatModifierType.Attached);
-        StatModifier criticalChanceModifier = new StatModifier(StatType.CriticalChance, StatModifierType.Attached);
-        StatModifier criticalDamageMultiplierModifier = new StatModifier(StatType.CriticalDamageMultiplier, StatModifierType.Attached);
+        if (equipStatChanges.Count == 0)
+        {
+            StatModifier attackRangeModifier = new StatModifier(StatType.AttackRange, StatModifierType.Attached);
+            StatModifier damageModifier = new StatModifier(StatType.Damage, StatModifierType.Attached);
+            StatModifier criticalChanceModifier = new StatModifier(StatType.CriticalChance, StatModifierType.Attached);
+            StatModifier criticalDamageMultiplierModifier = new StatModifier(StatType.CriticalDamageMultiplier, StatModifierType.Attached);
 
-        equipStatChanges.Add(attackRangeModifier);
-        equipStatChanges.Add(damageModifier);
-        equipStatChanges.Add(criticalChanceModifier);
-        equipStatChanges.Add(criticalDamageMultiplierModifier);
+            equipStatChanges.Add(attackRangeModifier);
+            equipStatChanges.Add(damageModifier);
+            equipStatChanges.Add(criticalChanceModifier);
+            equipStatChanges.Add(criticalDamageMultiplierModifier);
+        }
     }
 }
