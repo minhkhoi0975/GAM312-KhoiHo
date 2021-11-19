@@ -52,7 +52,7 @@ public class WeatherEffectPlayer : MonoBehaviour
         // Remove the effect of the previous weather.
         if (currentWeather != null)
         {
-            // Remove the gameplay effect of the previous weather.
+            // Remove the stat modifiers of the previous weather from the characters.
             characters = FindObjectsOfType<Character>();
             foreach (Character character in characters)
             {
@@ -79,7 +79,7 @@ public class WeatherEffectPlayer : MonoBehaviour
         }
         else
         {
-            // Apply the modifiers of the new weather to the characters.
+            // Apply the stat modifiers of the new weather to the characters.
             // We need to get a new list of characters. Throughout the game, some characters can have been destroyed, and some can have been instantiated.
             characters = FindObjectsOfType<Character>();
             foreach (Character character in characters)
@@ -91,9 +91,12 @@ public class WeatherEffectPlayer : MonoBehaviour
             }
 
             // Modify the sunlight.
-            sunlight.color = newWeather.sunlightColor;
-            sunlight.intensity = newWeather.sunlightIntensity;
-            sunlight.shadowStrength = newWeather.sunlightShadowStrength;
+            if (sunlight)
+            {
+                sunlight.color = newWeather.sunlightColor;
+                sunlight.intensity = newWeather.sunlightIntensity;
+                sunlight.shadowStrength = newWeather.sunlightShadowStrength;
+            }
 
             // Play the particle effect of the new weather.
             if (newWeather.particleEffectPrefab)

@@ -16,10 +16,8 @@ MonoBehaviour:
     type: 3}
   sunlightColor: {r: 0.4305358, g: 0.7075472, b: 0.68776065, a: 1}
   sunlightIntensity: 0.5
+  sunlightShadowStrength: 0.5
   characterStatModifiers:
-  - statType: 0
-    statModifierType: 1
-    value: 100
   - statType: 400
     statModifierType: 1
     value: -5

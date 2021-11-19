@@ -97,6 +97,7 @@ public class RealWorldWeather : MonoBehaviour
                         weatherEffectPlayer.PlayNewWeather(clouds);
                         break;
 
+                    case "Drizzle":
                     case "Rain":
                         currentWeatherType = WeatherType.Rain;
                         weatherEffectPlayer.PlayNewWeather(rain);
@@ -107,7 +108,14 @@ public class RealWorldWeather : MonoBehaviour
                         weatherEffectPlayer.PlayNewWeather(snow);
                         break;
 
-                    case "Extreme":
+                    // Since there is no weather code called "Extreme", I have to use other weather codes to substitute for the Extreme condition.
+                    case "Thunderstorm":
+                    case "Smoke":
+                    case "Sand":
+                    case "Dust":
+                    case "Ash":
+                    case "Squall":
+                    case "Tornado":
                         currentWeatherType = WeatherType.Extreme;
                         weatherEffectPlayer.PlayNewWeather(extreme);
                         break;
