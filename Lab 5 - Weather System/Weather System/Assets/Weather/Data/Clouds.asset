@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Clouds
   m_EditorClassIdentifier: 
   particleEffectPrefab: {fileID: 100000, guid: 72ff32ad93885c748b99ac6ac52721d3, type: 3}
-  sunlightColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
-  sunlightIntensity: 0.8
+  sunlightColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+  sunlightIntensity: 0.9
   sunlightShadowStrength: 0.3
+  fogColor: {r: 128, g: 128, b: 128, a: 0}
+  fogDensity: 0
   characterStatModifiers: []

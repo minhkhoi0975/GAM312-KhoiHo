@@ -48,8 +48,34 @@ MonoBehaviour:
   countryCode: us
   apiKey: c9dc7afdbcda9f01bca38d18f699f0eb
   weatherEffectPlayer: {fileID: 0}
-  clear: {fileID: 11400000, guid: 09aeabf4540df2f45b8b38b851fdec38, type: 2}
-  clouds: {fileID: 11400000, guid: a6991c521a409664b91239643b7b38c6, type: 2}
-  rain: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a, type: 2}
-  snow: {fileID: 11400000, guid: 5d58da1cc71299d4f8280bad782acd15, type: 2}
-  extreme: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  weatherConditonCodes:
+  - code: Clear
+    weather: {fileID: 11400000, guid: 09aeabf4540df2f45b8b38b851fdec38, type: 2}
+  - code: Clouds
+    weather: {fileID: 11400000, guid: a6991c521a409664b91239643b7b38c6, type: 2}
+  - code: Drizzle
+    weather: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a, type: 2}
+  - code: Rain
+    weather: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a, type: 2}
+  - code: Mist
+    weather: {fileID: 11400000, guid: ecfedff3ee29d3541a98838ef1fa91c6, type: 2}
+  - code: Haze
+    weather: {fileID: 11400000, guid: ecfedff3ee29d3541a98838ef1fa91c6, type: 2}
+  - code: Fog
+    weather: {fileID: 11400000, guid: ecfedff3ee29d3541a98838ef1fa91c6, type: 2}
+  - code: Snow
+    weather: {fileID: 11400000, guid: 5d58da1cc71299d4f8280bad782acd15, type: 2}
+  - code: Thunderstorm
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Smoke
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Sand
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Dust
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Ash
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Squall
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}
+  - code: Tornado
+    weather: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}

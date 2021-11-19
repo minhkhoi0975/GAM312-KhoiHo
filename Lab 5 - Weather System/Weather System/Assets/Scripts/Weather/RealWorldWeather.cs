@@ -10,13 +10,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 
-public enum WeatherType
+[System.Serializable]
+public class WeatherConditionCode
 {
-    Clear,
-    Clouds,
-    Rain,
-    Snow,
-    Extreme
+    public string code;
+    public Weather weather;
 }
 
 public class RealWorldWeather : MonoBehaviour
@@ -29,19 +27,20 @@ public class RealWorldWeather : MonoBehaviour
 
     [SerializeField] string apiKey = "c9dc7afdbcda9f01bca38d18f699f0eb";
 
-    public WeatherEffectPlayer weatherEffectPlayer;
-    [SerializeField] Weather clear;
-    [SerializeField] Weather clouds;
-    [SerializeField] Weather rain;
-    [SerializeField] Weather snow;
-    [SerializeField] Weather extreme;
+    // Reference to component that plays weather effect.
+    [SerializeField] WeatherEffectPlayer weatherEffectPlayer;
 
-    WeatherType currentWeatherType = WeatherType.Clear;
-    public WeatherType CurrentWeatherType
+    // List of weather condition codes and their respective weather effects.
+    [SerializeField] List<WeatherConditionCode> weatherConditonCodes;
+
+    // weatherConditionCodes in form of dictionary.
+    Dictionary<string, Weather> weatherConditionsDict = new Dictionary<string, Weather>();
+
+    private void Awake()
     {
-        get
+        foreach(WeatherConditionCode weatherConditionCode in weatherConditonCodes)
         {
-            return currentWeatherType;
+            weatherConditionsDict[weatherConditionCode.code] = weatherConditionCode.weather;
         }
     }
 
@@ -83,47 +82,17 @@ public class RealWorldWeather : MonoBehaviour
                 // Get info about weather.
                 SimpleJSON.JSONNode data = SimpleJSON.JSON.Parse(websiteText);
 
-                Debug.Log("Weather: " + data["weather"][0]["main"]);
+                string weatherCode = data["weather"][0]["main"];
 
-                switch (data["weather"][0]["main"])
+                Debug.Log("Weather: " + weatherCode);
+
+                if (weatherConditionsDict.ContainsKey(weatherCode))
                 {
-                    case "Clear":
-                        currentWeatherType = WeatherType.Clear;
-                        weatherEffectPlayer.PlayNewWeather(clear);
-                        break;
-
-                    case "Clouds":
-                        currentWeatherType = WeatherType.Clouds;
-                        weatherEffectPlayer.PlayNewWeather(clouds);
-                        break;
-
-                    case "Drizzle":
-                    case "Rain":
-                        currentWeatherType = WeatherType.Rain;
-                        weatherEffectPlayer.PlayNewWeather(rain);
-                        break;
-
-                    case "Snow":
-                        currentWeatherType = WeatherType.Snow;
-                        weatherEffectPlayer.PlayNewWeather(snow);
-                        break;
-
-                    // Since there is no weather code called "Extreme", I have to use other weather codes to substitute for the Extreme condition.
-                    case "Thunderstorm":
-                    case "Smoke":
-                    case "Sand":
-                    case "Dust":
-                    case "Ash":
-                    case "Squall":
-                    case "Tornado":
-                        currentWeatherType = WeatherType.Extreme;
-                        weatherEffectPlayer.PlayNewWeather(extreme);
-                        break;
-
-                    default:
-                        currentWeatherType = WeatherType.Clear;
-                        weatherEffectPlayer.PlayNewWeather(clear);
-                        break;
+                    weatherEffectPlayer.PlayNewWeather(weatherConditionsDict[weatherCode]);
+                }
+                else
+                {
+                    Debug.LogWarning("Cannot play this weather: " + weatherCode);
                 }
             }
         }

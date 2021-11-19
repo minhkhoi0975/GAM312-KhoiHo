@@ -13,6 +13,9 @@ public class WeatherEffectPlayer : MonoBehaviour
     // Reference to directional light representing sunlight.
     [SerializeField] Light sunlight;
 
+    // Should the fog be enabled?
+    [SerializeField] bool enableFog = true;
+
     // Start weather
     // If the parameter newWeather of PlayNewWWeather() is null, play this weather.
     [SerializeField] Weather startWeather;
@@ -36,10 +39,25 @@ public class WeatherEffectPlayer : MonoBehaviour
 
     private void Start()
     {
-        if(startWeather)
+        if(!sunlight)
+        {
+            sunlight = RenderSettings.sun;
+        }
+
+        if (enableFog)
+        {
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.ExponentialSquared;
+        }
+        else
+        {
+            RenderSettings.fog = false;
+        }
+
+        if (startWeather)
         {
             PlayNewWeather(startWeather);
-        }
+        }  
     }
 
     // Remove the old weather and play a new one.
@@ -96,6 +114,12 @@ public class WeatherEffectPlayer : MonoBehaviour
                 sunlight.color = newWeather.sunlightColor;
                 sunlight.intensity = newWeather.sunlightIntensity;
                 sunlight.shadowStrength = newWeather.sunlightShadowStrength;
+            }
+
+            // Modify the fog.
+            if(enableFog)
+            {
+                RenderSettings.fogDensity = newWeather.fogDensity;
             }
 
             // Play the particle effect of the new weather.
