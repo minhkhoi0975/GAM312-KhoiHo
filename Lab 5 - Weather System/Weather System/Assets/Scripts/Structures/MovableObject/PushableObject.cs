@@ -60,7 +60,10 @@ public class PushableObject : MonoBehaviour
             // Don't make the pushed object move too fast.
             if (rigidBody.velocity.magnitude < 10.0f)
             {
+                // Get the pushing force from player's stats.
                 float pushingForce = pusher.StatSystem.GetCurrentValue(StatType.PushingForce);
+
+                // Push.
                 rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
 

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Blizzard
   m_EditorClassIdentifier: 
   particleEffectPrefab: {fileID: 100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
+  sunlightColor: {r: 0.5330188, g: 0.83971584, b: 1, a: 1}
+  sunlightIntensity: 0.3
   characterStatModifiers:
   - statType: 0
     statModifierType: 1

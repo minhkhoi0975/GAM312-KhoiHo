@@ -48,6 +48,8 @@ MonoBehaviour:
   countryCode: us
   apiKey: c9dc7afdbcda9f01bca38d18f699f0eb
   weatherEffectPlayer: {fileID: 0}
+  clear: {fileID: 11400000, guid: 09aeabf4540df2f45b8b38b851fdec38, type: 2}
+  clouds: {fileID: 11400000, guid: a6991c521a409664b91239643b7b38c6, type: 2}
   rain: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a, type: 2}
   snow: {fileID: 11400000, guid: 5d58da1cc71299d4f8280bad782acd15, type: 2}
   extreme: {fileID: 11400000, guid: d7b06b14c1e25b24a9d12b4be0519d5f, type: 2}

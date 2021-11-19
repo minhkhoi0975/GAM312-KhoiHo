@@ -241,7 +241,7 @@ PrefabInstance:
     - target: {fileID: 4257596367840223882, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4257596367840223882, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: cityName
-      value: helsinki
+      value: sydney
       objectReference: {fileID: 0}
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
       propertyPath: countryCode
-      value: fi
+      value: au
       objectReference: {fileID: 0}
     - target: {fileID: 5554000760342360165, guid: 787a81fbc3198a74fafbb1f419d92d46,
         type: 3}
@@ -1095,7 +1095,7 @@ Transform:
   - {fileID: 397761895}
   - {fileID: 2124056363}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &424054281
 PrefabInstance:
@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Sunlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2972,7 +2972,7 @@ Transform:
   m_Children:
   - {fileID: 705507995}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1317116572 stripped
 Transform:
@@ -3834,7 +3834,7 @@ Transform:
   - {fileID: 871896283}
   - {fileID: 315875916}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1557254740 stripped
 Transform:
@@ -4373,7 +4373,7 @@ Transform:
   - {fileID: 27929947}
   - {fileID: 1842302562}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735465546
 GameObject:
@@ -4407,7 +4407,7 @@ Transform:
   - {fileID: 841735098}
   - {fileID: 1362789521}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1742943838
 PrefabInstance:
@@ -4428,9 +4428,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7429575429330623303, guid: 1f6f3033a4fcd1f42b27a1cfa1255a7b,
         type: 3}
+      propertyPath: sunlight
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 7429575429330623303, guid: 1f6f3033a4fcd1f42b27a1cfa1255a7b,
+        type: 3}
       propertyPath: startWeather
       value: 
-      objectReference: {fileID: 11400000, guid: 096c471b9cd863c4ebe77d08ed52916a,
+      objectReference: {fileID: 11400000, guid: a6991c521a409664b91239643b7b38c6,
         type: 2}
     - target: {fileID: 7429575429330623303, guid: 1f6f3033a4fcd1f42b27a1cfa1255a7b,
         type: 3}
@@ -6511,7 +6516,7 @@ PrefabInstance:
     - target: {fileID: 6024628267363172551, guid: a923f27f4719c8b4590e432496da7f52,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6024628267363172551, guid: a923f27f4719c8b4590e432496da7f52,
         type: 3}
@@ -6595,7 +6600,7 @@ PrefabInstance:
     - target: {fileID: 6759490866001901822, guid: b5697debe2684ab4d9d8acdf44b74abc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6759490866001901822, guid: b5697debe2684ab4d9d8acdf44b74abc,
         type: 3}

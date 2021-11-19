@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffectPrefab: {fileID: 2008170373025036509, guid: a28721249284f3541b563f1372040b2f,
     type: 3}
+  sunlightColor: {r: 1, g: 1, b: 1, a: 1}
+  sunlightIntensity: 0.8
   characterStatModifiers:
   - statType: 0
     statModifierType: 1

@@ -13,6 +13,7 @@ using SimpleJSON;
 public enum WeatherType
 {
     Clear,
+    Clouds,
     Rain,
     Snow,
     Extreme
@@ -29,6 +30,8 @@ public class RealWorldWeather : MonoBehaviour
     [SerializeField] string apiKey = "c9dc7afdbcda9f01bca38d18f699f0eb";
 
     public WeatherEffectPlayer weatherEffectPlayer;
+    [SerializeField] Weather clear;
+    [SerializeField] Weather clouds;
     [SerializeField] Weather rain;
     [SerializeField] Weather snow;
     [SerializeField] Weather extreme;
@@ -84,6 +87,16 @@ public class RealWorldWeather : MonoBehaviour
 
                 switch (data["weather"][0]["main"])
                 {
+                    case "Clear":
+                        currentWeatherType = WeatherType.Clear;
+                        weatherEffectPlayer.PlayNewWeather(clear);
+                        break;
+
+                    case "Clouds":
+                        currentWeatherType = WeatherType.Clouds;
+                        weatherEffectPlayer.PlayNewWeather(clouds);
+                        break;
+
                     case "Rain":
                         currentWeatherType = WeatherType.Rain;
                         weatherEffectPlayer.PlayNewWeather(rain);
@@ -101,7 +114,7 @@ public class RealWorldWeather : MonoBehaviour
 
                     default:
                         currentWeatherType = WeatherType.Clear;
-                        weatherEffectPlayer.PlayNewWeather(null);
+                        weatherEffectPlayer.PlayNewWeather(clear);
                         break;
                 }
             }

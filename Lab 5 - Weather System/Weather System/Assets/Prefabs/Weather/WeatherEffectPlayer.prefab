@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97fa609dafc4c6458a3546f62badb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleEffectPrefab: {fileID: 0}
-  directionalLight: {fileID: 0}
+  sunlight: {fileID: 0}
+  startWeather: {fileID: 11400000, guid: 09aeabf4540df2f45b8b38b851fdec38, type: 2}
