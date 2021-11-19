@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b982669c72220c45ac895843dbc7b7e, type: 3}
+  m_Name: GorillaFists
+  m_EditorClassIdentifier: 
+  name: Gorilla Fists
+  maxStackSize: 1
+  type: 1
+  icon: {fileID: 21300000, guid: 0463d1d58a751c947bcdc23441b68fc0, type: 3}
+  mesh: {fileID: 7445754547994923273, guid: b8b9f2dd0e1766b408fec28a91b8442d, type: 3}
+  consumeStatChanges: []
+  equipStatChanges:
+  - statType: 100
+    statModifierType: 1
+    value: 60
+  armorSlot: 2
