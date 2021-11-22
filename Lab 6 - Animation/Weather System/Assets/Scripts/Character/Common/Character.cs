@@ -40,6 +40,17 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Animation
+    [Header("Animation")]
+    [SerializeField] Animator animatorController;
+    public Animator AnimatorController
+    {
+        get
+        {
+            return animatorController;
+        }
+    }
+
     [Header("Health")]
     [SerializeField] Health health;                   // Reference to character's health component.
     public Health Health
@@ -149,6 +160,12 @@ public class Character : MonoBehaviour
 
             // Move the character.
             rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+            animatorController.SetFloat("movementSpeed", movementSpeed);
+        }
+        else
+        {
+            animatorController.SetFloat("movementSpeed", 0);
         }
     }
 
