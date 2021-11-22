@@ -214,6 +214,8 @@ public class Character : MonoBehaviour
         if (rayCastHit)
         {
             characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
+
+            animatorController.SetBool("isPushingObject", true);
         }
         else
         {
@@ -225,6 +227,8 @@ public class Character : MonoBehaviour
     public void StopPushingObject()
     {
         characterHand.StopPushingObject();
+
+        animatorController.SetBool("isPushingObject", false);
     }
 
     // Attack
