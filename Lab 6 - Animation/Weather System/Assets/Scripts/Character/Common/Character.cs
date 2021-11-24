@@ -40,6 +40,8 @@ public class Character : MonoBehaviour
         }
     }
 
+    public float gravity = 9.81f;
+
     // Animation
     [Header("Animation")]
     [SerializeField] Animator animatorController;
@@ -120,15 +122,20 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (characterFoot.IsGrounded)
         {
-            rigidBodyComponent.useGravity = false;
+            animatorController.SetBool("isFalling", false);
         }
         else
         {
-            rigidBodyComponent.useGravity = true;
+            Debug.Log("Falling");
+            rigidBodyComponent.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
+            if (rigidBodyComponent.velocity.y <= -1.0f)
+            {
+                animatorController.SetBool("isFalling", true);
+            }
         }
     }
 
@@ -234,6 +241,8 @@ public class Character : MonoBehaviour
     // Attack
     public void Attack(float attackRange, float damage, float criticalDamageMultiplier = 0.0f, float criticalChance = 0.0f)
     {
+        animatorController.SetTrigger("isAttacking");
+
         // Ray cast forward to "melee attack" the enemy.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, attackRange);
