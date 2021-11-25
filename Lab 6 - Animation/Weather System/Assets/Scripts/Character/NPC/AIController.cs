@@ -89,6 +89,7 @@ public class AIController : MonoBehaviour
             return;
 
         UpdateAIBehavior();
+        UpdateAIAnimation();      
     }
 
     // Update the behavior of the AI.
@@ -166,5 +167,13 @@ public class AIController : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(attackDelayInSeconds);
         canAttack = true;
+    }
+
+    void UpdateAIAnimation()
+    {
+        if(navMeshAgent.velocity.magnitude > 0.0f)
+        {
+            character.AnimatorController.SetFloat("movementSpeed", 10.0f);
+        }
     }
 }

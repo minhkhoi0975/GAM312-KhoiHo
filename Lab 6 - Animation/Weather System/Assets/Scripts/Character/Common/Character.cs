@@ -130,9 +130,8 @@ public class Character : MonoBehaviour
         }
         else
         {
-            Debug.Log("Falling");
             rigidBodyComponent.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
-            if (rigidBodyComponent.velocity.y <= -1.0f)
+            if (characterFoot.FallingTime > 0.1f && rigidBodyComponent.velocity.y < -0.1f)
             {
                 animatorController.SetBool("isFalling", true);
             }
@@ -168,11 +167,11 @@ public class Character : MonoBehaviour
             // Move the character.
             rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-            animatorController.SetFloat("movementSpeed", movementSpeed);
+            //animatorController.SetFloat("movementSpeed", movementSpeed);
         }
         else
         {
-            animatorController.SetFloat("movementSpeed", 0);
+            //animatorController.SetFloat("movementSpeed", 0);
         }
     }
 
@@ -216,6 +215,7 @@ public class Character : MonoBehaviour
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, 0.8f);
+        Debug.DrawRay(characterHand.transform.position, transform.forward, Color.green, 5.0f);
 
         // A movable object is in front of the character. Try pushing it.
         if (rayCastHit)
@@ -246,6 +246,7 @@ public class Character : MonoBehaviour
         // Ray cast forward to "melee attack" the enemy.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, attackRange);
+        Debug.DrawLine(characterHand.transform.position, characterHand.transform.position + transform.forward * attackRange, Color.white);
 
         // If ray cast hit, cause damage to the hit object if it has Health component.
         if (rayCastHit)

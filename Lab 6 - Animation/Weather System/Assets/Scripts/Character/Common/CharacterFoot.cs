@@ -53,6 +53,17 @@ public class CharacterFoot : MonoBehaviour
         }
     }
 
+    // How long has the character been falling?
+    float fallingTime;
+    public float FallingTime
+    {
+        get
+        {
+            return fallingTime;
+        }
+    }
+
+
     private void FixedUpdate()
     {
         UpdateIsGrounded();
@@ -62,10 +73,12 @@ public class CharacterFoot : MonoBehaviour
     void UpdateIsGrounded()
     {
         // Perform a ray cast downward.
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, out groundInfo, 0.2f);
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, out groundInfo, 0.25f);
 
         if (isGrounded)
         {
+            fallingTime = 0.0f;
+
             // Calculate the slope angle and determine whether the character is on a slope or not.
             slopeAngle = Vector3.Angle(groundInfo.normal, Vector3.up);
             if (slopeAngle >= 1.0f && slopeAngle <= maxSlopeAngle)
@@ -74,17 +87,16 @@ public class CharacterFoot : MonoBehaviour
             }
             else
             {
+                slopeAngle = 0.0f;
                 isOnSlope = false;
             }
-
-            //Debug.Log("The character is on ground: " + groundInfo.transform.gameObject + ". Slope angle: " + slopeAngle);
         }
         else
         {
+            fallingTime += Time.deltaTime;
+
             slopeAngle = 0.0f;
             isOnSlope = false;
-
-            //Debug.Log("This character is in air.");
         }
     }
 }

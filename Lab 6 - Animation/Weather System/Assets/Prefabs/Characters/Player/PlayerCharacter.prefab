@@ -71,7 +71,7 @@ MonoBehaviour:
   rigidBodyComponent: {fileID: 4007531377331874112}
   characterFoot: {fileID: 0}
   characterHand: {fileID: 0}
-  gravity: 200
+  gravity: 300
   animatorController: {fileID: 3603415451852957207}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
@@ -180,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3845294059147023850}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3719772793906599286}
@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7595678249098149464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 87801701986171168}
@@ -275,7 +275,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0.27, z: 0}
+  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!1 &8770692878939972315
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8770692878939972315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.719, z: 0.4}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3719772793906599286}

@@ -165,6 +165,15 @@ public class PlayerCharacterInput : MonoBehaviour
             }
         }
 
+        if (relativeMoveDirection.magnitude > 0.0f)
+        {
+            character.AnimatorController.SetFloat("movementSpeed", character.StatSystem.GetCurrentValue(StatType.MovementSpeed));
+        }
+        else
+        {
+            character.AnimatorController.SetFloat("movementSpeed", 0.0f);
+        }
+
         // Perform telekinesis.
         if (attractObjectButtonDown)
         {
