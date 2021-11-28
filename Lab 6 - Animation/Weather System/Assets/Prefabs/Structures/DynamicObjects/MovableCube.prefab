@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 593914391225620108}
   - component: {fileID: 5087597929629624869}
   - component: {fileID: 3525190744186256672}
-  - component: {fileID: 6102912484241669531}
   - component: {fileID: 183846764207638633}
+  - component: {fileID: 6102912484241669531}
   m_Layer: 0
   m_Name: MovableCube
   m_TagString: MovableObject
@@ -144,23 +144,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6102912484241669531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3525190744186256673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4c18a2dd180148468104decc44de8dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationalSpeed: 40
-  rigidBody: {fileID: 3525190744186256672}
-  pusher: {fileID: 0}
-  relativePushingDirection: {x: 0, y: 0, z: 0}
-  relativeAttachmentPosition: {x: 0, y: 0, z: 0}
 --- !u!138 &183846764207638633
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -176,3 +159,21 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6102912484241669531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525190744186256673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c18a2dd180148468104decc44de8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixedJoint: {fileID: 0}
+  rotationalSpeed: 40
+  rigidBody: {fileID: 3525190744186256672}
+  pusher: {fileID: 0}
+  relativePushingDirection: {x: 0, y: 0, z: 0}
+  relativeAttachmentPosition: {x: 0, y: 0, z: 0}

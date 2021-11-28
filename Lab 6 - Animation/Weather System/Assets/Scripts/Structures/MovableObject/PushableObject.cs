@@ -96,8 +96,6 @@ public class PushableObject : MonoBehaviour
             }
         }
 
-        UpdatePusherTransform();
-
         // Rotate the object around its pivot.
         if (horizontalAxis != 0.0f)
         {
@@ -105,27 +103,10 @@ public class PushableObject : MonoBehaviour
             Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y + horizontalAxis * rotationalSpeed * Time.fixedDeltaTime, currentRotation.eulerAngles.z);
             rigidBody.MoveRotation(newRotation);
         }
-    }
 
-    // Make the pusher moves with the pushed object and looks at the object.
-    public void UpdatePusherTransform()
-    {
-        if (!pusher)
-            return;
-
-        // Translate the pusher to match the offset.
-        // pusher.RigidBodyComponent.position = transform.TransformPoint(relativeAttachmentPosition);
-        pusher.RigidBodyComponent.velocity = rigidBody.velocity;
-
-        // Make the pusher look at the pushed object.
+        // Make the pusher look at the object.
         Vector3 lookDirection = transform.TransformDirection(relativePushingDirection);
         Quaternion lookQuaternion = Quaternion.Euler(0.0f, Quaternion.LookRotation(lookDirection).eulerAngles.y, 0.0f);
         pusher.RigidBodyComponent.rotation = Quaternion.Slerp(pusher.RigidBodyComponent.rotation, lookQuaternion, 0.5f);
-    }
-
-    // Check if the object can be pulled back.
-    bool CanPullBack()
-    {
-        return false;
     }
 }
