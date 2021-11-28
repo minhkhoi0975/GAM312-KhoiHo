@@ -221,21 +221,17 @@ public class Character : MonoBehaviour
     {
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(transform.TransformPoint(capsuleColliderComponent.center), transform.forward, out hitInfo, capsuleColliderComponent.radius + 0.8f);
-        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * (capsuleColliderComponent.radius + 0.8f), Color.green, 5.0f);
+        bool rayCastHit = Physics.Raycast(transform.TransformPoint(capsuleColliderComponent.center), transform.forward, out hitInfo, capsuleColliderComponent.radius + 1.0f);
+        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * (capsuleColliderComponent.radius + 0.8f), Color.green, 1.0f);
 
         // A movable object is in front of the character. Try pushing it.
         if (rayCastHit && hitInfo.collider.isTrigger)
         {
-            // Calculate the dot product between character's forward direction and surface's normal.
-            float dotProduct = Vector3.Dot(transform.forward, hitInfo.normal);
+            // Reposition the character.
+            rigidBodyComponent.position = hitInfo.point + hitInfo.normal * (capsuleColliderComponent.radius + 1.41f);
 
-            if (dotProduct >= -1 && dotProduct <= -0.9)
-            {
-                characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
-
-                animatorController.SetBool("isPushingObject", true);
-            }
+            characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
+            animatorController.SetBool("isPushingObject", true);
         }
         else
         {
