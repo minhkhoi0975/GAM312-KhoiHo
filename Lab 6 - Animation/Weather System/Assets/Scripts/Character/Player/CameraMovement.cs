@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour
         if (character)
         {
             // Keep the same distance from the camera to the character.
-            this.transform.position = character.transform.position + cameraOffset;
+            transform.position = Vector3.Lerp(transform.position, character.transform.position + cameraOffset, 0.9f);
         }
     }
 }

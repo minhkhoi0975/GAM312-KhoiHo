@@ -11,6 +11,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PushableObject : MonoBehaviour
 {
+    // Reference to the fixed joint component.
+    public FixedJoint fixedJoint;
+
     // The rotational speed of the object when it is being pushed.
     [SerializeField] float rotationalSpeed = 80.0f;
 
@@ -37,15 +40,24 @@ public class PushableObject : MonoBehaviour
 
     private void Awake()
     {
+        if(!fixedJoint)
+        {
+            fixedJoint = GetComponent<FixedJoint>();
+        }
+
         if (!rigidBody)
         {
             rigidBody = GetComponent<Rigidbody>();
         }
     }
 
-    public void FixedUpdate()
+    private void Update()
     {
-        UpdatePusherTransform();
+        // If the character is too far away from this object, detach the character from this object.
+        if (Vector3.Distance(pusher.transform.position, transform.position) > 3.0f)
+        {
+            pusher.StopPushingObject();
+        }
     }
 
     // Move the object in a direction relative to the object itself.
@@ -58,7 +70,7 @@ public class PushableObject : MonoBehaviour
         if (verticalAxis != 0.0f)
         {
             // Don't make the pushed object move too fast.
-            if (rigidBody.velocity.magnitude < 10.0f)
+            if (rigidBody.velocity.magnitude < 3.0f)
             {
                 // Get the pushing force from player's stats.
                 float pushingForce = pusher.StatSystem.GetCurrentValue(StatType.PushingForce);
@@ -70,7 +82,7 @@ public class PushableObject : MonoBehaviour
             // Fix the pushed object not moving sometimes.
             RigidBody.AddForce(new Vector3(0.0F, 0.5f, 0.0f), ForceMode.VelocityChange);
 
-            if(verticalAxis > 0.0f)
+            if (verticalAxis > 0.0f)
             {
                 pusher.AnimatorController.SetFloat("pushingDirection", 1.0f);
             }
@@ -84,7 +96,9 @@ public class PushableObject : MonoBehaviour
             }
         }
 
-        // Rotate the object around the object itself.
+        UpdatePusherTransform();
+
+        // Rotate the object around its pivot.
         if (horizontalAxis != 0.0f)
         {
             Quaternion currentRotation = rigidBody.rotation;
@@ -93,28 +107,25 @@ public class PushableObject : MonoBehaviour
         }
     }
 
-    // Update the pusher's transform.
-    // Make sure that the pusher moves with the pushed object and looks at the object.
+    // Make the pusher moves with the pushed object and looks at the object.
     public void UpdatePusherTransform()
     {
         if (!pusher)
             return;
 
-        // If the character is too far away from this object, detach the character from this object.
-        if (Vector3.Distance(pusher.transform.position, transform.position) > 3.0f)
-        {
-            pusher.StopPushingObject();
-            return;
-        }
-
-        Rigidbody pusherRigidBody = pusher.GetComponent<Rigidbody>();
-
         // Translate the pusher to match the offset.
-        pusherRigidBody.position = transform.TransformPoint(relativeAttachmentPosition);
+        // pusher.RigidBodyComponent.position = transform.TransformPoint(relativeAttachmentPosition);
+        pusher.RigidBodyComponent.velocity = rigidBody.velocity;
 
         // Make the pusher look at the pushed object.
         Vector3 lookDirection = transform.TransformDirection(relativePushingDirection);
         Quaternion lookQuaternion = Quaternion.Euler(0.0f, Quaternion.LookRotation(lookDirection).eulerAngles.y, 0.0f);
-        pusherRigidBody.rotation = Quaternion.Slerp(pusherRigidBody.rotation, lookQuaternion, 0.5f);
+        pusher.RigidBodyComponent.rotation = Quaternion.Slerp(pusher.RigidBodyComponent.rotation, lookQuaternion, 0.5f);
+    }
+
+    // Check if the object can be pulled back.
+    bool CanPullBack()
+    {
+        return false;
     }
 }

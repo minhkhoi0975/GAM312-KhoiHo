@@ -72,7 +72,6 @@ MonoBehaviour:
   rigidBodyComponent: {fileID: 4007531377331874112}
   characterFoot: {fileID: 6108833310886059335}
   characterHand: {fileID: 1308971320555853229}
-  gravity: 9.81
   animatorController: {fileID: 4188280118104431596}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
@@ -279,7 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb85f77eb1e699542aba5c878f599046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 4007531377331874112}
   maxSlopeAngle: 60
+  gravity: 300
 --- !u!1 &8897120022355992417
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class CharacterFoot : MonoBehaviour
 {
+    // Reference to the rigid body.
+    [SerializeField] Rigidbody rigidBody;
+
     // The max angle of the slope on which the character can stand.
     public float maxSlopeAngle = 60.0f;
 
@@ -63,17 +66,32 @@ public class CharacterFoot : MonoBehaviour
         }
     }
 
+    // If the character is not grounded, then gravity should be applied to the character.
+    public float gravity = 300.0f;
+
+    private void Awake()
+    {
+        if (!rigidBody)
+        {
+            rigidBody = GetComponentInParent<Rigidbody>();
+        }
+    }
 
     private void FixedUpdate()
     {
         UpdateIsGrounded();
+
+        if (!isGrounded)
+        {
+            rigidBody.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
+        }
     }
 
     // Update whether the character is on the ground.
     void UpdateIsGrounded()
     {
         // Perform a ray cast downward.
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, out groundInfo, 0.25f);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out groundInfo, 0.25f);
 
         if (isGrounded)
         {

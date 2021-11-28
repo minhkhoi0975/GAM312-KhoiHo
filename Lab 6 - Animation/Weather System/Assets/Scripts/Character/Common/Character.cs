@@ -14,13 +14,26 @@ using UnityEngine;
 [RequireComponent(typeof(StatSystem))]
 public class Character : MonoBehaviour
 {
-    // Camera
-    [Header("Camera")]
+    [Header("Movement")]
     [SerializeField] Camera cameraComponent;          // Camera to look at player. Make sure that the camera points down (rotationX is close to -90).
 
-    // Physics
-    [Header("Physics")]
     [SerializeField] Rigidbody rigidBodyComponent;    // Reference to character's rigid body.
+    public Rigidbody RigidBodyComponent
+    {
+        get
+        {
+            return rigidBodyComponent;
+        }
+    }
+
+    [SerializeField] CapsuleCollider capsuleColliderComponent; // Reference to character's capsule collider.
+    public CapsuleCollider CapsuleColliderComponent
+    {
+        get
+        {
+            return capsuleColliderComponent;
+        }
+    }
 
     [SerializeField] CharacterFoot characterFoot;     // Referfence to character's foot.
     public CharacterFoot CharacterFoot
@@ -31,7 +44,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [SerializeField] CharacterHand characterHand;     // Reference to character's hand.
+    [SerializeField] CharacterHand characterHand;     // Reference to character's "invisible" hand that pushes an object.
     public CharacterHand CharacterHand
     {
         get
@@ -40,9 +53,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    public float gravity = 9.81f;
-
-    // Animation
     [Header("Animation")]
     [SerializeField] Animator animatorController;
     public Animator AnimatorController
@@ -91,6 +101,11 @@ public class Character : MonoBehaviour
             rigidBodyComponent = GetComponent<Rigidbody>();
         }
 
+        if(!capsuleColliderComponent)
+        {
+            capsuleColliderComponent = GetComponentInChildren<CapsuleCollider>();
+        }
+
         if (!cameraComponent)
         {
             cameraComponent = FindObjectOfType<Camera>();
@@ -124,17 +139,18 @@ public class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateFallingAnimation();
+    }
+
+    void UpdateFallingAnimation()
+    {
         if (characterFoot.IsGrounded)
         {
             animatorController.SetBool("isFalling", false);
         }
-        else
+        else if (characterFoot.FallingTime > 0.1f && rigidBodyComponent.velocity.y < -0.1f)
         {
-            rigidBodyComponent.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
-            if (characterFoot.FallingTime > 0.1f && rigidBodyComponent.velocity.y < -0.1f)
-            {
-                animatorController.SetBool("isFalling", true);
-            }
+            animatorController.SetBool("isFalling", true);
         }
     }
 
@@ -150,28 +166,19 @@ public class Character : MonoBehaviour
             float newWorldRotationY = Mathf.Atan2(relativeMovementDirection.x, relativeMovementDirection.z) * Mathf.Rad2Deg + cameraComponent.transform.eulerAngles.y;
 
             // Rotate the character smoothly.
-            if (!characterHand.PushedGameObject)
-            {
-                rigidBodyComponent.rotation = Quaternion.Lerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * 15.0f);
-            }
+            rigidBodyComponent.rotation = Quaternion.Slerp(rigidBodyComponent.rotation, Quaternion.Euler(0.0f, newWorldRotationY, 0.0f), Time.fixedDeltaTime * 20.0f);
 
             // Calculate the world movement direction.
-            Vector3 worldMoveDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
+            Vector3 worldMovementDirection = Quaternion.Euler(0.0f, newWorldRotationY, 0.0f) * Vector3.forward;
 
             // If the character is on a slope, project worldMoveDirection on slope surface.
             if (characterFoot.IsOnSlope)
             {
-                worldMoveDirection = Vector3.ProjectOnPlane(worldMoveDirection, characterFoot.GroundInfo.normal).normalized;
+                worldMovementDirection = Vector3.ProjectOnPlane(worldMovementDirection, characterFoot.GroundInfo.normal).normalized;
             }
 
             // Move the character.
-            rigidBodyComponent.AddForce(worldMoveDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-
-            //animatorController.SetFloat("movementSpeed", movementSpeed);
-        }
-        else
-        {
-            //animatorController.SetFloat("movementSpeed", 0);
+            rigidBodyComponent.AddForce(worldMovementDirection * movementSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
     }
 
@@ -214,15 +221,21 @@ public class Character : MonoBehaviour
     {
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, 0.8f);
-        Debug.DrawRay(characterHand.transform.position, transform.forward, Color.green, 5.0f);
+        bool rayCastHit = Physics.Raycast(transform.TransformPoint(capsuleColliderComponent.center), transform.forward, out hitInfo, capsuleColliderComponent.radius + 0.8f);
+        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * (capsuleColliderComponent.radius + 0.8f), Color.green, 5.0f);
 
         // A movable object is in front of the character. Try pushing it.
-        if (rayCastHit)
+        if (rayCastHit && hitInfo.collider.isTrigger)
         {
-            characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
+            // Calculate the dot product between character's forward direction and surface's normal.
+            float dotProduct = Vector3.Dot(transform.forward, hitInfo.normal);
 
-            animatorController.SetBool("isPushingObject", true);
+            if (dotProduct >= -1 && dotProduct <= -0.9)
+            {
+                characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
+
+                animatorController.SetBool("isPushingObject", true);
+            }
         }
         else
         {

@@ -30,18 +30,6 @@ public class CharacterHand : MonoBehaviour
         }
     }
 
-    // The initial drag of the pushed object.
-    // When an object is pushed, its drag is set to 0.
-    // Use this variable to reset drag when the object stops being pushed by the player.
-    float pushedGameObjectInitialDrag;
-    public float PushedGameObjectInitialDrag
-    {
-        get
-        {
-            return pushedGameObjectInitialDrag;
-        }
-    }
-
     private void Awake()
     {
         if (!character)
@@ -60,8 +48,8 @@ public class CharacterHand : MonoBehaviour
             return;
 
         // I cannot push this object if it has no physics.
-        Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
-        if (!rigidBody)
+        Rigidbody pushedObjectRigidBody = gameObject.GetComponent<Rigidbody>();
+        if (!pushedObjectRigidBody)
             return;
 
         // I cannot push this object if it is not pushable.
@@ -73,29 +61,27 @@ public class CharacterHand : MonoBehaviour
         pushedGameObject = gameObject;
         pushable.pusher = character;
 
-        // Set the pushed object's drag to 0 to make it easy to move.
-        pushedGameObjectInitialDrag = rigidBody.drag;
-        rigidBody.drag = 0;
-
-        // Set the pushing direction relative to the pushed object.
-        pushable.relativePushingDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);
+        // Attach the character's rigid body to the pushed object's rigid body.
+        pushable.fixedJoint.connectedBody = character.RigidBodyComponent;
 
         // Set the initial position of the character relative to the pushed object.
         pushable.relativeAttachmentPosition = pushable.transform.InverseTransformPoint(character.transform.position);
+
+        // Set the pushing direction relative to the pushed object.
+        pushable.relativePushingDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);   
     }
 
     public void StopPushingObject()
     {
-        if (!pushedGameObject)
-            return;
+        if (pushedGameObject)
+        {
+            // Detach the pushed object from the character.
+            PushableObject pushable = pushedGameObject.GetComponent<PushableObject>();
+            pushable.pusher = null;
+            pushedGameObject = null;
 
-        // Reset the drag of the pushed object.
-        Rigidbody rigidBody = pushedGameObject.GetComponent<Rigidbody>();
-        rigidBody.drag = pushedGameObjectInitialDrag;
-
-        // Detach the pushed object from the character.
-        PushableObject pushable = pushedGameObject.GetComponent<PushableObject>();
-        pushable.pusher = null;
-        pushedGameObject = null;
+            // Detach the character's rigid body to the pushed object's rigid body.
+            pushable.fixedJoint.connectedBody = null;
+        }
     }
 }

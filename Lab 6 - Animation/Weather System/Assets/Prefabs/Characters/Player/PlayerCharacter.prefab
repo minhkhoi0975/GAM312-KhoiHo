@@ -69,9 +69,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraComponent: {fileID: 0}
   rigidBodyComponent: {fileID: 4007531377331874112}
-  characterFoot: {fileID: 0}
-  characterHand: {fileID: 0}
-  gravity: 300
+  capsuleColliderComponent: {fileID: 8797204538215274190}
+  characterFoot: {fileID: 1538616067269008365}
+  characterHand: {fileID: 3766565257963957836}
   animatorController: {fileID: 3603415451852957207}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a2bee344c00c04584b79e0363bccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSystem: {fileID: 0}
+  statSystem: {fileID: 611682381439544625}
   gameObjectToDestroy: {fileID: 2228463600266611084}
   destroyDelayTimeInSeconds: 0
 --- !u!114 &1623792058676853221
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87569766e845c04c90f7c9d944e0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 8104338878878511834}
   startingItems: []
   backpack: []
   armorHead:
@@ -198,7 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb85f77eb1e699542aba5c878f599046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 4007531377331874112}
   maxSlopeAngle: 60
+  gravity: 300
 --- !u!1 &4666890529428622899
 GameObject:
   m_ObjectHideFlags: 0
