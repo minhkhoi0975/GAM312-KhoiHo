@@ -12,7 +12,14 @@ using UnityEngine;
 public class PushableObject : MonoBehaviour
 {
     // Reference to the fixed joint component.
-    public FixedJoint fixedJoint;
+    [SerializeField] FixedJoint fixedJoint;
+    public FixedJoint FixedJoint
+    {
+        get
+        {
+            return fixedJoint;
+        }
+    }
 
     // The rotational speed of the object when it is being pushed.
     [SerializeField] float rotationalSpeed = 80.0f;

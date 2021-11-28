@@ -62,7 +62,7 @@ public class CharacterHand : MonoBehaviour
         pushable.pusher = character;
 
         // Attach the character's rigid body to the pushed object's rigid body.
-        pushable.fixedJoint.connectedBody = character.RigidBodyComponent;
+        pushable.FixedJoint.connectedBody = character.RigidBodyComponent;
 
         // Set the initial position of the character relative to the pushed object.
         pushable.relativeAttachmentPosition = pushable.transform.InverseTransformPoint(character.transform.position);
@@ -81,7 +81,7 @@ public class CharacterHand : MonoBehaviour
             pushedGameObject = null;
 
             // Detach the character's rigid body to the pushed object's rigid body.
-            pushable.fixedJoint.connectedBody = null;
+            pushable.FixedJoint.connectedBody = null;
         }
     }
 }
