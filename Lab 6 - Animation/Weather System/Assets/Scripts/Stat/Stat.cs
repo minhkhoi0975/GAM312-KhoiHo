@@ -34,7 +34,8 @@ public enum StatType
 
     // AI
     DetectionRadius = 400,
-    EvasionRadius
+    EvasionRadius,
+    AttackDelay
 }
 
 [System.Serializable]

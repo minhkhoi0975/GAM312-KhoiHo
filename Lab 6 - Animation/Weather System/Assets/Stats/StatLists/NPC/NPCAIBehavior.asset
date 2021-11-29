@@ -25,3 +25,9 @@ MonoBehaviour:
     minBaseValue: 3
     maxBaseValue: 3.4028235e+38
     attachedStatModifiers: []
+  - statType: 402
+    initialBaseValue: 2
+    baseValue: 2
+    minBaseValue: 1
+    maxBaseValue: 3.4028235e+38
+    attachedStatModifiers: []

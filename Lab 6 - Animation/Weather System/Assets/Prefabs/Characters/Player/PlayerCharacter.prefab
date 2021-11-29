@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5090434034205710227}
   - component: {fileID: 1623792058676853221}
   - component: {fileID: 611682381439544625}
+  - component: {fileID: 4767658696115216800}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Character
@@ -155,6 +156,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea07227bbf2bb8245b638c3a5cd1b6ed, type: 2}
   - {fileID: 11400000, guid: 4f8da618123dacf47ad4027904ff2ed0, type: 2}
   - {fileID: 11400000, guid: 16710ddf4dc6bac4ea19f06fb410b6ef, type: 2}
+--- !u!114 &4767658696115216800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228463600266611084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03e068bc60248e4e83959f904ea2e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 8104338878878511834}
+--- !u!114 &1274007598823849888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603415451843433893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03e068bc60248e4e83959f904ea2e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 8104338878878511834}
 --- !u!1 &3845294059147023850
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +414,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ad8c2bee857aaca4dbcf348b7e988a44, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e42d9259129992a4d95e0b320ca2a43d, type: 3}
+--- !u!1 &3603415451843433893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100050, guid: e42d9259129992a4d95e0b320ca2a43d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3603415451843531639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3603415451843922373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400050, guid: e42d9259129992a4d95e0b320ca2a43d,

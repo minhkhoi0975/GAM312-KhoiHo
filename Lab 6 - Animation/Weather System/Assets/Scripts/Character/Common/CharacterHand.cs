@@ -20,13 +20,13 @@ public class CharacterHand : MonoBehaviour
         }
     }
 
-    // The game object being pushed.
-    GameObject pushedGameObject;
-    public GameObject PushedGameObject
+    // The object being pushed by the character.
+    PushableObject pushedObject;
+    public PushableObject PushedGameObject
     {
         get
         {
-            return pushedGameObject;
+            return pushedObject;
         }
     }
 
@@ -41,47 +41,28 @@ public class CharacterHand : MonoBehaviour
     // Start pushing an object.
     // gameObject is the object to be pushed.
     // initialPushingDirection is the initial pushing direction in world space.
-    public void StartPushingObject(GameObject gameObject, Vector3 initialPushingDirection)
+    public void StartPushingObject(PushableObject pushableObject, Vector3 initialPushingDirection)
     {
-        // I'm current pushing an object. I cannot push another one.
-        if (pushedGameObject)
+        if (!pushableObject)
             return;
 
-        // I cannot push this object if it has no physics.
-        Rigidbody pushedObjectRigidBody = gameObject.GetComponent<Rigidbody>();
-        if (!pushedObjectRigidBody)
-            return;
-
-        // I cannot push this object if it is not pushable.
-        PushableObject pushable = gameObject.GetComponent<PushableObject>();
-        if (!pushable)
-            return;
-
-        // The hand needs to know what game object is being pushed, and the pushed object needs to know the character that is pushing it.
-        pushedGameObject = gameObject;
-        pushable.pusher = character;
-
-        // Attach the character's rigid body to the pushed object's rigid body.
-        pushable.FixedJoint.connectedBody = character.RigidBodyComponent;
-
-        // Set the initial position of the character relative to the pushed object.
-        pushable.relativeAttachmentPosition = pushable.transform.InverseTransformPoint(character.transform.position);
+        // Attach the character to the pushed object.
+        pushedObject = pushableObject;
+        pushedObject.pusher = character;
+        pushedObject.FixedJoint.connectedBody = character.RigidBodyComponent;
 
         // Set the pushing direction relative to the pushed object.
-        pushable.relativePushingDirection = pushable.transform.InverseTransformDirection(initialPushingDirection.normalized);   
+        pushedObject.relativePushingDirection = pushedObject.transform.InverseTransformDirection(initialPushingDirection.normalized);   
     }
 
     public void StopPushingObject()
     {
-        if (pushedGameObject)
+        if (pushedObject)
         {
             // Detach the pushed object from the character.
-            PushableObject pushable = pushedGameObject.GetComponent<PushableObject>();
-            pushable.pusher = null;
-            pushedGameObject = null;
-
-            // Detach the character's rigid body to the pushed object's rigid body.
-            pushable.FixedJoint.connectedBody = null;
+            pushedObject.FixedJoint.connectedBody = null;
+            pushedObject.pusher = null;
+            pushedObject = null;          
         }
     }
 }

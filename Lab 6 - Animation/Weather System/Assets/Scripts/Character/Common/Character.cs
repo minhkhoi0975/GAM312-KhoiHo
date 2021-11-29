@@ -189,25 +189,20 @@ public class Character : MonoBehaviour
         // The start position of the ray is at the middle of the character's mesh.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, maxAttractionDistance);
+        Debug.DrawLine(characterHand.transform.position, characterHand.transform.position + transform.forward * maxAttractionDistance, Color.white);
 
         // Does the ray hit an object?
-        if (rayCastHit)
+        if (rayCastHit && hitInfo.rigidbody)
         {
-            // Get the hit game object.
-            GameObject hitGameObject = hitInfo.transform.gameObject;
-
-            // Display the hit game object.
-            Debug.Log(hitGameObject);
-
             // Check if the game object is movable.
-            if (hitGameObject.CompareTag("MovableObject"))
+            if (hitInfo.rigidbody.gameObject.CompareTag("MovableObject"))
             {
-                Rigidbody rigidBodyComponent = hitGameObject.GetComponent<Rigidbody>();
-                if (rigidBodyComponent)
-                {
-                    Vector3 attractionDirection = hitInfo.normal;
-                    rigidBodyComponent.AddForce(attractionDirection * attractiveForce, ForceMode.Force);
-                }
+                Vector3 attractionDirection = -transform.forward;
+                attractionDirection = new Vector3(attractionDirection.x, 0.0f, attractionDirection.z).normalized;
+                hitInfo.rigidbody.AddForce(/*attractionDirection * attractiveForce*/ attractionDirection * 1000000.0f, ForceMode.Force);
+
+                // Display the hit game object.
+                Debug.Log("Attracting " + hitInfo.rigidbody.name + " with force = " + attractiveForce);
             }
         }
         else
@@ -222,15 +217,15 @@ public class Character : MonoBehaviour
         // Ray cast to check if there is an object in front of the character.
         RaycastHit hitInfo;
         bool rayCastHit = Physics.Raycast(transform.TransformPoint(capsuleColliderComponent.center), transform.forward, out hitInfo, capsuleColliderComponent.radius + 1.0f);
-        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * (capsuleColliderComponent.radius + 0.8f), Color.green, 1.0f);
+        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * (capsuleColliderComponent.radius + 1.0f), Color.green, 1.0f);
 
         // A movable object is in front of the character. Try pushing it.
-        if (rayCastHit && hitInfo.collider.isTrigger)
+        if (rayCastHit)
         {
             // Reposition the character.
             rigidBodyComponent.position = hitInfo.point + hitInfo.normal * (capsuleColliderComponent.radius + 1.41f);
 
-            characterHand.StartPushingObject(hitInfo.collider.gameObject, -hitInfo.normal);
+            characterHand.StartPushingObject(hitInfo.collider.gameObject.GetComponent<PushableObject>(), -hitInfo.normal);
             animatorController.SetBool("isPushingObject", true);
         }
         else
@@ -243,19 +238,18 @@ public class Character : MonoBehaviour
     public void StopPushingObject()
     {
         characterHand.StopPushingObject();
-
         animatorController.SetBool("isPushingObject", false);
     }
 
     // Attack
     public void Attack(float attackRange, float damage, float criticalDamageMultiplier = 0.0f, float criticalChance = 0.0f)
     {
-        animatorController.SetTrigger("isAttacking");
+        // animatorController.SetTrigger("isAttacking");
 
         // Ray cast forward to "melee attack" the enemy.
         RaycastHit hitInfo;
-        bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, attackRange);
-        Debug.DrawLine(characterHand.transform.position, characterHand.transform.position + transform.forward * attackRange, Color.white);
+        bool rayCastHit = Physics.Raycast(transform.TransformPoint(capsuleColliderComponent.center), transform.forward, out hitInfo, attackRange);
+        Debug.DrawLine(transform.TransformPoint(capsuleColliderComponent.center), transform.TransformPoint(capsuleColliderComponent.center) + transform.forward * attackRange, Color.white);
 
         // If ray cast hit, cause damage to the hit object if it has Health component.
         if (rayCastHit)

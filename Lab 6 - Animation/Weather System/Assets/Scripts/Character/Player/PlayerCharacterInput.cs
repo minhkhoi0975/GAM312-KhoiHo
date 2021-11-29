@@ -104,11 +104,7 @@ public class PlayerCharacterInput : MonoBehaviour
         // Attack (keyboard)
         if (Input.GetButtonDown("Attack"))
         {
-            float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
-            float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
-            float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
-            float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
-            character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
+            InputAttack();
         }
 
         // Attack (Xbox One controller)
@@ -116,11 +112,7 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             if (!attackButtonDown)
             {
-                float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
-                float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
-                float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
-                float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
-                character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
+                InputAttack();
                 attackButtonDown = true;
             }
         }
@@ -183,5 +175,18 @@ public class PlayerCharacterInput : MonoBehaviour
             character.PerformTelekinesis(telekinesisDistance, telekinesisForce);
             attractObjectButtonDown = false;
         }
+    }
+
+    void InputAttack()
+    {
+        /*
+        float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
+        float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
+        float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
+        float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
+        character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
+        */
+
+        character.AnimatorController.SetTrigger("isAttacking");
     }
 }

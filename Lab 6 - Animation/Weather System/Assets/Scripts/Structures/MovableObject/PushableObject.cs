@@ -33,10 +33,6 @@ public class PushableObject : MonoBehaviour
     // If the character pushes forward, then the object should move in this direction.
     [HideInInspector] public Vector3 relativePushingDirection;
 
-    // The position of the character relative to the pushed object.
-    // Used for attaching the character to the pushed object.
-    [HideInInspector] public Vector3 relativeAttachmentPosition;
-
     public Rigidbody RigidBody
     {
         get
@@ -61,7 +57,7 @@ public class PushableObject : MonoBehaviour
     private void Update()
     {
         // If the character is too far away from this object, detach the character from this object.
-        if (Vector3.Distance(pusher.transform.position, transform.position) > 3.0f)
+        if (pusher && Vector3.Distance(pusher.transform.position, transform.position) > 3.0f)
         {
             pusher.StopPushingObject();
         }
@@ -83,7 +79,7 @@ public class PushableObject : MonoBehaviour
                 float pushingForce = pusher.StatSystem.GetCurrentValue(StatType.PushingForce);
 
                 // Push.
-                rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+                rigidBody.AddRelativeForce(relativePushingDirection * verticalAxis * pushingForce, ForceMode.Force);
             }
 
             // Fix the pushed object not moving sometimes.

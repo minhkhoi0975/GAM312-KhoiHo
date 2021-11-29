@@ -40,9 +40,6 @@ public class AIController : MonoBehaviour
     // Transform of the enemy.
     Transform enemyTransform;
 
-    // How long the NPC has to way before next attack?
-    public float attackDelayInSeconds = 3.0f;
-
     // Returns false when the NPC is under attack delay.
     bool canAttack = true;
 
@@ -155,9 +152,7 @@ public class AIController : MonoBehaviour
         float lookDotProduct = Vector3.Dot(transform.forward, (enemy.transform.position - transform.position).normalized);
         if (lookDotProduct >= 0.9f)
         {
-            character.Attack(statSystem.GetCurrentValue(StatType.AttackRange), statSystem.GetCurrentValue(StatType.Damage), 
-                statSystem.GetCurrentValue(StatType.CriticalDamageMultiplier), statSystem.GetCurrentValue(StatType.CriticalChance));
-
+            character.AnimatorController.SetTrigger("isAttacking");
             StartCoroutine(WaitBeforeNextAttack());
         }
     }
@@ -165,7 +160,7 @@ public class AIController : MonoBehaviour
     IEnumerator WaitBeforeNextAttack()
     {
         canAttack = false;
-        yield return new WaitForSeconds(attackDelayInSeconds);
+        yield return new WaitForSeconds(character.StatSystem.GetCurrentValue(StatType.AttackDelay));
         canAttack = true;
     }
 
