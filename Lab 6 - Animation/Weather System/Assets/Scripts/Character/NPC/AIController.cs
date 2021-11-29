@@ -170,5 +170,9 @@ public class AIController : MonoBehaviour
         {
             character.AnimatorController.SetFloat("movementSpeed", 10.0f);
         }
+        else
+        {
+            character.AnimatorController.SetFloat("movementSpeed", 0.0f);
+        }
     }
 }

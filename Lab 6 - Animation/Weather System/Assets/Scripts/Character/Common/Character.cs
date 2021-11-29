@@ -199,7 +199,7 @@ public class Character : MonoBehaviour
             {
                 Vector3 attractionDirection = -transform.forward;
                 attractionDirection = new Vector3(attractionDirection.x, 0.0f, attractionDirection.z).normalized;
-                hitInfo.rigidbody.AddForce(/*attractionDirection * attractiveForce*/ attractionDirection * 1000000.0f, ForceMode.Force);
+                hitInfo.rigidbody.AddForce(attractionDirection * attractiveForce, ForceMode.Force);
 
                 // Display the hit game object.
                 Debug.Log("Attracting " + hitInfo.rigidbody.name + " with force = " + attractiveForce);

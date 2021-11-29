@@ -171,7 +171,6 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             float telekinesisDistance = character.StatSystem.stats[StatType.TelekinesisDistance].CurrentValue;
             float telekinesisForce = character.StatSystem.stats[StatType.TelekinesisForce].CurrentValue;
-
             character.PerformTelekinesis(telekinesisDistance, telekinesisForce);
             attractObjectButtonDown = false;
         }
