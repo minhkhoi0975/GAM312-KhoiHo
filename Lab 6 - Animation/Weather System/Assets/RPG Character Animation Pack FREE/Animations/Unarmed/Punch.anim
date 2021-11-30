@@ -32857,7 +32857,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.35952875
-    functionName: Attack
+    functionName: Hit
     data: 
     objectReferenceParameter: {fileID: 2228463600266611084, guid: 3aac5ee326ffe6340b1af97a54b1db48,
       type: 3}

@@ -58,6 +58,10 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             attractObjectButtonDown = true;
         }
+        else
+        {
+            character.AnimatorController.SetBool("isPerformingTelekinesis", false);
+        }
 
         // Start or stop pushing an object.
         if (Input.GetButtonDown("Interact"))
@@ -132,15 +136,23 @@ public class PlayerCharacterInput : MonoBehaviour
         // If the player presses the dash button, dash. Otherwise, move normally.
         if (dashButtonDown)
         {
-            // Player does not presses WASD? Dash forward.
-            if (relativeMoveDirection.magnitude != 0.0f)
+            // Only dash if dash speed multiplier is greater than 1.0.
+            if (dashSpeedMultiplier > 1.0f)
             {
-                character.Move(relativeMoveDirection, movementSpeed * dashSpeedMultiplier);
+                // Player does not presses WASD? Dash forward.
+                if (relativeMoveDirection.magnitude != 0.0f)
+                {
+                    character.Move(relativeMoveDirection, movementSpeed * dashSpeedMultiplier);
+                }
+                else
+                {
+                    character.Move(transform.forward, movementSpeed * dashSpeedMultiplier);
+                }
+
+                // Play dash animation.
+                character.AnimatorController.SetTrigger("isDashing");
             }
-            else
-            {
-                character.Move(transform.forward, movementSpeed * dashSpeedMultiplier);
-            }
+
             dashButtonDown = false;
         }
         else
@@ -178,14 +190,6 @@ public class PlayerCharacterInput : MonoBehaviour
 
     void InputAttack()
     {
-        /*
-        float attackRange = character.StatSystem.GetCurrentValue(StatType.AttackRange);
-        float damage = character.StatSystem.GetCurrentValue(StatType.Damage);
-        float criticalChance = character.StatSystem.GetCurrentValue(StatType.CriticalChance);
-        float criticalMultiplier = character.StatSystem.GetCurrentValue(StatType.CriticalDamageMultiplier);
-        character.Attack(attackRange, damage, criticalMultiplier, criticalChance);
-        */
-
         character.AnimatorController.SetTrigger("isAttacking");
     }
 }

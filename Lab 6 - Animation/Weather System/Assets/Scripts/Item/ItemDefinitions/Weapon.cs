@@ -11,6 +11,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Items/Create a new Weapon")]
 public class Weapon : ItemDefinition
 {
+    [Header("Animations")]
+    [SerializeField] AnimationClip idleAnimation;
+    [SerializeField] AnimationClip walkAnimation;
+    [SerializeField] AnimationClip runAnimation;
+    [SerializeField] AnimationClip attackAnimaion;
+
     private void Awake()
     {
         SetType(ItemType.Weapon, true);

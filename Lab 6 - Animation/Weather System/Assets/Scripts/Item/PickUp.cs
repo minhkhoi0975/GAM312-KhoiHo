@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    // Item name text
+    [SerializeField] TextMesh itemNameText;
+
     // Item Definition
     [SerializeField] ItemDefinition itemDefinition;
     public ItemDefinition ItemDefinition
@@ -77,12 +80,14 @@ public class PickUp : MonoBehaviour
         if (mesh)
         {
             Destroy(mesh);
+            itemNameText.text = "";
         }
 
         // Create a new visual.
         if (itemDefinition)
         {
             mesh = Instantiate(itemDefinition.mesh, transform);
+            itemNameText.text = itemDefinition.name;
         }
     }
 
@@ -91,7 +96,7 @@ public class PickUp : MonoBehaviour
     {
         // Set the info about the pick-up.
         this.itemDefinition = itemInstance.itemDefinition;
-        this.currentStackSize = itemInstance.CurrentStackSize;
+        this.currentStackSize = itemInstance.CurrentStackSize;     
 
         // Update the visual presentation of the pickup.
         UpdatePickUpVisual();

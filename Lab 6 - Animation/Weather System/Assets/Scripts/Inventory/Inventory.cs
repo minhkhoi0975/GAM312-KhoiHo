@@ -39,15 +39,24 @@ public class Inventory : MonoBehaviour
     public List<ItemInstance> backpack = new List<ItemInstance>();
 
     [Header("Equipment")]
-
     // Armors being equipped by the player and not in the backpack.
     public ItemInstance armorHead;
-    public ItemInstance armorLegs;
-    public ItemInstance armorArms;
     public ItemInstance armorBody;
-
+    public ItemInstance armorArms;
+    public ItemInstance armorLegs;
+       
     // Weapon being equipped by the player and not in the backpack.
     public ItemInstance weapon;
+
+    [Header("Equipment Visuals")]
+    public Transform armorHeadTransform;
+    public Transform armorBodyTransform;
+    public Transform armorLeftArmTransform;
+    public Transform armorRightArmTransform;
+    public Transform armorLeftLegTransform;
+    public Transform armorRightLegTransform;
+
+    public Transform weaponTransform;
 
     [Header("Item Dropping")]
 
@@ -192,6 +201,28 @@ public class Inventory : MonoBehaviour
         inventoryUpdatedCallback?.Invoke();
     }
 
+    // Update the visual of an equipment slot.
+    void UpdateVisual(ItemInstance equipmentSlot, Transform equipmentTransform)
+    {
+        if (!equipmentTransform)
+            return;
+
+        // Destroy the old visual.
+        if (equipmentTransform.childCount > 0)
+        {
+            foreach (Transform childTransform in equipmentTransform)
+            {
+                Destroy(childTransform.gameObject);
+            }
+        }
+
+        // Instantiate a new visual.
+        if (equipmentSlot)
+        {
+            GameObject newEquipmentVisual = Instantiate(equipmentSlot.itemDefinition.mesh, equipmentTransform);
+        }
+    }
+
     public void Equip(int backpackIndex, bool onlyEquipIfEmpty = false)
     {
         if (!IsBackPackIndexValid(backpackIndex))
@@ -201,6 +232,7 @@ public class Inventory : MonoBehaviour
         if (backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Weapon))
         {
             Equip(backpackIndex, ref weapon, onlyEquipIfEmpty);
+            UpdateVisual(weapon, weaponTransform);
         }
 
         // Equip an armor.
@@ -210,18 +242,24 @@ public class Inventory : MonoBehaviour
             {
                 case ArmorSlot.Head:
                     Equip(backpackIndex, ref armorHead, onlyEquipIfEmpty);
+                    UpdateVisual(armorHead, armorHeadTransform);
                     break;
 
                 case ArmorSlot.Body:
                     Equip(backpackIndex, ref armorBody, onlyEquipIfEmpty);
+                    UpdateVisual(armorBody, armorBodyTransform);
                     break;
 
                 case ArmorSlot.Arms:
                     Equip(backpackIndex, ref armorArms, onlyEquipIfEmpty);
+                    UpdateVisual(armorArms, armorLeftArmTransform);
+                    UpdateVisual(armorArms, armorRightArmTransform);
                     break;
 
                 case ArmorSlot.Legs:
                     Equip(backpackIndex, ref armorLegs, onlyEquipIfEmpty);
+                    UpdateVisual(armorLegs, armorLeftLegTransform);
+                    UpdateVisual(armorLegs, armorRightLegTransform);
                     break;
             }
         }
@@ -249,26 +287,33 @@ public class Inventory : MonoBehaviour
     public void UnequipWeapon()
     {
         Unequip(ref weapon);
+        UpdateVisual(weapon, weaponTransform);
     }
 
     public void UnequipArmorHead()
     {
         Unequip(ref armorHead);
+        UpdateVisual(armorHead, armorHeadTransform);
     }
 
     public void UnequipArmorChest()
     {
         Unequip(ref armorBody);
+        UpdateVisual(armorBody, armorBodyTransform);
     }
 
     public void UnequipArmorArms()
     {
         Unequip(ref armorArms);
+        UpdateVisual(armorArms, armorLeftArmTransform);
+        UpdateVisual(armorArms, armorRightArmTransform);
     }
 
     public void UnequipArmorLegs()
     {
         Unequip(ref armorLegs);
+        UpdateVisual(armorLegs, armorLeftLegTransform);
+        UpdateVisual(armorLegs, armorRightLegTransform);
     }
 
     // Consume an item in the backpack.

@@ -191,7 +191,7 @@ public class Character : MonoBehaviour
         bool rayCastHit = Physics.Raycast(characterHand.transform.position, transform.forward, out hitInfo, maxAttractionDistance);
         Debug.DrawLine(characterHand.transform.position, characterHand.transform.position + transform.forward * maxAttractionDistance, Color.white);
 
-        // Does the ray hit an object?
+        // Does the ray hit a moveable object?
         if (rayCastHit && hitInfo.rigidbody)
         {
             // Check if the game object is movable.
@@ -203,11 +203,13 @@ public class Character : MonoBehaviour
 
                 // Display the hit game object.
                 Debug.Log("Attracting " + hitInfo.rigidbody.name + " with force = " + attractiveForce);
+
+                animatorController.SetBool("isPerformingTelekinesis", true);
             }
         }
         else
         {
-            Debug.Log("No object is found.");
+            animatorController.SetBool("isPerformingTelekinesis", false);
         }
     }
 
@@ -226,7 +228,6 @@ public class Character : MonoBehaviour
             rigidBodyComponent.position = hitInfo.point + hitInfo.normal * (capsuleColliderComponent.radius + 1.41f);
 
             characterHand.StartPushingObject(hitInfo.collider.gameObject.GetComponent<PushableObject>(), -hitInfo.normal);
-            animatorController.SetBool("isPushingObject", true);
         }
         else
         {
@@ -238,7 +239,6 @@ public class Character : MonoBehaviour
     public void StopPushingObject()
     {
         characterHand.StopPushingObject();
-        animatorController.SetBool("isPushingObject", false);
     }
 
     // Attack
