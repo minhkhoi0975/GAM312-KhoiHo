@@ -208,12 +208,9 @@ public class Inventory : MonoBehaviour
             return;
 
         // Destroy the old visual.
-        if (equipmentTransform.childCount > 0)
+        foreach (Transform childTransform in equipmentTransform)
         {
-            foreach (Transform childTransform in equipmentTransform)
-            {
-                Destroy(childTransform.gameObject);
-            }
+            Destroy(childTransform.gameObject);
         }
 
         // Instantiate a new visual.
@@ -442,25 +439,32 @@ public class Inventory : MonoBehaviour
     public void DropWeapon()
     {
         DropItemInEquipmentSlot(ref weapon);
+        UpdateVisual(weapon, weaponTransform);
     }
 
     public void DropArmorHead()
     {
         DropItemInEquipmentSlot(ref armorHead);
+        UpdateVisual(armorHead, armorHeadTransform);
     }
 
     public void DropArmorChest()
     {
         DropItemInEquipmentSlot(ref armorBody);
+        UpdateVisual(armorBody, armorBodyTransform);
     }
 
     public void DropArmorArms()
     {
         DropItemInEquipmentSlot(ref armorArms);
+        UpdateVisual(armorArms, armorLeftArmTransform);
+        UpdateVisual(armorArms, armorRightArmTransform);
     }
 
     public void DropArmorLegs()
     {
         DropItemInEquipmentSlot(ref armorLegs);
+        UpdateVisual(armorLegs, armorLeftLegTransform);
+        UpdateVisual(armorLegs, armorRightLegTransform);
     }
 }
