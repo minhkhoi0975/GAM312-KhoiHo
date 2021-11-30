@@ -11,7 +11,9 @@ using UnityEngine;
 // [RequireComponent(typeof(Rigidbody))]
 public class PushableObject : MonoBehaviour
 {
-    // Reference to the fixed joint component.
+    // Used for attaching the pusher's rigid body to the object's rigid body.
+    // NOTE: Intially, the object does not have Fixed Joint component since if it does then the object's gravity will not work.
+    //       Fixed Joint component is instantiated every time a pusher is attached to the object and destroyed when the pusher is detached from the object.
     [SerializeField] FixedJoint fixedJoint;
     public FixedJoint FixedJoint
     {
@@ -28,7 +30,32 @@ public class PushableObject : MonoBehaviour
     [SerializeField] Rigidbody rigidBody;
 
     // The character that pushes this object.
-    [HideInInspector] public Character pusher;
+    Character pusher;
+    public Character Pusher
+    {
+        get
+        {
+            return pusher;
+        }
+        set
+        {
+            // value is not null? Attach the pusher to the object.
+            if (value)
+            {
+                pusher = value;
+                fixedJoint = gameObject.AddComponent<FixedJoint>();
+                fixedJoint.connectedBody = value.RigidBodyComponent;
+            }
+
+            // value is null? Detach the pusher from the object.
+            else
+            {
+                Destroy(fixedJoint);
+                fixedJoint = null;
+                pusher = null;
+            }
+        }
+    }
 
     // If the character pushes forward, then the object should move in this direction.
     [HideInInspector] public Vector3 relativePushingDirection;
@@ -43,11 +70,6 @@ public class PushableObject : MonoBehaviour
 
     private void Awake()
     {
-        if(!fixedJoint)
-        {
-            fixedJoint = GetComponent<FixedJoint>();
-        }
-
         if (!rigidBody)
         {
             rigidBody = GetComponent<Rigidbody>();

@@ -48,8 +48,7 @@ public class CharacterHand : MonoBehaviour
 
         // Attach the character to the pushed object.
         pushedObject = pushableObject;
-        pushedObject.pusher = character;
-        pushedObject.FixedJoint.connectedBody = character.RigidBodyComponent;
+        pushedObject.Pusher = character;
 
         // Set the pushing direction relative to the pushed object.
         pushedObject.relativePushingDirection = pushedObject.transform.InverseTransformDirection(initialPushingDirection.normalized);   
@@ -60,8 +59,7 @@ public class CharacterHand : MonoBehaviour
         if (pushedObject)
         {
             // Detach the pushed object from the character.
-            pushedObject.FixedJoint.connectedBody = null;
-            pushedObject.pusher = null;
+            pushedObject.Pusher = null;
             pushedObject = null;          
         }
     }
