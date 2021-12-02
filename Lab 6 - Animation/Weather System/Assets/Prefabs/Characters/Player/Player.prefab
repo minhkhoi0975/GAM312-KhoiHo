@@ -243,6 +243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8104338878878511834, guid: 3aac5ee326ffe6340b1af97a54b1db48,
         type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 7032969220066912425}
+    - target: {fileID: 8104338878878511834, guid: 3aac5ee326ffe6340b1af97a54b1db48,
+        type: 3}
       propertyPath: cameraComponent
       value: 
       objectReference: {fileID: 860115892221409483}
@@ -285,6 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34dde70685b163a42b97128d1efdaa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7032969220066912425 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3603415451852957207, guid: 3aac5ee326ffe6340b1af97a54b1db48,
+    type: 3}
+  m_PrefabInstance: {fileID: 6024628267556884158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6024628268161217458
 PrefabInstance:
   m_ObjectHideFlags: 0

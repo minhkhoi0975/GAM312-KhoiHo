@@ -152,7 +152,7 @@ public class AIController : MonoBehaviour
         float lookDotProduct = Vector3.Dot(transform.forward, (enemy.transform.position - transform.position).normalized);
         if (lookDotProduct >= 0.9f)
         {
-            character.AnimatorController.SetTrigger("isAttacking");
+            character.Animator.SetTrigger("isAttacking");
             StartCoroutine(WaitBeforeNextAttack());
         }
     }
@@ -168,11 +168,11 @@ public class AIController : MonoBehaviour
     {
         if(navMeshAgent.velocity.magnitude > 0.0f)
         {
-            character.AnimatorController.SetFloat("movementSpeed", 10.0f);
+            character.Animator.SetFloat("movementSpeed", 10.0f);
         }
         else
         {
-            character.AnimatorController.SetFloat("movementSpeed", 0.0f);
+            character.Animator.SetFloat("movementSpeed", 0.0f);
         }
     }
 }

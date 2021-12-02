@@ -73,7 +73,7 @@ public class Inventory : MonoBehaviour
         {
             character = GetComponent<Character>();
         }
-        if(!character)
+        if (!character)
         {
             character = GetComponentInChildren<Character>();
         }
@@ -230,6 +230,7 @@ public class Inventory : MonoBehaviour
         {
             Equip(backpackIndex, ref weapon, onlyEquipIfEmpty);
             UpdateVisual(weapon, weaponTransform);
+            character.Animator.runtimeAnimatorController = ((Weapon)weapon).animatorOverrideController;
         }
 
         // Equip an armor.
@@ -285,6 +286,7 @@ public class Inventory : MonoBehaviour
     {
         Unequip(ref weapon);
         UpdateVisual(weapon, weaponTransform);
+        character.Animator.runtimeAnimatorController = character.DefaultAnimatorController;
     }
 
     public void UnequipArmorHead()
@@ -440,6 +442,7 @@ public class Inventory : MonoBehaviour
     {
         DropItemInEquipmentSlot(ref weapon);
         UpdateVisual(weapon, weaponTransform);
+        character.Animator.runtimeAnimatorController = character.DefaultAnimatorController;
     }
 
     public void DropArmorHead()

@@ -60,7 +60,7 @@ public class PlayerCharacterInput : MonoBehaviour
         }
         else
         {
-            character.AnimatorController.SetBool("isPerformingTelekinesis", false);
+            character.Animator.SetBool("isPerformingTelekinesis", false);
         }
 
         // Start or stop pushing an object.
@@ -150,7 +150,7 @@ public class PlayerCharacterInput : MonoBehaviour
                 }
 
                 // Play dash animation.
-                character.AnimatorController.SetTrigger("isDashing");
+                character.Animator.SetTrigger("isDashing");
             }
 
             dashButtonDown = false;
@@ -171,11 +171,11 @@ public class PlayerCharacterInput : MonoBehaviour
 
         if (relativeMoveDirection.magnitude > 0.0f)
         {
-            character.AnimatorController.SetFloat("movementSpeed", character.StatSystem.GetCurrentValue(StatType.MovementSpeed));
+            character.Animator.SetFloat("movementSpeed", character.StatSystem.GetCurrentValue(StatType.MovementSpeed));
         }
         else
         {
-            character.AnimatorController.SetFloat("movementSpeed", 0.0f);
+            character.Animator.SetFloat("movementSpeed", 0.0f);
         }
 
         // Perform telekinesis.
@@ -190,6 +190,6 @@ public class PlayerCharacterInput : MonoBehaviour
 
     void InputAttack()
     {
-        character.AnimatorController.SetTrigger("isAttacking");
+        character.Animator.SetTrigger("isAttacking");
     }
 }

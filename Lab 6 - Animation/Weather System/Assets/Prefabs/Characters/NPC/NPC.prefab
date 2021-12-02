@@ -104,7 +104,7 @@ MonoBehaviour:
   capsuleColliderComponent: {fileID: 0}
   characterFoot: {fileID: 6108833310886059335}
   characterHand: {fileID: 1308971320555853229}
-  animatorController: {fileID: 4188280118104431596}
+  animator: {fileID: 4188280118104431596}
   health: {fileID: 5090434034205710227}
   inventory: {fileID: 1623792058676853221}
   statSystem: {fileID: 1079737995526698681}

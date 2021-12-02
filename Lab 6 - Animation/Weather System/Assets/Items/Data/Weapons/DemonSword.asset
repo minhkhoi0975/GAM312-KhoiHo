@@ -34,3 +34,5 @@ MonoBehaviour:
   - statType: 0
     statModifierType: 1
     value: -120
+  animatorOverrideController: {fileID: 22100000, guid: c431a1ddf981cf84a915b3f8e3ad88e4,
+    type: 2}

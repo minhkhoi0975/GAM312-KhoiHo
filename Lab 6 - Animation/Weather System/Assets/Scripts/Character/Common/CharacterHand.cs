@@ -53,7 +53,7 @@ public class CharacterHand : MonoBehaviour
         // Set the pushing direction relative to the pushed object.
         pushedObject.relativePushingDirection = pushedObject.transform.InverseTransformDirection(initialPushingDirection.normalized);
 
-        character.AnimatorController.SetBool("isPushingObject", true);
+        character.Animator.SetBool("isPushingObject", true);
     }
 
     public void StopPushingObject()
@@ -64,7 +64,7 @@ public class CharacterHand : MonoBehaviour
             pushedObject.Pusher = null;
             pushedObject = null;
 
-            character.AnimatorController.SetBool("isPushingObject", false);
+            character.Animator.SetBool("isPushingObject", false);
         }
     }
 }

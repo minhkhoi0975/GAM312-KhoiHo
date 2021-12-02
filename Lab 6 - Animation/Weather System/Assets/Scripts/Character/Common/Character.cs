@@ -54,12 +54,21 @@ public class Character : MonoBehaviour
     }
 
     [Header("Animation")]
-    [SerializeField] Animator animatorController;
-    public Animator AnimatorController
+    [SerializeField] Animator animator;
+    public Animator Animator
     {
         get
         {
-            return animatorController;
+            return animator;
+        }
+    }
+
+    [SerializeField] RuntimeAnimatorController defaultAnimatorController;
+    public RuntimeAnimatorController DefaultAnimatorController
+    {
+        get
+        {
+            return defaultAnimatorController;
         }
     }
 
@@ -101,7 +110,7 @@ public class Character : MonoBehaviour
             rigidBodyComponent = GetComponent<Rigidbody>();
         }
 
-        if(!capsuleColliderComponent)
+        if (!capsuleColliderComponent)
         {
             capsuleColliderComponent = GetComponentInChildren<CapsuleCollider>();
         }
@@ -121,7 +130,7 @@ public class Character : MonoBehaviour
             inventory = GetComponent<Inventory>();
         }
 
-        if(!statSystem)
+        if (!statSystem)
         {
             statSystem = GetComponent<StatSystem>();
         }
@@ -135,6 +144,16 @@ public class Character : MonoBehaviour
         {
             characterHand = GetComponentInChildren<CharacterHand>();
         }
+
+        if (!animator)
+        {
+            animator = GetComponentInChildren<Animator>(true);
+        }
+
+        if (!defaultAnimatorController)
+        {
+            defaultAnimatorController = animator.runtimeAnimatorController;
+        }
     }
 
     private void FixedUpdate()
@@ -146,11 +165,11 @@ public class Character : MonoBehaviour
     {
         if (characterFoot.IsGrounded)
         {
-            animatorController.SetBool("isFalling", false);
+            animator.SetBool("isFalling", false);
         }
         else if (characterFoot.FallingTime > 0.1f && rigidBodyComponent.velocity.y < -0.1f)
         {
-            animatorController.SetBool("isFalling", true);
+            animator.SetBool("isFalling", true);
         }
     }
 
@@ -204,12 +223,12 @@ public class Character : MonoBehaviour
                 // Display the hit game object.
                 Debug.Log("Attracting " + hitInfo.rigidbody.name + " with force = " + attractiveForce);
 
-                animatorController.SetBool("isPerformingTelekinesis", true);
+                animator.SetBool("isPerformingTelekinesis", true);
             }
         }
         else
         {
-            animatorController.SetBool("isPerformingTelekinesis", false);
+            animator.SetBool("isPerformingTelekinesis", false);
         }
     }
 
@@ -271,7 +290,7 @@ public class Character : MonoBehaviour
 
                 // Push the hit object backward.
                 Rigidbody hitTargetRigidBody = hitInfo.rigidbody;
-                if(hitTargetRigidBody)
+                if (hitTargetRigidBody)
                 {
                     hitTargetRigidBody.AddForce(transform.forward * 1200.0f);
                 }

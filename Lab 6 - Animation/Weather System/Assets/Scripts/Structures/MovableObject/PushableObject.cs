@@ -109,15 +109,15 @@ public class PushableObject : MonoBehaviour
 
             if (verticalAxis > 0.0f)
             {
-                pusher.AnimatorController.SetFloat("pushingDirection", 1.0f);
+                pusher.Animator.SetFloat("pushingDirection", 1.0f);
             }
             else if(verticalAxis < 0.0f)
             {
-                pusher.AnimatorController.SetFloat("pushingDirection", -1.0f);
+                pusher.Animator.SetFloat("pushingDirection", -1.0f);
             }
             else
             {
-                pusher.AnimatorController.SetFloat("pushingDirection", 0.0f);
+                pusher.Animator.SetFloat("pushingDirection", 0.0f);
             }
         }
 
