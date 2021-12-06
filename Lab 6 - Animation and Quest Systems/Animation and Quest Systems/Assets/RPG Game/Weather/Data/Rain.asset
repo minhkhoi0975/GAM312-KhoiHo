@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a0f3858aae224ea4121efc1e5d2b5, type: 3}
+  m_Name: Rain
+  m_EditorClassIdentifier: 
+  particleEffectPrefab: {fileID: 2008170373025036509, guid: 4075a3ad139698948959fc50aaaf02c1,
+    type: 3}
+  sunlightColor: {r: 0.4305358, g: 0.7075472, b: 0.68776065, a: 1}
+  sunlightIntensity: 0.5
+  sunlightShadowStrength: 0.5
+  characterStatModifiers:
+  - statType: 400
+    statModifierType: 1
+    value: -5
+  - statType: 401
+    statModifierType: 1
+    value: -5
