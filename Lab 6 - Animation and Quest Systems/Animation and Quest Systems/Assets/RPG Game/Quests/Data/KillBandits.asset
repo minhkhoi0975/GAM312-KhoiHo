@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e7d50cf39e395468cd4a12e1a456ee, type: 3}
+  m_Name: KillBandits
+  m_EditorClassIdentifier: 
+  questType: 1
+  questName: Kill 5 Bandits
+  questDescription: 5 bandits broke into a farmer's house and killed his daughter.
+    He wants you to kill them in revenge for his daughter.
+  rewardItems:
+  - itemDefinition: {fileID: 11400000, guid: db9974b5d399a8246bf331cc60de438c, type: 2}
+    currentStackSize: 1
+  rewardStatChanges: []
+  enemyPrefab: {fileID: 2228463600266611084, guid: 0b226a6e10547924d92d16ae26cfe526,
+    type: 3}
+  numEnemiesToDestroy: 5

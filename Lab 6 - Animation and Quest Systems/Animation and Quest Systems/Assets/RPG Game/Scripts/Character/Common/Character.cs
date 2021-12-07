@@ -12,6 +12,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(StatSystem))]
+[RequireComponent(typeof(QuestSystem))]
 public class Character : MonoBehaviour
 {
     [Header("Movement")]
@@ -102,6 +103,16 @@ public class Character : MonoBehaviour
         }
     }
 
+    [Header("Quests")]
+    [SerializeField] QuestSystem questSystem;         // Reference to the quest system component.
+    public QuestSystem QuestSystem
+    {
+        get
+        {
+            return questSystem;
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -133,6 +144,11 @@ public class Character : MonoBehaviour
         if (!statSystem)
         {
             statSystem = GetComponent<StatSystem>();
+        }
+
+        if (!questSystem)
+        {
+            questSystem = GetComponent<QuestSystem>();
         }
 
         if (!characterFoot)
