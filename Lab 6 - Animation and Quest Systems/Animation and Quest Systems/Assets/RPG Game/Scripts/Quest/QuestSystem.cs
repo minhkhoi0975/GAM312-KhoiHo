@@ -10,8 +10,23 @@ using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
+    // Reference to the Character component.
+    [SerializeField] Character character;
+
     // List of active quests.
     [SerializeField] List<QuestProgress> activeQuests = new List<QuestProgress>();
+
+    // Callback when a quest is completed.
+    public delegate void QuestCompletedCallback(Quest quest);
+    public QuestCompletedCallback questCompletedCallback;
+
+    private void Awake()
+    {
+        if (!character)
+        {
+            character = GetComponent<Character>();
+        }
+    }
 
     // Accept a quest
     public void AcceptQuest(Quest quest)
@@ -27,6 +42,17 @@ public class QuestSystem : MonoBehaviour
 
         // Add the quest to list of active quests.
         activeQuests.Add(new QuestProgress(quest));
+
+        // If the quest is Collection, let the quest system know the current number of items in the inventory.
+        if (quest.QuestType == QuestType.Collection)
+        {
+            int numItems = character.Inventory.Count(((CollectionQuest)quest).ItemToCollect);
+            activeQuests[activeQuests.Count - 1].progressValue = numItems;
+        }
+
+        // Add functions to callbacks.
+        character.Inventory.itemAddedToInventoryCallback += OnItemAddedToInventory;
+        character.Inventory.itemRemovedFromInventoryCallback -= OnItemRemovedFromInventory;
     }
 
     // Complete a quest.
@@ -36,6 +62,13 @@ public class QuestSystem : MonoBehaviour
         {
             if (quest == completedQuest)
             {
+                // Remove functions from callbacks.
+                character.Inventory.itemAddedToInventoryCallback -= OnItemAddedToInventory;
+                character.Inventory.itemRemovedFromInventoryCallback -= OnItemRemovedFromInventory;
+
+                // Remove the quest from the list of active quests.
+                activeQuests.Remove(quest);
+
                 // Reward the player.
                 Character playerCharacter = GetComponent<Character>();
 
@@ -49,8 +82,7 @@ public class QuestSystem : MonoBehaviour
                     playerCharacter.StatSystem.AddModifier(statModifier);
                 }
 
-                // Remove the quest from the list of active quests.
-                activeQuests.Remove(quest);
+                questCompletedCallback?.Invoke(completedQuest);
                 return;
             }
         }
@@ -60,7 +92,7 @@ public class QuestSystem : MonoBehaviour
     // CALLBACKS
     // ---------------
 
-    public void OnItemPickedUp(ItemInstance item)
+    public void OnItemAddedToInventory(ItemInstance item)
     {
         foreach (QuestProgress quest in activeQuests)
         {
@@ -71,7 +103,7 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
-    public void OnItemDropped(ItemInstance item)
+    public void OnItemRemovedFromInventory(ItemInstance item)
     {
         foreach (QuestProgress quest in activeQuests)
         {

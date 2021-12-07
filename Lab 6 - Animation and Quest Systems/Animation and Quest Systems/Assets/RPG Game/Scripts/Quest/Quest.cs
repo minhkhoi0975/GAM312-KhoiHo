@@ -24,7 +24,7 @@ public class Quest : ScriptableObject
     {
         get
         {
-            return QuestType;
+            return questType;
         }
     }
 
