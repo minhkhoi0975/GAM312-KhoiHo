@@ -10,13 +10,20 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
-    [SerializeField] Quest triggerQuest;
+    [SerializeField] Quest triggeredQuest;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.attachedRigidbody || other.attachedRigidbody.GetComponent<PlayerCharacterInput>())
+        if (!other.attachedRigidbody || !other.attachedRigidbody.GetComponent<PlayerCharacterInput>())
             return;
 
+        if (!triggeredQuest)
+        {
+            Debug.LogError("Error: the trigger does not have a quest attached to it.");
+            return;
+        }
+
         // TODO: Add quest to player's quest list.
+        other.attachedRigidbody.GetComponent<QuestSystem>().AcceptQuest(triggeredQuest);
     }
 }

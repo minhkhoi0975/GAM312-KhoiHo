@@ -12,8 +12,22 @@ using UnityEngine;
 public class CollectionQuest : Quest
 {
     [SerializeField] ItemDefinition itemToCollect;
+    public ItemDefinition ItemToCollect
+    {
+        get
+        {
+            return itemToCollect;
+        }
+    }
 
     [SerializeField] int minCount;
+    public int MinCount
+    {
+        get
+        {
+            return minCount;
+        }
+    }
 
     private void Awake()
     {

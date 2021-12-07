@@ -8,17 +8,25 @@ public class Inventory : MonoBehaviour
     public delegate void InventoryUpdated();
     public InventoryUpdated inventoryUpdatedCallback;
 
+    // Called when an item is added to the inventory.
+    public delegate void ItemAddedToIventory(ItemInstance item);
+    public ItemAddedToIventory itemAddedToInventoryCallback;
+
+    // Called when an item is removed from the inventory.
+    public delegate void ItemRemovedFromIventory(ItemInstance item);
+    public ItemRemovedFromIventory itemRemovedFromInventoryCallback;
+
     // Called when an item is equipped.
     public delegate void ItemEquipped(ItemInstance item);
     public ItemEquipped itemEquippedCallback;
 
-    // Called when an item is consumed.
-    public delegate void ItemConsumed(ItemInstance item);
-    public ItemEquipped itemConsumedCallback;
-
     // Called when an item is unequipped.
     public delegate void ItemUnequipped(ItemInstance item);
     public ItemEquipped itemUnequippedCallback;
+
+    // Called when an item is consumed.
+    public delegate void ItemConsumed(ItemInstance item);
+    public ItemEquipped itemConsumedCallback;
 
     // Called when an item is picked up.
     public delegate void ItemPickedUp(ItemInstance item);
@@ -81,7 +89,7 @@ public class Inventory : MonoBehaviour
         // Add starting items to the backpack.
         foreach(ItemInstance item in startingItems)
         {
-            AddToBackPack(item);
+            AddToInventory(item);
 
             // Try equipping the item.
             Equip(backpack.Count - 1, true);
@@ -89,16 +97,18 @@ public class Inventory : MonoBehaviour
     }
 
     // Check whether a backpack index is valid.
-    public bool IsBackPackIndexValid(int backpackIndex)
+    public bool IsBackpackIndexValid(int backpackIndex)
     {
         return backpackIndex >= 0 && backpackIndex < backpack.Count;
     }
 
-    // Add an item to the backpack.
-    public void AddToBackPack(ItemInstance newItem)
+    // Add an item to the inventory.
+    public void AddToInventory(ItemInstance newItem)
     {
         if (!newItem || newItem.CurrentStackSize == 0)
             return;
+
+        ItemInstance newItemCopy = new ItemInstance(newItem.itemDefinition, newItem.CurrentStackSize);
 
         // Find the item in the inventory that matches the new item.
         for (int i = 0; i < backpack.Count; i++)
@@ -132,10 +142,11 @@ public class Inventory : MonoBehaviour
             //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
         }
 
+        itemAddedToInventoryCallback?.Invoke(newItemCopy);
         inventoryUpdatedCallback?.Invoke();
     }
 
-    public void AddToBackPack(ItemDefinition newItem)
+    public void AddToInventory(ItemDefinition newItem)
     {
         if (!newItem)
             return;
@@ -143,14 +154,14 @@ public class Inventory : MonoBehaviour
         // Create an instance of the new item.
         ItemInstance newItemInstance = new ItemInstance(newItem);
 
-        AddToBackPack(newItemInstance);
+        AddToInventory(newItemInstance);
     }
 
-    // Remove an item at an index with the specified quantity from the inventory.
+    // Remove an item at a backpack index with the specified quantity from the inventory.
     // If the quantity is lower than 0, then the whole item is removed from the inventory.
-    public void RemoveFromBackPack(int backpackIndex, int quantity = 1)
+    public void RemoveFromInventory(int backpackIndex, int quantity = 1)
     {
-        if (!IsBackPackIndexValid(backpackIndex) || quantity < 0)
+        if (!IsBackpackIndexValid(backpackIndex) || quantity < 0)
             return;
 
         // Get the item instance at the index.
@@ -167,6 +178,7 @@ public class Inventory : MonoBehaviour
             backpack[backpackIndex].CurrentStackSize -= quantity;
         }
 
+        itemRemovedFromInventoryCallback?.Invoke(removedItem);
         inventoryUpdatedCallback?.Invoke();
     }
 
@@ -174,7 +186,7 @@ public class Inventory : MonoBehaviour
     // If onlyEquipIfEmpty is true, the character only equips the item if equipmentSlot is empty. Otherwise, the character unequips the current item in equipmentSlot before equipping a new item. 
     void Equip(int backpackIndex, ref ItemInstance equipmentSlot, bool onlyEquipIfEmpty = false)
     {
-        if (!IsBackPackIndexValid(backpackIndex))
+        if (!IsBackpackIndexValid(backpackIndex))
             return;
 
         // Only characters can equip the item.
@@ -201,28 +213,9 @@ public class Inventory : MonoBehaviour
         inventoryUpdatedCallback?.Invoke();
     }
 
-    // Update the visual of an equipment slot.
-    void UpdateVisual(ItemInstance equipmentSlot, Transform equipmentTransform)
-    {
-        if (!equipmentTransform)
-            return;
-
-        // Destroy the old visual.
-        foreach (Transform childTransform in equipmentTransform)
-        {
-            Destroy(childTransform.gameObject);
-        }
-
-        // Instantiate a new visual.
-        if (equipmentSlot)
-        {
-            GameObject newEquipmentVisual = Instantiate(equipmentSlot.itemDefinition.mesh, equipmentTransform);
-        }
-    }
-
     public void Equip(int backpackIndex, bool onlyEquipIfEmpty = false)
     {
-        if (!IsBackPackIndexValid(backpackIndex))
+        if (!IsBackpackIndexValid(backpackIndex))
             return;
 
         // Equip a weapon.
@@ -274,7 +267,7 @@ public class Inventory : MonoBehaviour
 
         // Put the item back to the backpack.
         ItemInstance item = equipmentSlot;
-        AddToBackPack(item);
+        backpack.Add(item);
 
         equipmentSlot = null;
 
@@ -315,10 +308,29 @@ public class Inventory : MonoBehaviour
         UpdateVisual(armorLegs, armorRightLegTransform);
     }
 
+    // Update the visual of an equipment slot.
+    void UpdateVisual(ItemInstance equipmentSlot, Transform equipmentTransform)
+    {
+        if (!equipmentTransform)
+            return;
+
+        // Destroy the old visual.
+        foreach (Transform childTransform in equipmentTransform)
+        {
+            Destroy(childTransform.gameObject);
+        }
+
+        // Instantiate a new visual.
+        if (equipmentSlot)
+        {
+            GameObject newEquipmentVisual = Instantiate(equipmentSlot.itemDefinition.mesh, equipmentTransform);
+        }
+    }
+
     // Consume an item in the backpack.
     public void Consume(int backpackIndex)
     {
-        if (!IsBackPackIndexValid(backpackIndex))
+        if (!IsBackpackIndexValid(backpackIndex))
             return;
 
         // Only characters can consume the item.
@@ -344,6 +356,7 @@ public class Inventory : MonoBehaviour
                 }
 
                 ItemInstance consumedItem = new ItemInstance(item.itemDefinition, 1);
+                itemRemovedFromInventoryCallback?.Invoke(consumedItem);
                 itemConsumedCallback?.Invoke(consumedItem);
                 inventoryUpdatedCallback?.Invoke();
             }
@@ -364,7 +377,7 @@ public class Inventory : MonoBehaviour
         ItemInstance itemInstance = new ItemInstance(pickUp.ItemDefinition, pickUp.CurrentStackSize);
 
         // Add the item instance to the backpack.
-        AddToBackPack(itemInstance);
+        AddToInventory(itemInstance);
 
         // If autoEquip is true, try equipping the item.
         if (autoEquip)
@@ -383,7 +396,7 @@ public class Inventory : MonoBehaviour
     // Drop an item in the backpack.
     public void DropItemInBackpack(int backpackIndex, int quantity = -1)
     {
-        if (!IsBackPackIndexValid(backpackIndex))
+        if (!IsBackpackIndexValid(backpackIndex))
             return;
 
         // Ray cast to check if there is an obstacle in front of this object.
@@ -419,8 +432,9 @@ public class Inventory : MonoBehaviour
         GameObject pickUpObject = Instantiate(pickupPrefab, dropPosition, Quaternion.identity);
         pickUpObject.GetComponent<PickUp>().SetPickUp(pickUpInfo);
 
-        Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
+        //Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
 
+        itemRemovedFromInventoryCallback?.Invoke(pickUpInfo);
         itemDroppedCallback?.Invoke(pickUpInfo);
         inventoryUpdatedCallback?.Invoke();
     }
@@ -469,5 +483,24 @@ public class Inventory : MonoBehaviour
         DropItemInEquipmentSlot(ref armorLegs);
         UpdateVisual(armorLegs, armorLeftLegTransform);
         UpdateVisual(armorLegs, armorRightLegTransform);
+    }
+
+    // Count the number of items of the same type.
+    public int Count(ItemDefinition item)
+    {
+        int count = 0;
+
+        count += weapon == item ? weapon.CurrentStackSize : 0;
+        count += armorHead == item ? armorHead.CurrentStackSize : 0;
+        count += armorBody == item ? armorBody.CurrentStackSize : 0;
+        count += armorArms == item ? armorArms.CurrentStackSize : 0;
+        count += armorLegs == item ? armorLegs.CurrentStackSize : 0;
+
+        foreach (ItemInstance itemInBackpack in backpack)
+        {
+            count += itemInBackpack == item ? itemInBackpack.CurrentStackSize : 0;
+        }
+
+        return count;
     }
 }

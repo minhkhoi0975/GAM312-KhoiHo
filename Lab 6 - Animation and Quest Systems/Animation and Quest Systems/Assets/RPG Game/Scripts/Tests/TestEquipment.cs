@@ -39,7 +39,7 @@ public class TestEquipment : MonoBehaviour
             ItemInstance itemInstance = new ItemInstance(item);
 
             // Add the item to the backpack.
-            inventory.AddToBackPack(itemInstance);
+            inventory.AddToInventory(itemInstance);
 
             // Try equipping the item.
             inventory.Equip(inventory.backpack.Count - 1);

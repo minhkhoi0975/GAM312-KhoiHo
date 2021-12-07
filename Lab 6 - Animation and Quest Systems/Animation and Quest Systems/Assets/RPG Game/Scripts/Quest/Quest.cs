@@ -20,12 +20,33 @@ public enum QuestType
 public class Quest : ScriptableObject
 {
     [SerializeField] protected QuestType questType;
+    public QuestType QuestType
+    {
+        get
+        {
+            return QuestType;
+        }
+    }
 
     [SerializeField] string questName = "New Quest";
 
     [SerializeField] string questDescription = "No Description";
 
     [SerializeField] List<ItemInstance> rewardItems;
+    public List<ItemInstance> RewardItems
+    {
+        get
+        {
+            return rewardItems;
+        }
+    }
 
     [SerializeField] List<StatModifier> rewardStatChanges;
+    public List<StatModifier> RewardStatChanges
+    {
+        get
+        {
+            return rewardStatChanges;
+        }
+    }
 }

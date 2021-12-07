@@ -13,6 +13,13 @@ public class DeliveryQuest : Quest
 {
     // What item must be delivered?
     [SerializeField] ItemDefinition itemToDeliver;
+    public ItemDefinition ItemToDeliver
+    {
+        get
+        {
+            return itemToDeliver;
+        }
+    }
 
     private void Awake()
     {
