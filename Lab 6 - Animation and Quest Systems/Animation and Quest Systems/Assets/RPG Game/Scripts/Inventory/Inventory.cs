@@ -9,31 +9,31 @@ public class Inventory : MonoBehaviour
     public InventoryUpdated inventoryUpdatedCallback;
 
     // Called when an item is added to the inventory.
-    public delegate void ItemAddedToIventory(ItemInstance item);
-    public ItemAddedToIventory itemAddedToInventoryCallback;
+    public delegate void ItemAddedToInventory(ItemDefinition item, int quantity);
+    public ItemAddedToInventory itemAddedToInventoryCallback;
 
     // Called when an item is removed from the inventory.
-    public delegate void ItemRemovedFromIventory(ItemInstance item);
+    public delegate void ItemRemovedFromIventory(ItemDefinition removedItem, int quantity);
     public ItemRemovedFromIventory itemRemovedFromInventoryCallback;
 
     // Called when an item is equipped.
-    public delegate void ItemEquipped(ItemInstance item);
+    public delegate void ItemEquipped(ItemDefinition equippedItem);
     public ItemEquipped itemEquippedCallback;
 
     // Called when an item is unequipped.
-    public delegate void ItemUnequipped(ItemInstance item);
+    public delegate void ItemUnequipped(ItemDefinition unequippedItem);
     public ItemEquipped itemUnequippedCallback;
 
     // Called when an item is consumed.
-    public delegate void ItemConsumed(ItemInstance item);
+    public delegate void ItemConsumed(ItemDefinition consumedItem);
     public ItemEquipped itemConsumedCallback;
 
     // Called when an item is picked up.
-    public delegate void ItemPickedUp(ItemInstance item);
+    public delegate void ItemPickedUp(ItemDefinition pickedUpItem, int quantity);
     public ItemPickedUp itemPickedUpCallback;
 
     // Called when an item is dropped.
-    public delegate void ItemDropped(ItemInstance item);
+    public delegate void ItemDropped(ItemDefinition droppedItem, int quantity);
     public ItemDropped itemDroppedCallback;
 
     // Reference to the Character component of the game object.
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
     public ItemInstance armorBody;
     public ItemInstance armorArms;
     public ItemInstance armorLegs;
-       
+
     // Weapon being equipped by the player and not in the backpack.
     public ItemInstance weapon;
 
@@ -87,9 +87,9 @@ public class Inventory : MonoBehaviour
         }
 
         // Add starting items to the backpack.
-        foreach(ItemInstance item in startingItems)
+        foreach (ItemInstance item in startingItems)
         {
-            AddToInventory(item);
+            AddToBackpack(item);
 
             // Try equipping the item.
             Equip(backpack.Count - 1, true);
@@ -102,66 +102,58 @@ public class Inventory : MonoBehaviour
         return backpackIndex >= 0 && backpackIndex < backpack.Count;
     }
 
-    // Add an item to the inventory.
-    public void AddToInventory(ItemInstance newItem)
+    // Add an item to the backpack.
+    public void AddToBackpack(ItemDefinition newItem, int quantity = 1)
     {
-        if (!newItem || newItem.CurrentStackSize == 0)
+        if (!newItem || quantity <= 0)
             return;
 
-        ItemInstance newItemCopy = new ItemInstance(newItem.itemDefinition, newItem.CurrentStackSize);
+        int remainingQuantity = quantity;
 
-        // Find the item in the inventory that matches the new item.
-        for (int i = 0; i < backpack.Count; i++)
+        // Find the item slots in the inventory that matches the new item in order to add up that slot's stack size.
+        for (int i = 0; i < backpack.Count && remainingQuantity > 0; i++)
         {
-            if (backpack[i].itemDefinition == newItem.itemDefinition)
+            if (backpack[i] == newItem)
             {
                 // The same item in the inventory has enough empty space for the new item? 
                 // Merge that item and the new item into 1.
-                if (backpack[i].CurrentStackSize + newItem.CurrentStackSize <= backpack[i].itemDefinition.MaxStackSize)
+                if (backpack[i].CurrentStackSize + remainingQuantity <= backpack[i].itemDefinition.MaxStackSize)
                 {
-                    backpack[i].CurrentStackSize += newItem.CurrentStackSize;
-                    newItem.CurrentStackSize = 0;
-                    break;
+                    backpack[i].CurrentStackSize += remainingQuantity;
+                    remainingQuantity = 0;
                 }
+
                 // The item in the inventory is full?
                 // Move to another slot in the inventory.
                 else
                 {
                     int insertedQuantity = backpack[i].itemDefinition.MaxStackSize - backpack[i].CurrentStackSize;
                     backpack[i].CurrentStackSize = backpack[i].itemDefinition.MaxStackSize;
-                    newItem.CurrentStackSize -= insertedQuantity;
-                    //Debug.Log(insertedQuantity + "x" + newItem.itemDefinition.name + " has been added to slot " + i + "." + newItem.CurrentStackSize + " remaining.");
+                    remainingQuantity -= insertedQuantity;
                 }
             }
         }
 
-        // The remaining quantity is added at the end of the backpack.
-        if (newItem.CurrentStackSize > 0)
+        // The remaining quantity is added in the new slot.
+        if (remainingQuantity > 0)
         {
-            backpack.Add(newItem);
-            //Debug.Log(newItem.CurrentStackSize + "x" + newItem.itemDefinition.name + " has been added to slot " + (backpack.Count - 1) + ".");
+            ItemInstance newItemSlot = new ItemInstance(newItem, remainingQuantity);
+            backpack.Add(newItemSlot);
         }
 
-        itemAddedToInventoryCallback?.Invoke(newItemCopy);
+        itemAddedToInventoryCallback?.Invoke(newItem, quantity);
         inventoryUpdatedCallback?.Invoke();
     }
 
-    public void AddToInventory(ItemDefinition newItem)
+    public void AddToBackpack(ItemInstance newItem)
     {
-        if (!newItem)
-            return;
-
-        // Create an instance of the new item.
-        ItemInstance newItemInstance = new ItemInstance(newItem);
-
-        AddToInventory(newItemInstance);
+        AddToBackpack(newItem.itemDefinition, newItem.CurrentStackSize);
     }
 
     // Remove an item at a backpack index with the specified quantity from the inventory.
-    // If the quantity is lower than 0, then the whole item is removed from the inventory.
-    public void RemoveFromInventory(int backpackIndex, int quantity = 1)
+    public void RemoveFromBackpack(int backpackIndex, int quantity = 1)
     {
-        if (!IsBackpackIndexValid(backpackIndex) || quantity < 0)
+        if (!IsBackpackIndexValid(backpackIndex) || quantity <= 0)
             return;
 
         // Get the item instance at the index.
@@ -178,13 +170,48 @@ public class Inventory : MonoBehaviour
             backpack[backpackIndex].CurrentStackSize -= quantity;
         }
 
-        itemRemovedFromInventoryCallback?.Invoke(removedItem);
+        itemRemovedFromInventoryCallback?.Invoke(removedItem.itemDefinition, removedItem.CurrentStackSize);
+        inventoryUpdatedCallback?.Invoke();
+    }
+
+    // Remove an item with the specified quantity.
+    public void RemoveFromBackpack(ItemDefinition item, int quantity = 1)
+    {
+        if (quantity <= 0)
+            return;
+
+        // How many items left do we have to remove?
+        int quantityToRemove = quantity;
+
+        // The real number of items we removed.
+        int realRemovedQuantity = 0;
+
+        for (int i = backpack.Count - 1; i >= 0 && quantityToRemove > 0; i--)
+        {
+            if (backpack[i] == item)
+            {
+                if (quantityToRemove >= backpack[i].CurrentStackSize)
+                {
+                    quantityToRemove -= backpack[i].CurrentStackSize;
+                    realRemovedQuantity += backpack[i].CurrentStackSize;
+                    backpack.RemoveAt(i);
+                }
+                else
+                {
+                    backpack[i].CurrentStackSize -= quantityToRemove;
+                    realRemovedQuantity += quantityToRemove;
+                    quantityToRemove = 0;
+                }
+            }
+        }
+
+        itemRemovedFromInventoryCallback?.Invoke(item, realRemovedQuantity);
         inventoryUpdatedCallback?.Invoke();
     }
 
     // Equip an item in a slot.
-    // If onlyEquipIfEmpty is true, the character only equips the item if equipmentSlot is empty. Otherwise, the character unequips the current item in equipmentSlot before equipping a new item. 
-    void Equip(int backpackIndex, ref ItemInstance equipmentSlot, bool onlyEquipIfEmpty = false)
+    // If onlyEquipIfEmpty is true, the character only equips the item if equipmentSlot is null. Otherwise, the character unequips the current item in equipmentSlot before equipping a new item. 
+    void EquipToSlot(int backpackIndex, ref ItemInstance equipmentSlot, bool onlyEquipIfEmpty = false)
     {
         if (!IsBackpackIndexValid(backpackIndex))
             return;
@@ -221,7 +248,7 @@ public class Inventory : MonoBehaviour
         // Equip a weapon.
         if (backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Weapon))
         {
-            Equip(backpackIndex, ref weapon, onlyEquipIfEmpty);
+            EquipToSlot(backpackIndex, ref weapon, onlyEquipIfEmpty);
             UpdateVisual(weapon, weaponTransform);
             character.Animator.runtimeAnimatorController = ((Weapon)weapon).animatorOverrideController;
         }
@@ -232,23 +259,23 @@ public class Inventory : MonoBehaviour
             switch (((Armor)(backpack[backpackIndex].itemDefinition)).armorSlot)
             {
                 case ArmorSlot.Head:
-                    Equip(backpackIndex, ref armorHead, onlyEquipIfEmpty);
+                    EquipToSlot(backpackIndex, ref armorHead, onlyEquipIfEmpty);
                     UpdateVisual(armorHead, armorHeadTransform);
                     break;
 
                 case ArmorSlot.Body:
-                    Equip(backpackIndex, ref armorBody, onlyEquipIfEmpty);
+                    EquipToSlot(backpackIndex, ref armorBody, onlyEquipIfEmpty);
                     UpdateVisual(armorBody, armorBodyTransform);
                     break;
 
                 case ArmorSlot.Arms:
-                    Equip(backpackIndex, ref armorArms, onlyEquipIfEmpty);
+                    EquipToSlot(backpackIndex, ref armorArms, onlyEquipIfEmpty);
                     UpdateVisual(armorArms, armorLeftArmTransform);
                     UpdateVisual(armorArms, armorRightArmTransform);
                     break;
 
                 case ArmorSlot.Legs:
-                    Equip(backpackIndex, ref armorLegs, onlyEquipIfEmpty);
+                    EquipToSlot(backpackIndex, ref armorLegs, onlyEquipIfEmpty);
                     UpdateVisual(armorLegs, armorLeftLegTransform);
                     UpdateVisual(armorLegs, armorRightLegTransform);
                     break;
@@ -337,28 +364,37 @@ public class Inventory : MonoBehaviour
         if (!character)
             return;
 
-        ItemInstance item = backpack[backpackIndex];
-        if (item)
+        if (backpack[backpackIndex] && backpack[backpackIndex].itemDefinition.IsOfType(ItemType.Consumable))
         {
-            if (item.itemDefinition.IsOfType(ItemType.Consumable))
+            ItemDefinition consumedItem = backpack[backpackIndex];
+
+            consumedItem.OnConsumed(character);
+
+            // I have used up the item. Remove it from the inventory.
+            if (backpack[backpackIndex].CurrentStackSize == 1)
             {
-                item.itemDefinition.OnConsumed(character);
+                backpack.RemoveAt(backpackIndex);
+            }
+            // If the item is not used up, decrement its quantity.
+            else
+            {
+                backpack[backpackIndex].CurrentStackSize--;
+            }
 
-                // I have used up the item. Remove it from the inventory.
-                if (item.CurrentStackSize == 1)
-                {
-                    backpack.RemoveAt(backpackIndex);
-                }
-                // If the item is not used up, decrement its quantity.
-                else
-                {
-                    item.CurrentStackSize--;
-                }
+            itemRemovedFromInventoryCallback?.Invoke(consumedItem, 1);
+            itemConsumedCallback?.Invoke(consumedItem);
+            inventoryUpdatedCallback?.Invoke();
+        }
+    }
 
-                ItemInstance consumedItem = new ItemInstance(item.itemDefinition, 1);
-                itemRemovedFromInventoryCallback?.Invoke(consumedItem);
-                itemConsumedCallback?.Invoke(consumedItem);
-                inventoryUpdatedCallback?.Invoke();
+    public void Consume(ItemDefinition item)
+    {
+        for (int i = 0; i < backpack.Count; i++)
+        {
+            if (backpack[i] == item && backpack[i].itemDefinition.IsOfType(ItemType.Consumable))
+            {
+                Consume(i);
+                return;
             }
         }
     }
@@ -377,7 +413,7 @@ public class Inventory : MonoBehaviour
         ItemInstance itemInstance = new ItemInstance(pickUp.ItemDefinition, pickUp.CurrentStackSize);
 
         // Add the item instance to the backpack.
-        AddToInventory(itemInstance);
+        AddToBackpack(itemInstance);
 
         // If autoEquip is true, try equipping the item.
         if (autoEquip)
@@ -385,12 +421,10 @@ public class Inventory : MonoBehaviour
             Equip(backpack.Count - 1, true);
         }
 
-        // Create another copy of item instance for itemPickedUpCallback since currentStackSize of itemInstance may have been changed.
-        ItemInstance callbackItemInstance = new ItemInstance(pickUp.ItemDefinition, pickUp.CurrentStackSize);
-        itemPickedUpCallback?.Invoke(callbackItemInstance);
+        itemPickedUpCallback?.Invoke(pickUp.ItemDefinition, pickUp.CurrentStackSize);
 
         // Destroy the pick-up object.
-        Destroy(pickUp.gameObject);   
+        Destroy(pickUp.gameObject);
     }
 
     // Drop an item in the backpack.
@@ -434,8 +468,8 @@ public class Inventory : MonoBehaviour
 
         //Debug.Log("Dropped " + pickUpInfo.CurrentStackSize + "x" + pickUpInfo.itemDefinition.name);
 
-        itemRemovedFromInventoryCallback?.Invoke(pickUpInfo);
-        itemDroppedCallback?.Invoke(pickUpInfo);
+        itemRemovedFromInventoryCallback?.Invoke(pickUpInfo.itemDefinition, pickUpInfo.CurrentStackSize);
+        itemDroppedCallback?.Invoke(pickUpInfo.itemDefinition, pickUpInfo.CurrentStackSize);
         inventoryUpdatedCallback?.Invoke();
     }
 

@@ -28,6 +28,13 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // Add functions to callbacks.
+        character.Inventory.itemAddedToInventoryCallback += OnItemAddedToInventory;
+        character.Inventory.itemRemovedFromInventoryCallback -= OnItemRemovedFromInventory;
+    }
+
     // Accept a quest
     public void AcceptQuest(Quest quest)
     {
@@ -49,10 +56,6 @@ public class QuestSystem : MonoBehaviour
             int numItems = character.Inventory.Count(((CollectionQuest)quest).ItemToCollect);
             activeQuests[activeQuests.Count - 1].progressValue = numItems;
         }
-
-        // Add functions to callbacks.
-        character.Inventory.itemAddedToInventoryCallback += OnItemAddedToInventory;
-        character.Inventory.itemRemovedFromInventoryCallback -= OnItemRemovedFromInventory;
     }
 
     // Complete a quest.
@@ -62,10 +65,6 @@ public class QuestSystem : MonoBehaviour
         {
             if (quest == completedQuest)
             {
-                // Remove functions from callbacks.
-                character.Inventory.itemAddedToInventoryCallback -= OnItemAddedToInventory;
-                character.Inventory.itemRemovedFromInventoryCallback -= OnItemRemovedFromInventory;
-
                 // Remove the quest from the list of active quests.
                 activeQuests.Remove(quest);
 
@@ -74,7 +73,7 @@ public class QuestSystem : MonoBehaviour
 
                 foreach (ItemInstance rewardItem in completedQuest.RewardItems)
                 {
-                    playerCharacter.Inventory.AddToInventory(rewardItem);
+                    playerCharacter.Inventory.AddToBackpack(rewardItem);
                 }
 
                 foreach (StatModifier statModifier in completedQuest.RewardStatChanges)
@@ -92,24 +91,24 @@ public class QuestSystem : MonoBehaviour
     // CALLBACKS
     // ---------------
 
-    public void OnItemAddedToInventory(ItemInstance item)
+    public void OnItemAddedToInventory(ItemDefinition item, int quantity)
     {
         foreach (QuestProgress quest in activeQuests)
         {
             if (quest.Quest.QuestType == QuestType.Collection && item == ((CollectionQuest)quest).ItemToCollect)
             {
-                quest.progressValue += item.CurrentStackSize;
+                quest.progressValue += quantity;
             }
         }
     }
 
-    public void OnItemRemovedFromInventory(ItemInstance item)
+    public void OnItemRemovedFromInventory(ItemDefinition item, int quantity)
     {
         foreach (QuestProgress quest in activeQuests)
         {
             if (quest.Quest.QuestType == QuestType.Collection && item == ((CollectionQuest)quest).ItemToCollect)
             {
-                quest.progressValue -= item.CurrentStackSize;
+                quest.progressValue -= quantity;
             }
         }
     }

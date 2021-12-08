@@ -78,7 +78,7 @@ public class ItemDefinition : ScriptableObject
                 character.StatSystem.AddModifier(statModifer);
             }
 
-            Debug.Log(character.gameObject.name + " has equipped " + name);
+            // Debug.Log(character.gameObject.name + " has equipped " + name);
         }
     }
 
@@ -106,7 +106,7 @@ public class ItemDefinition : ScriptableObject
                 character.StatSystem.RemoveAttachedModifier(statModifer);
             }
 
-            Debug.Log(character.gameObject.name + " has unequipped " + name);
+            // Debug.Log(character.gameObject.name + " has unequipped " + name);
         }
     }
 
@@ -134,7 +134,7 @@ public class ItemDefinition : ScriptableObject
                 character.StatSystem.AddModifier(statModifer);
             }
 
-            Debug.Log(character.gameObject.name + " has consumed " + name);
+            // Debug.Log(character.gameObject.name + " has consumed " + name);
         }
     }
 

@@ -68,29 +68,29 @@ public class HUDPanel : MonoBehaviour
         }
     }
 
-    void OnItemEquipped(ItemInstance itemInstance)
+    void OnItemEquipped(ItemDefinition equippedItem)
     {
-        DisplayMessage("You have equipped " + itemInstance.itemDefinition.name + ".");
+        DisplayMessage("You have equipped " + equippedItem + ".");
     }
 
-    void OnItemUnequipped(ItemInstance itemInstance)
+    void OnItemUnequipped(ItemDefinition unequippedItem)
     {
-        DisplayMessage("You have unequipped " + itemInstance.itemDefinition.name + ".");
+        DisplayMessage("You have unequipped " + unequippedItem + ".");
     }
 
-    void OnItemConsumed(ItemInstance itemInstance)
+    void OnItemConsumed(ItemDefinition consumedItem)
     {
-        DisplayMessage("You have consumed " + itemInstance.itemDefinition.name + ".");
+        DisplayMessage("You have consumed " + consumedItem.name + ".");
     }
 
-    void OnItemPickedUp(ItemInstance itemInstance)
+    void OnItemPickedUp(ItemDefinition pickedUpItem, int quantity)
     {
-        DisplayMessage("You have picked up " + itemInstance.CurrentStackSize + " x " + itemInstance.itemDefinition.name + ".");
+        DisplayMessage("You have picked up " + quantity + " x " + pickedUpItem.name + ".");
     }
 
-    void OnItemDropped(ItemInstance itemInstance)
+    void OnItemDropped(ItemDefinition droppedItem, int quantity)
     {
-        DisplayMessage("You have dropped " + itemInstance.CurrentStackSize + " x " + itemInstance.itemDefinition.name + ".");
+        DisplayMessage("You have dropped " + quantity + " x " + droppedItem.name + ".");
     }
 
     // Display a message on screen.
