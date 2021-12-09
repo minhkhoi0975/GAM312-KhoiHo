@@ -12,9 +12,23 @@ public class DestroyQuest : Quest
 {
     // The prefab of enemies that have to be destroyed.
     [SerializeField] GameObject enemyPrefab;
+    public GameObject EnemyPrefab
+    {
+        get
+        {
+            return enemyPrefab;
+        }
+    }
 
     // How many enemies have to be destroyed?
     [SerializeField] int numEnemiesToDestroy;
+    public int NumEnemiesToDestroy
+    {
+        get
+        {
+            return numEnemiesToDestroy;
+        }
+    }
 
     private void Awake()
     {

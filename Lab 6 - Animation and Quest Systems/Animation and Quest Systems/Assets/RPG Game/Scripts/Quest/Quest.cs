@@ -29,8 +29,22 @@ public class Quest : ScriptableObject
     }
 
     [SerializeField] string questName = "New Quest";
+    public string QuestName
+    {
+        get
+        {
+            return questName;
+        }
+    }
 
     [SerializeField] string questDescription = "No Description";
+    public string QuestDescription
+    {
+        get
+        {
+            return questDescription;
+        }
+    }
 
     [SerializeField] List<ItemInstance> rewardItems;
     public List<ItemInstance> RewardItems

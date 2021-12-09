@@ -11,6 +11,10 @@ using UnityEngine;
 [RequireComponent(typeof(StatSystem))]
 public class Health : MonoBehaviour
 {
+    // Callback when the game object is destroyed.
+    public delegate void OnGameObjectDestroyed(GameObject gameObject);
+    public OnGameObjectDestroyed onGameObjectDestroyedCallback;
+
     // We need to reference the stat system in order to get current health, maximum health and damage resistance.
     [SerializeField] StatSystem statSystem;
     public float CurrentHealth
@@ -49,6 +53,15 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlayerCharacterInput player = FindObjectOfType<PlayerCharacterInput>();
+        if(player)
+        {
+            onGameObjectDestroyedCallback += player.gameObject.GetComponent<QuestSystem>().OnGameObjectDestroyed;
+        }
+    }
+
     // Take damage.
     public void TakeDamage(float damageFromSource)
     {
@@ -77,6 +90,8 @@ public class Health : MonoBehaviour
 
     public virtual IEnumerator Die()
     {
+        onGameObjectDestroyedCallback?.Invoke(gameObject);
+
         yield return new WaitForSeconds(destroyDelayTimeInSeconds);
         Destroy(gameObjectToDestroy);
     }

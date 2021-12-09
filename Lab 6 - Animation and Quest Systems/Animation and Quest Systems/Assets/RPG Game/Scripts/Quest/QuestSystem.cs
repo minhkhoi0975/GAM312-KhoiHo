@@ -15,6 +15,17 @@ public class QuestSystem : MonoBehaviour
 
     // List of active quests.
     [SerializeField] List<QuestProgress> activeQuests = new List<QuestProgress>();
+    public List<QuestProgress> ActiveQuests
+    {
+        get
+        {
+            return activeQuests;
+        }
+    }
+
+    // Callback when a quest starts.
+    public delegate void QuestStartedCallback(Quest quest);
+    public QuestStartedCallback questStartedCallback;
 
     // Callback when a quest is completed.
     public delegate void QuestCompletedCallback(Quest quest);
@@ -55,13 +66,10 @@ public class QuestSystem : MonoBehaviour
         {
             int numItems = character.Inventory.Count(((CollectionQuest)quest).ItemToCollect);
             activeQuests[activeQuests.Count - 1].progressValue = numItems;
-
-            // Character already got all the items? Immediately complete the quest.
-            if(activeQuests[activeQuests.Count - 1].progressValue >= ((CollectionQuest)quest).MinCount)
-            {
-                CompleteQuest(quest);
-            }
         }
+
+        questStartedCallback?.Invoke(quest);
+        Debug.Log("Quest started: " + quest.QuestName);
     }
 
     // Complete a quest.
@@ -94,6 +102,7 @@ public class QuestSystem : MonoBehaviour
                 }
 
                 questCompletedCallback?.Invoke(completedQuest);
+                Debug.Log("Quest completed: " + completedQuest.QuestName);
                 return;
             }
         }
@@ -105,29 +114,14 @@ public class QuestSystem : MonoBehaviour
 
     public void OnItemAddedToInventory(ItemDefinition addedItem, int quantity)
     {
-        int i = 0;
-        
-        while (i < activeQuests.Count)
+        foreach (QuestProgress quest in activeQuests)
         {
-            QuestProgress questProgress = activeQuests[i];
-
-            if (questProgress.Quest.QuestType == QuestType.Collection && addedItem == ((CollectionQuest)questProgress).ItemToCollect)
+            if (quest.Quest.QuestType == QuestType.Collection)
             {
-                questProgress.progressValue += quantity;
-
-                if (questProgress.progressValue >= character.Inventory.Count(addedItem))
+                if (addedItem == ((CollectionQuest)quest).ItemToCollect)
                 {
-                    CompleteQuest(questProgress);
+                    quest.progressValue += quantity;
                 }
-                else
-                {
-                    i++;
-                    continue;
-                }
-            }
-            else
-            {
-                i++;
             }
         }
     }
@@ -136,9 +130,27 @@ public class QuestSystem : MonoBehaviour
     {
         foreach (QuestProgress quest in activeQuests)
         {
-            if (quest.Quest.QuestType == QuestType.Collection && removedItem == ((CollectionQuest)quest).ItemToCollect)
+            if (quest.Quest.QuestType == QuestType.Collection)
             {
-                quest.progressValue -= quantity;
+                if (removedItem == ((CollectionQuest)quest).ItemToCollect)
+                {
+                    quest.progressValue -= quantity;
+                }
+            }
+        }
+    }
+
+    public void OnGameObjectDestroyed(GameObject destroyedGameObject)
+    {
+        foreach (QuestProgress quest in activeQuests)
+        {
+            if (quest.Quest.QuestType == QuestType.Destroy)
+            {
+                // Need to find a better way to find the prefab from the gameobject.
+                if (destroyedGameObject.name.StartsWith(((DestroyQuest)quest).EnemyPrefab.name))
+                {
+                    quest.progressValue++;
+                }
             }
         }
     }
