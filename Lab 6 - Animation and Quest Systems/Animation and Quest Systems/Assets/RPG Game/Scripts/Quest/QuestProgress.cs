@@ -37,7 +37,7 @@ public class QuestProgress
 
     public static bool operator ==(QuestProgress left, Quest right)
     {
-        return left.quest = right;
+        return left.quest == right;
     }
 
     public static bool operator !=(QuestProgress left, Quest right)

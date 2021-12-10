@@ -27,6 +27,10 @@ public class QuestSystem : MonoBehaviour
     public delegate void QuestStartedCallback(Quest quest);
     public QuestStartedCallback questStartedCallback;
 
+    // Callback when a quest's progression changes.
+    public delegate void QuestProgressionUpdated(Quest quest, int progressValue);
+    public QuestProgressionUpdated questProgressionUpdatedCallback;
+
     // Callback when a quest is completed.
     public delegate void QuestCompletedCallback(Quest quest);
     public QuestCompletedCallback questCompletedCallback;
@@ -77,7 +81,7 @@ public class QuestSystem : MonoBehaviour
     {
         foreach (QuestProgress quest in activeQuests)
         {
-            if (quest == completedQuest)
+            if (quest.Quest == completedQuest)
             {
                 // If the quest is Colect quest, removed all collected items.
                 if (quest.Quest.QuestType == QuestType.Collection)
@@ -112,6 +116,7 @@ public class QuestSystem : MonoBehaviour
     // CALLBACKS
     // ---------------
 
+    // Called when an item is added to the inventory.
     public void OnItemAddedToInventory(ItemDefinition addedItem, int quantity)
     {
         foreach (QuestProgress quest in activeQuests)
@@ -121,11 +126,13 @@ public class QuestSystem : MonoBehaviour
                 if (addedItem == ((CollectionQuest)quest).ItemToCollect)
                 {
                     quest.progressValue += quantity;
+                    questProgressionUpdatedCallback?.Invoke(quest, quest.progressValue);
                 }
             }
         }
     }
 
+    // Called when an item is removed from the inventory.
     public void OnItemRemovedFromInventory(ItemDefinition removedItem, int quantity)
     {
         foreach (QuestProgress quest in activeQuests)
@@ -135,11 +142,13 @@ public class QuestSystem : MonoBehaviour
                 if (removedItem == ((CollectionQuest)quest).ItemToCollect)
                 {
                     quest.progressValue -= quantity;
+                    questProgressionUpdatedCallback?.Invoke(quest, quest.progressValue);
                 }
             }
         }
     }
 
+    // Called when a game object is destroyed.
     public void OnGameObjectDestroyed(GameObject destroyedGameObject)
     {
         foreach (QuestProgress quest in activeQuests)
@@ -150,6 +159,7 @@ public class QuestSystem : MonoBehaviour
                 if (destroyedGameObject.name.StartsWith(((DestroyQuest)quest).EnemyPrefab.name))
                 {
                     quest.progressValue++;
+                    questProgressionUpdatedCallback?.Invoke(quest, quest.progressValue);
                 }
             }
         }

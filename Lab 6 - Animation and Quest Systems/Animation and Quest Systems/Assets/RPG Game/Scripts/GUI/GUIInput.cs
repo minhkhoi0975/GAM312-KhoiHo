@@ -10,101 +10,101 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
+public class InputPanelPair
+{
+    public string input;
+    public bool isJoystickAxis;  // true = input is a joystick axis, false = input is a button
+    public GameObject panel;
+}
+
 public class GUIInput : MonoBehaviour
 {
-    // Reference to the inventory panel.
-    public InventoryPanelLogic inventoryPanel;
+    // List of all inputs and respective panels.
+    public List<InputPanelPair> inputPanelPairs;
 
-    // Reference to the stats panel.
-    public StatPanelLogic statsPanel;
+    // The panel the player has recently opened.
+    GameObject lastOpenedPanel;
+    public GameObject ActivePanel
+    {
+        get
+        {
+            return lastOpenedPanel;
+        }
+    }
 
-    // Is stats button down (Xbox One controller)?
-    bool statsButtonDown = false;
+    // Is the joystick button down (used for some Xbox One buttons)?
+    bool joystickButtonDown = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!inventoryPanel)
-        {
-            inventoryPanel = GetComponent<InventoryPanelLogic>();
-        }
-        if (!inventoryPanel)
-        {
-            inventoryPanel = GetComponentInChildren<InventoryPanelLogic>(true);
-        }
-
-        if(!statsPanel)
-        {
-            statsPanel = GetComponent<StatPanelLogic>();
-        }
-        if(!statsPanel)
-        {
-            statsPanel = GetComponentInChildren<StatPanelLogic>(true);
-        }
+        // Remove all invalid input-panel pairs.
+        inputPanelPairs.RemoveAll(inputPanelPair => inputPanelPair.input.Trim() == "" || !inputPanelPair.panel);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Open/Close the inventory.
-        if (Input.GetButtonDown("Inventory"))
+        foreach (InputPanelPair inputPanelPair in inputPanelPairs)
         {
-            // Show the inventory UI.
-            inventoryPanel.gameObject.SetActive(!inventoryPanel.gameObject.activeSelf);
-
-            if (inventoryPanel.gameObject.activeSelf)
+            // Input from joystick.
+            if (inputPanelPair.isJoystickAxis)
             {
-                inventoryPanel.MakeEventSystemSelectFirstSlot();
+                if (Input.GetAxis(inputPanelPair.input) == 1.0f)
+                {
+                    if (!joystickButtonDown)
+                    {
+                        ProcessInput(inputPanelPair);
+                        joystickButtonDown = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    joystickButtonDown = false;
+                }
             }
+
+            // Input from button.
             else
             {
-                // When closing the inventory, close the Drop Item panel as well.
-                DropItemPanelLogic dropItemPanel = inventoryPanel.gameObject.GetComponentInChildren<DropItemPanelLogic>(true);
-                if (dropItemPanel)
+                if (Input.GetButtonDown(inputPanelPair.input))
                 {
-                    dropItemPanel.gameObject.SetActive(false);
+                    ProcessInput(inputPanelPair);
+                    break;
                 }
             }
         }
+    }
 
-        // Open/Close the stats (keyboard).
-        if(Input.GetButtonDown("Stats"))
+    void ProcessInput(InputPanelPair inputPanelPair)
+    {
+        if (inputPanelPair.panel != lastOpenedPanel)
         {
-            // Show the stats UI.
-            statsPanel.gameObject.SetActive(!statsPanel.gameObject.activeSelf);
-        }
-
-        // Open/Close the stats (Xbox One controller).
-        if(Input.GetAxis("StatsController") == 1.0f)
-        {
-            if(!statsButtonDown)
+            // Close the previous active panel.
+            if (lastOpenedPanel)
             {
-                // Show the stats UI.
-                statsPanel.gameObject.SetActive(!statsPanel.gameObject.activeSelf);
-
-                statsButtonDown = true;
+                lastOpenedPanel.SetActive(false);
             }
+
+            // Set and open the new active panel.
+            lastOpenedPanel = inputPanelPair.panel;
+            lastOpenedPanel.SetActive(true);
         }
         else
         {
-            statsButtonDown = false;
+            lastOpenedPanel.SetActive(!lastOpenedPanel.activeInHierarchy);
         }
 
-
-        // If at least one of the panels are active, keep the game paused.
-        if (AreAllPanelsInactive())
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
+        // If lastOpenedPanel is active, pause the game.
+        if (lastOpenedPanel && lastOpenedPanel.activeInHierarchy)
         {
             Time.timeScale = 0.0f;
         }
-    }
-
-    // Check if all the panels are inactive.
-    bool AreAllPanelsInactive()
-    {
-        return !inventoryPanel.gameObject.activeSelf && !statsPanel.gameObject.activeSelf;
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
     }
 }

@@ -72,7 +72,7 @@ public class QuestTrigger : MonoBehaviour
             for (int i = 0; i < character.QuestSystem.ActiveQuests.Count; i++)
             {
                 QuestProgress activeQuest = character.QuestSystem.ActiveQuests[i];
-                if (activeQuest == quest)
+                if (activeQuest.Quest == quest)
                 {
                     bool isQuestCompleted = false;
 
