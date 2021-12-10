@@ -12,11 +12,8 @@ using UnityEngine.UI;
 
 public class HUDPanel : MonoBehaviour
 {
-    // Reference to the player's inventory.
-    [SerializeField] Inventory playerInventory;
-
-    // Reference to the player's stats.
-    [SerializeField] StatSystem playerStats;
+    // Reference to the player character.
+    [SerializeField] Character playerCharacter;
 
     // Reference to texts on HUD.
     public Text textMessage;
@@ -31,19 +28,24 @@ public class HUDPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (playerInventory)
+        if( !playerCharacter)
         {
-            playerInventory.inventoryUpdatedCallback += UpdateStats;
-            playerInventory.itemEquippedCallback += OnItemEquipped;
-            playerInventory.itemUnequippedCallback += OnItemUnequipped;
-            playerInventory.itemConsumedCallback += OnItemConsumed;
-            playerInventory.itemPickedUpCallback += OnItemPickedUp;
-            playerInventory.itemDroppedCallback += OnItemDropped;
+            playerCharacter = FindObjectOfType<PlayerCharacterInput>().GetComponent<Character>();
         }
 
-        if (playerStats)
+        if (playerCharacter.Inventory)
         {
-            playerStats.statsUpdatedCallback += UpdateStats;
+            playerCharacter.Inventory.inventoryUpdatedCallback += UpdateStats;
+            playerCharacter.Inventory.itemEquippedCallback += OnItemEquipped;
+            playerCharacter.Inventory.itemUnequippedCallback += OnItemUnequipped;
+            playerCharacter.Inventory.itemConsumedCallback += OnItemConsumed;
+            playerCharacter.Inventory.itemPickedUpCallback += OnItemPickedUp;
+            playerCharacter.Inventory.itemDroppedCallback += OnItemDropped;
+        }
+
+        if (playerCharacter.StatSystem)
+        {
+            playerCharacter.StatSystem.statsUpdatedCallback += UpdateStats;
         }
 
         UpdateStats();
@@ -51,20 +53,20 @@ public class HUDPanel : MonoBehaviour
 
     void UpdateStats()
     {
-        if (playerStats)
+        if (playerCharacter.StatSystem)
         {
-            textHealth.text = "HP: " + playerStats.GetCurrentValue(StatType.CurrentHealth) + "/" + playerStats.GetMaxValue(StatType.CurrentHealth);
-            textDamageResistance.text = "DR: " + playerStats.GetCurrentValue(StatType.DamageResistance);
+            textHealth.text = "HP: " + playerCharacter.StatSystem.GetCurrentValue(StatType.CurrentHealth) + "/" + playerCharacter.StatSystem.GetMaxValue(StatType.CurrentHealth);
+            textDamageResistance.text = "DR: " + playerCharacter.StatSystem.GetCurrentValue(StatType.DamageResistance);
 
-            if (playerInventory && playerInventory.weapon)
+            if (playerCharacter.Inventory && playerCharacter.Inventory.weapon)
             {
-                textWeaponName.text = playerInventory.weapon.itemDefinition.name;
+                textWeaponName.text = playerCharacter.Inventory.weapon.itemDefinition.name;
             }
             else
             {
                 textWeaponName.text = "Unarmed";
             }
-            textDamage.text = "DM: " + playerStats.GetCurrentValue(StatType.Damage);
+            textDamage.text = "DM: " + playerCharacter.StatSystem.GetCurrentValue(StatType.Damage);
         }
     }
 

@@ -2013,7 +2013,7 @@ MonoBehaviour:
   legsSlotTransform: {fileID: 1730753715352635672}
   weaponSlotTransform: {fileID: 8433519133332765861}
   backpackScrollViewContentTransform: {fileID: 8108249225816110079}
-  itemSlotButtonPrefab: {fileID: 8439932551002707782, guid: f26d7c7068d62274c9ec2e7f0f94cf3f,
+  itemSlotPrefab: {fileID: 8439932551002707782, guid: f26d7c7068d62274c9ec2e7f0f94cf3f,
     type: 3}
   equipmentPanel: {fileID: 5252410192740557502}
   backpackScrollview: {fileID: 8108249225949349031}

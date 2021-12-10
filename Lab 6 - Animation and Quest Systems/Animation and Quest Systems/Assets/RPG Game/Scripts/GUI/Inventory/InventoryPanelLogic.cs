@@ -21,18 +21,64 @@ public class InventoryPanelLogic : MonoBehaviour
     // Reference to the transform of the content of the backpack scroll view.
     public Transform backpackScrollViewContentTransform;
 
-    // Reference to all item slots.
-    List<GameObject> itemSlots = new List<GameObject>();
-    public List<GameObject> ItemSlots
+    // Prefab for an item slot.
+    public GameObject itemSlotPrefab;
+
+    // Reference to all item slots in the equipment panel.
+    GameObject headItemSlot;
+    public GameObject HeadItemSlot
     {
         get
         {
-            return itemSlots;
+            return headItemSlot;
         }
     }
 
-    // Prefab for an item slot button.
-    public GameObject itemSlotButtonPrefab;
+    GameObject bodyItemSlot;
+    public GameObject BodyItemSlot
+    {
+        get
+        {
+            return bodyItemSlot;
+        }
+    }
+
+    GameObject armsItemSlot;
+    public GameObject ArmsItemSlot
+    {
+        get
+        {
+            return armsItemSlot;
+        }
+    }
+
+    GameObject legsItemSlot;
+    public GameObject LegsItemSlot
+    {
+        get
+        {
+            return legsItemSlot;
+        }
+    }
+
+    GameObject weaponItemSlot;
+    public GameObject WeaponItemSlot
+    {
+        get
+        {
+            return weaponItemSlot;
+        }
+    }
+
+    // Reference to all item slots in the backpack scrollview.
+    List<GameObject> backpackItemSlots = new List<GameObject>();
+    public List<GameObject> BackpackItemSlots
+    {
+        get
+        {
+            return backpackItemSlots;
+        }
+    }
 
     // Reference to the Equipment panel object.
     public GameObject equipmentPanel;
@@ -79,45 +125,78 @@ public class InventoryPanelLogic : MonoBehaviour
             return;
         }
 
-        // Destroy old item slot buttons.
-        foreach (GameObject itemSlotButton in itemSlots)
-        {
-            Destroy(itemSlotButton);
-        }
-        itemSlots.Clear();
+        // Destroy old item slots.
+        DestroyItemSlots();
 
-        // Create new item slot buttons in the equipment panel.
-        if (inventory.armorHead)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.armorHead, headSlotTransform, ItemSlotType.Head));
-        }
-        if (inventory.armorBody)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.armorBody, chestSlotTransform, ItemSlotType.Chest));
-        }
-        if (inventory.armorArms)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.armorArms, armsSlotTransform, ItemSlotType.Arms));
-        }
-        if (inventory.armorLegs)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.armorLegs, legsSlotTransform, ItemSlotType.Legs));
-        }
-        if (inventory.weapon)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.weapon, weaponSlotTransform, ItemSlotType.Weapon));
-        }
-
-        // Create new item slot buttons in the backpack scrollview.
-        for (int i = 0; i < inventory.backpack.Count; i++)
-        {
-            itemSlots.Add(CreateItemSlotButton(inventory.backpack[i], backpackScrollViewContentTransform, ItemSlotType.Backpack, i));
-        }
+        // Create new item slots in the equipment panel.
+        CreateItemSlots();
 
         // If the Inventory panel is active, make the event system select the first item slot button.
         if (gameObject.activeInHierarchy)
         {
             MakeEventSystemSelectFirstSlot();
+        }
+    }
+
+    void DestroyItemSlots()
+    {
+        // Equipment
+        if (headItemSlot)
+        {
+            Destroy(headItemSlot);
+        }
+        if (bodyItemSlot)
+        {
+            Destroy(bodyItemSlot);
+        }
+        if (armsItemSlot)
+        {
+            Destroy(armsItemSlot);
+        }
+        if (legsItemSlot)
+        {
+            Destroy(legsItemSlot);
+        }
+        if (weaponItemSlot)
+        {
+            Destroy(weaponItemSlot);
+        }
+
+        // Backpack
+        foreach (GameObject itemSlot in backpackItemSlots)
+        {
+            Destroy(itemSlot);
+        }
+        backpackItemSlots.Clear();
+    }
+
+    void CreateItemSlots()
+    {
+        if (inventory.armorHead)
+        {
+            headItemSlot = CreateItemSlotButton(inventory.armorHead, headSlotTransform, ItemSlotType.Head);
+        }
+        if (inventory.armorBody)
+        {
+            bodyItemSlot = CreateItemSlotButton(inventory.armorBody, chestSlotTransform, ItemSlotType.Chest);
+        }
+        if (inventory.armorArms)
+        {
+            armsItemSlot = CreateItemSlotButton(inventory.armorArms, armsSlotTransform, ItemSlotType.Arms);
+        }
+        if (inventory.armorLegs)
+        {
+            legsItemSlot = CreateItemSlotButton(inventory.armorLegs, legsSlotTransform, ItemSlotType.Legs);
+        }
+        if (inventory.weapon)
+        {
+            weaponItemSlot = CreateItemSlotButton(inventory.weapon, weaponSlotTransform, ItemSlotType.Weapon);
+        }
+
+        // Create new item slots in the backpack scrollview.
+        for (int i = 0; i < inventory.backpack.Count; i++)
+        {
+            backpackItemSlots.Add(CreateItemSlotButton(inventory.backpack[i], backpackScrollViewContentTransform, ItemSlotType.Backpack, i));
         }
     }
 
@@ -128,7 +207,7 @@ public class InventoryPanelLogic : MonoBehaviour
             return null;
 
         // Instantiate an item slot.
-        GameObject itemSlot = Instantiate(itemSlotButtonPrefab, parentTransform);
+        GameObject itemSlot = Instantiate(itemSlotPrefab, parentTransform);
 
         ItemSlotLogic itemSlotLogic = itemSlot.GetComponent<ItemSlotLogic>();
 
@@ -160,27 +239,46 @@ public class InventoryPanelLogic : MonoBehaviour
     // Make the event system select the first item slot button.
     public void MakeEventSystemSelectFirstSlot()
     {
-        MakeEventSystemSelectItemSlot(0);
+        if (headItemSlot)
+        {
+            EventSystem.current.SetSelectedGameObject(headItemSlot);
+        }
+        else if (bodyItemSlot)
+        {
+            EventSystem.current.SetSelectedGameObject(bodyItemSlot);
+        }
+        else if (armsItemSlot)
+        {
+            EventSystem.current.SetSelectedGameObject(armsItemSlot);
+        }
+        else if (legsItemSlot)
+        {
+            EventSystem.current.SetSelectedGameObject(legsItemSlot);
+        }
+        else
+        {
+            MakeEventSystemSelectBackpackItemSlot(0);
+        }
     }
 
     // Make the event system select a particular item slot button.
-    public void MakeEventSystemSelectItemSlot(int itemSlotButtonIndex)
+    public void MakeEventSystemSelectBackpackItemSlot(int itemSlotIndex)
     {
-        if (itemSlots.Count > 0)
+        if (backpackItemSlots.Count > 0)
         {
             int index;
 
-            if (itemSlotButtonIndex < 0)
+            if (itemSlotIndex < 0)
                 index = 0;
-            else if (itemSlotButtonIndex >= itemSlots.Count)
-                index = itemSlots.Count - 1;
+            else if (itemSlotIndex >= backpackItemSlots.Count)
+                index = backpackItemSlots.Count - 1;
             else
-                index = itemSlotButtonIndex;
+                index = itemSlotIndex;
 
-            EventSystem.current.SetSelectedGameObject(itemSlots[index]);
+            EventSystem.current.SetSelectedGameObject(backpackItemSlots[index]);
 
             // Highlight the button to let the player know which button is selected.
-            itemSlots[0].GetComponent<Button>().OnSelect(null);
+            backpackItemSlots[0].GetComponent<Button>().OnSelect(null);
         }
     }
 }

@@ -21,6 +21,12 @@ public class DropItemPanelLogic : MonoBehaviour
     // The index of the selected item in the backpack.
     public int backpackIndex = -1;
 
+    private void OnEnable()
+    {
+        // Make the event system select the dropdown.
+        EventSystem.current.SetSelectedGameObject(dropQuantityDropDown.gameObject);
+    }
+
     // Set the options for the dropdown.
     public void SetDropDownOptions(int maxDropQuantity)
     {
