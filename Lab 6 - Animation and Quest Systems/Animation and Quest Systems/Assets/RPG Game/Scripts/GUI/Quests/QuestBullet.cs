@@ -29,7 +29,7 @@ public class QuestBullet : MonoBehaviour
         switch (quest.Quest.QuestType)
         {
             case QuestType.Collection:
-                objectiveText.text = quest.Quest.QuestName + ": Collect " + ((CollectionQuest)(quest.Quest)).MinCount + " " + ((CollectionQuest)(quest.Quest)).ItemToCollect.name;
+                objectiveText.text = "• " + quest.Quest.QuestName + ": Collect " + ((CollectionQuest)(quest.Quest)).MinCount + " " + ((CollectionQuest)(quest.Quest)).ItemToCollect.name + "(s)";
                 progressionText.text = quest.progressValue + "/" + ((CollectionQuest)(quest.Quest)).MinCount;
 
                 if(quest.progressValue == 0)
@@ -49,7 +49,7 @@ public class QuestBullet : MonoBehaviour
 
             case QuestType.Destroy:
 
-                objectiveText.text = quest.Quest.QuestName + ": Destroy " + ((DestroyQuest)(quest.Quest)).NumEnemiesToDestroy + " " + ((DestroyQuest)(quest.Quest)).EnemyPrefab.name;
+                objectiveText.text = "• " + quest.Quest.QuestName + ": Destroy " + ((DestroyQuest)(quest.Quest)).NumEnemiesToDestroy + " " + ((DestroyQuest)(quest.Quest)).EnemyPrefab.name + "(s)";
                 progressionText.text = quest.progressValue + "/" + ((DestroyQuest)(quest.Quest)).NumEnemiesToDestroy;
 
                 if (quest.progressValue == 0)

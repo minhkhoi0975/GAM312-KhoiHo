@@ -242,18 +242,27 @@ public class InventoryPanelLogic : MonoBehaviour
         if (headItemSlot)
         {
             EventSystem.current.SetSelectedGameObject(headItemSlot);
+            headItemSlot.GetComponent<Button>().OnSelect(null);
         }
         else if (bodyItemSlot)
         {
             EventSystem.current.SetSelectedGameObject(bodyItemSlot);
+            bodyItemSlot.GetComponent<Button>().OnSelect(null);
         }
         else if (armsItemSlot)
         {
             EventSystem.current.SetSelectedGameObject(armsItemSlot);
+            armsItemSlot.GetComponent<Button>().OnSelect(null);
         }
         else if (legsItemSlot)
         {
             EventSystem.current.SetSelectedGameObject(legsItemSlot);
+            legsItemSlot.GetComponent<Button>().OnSelect(null);
+        }
+        else if (weaponItemSlot)
+        {
+            EventSystem.current.SetSelectedGameObject(weaponItemSlot);
+            weaponItemSlot.GetComponent<Button>().OnSelect(null);
         }
         else
         {

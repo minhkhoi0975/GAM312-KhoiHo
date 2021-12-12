@@ -22,6 +22,12 @@ public class HUDPanel : MonoBehaviour
     public Text textWeaponName;
     public Text textDamage;
 
+    // Reference to the quest panel.
+    public RectTransform questPanel;
+
+    // Quest bullet prefab.
+    public GameObject questBulletPrefab;
+
     // The number of massages to be displayed on HUD.
     int messagesToDisplay = 0;
 
@@ -48,7 +54,15 @@ public class HUDPanel : MonoBehaviour
             playerCharacter.StatSystem.statsUpdatedCallback += UpdateStats;
         }
 
+        if (playerCharacter.QuestSystem)
+        {
+            playerCharacter.QuestSystem.questStartedCallback += OnQuestStarted;
+            playerCharacter.QuestSystem.questProgressionUpdatedCallback += OnQuestProgressionUpdated;
+            playerCharacter.QuestSystem.questCompletedCallback += OnQuestCompleted;
+        }
+
         UpdateStats();
+        UpdateQuests();
     }
 
     void UpdateStats()
@@ -67,6 +81,22 @@ public class HUDPanel : MonoBehaviour
                 textWeaponName.text = "Unarmed";
             }
             textDamage.text = "DM: " + playerCharacter.StatSystem.GetCurrentValue(StatType.Damage);
+        }
+    }
+
+    void UpdateQuests()
+    {
+        // Remove all the contents in queestPanel.
+        foreach (Transform childTransform in questPanel)
+        {
+            Destroy(childTransform.gameObject);
+        }
+
+        // Add new contents to contentTransform.
+        foreach (QuestProgress questProgress in playerCharacter.QuestSystem.ActiveQuests)
+        {
+            GameObject questBulletGameObject = Instantiate(questBulletPrefab, questPanel);
+            questBulletGameObject.GetComponent<QuestBullet>().SetQuestBullet(questProgress);
         }
     }
 
@@ -93,6 +123,23 @@ public class HUDPanel : MonoBehaviour
     void OnItemDropped(ItemDefinition droppedItem, int quantity)
     {
         DisplayMessage("You have dropped " + quantity + " x " + droppedItem.name + ".");
+    }
+
+    void OnQuestStarted(Quest quest)
+    {
+        DisplayMessage("Quest started: " + quest.QuestName);
+        UpdateQuests();
+    }
+
+    private void OnQuestProgressionUpdated(Quest quest, int progressValue)
+    {
+        UpdateQuests();
+    }
+
+    void OnQuestCompleted(Quest quest)
+    {
+        DisplayMessage("Quest completed: " + quest.QuestName);
+        UpdateQuests();
     }
 
     // Display a message on screen.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KillBandits
   m_EditorClassIdentifier: 
   questType: 1
-  questName: Kill 5 Bandits
+  questName: Troublesome Bandits
   questDescription: 5 bandits broke into a farmer's house and killed his daughter.
     He wants you to kill them in revenge for his daughter.
   rewardItems:

@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class QuestPanelLogic : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class QuestPanelLogic : MonoBehaviour
         questSystem.questCompletedCallback += OnQuestCompletedUpdated;
 
         UpdateQuestBullets();
+    }
+
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(contentTransform.parent.gameObject);
     }
 
     public void OnQuestStarted(Quest quest)

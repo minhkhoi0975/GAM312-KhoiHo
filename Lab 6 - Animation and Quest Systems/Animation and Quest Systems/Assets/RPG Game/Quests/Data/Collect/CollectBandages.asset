@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CollectBandages
   m_EditorClassIdentifier: 
   questType: 0
-  questName: Collect 10 Bandages
+  questName: Bandages, Where Art Thou?
   questDescription: 'A doctor is in trouble: He has run out of bandages. He wants
     you to collect 10 bandages and send them to him immediately before more patients
     die.'
