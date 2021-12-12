@@ -131,7 +131,7 @@ public class HUDPanel : MonoBehaviour
         UpdateQuests();
     }
 
-    private void OnQuestProgressionUpdated(Quest quest, int progressValue)
+    void OnQuestProgressionUpdated(Quest quest, int progressValue)
     {
         UpdateQuests();
     }
