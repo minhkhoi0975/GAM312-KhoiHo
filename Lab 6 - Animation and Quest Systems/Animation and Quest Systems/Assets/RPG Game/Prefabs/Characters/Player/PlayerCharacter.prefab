@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statSystem: {fileID: 611682381439544625}
   gameObjectToDestroy: {fileID: 2228463600266611084}
-  destroyDelayTimeInSeconds: 0
+  destroyDelayTimeInSeconds: 10
 --- !u!114 &1623792058676853221
 MonoBehaviour:
   m_ObjectHideFlags: 0

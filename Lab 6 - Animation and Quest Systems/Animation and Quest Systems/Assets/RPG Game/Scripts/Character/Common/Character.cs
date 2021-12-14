@@ -172,6 +172,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (health)
+        {
+            health.onGameObjectTakesDamageCallback += OnCharacterTakesDamage;
+            health.onGameObjectDestroyedCallback += OnCharacterDead;
+        }
+    }
+
     private void FixedUpdate()
     {
         UpdateFallingAnimation();
@@ -330,5 +339,18 @@ public class Character : MonoBehaviour
         {
             return damage;
         }
+    }
+
+    void OnCharacterTakesDamage(float damage)
+    {
+        animator.SetTrigger("isHurt");
+    }
+
+    void OnCharacterDead(GameObject gameObject)
+    {
+        // Disable collision.
+        rigidBodyComponent.isKinematic = true;
+
+        animator.SetTrigger("isDead");
     }
 }

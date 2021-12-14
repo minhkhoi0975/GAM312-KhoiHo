@@ -39,6 +39,10 @@ public class PlayerCharacterInput : MonoBehaviour
         if (Time.timeScale == 0.0f)
             return;
 
+        // Don't receive input if the character is dead.
+        if (character.Health.CurrentHealth <= 0.0f)
+            return;
+
         // Movement.
         verticalAxis = Input.GetAxisRaw("Vertical");
         horizontalAxis = Input.GetAxisRaw("Horizontal");

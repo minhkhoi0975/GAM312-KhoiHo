@@ -11,6 +11,10 @@ using UnityEngine;
 [RequireComponent(typeof(StatSystem))]
 public class Health : MonoBehaviour
 {
+    // Callback when the game object takes damage.
+    public delegate void OnGameObjectTakeDamage(float damage);
+    public OnGameObjectTakeDamage onGameObjectTakesDamageCallback;
+
     // Callback when the game object is destroyed.
     public delegate void OnGameObjectDestroyed(GameObject gameObject);
     public OnGameObjectDestroyed onGameObjectDestroyedCallback;
@@ -65,6 +69,10 @@ public class Health : MonoBehaviour
     // Take damage.
     public void TakeDamage(float damageFromSource)
     {
+        // Don't take damage if the character is already dead.
+        if (statSystem.GetCurrentValue(StatType.CurrentHealth) <= 0)
+            return;
+
         float finalDamage = damageFromSource - DamageResistance;
         Debug.Log("Damage: " + damageFromSource + " - " + DamageResistance + " = " + finalDamage);
 
@@ -72,12 +80,14 @@ public class Health : MonoBehaviour
         {
             StatModifier healthModifier = new StatModifier(StatType.CurrentHealth, StatModifierType.IncreaseBaseValue, -finalDamage);
             statSystem.AddModifier(healthModifier);
-        }
 
-        // Health goes below zero? Die.
-        if (CurrentHealth == 0)
-        {
-            StartCoroutine("Die");
+            // Health goes below zero? Die.
+            if (CurrentHealth == 0)
+            {
+                StartCoroutine("Die");
+            }
+
+            onGameObjectTakesDamageCallback?.Invoke(finalDamage);
         }
     }
 

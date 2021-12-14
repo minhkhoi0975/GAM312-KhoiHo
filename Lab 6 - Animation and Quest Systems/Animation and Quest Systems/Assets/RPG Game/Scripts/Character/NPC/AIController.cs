@@ -68,6 +68,8 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        character.Health.onGameObjectDestroyedCallback += OnCharacterDead;
+
         if (enemy == null)
         {
             PlayerCharacterInput player = FindObjectOfType<PlayerCharacterInput>();
@@ -174,5 +176,14 @@ public class AIController : MonoBehaviour
         {
             character.Animator.SetFloat("movementSpeed", 0.0f);
         }
+    }
+
+    void OnCharacterDead(GameObject gameObject)
+    {
+        // Stop moving.
+        navMeshAgent.isStopped = true;
+
+        // Destroy this component.
+        Destroy(this);
     }
 }
