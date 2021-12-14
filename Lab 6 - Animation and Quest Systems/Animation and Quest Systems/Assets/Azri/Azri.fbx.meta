@@ -28,7 +28,18 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1/BND_C_Spine2/BND_C_Spine3/BND_C_Spine4/BND_L_Clav1/BND_L_Arm1
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1/BND_C_Spine2/BND_C_Spine3/BND_C_Spine4/BND_R_Clav1/BND_R_Arm1
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1/BND_C_Spine2/BND_C_Pelvis1/BND_L_Leg1/BND_L_Leg2/BND_L_Leg3
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1/BND_C_Spine2/BND_C_Pelvis1/BND_R_Leg1/BND_R_Leg2/BND_R_Leg3
+    - joints/BND_C_World1/BND_C_Root/BND_C_Spine1/BND_C_Spine2/BND_C_Spine3/BND_C_Spine4/BND_L_Clav1/BND_L_Arm1/BND_L_Arm2/BND_L_Arm3
+    - joints/BND_C_World1/BND_C_Root
+    - rig/NLL_C_World1Zero1
+    - rig/NLL_C_WorldSpaceZero1
+    - joints/BND_C_World1
+    - rig
     extraUserProperties: []
     clipAnimations: []
     isReadable: 0

@@ -10,9 +10,6 @@ using UnityEngine;
 
 public class RootTransformFix : MonoBehaviour
 {
-    // The pivot of the character mesh.
-    [SerializeField] Transform pivotTransform;
-
     // The root of the character mesh.
     [SerializeField] Transform rootTransform;
 
