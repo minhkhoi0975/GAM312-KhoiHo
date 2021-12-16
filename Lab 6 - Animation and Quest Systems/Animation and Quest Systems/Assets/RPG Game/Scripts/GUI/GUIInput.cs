@@ -15,7 +15,8 @@ public class InputPanelPair
 {
     public string input;
     public bool isJoystickAxis;  // true = input is a joystick axis, false = input is a button
-    public GameObject panel;
+    public GameObject panel;     // The open/closed panel.
+    public bool isJoystickDown;  // Used for avoiding input from being processed while the player holds the joystick.
 }
 
 public class GUIInput : MonoBehaviour
@@ -32,9 +33,6 @@ public class GUIInput : MonoBehaviour
             return lastOpenedPanel;
         }
     }
-
-    // Is the joystick button down (used for some Xbox One buttons)?
-    bool joystickButtonDown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,16 +51,16 @@ public class GUIInput : MonoBehaviour
             {
                 if (Input.GetAxis(inputPanelPair.input) == 1.0f)
                 {
-                    if (!joystickButtonDown)
+                    if (!inputPanelPair.isJoystickDown)
                     {
                         ProcessInput(inputPanelPair);
-                        joystickButtonDown = true;
-                        break;
+                        inputPanelPair.isJoystickDown = true;             
                     }
+                    break;
                 }
                 else
                 {
-                    joystickButtonDown = false;
+                    inputPanelPair.isJoystickDown = false;
                 }
             }
 

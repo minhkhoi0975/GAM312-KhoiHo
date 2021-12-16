@@ -16,7 +16,6 @@ public enum QuestType
     Delivery = 2
 }
 
-[CreateAssetMenu(fileName = "New Quest", menuName = "Quests/Create a new Quest")]
 public class Quest : ScriptableObject
 {
     [SerializeField] protected QuestType questType;

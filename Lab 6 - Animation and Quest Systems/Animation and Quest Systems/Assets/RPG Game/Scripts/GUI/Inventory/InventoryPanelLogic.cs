@@ -134,6 +134,7 @@ public class InventoryPanelLogic : MonoBehaviour
         // If the Inventory panel is active, make the event system select the first item slot button.
         if (gameObject.activeInHierarchy)
         {
+            EventSystem.current.SetSelectedGameObject(null);
             MakeEventSystemSelectFirstSlot();
         }
     }

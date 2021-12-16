@@ -129,6 +129,9 @@ MonoBehaviour:
   - input: Quests
     isJoystickAxis: 0
     panel: {fileID: 3831269949564146656}
+  - input: QuestsController
+    isJoystickAxis: 1
+    panel: {fileID: 3831269949564146656}
 --- !u!1001 &483173025307408139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,6 +496,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6759490866001901822}
     m_Modifications:
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 93797196559810911, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3623683825274571910, guid: cdba8a2a5a3526341ad1fe2ca125f70c,
         type: 3}
       propertyPath: playerStats
