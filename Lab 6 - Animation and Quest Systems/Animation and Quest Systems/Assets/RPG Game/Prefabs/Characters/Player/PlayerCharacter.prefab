@@ -204,7 +204,7 @@ MonoBehaviour:
   armorRightArmTransform: {fileID: 6775840267785494132}
   armorLeftLegTransform: {fileID: 8327853531936422688}
   armorRightLegTransform: {fileID: 5057719543410772588}
-  weaponTransform: {fileID: 1905645084704699213}
+  weaponTransform: {fileID: 8376568175422091972}
   dropTransform: {fileID: 5600404543867675771}
   pickupPrefab: {fileID: 2961695528550091406, guid: 533ee1d5027f8ff4b94f129e62f3392d,
     type: 3}
@@ -346,7 +346,7 @@ Transform:
   m_Father: {fileID: 7217646592359028575}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5359833189249881506
+--- !u!1 &5316963210096296637
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1905645084704699213}
+  - component: {fileID: 8376568175422091972}
   m_Layer: 0
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -362,20 +362,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1905645084704699213
+--- !u!4 &8376568175422091972
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5359833189249881506}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1301, y: -0.1313, z: 0}
+  m_GameObject: {fileID: 5316963210096296637}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.128, y: 0.049, z: -0.005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5430322915172728196}
+  m_Father: {fileID: 2390899178395898450}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7595678249098149464
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,15 +733,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8877996627768058872}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5430322915172728196 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3488208398610308732, guid: 94cfac45704ebec40984c76bbd74e79a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8877996627768058872}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2047336719639606408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1775153813468981392, guid: 94cfac45704ebec40984c76bbd74e79a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8877996627768058872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2390899178395898450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2730636269977292374, guid: 94cfac45704ebec40984c76bbd74e79a,
     type: 3}
   m_PrefabInstance: {fileID: 8877996627768058872}
   m_PrefabAsset: {fileID: 0}

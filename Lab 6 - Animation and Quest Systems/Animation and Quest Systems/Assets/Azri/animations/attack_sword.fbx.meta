@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 47d72d284e5703c49a0bca4e0ba90ffc
+guid: dec76a826d686e845bd56d98c93beec2
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Run
+    second: Attack_Sword
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -23,9 +23,10 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'BND_C_Pelvis1' has translation animation
-      that will be discarded.\n\t'BND_C_Pelvis1' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
+      to improve retargeting quality.\n\t'BND_C_Spine2' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'BND_C_Pelvis1' has translation
+      animation that will be discarded.\n\t'BND_C_Pelvis1' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -39,20 +40,20 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run
+      name: Attack_Sword
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 28
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -62,7 +63,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.2362931
+        functionName: Hit
+        data: 
+        objectReferenceParameter: {fileID: 2228463600266611084, guid: 3aac5ee326ffe6340b1af97a54b1db48,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -570,7 +579,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_Arm1
       parentName: CTL_C_Root1
-      position: {x: -0.044871744, y: 0.6044285, z: -0.09929002}
+      position: {x: -0.044871744, y: 0.60442847, z: -0.09929002}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Clav1Zero1
@@ -590,7 +599,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmBind1
       parentName: GRP_L_ArmBind1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031355813, y: 0.0076478426, z: 0.2940334, w: 0.9552501}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmBind2
@@ -605,7 +614,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_Hand1
       parentName: JNT_L_ArmBind3
-      position: {x: -1.1652902e-15, y: 2.5011108e-14, z: 4.8331117e-14}
+      position: {x: -1.1652903e-15, y: 2.501111e-14, z: 4.8331114e-14}
       rotation: {x: -0.00000056118137, y: -0.000000032080873, z: -0.00000006926761,
         w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -621,12 +630,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Index2Zero1
       parentName: CTL_L_Index1
-      position: {x: -0.06769266, y: -0.008324222, z: 0.0065294434}
+      position: {x: -0.06769266, y: -0.008324222, z: 0.0065294444}
       rotation: {x: -0.045164637, y: -0.03979901, z: 0.035258107, w: 0.99756354}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Index2
       parentName: NLL_L_Index2Zero1
-      position: {x: 6.7501564e-17, y: -5.684342e-17, z: -4.5474737e-16}
+      position: {x: 6.750156e-17, y: -5.684342e-17, z: -4.5474737e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Index3Zero1
@@ -676,12 +685,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Middle3
       parentName: NLL_L_Middle3Zero1
-      position: {x: 4.9737997e-16, y: -8.5265136e-17, z: 4.5474737e-16}
+      position: {x: 4.973799e-16, y: -8.5265136e-17, z: 4.5474737e-16}
       rotation: {x: 6.938894e-18, y: 1.3444107e-17, z: -9.328723e-35, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Middle4Zero1
       parentName: CTL_L_Middle3
-      position: {x: -0.048303436, y: 2.5011106e-15, z: -4.0900616e-16}
+      position: {x: -0.048303433, y: 2.5011106e-15, z: -4.0900616e-16}
       rotation: {x: -4.876684e-18, y: -2.7543185e-17, z: -0.050862834, w: 0.9987057}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Middle4
@@ -741,17 +750,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Pinky2Zero1
       parentName: CTL_L_Pinky1
-      position: {x: -0.079514615, y: -0.020591816, z: -0.007359681}
+      position: {x: -0.079514615, y: -0.020591818, z: -0.007359681}
       rotation: {x: -0.021717733, y: 0.05786066, z: 0.06815834, w: 0.9957585}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Pinky2
       parentName: NLL_L_Pinky2Zero1
-      position: {x: 1.1368684e-16, y: -6.7501564e-17, z: -4.5474737e-16}
+      position: {x: 1.1368684e-16, y: -6.750156e-17, z: -4.5474737e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Pinky3Zero1
       parentName: CTL_L_Pinky2
-      position: {x: -0.06205262, y: -1.1368685e-15, z: 2.8421711e-16}
+      position: {x: -0.062052626, y: -1.1368685e-15, z: 2.8421711e-16}
       rotation: {x: -1.3381053e-17, y: -2.4563315e-17, z: 0.0203353, w: 0.99979323}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Pinky3
@@ -781,7 +790,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Thumb2Zero1
       parentName: CTL_L_Thumb1
-      position: {x: -0.055153143, y: -2.7284843e-15, z: 8.6402e-15}
+      position: {x: -0.05515315, y: -2.7284843e-15, z: 8.640199e-15}
       rotation: {x: 0.024259327, y: -0.11874559, z: 0.19868673, w: 0.97254026}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Thumb2
@@ -811,7 +820,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ArmBind1_TwistExtract1
       parentName: GRP_L_ArmBind1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031355813, y: 0.0076478426, z: 0.2940334, w: 0.9552501}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_ArmIK1
@@ -821,12 +830,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmIK1
       parentName: GRP_L_ArmIK1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031350072, y: 0.007649598, z: 0.294033, w: 0.9552504}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmIK2
       parentName: JNT_L_ArmIK1
-      position: {x: -0.35369048, y: 2.2737369e-16, z: 9.237056e-17}
+      position: {x: -0.35369048, y: 2.2737369e-16, z: 9.237055e-17}
       rotation: {x: 0.000000034965844, y: 0.048318073, z: 0.00000017459898, w: 0.998832}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmIK3
@@ -836,7 +845,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_HandIk1Zero1
       parentName: GRP_L_ArmIK1
-      position: {x: -0.76083213, y: -0.44419304, z: 0.049451403}
+      position: {x: -0.76083213, y: -0.44419307, z: 0.049451403}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_HandIk1
@@ -851,12 +860,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_HandIkOffset1
       parentName: CTL_L_HandIk1
-      position: {x: -1.2505553e-15, y: -1.5916159e-15, z: 2.4868999e-16}
+      position: {x: -1.2505553e-15, y: -1.5916159e-15, z: 2.4868996e-16}
       rotation: {x: -0.020741208, y: 0.08940899, z: 0.27917516, w: 0.9558437}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ArmPV1Zero1
       parentName: GRP_L_ArmIK1
-      position: {x: -0.43176425, y: -0.25955692, z: -0.54023635}
+      position: {x: -0.43176422, y: -0.25955692, z: -0.54023635}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_ArmPV1
@@ -876,7 +885,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ShoulderFk1Zero1
       parentName: GRP_L_ArmFK1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031355813, y: 0.0076478426, z: 0.2940334, w: 0.9552501}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_ShoulderFk1
@@ -901,7 +910,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Hand1Zero1
       parentName: CTL_L_ElbowFk1
-      position: {x: -0.36928308, y: 0.000000001118376, z: 2.842171e-17}
+      position: {x: -0.36928308, y: 0.0000000011183758, z: 2.842171e-17}
       rotation: {x: 0.034838714, y: 0.02720602, z: -0.010051441, w: 0.998972}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Hand1
@@ -911,7 +920,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmFK1
       parentName: GRP_L_ArmFK1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031355813, y: 0.0076478426, z: 0.2940334, w: 0.9552501}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_ArmFK2
@@ -926,7 +935,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_Arm1Twists1
       parentName: CTL_L_Clav1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.031355813, y: 0.0076478426, z: 0.2940334, w: 0.9552501}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Arm1Twist1
@@ -961,12 +970,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_Arm2Twists1
       parentName: CTL_L_Clav1
-      position: {x: -0.45673493, y: -0.24018848, z: 0.0017332432}
+      position: {x: -0.45673493, y: -0.2401885, z: 0.0017332432}
       rotation: {x: -0.045526315, y: 0.053794753, z: 0.2921749, w: 0.9537648}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Arm2Twist1
       parentName: GRP_L_Arm2Twists1
-      position: {x: 1.05387704e-13, y: 0.00000027371254, z: -1.23634445e-14}
+      position: {x: 1.0538769e-13, y: 0.00000027371254, z: -1.23634445e-14}
       rotation: {x: 1.4994425e-34, y: -4.038968e-28, z: 0.00000037124397, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Arm2Twist1
@@ -976,7 +985,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Arm2Twist2
       parentName: GRP_L_Arm2Twists1
-      position: {x: -0.18480001, y: 0.00000013650077, z: -2.0921507e-12}
+      position: {x: -0.18479998, y: 0.00000013650077, z: -2.0921507e-12}
       rotation: {x: 0.006320569, y: 0.0000000023464732, z: 0.00000037123655, w: 0.99998003}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Arm2Twist2
@@ -986,7 +995,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Arm2Twist3
       parentName: GRP_L_Arm2Twists1
-      position: {x: -0.36960003, y: -7.1100936e-10, z: -4.169891e-12}
+      position: {x: -0.36959997, y: -7.1100936e-10, z: -4.169891e-12}
       rotation: {x: 0.012640886, y: 0.0000000046928528, z: 0.00000037121433, w: 0.9999201}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Arm2Twist3
@@ -996,22 +1005,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ArmBind1_TopTwist1
       parentName: GRP_L_Arm1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -1.3612586e-18, y: 0.017290095, z: 0.29362425, w: 0.9557646}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ArmBind2_BotTwist1
       parentName: GRP_L_Arm1
-      position: {x: -0.45673493, y: -0.24018848, z: 0.0017332432}
+      position: {x: -0.45673493, y: -0.2401885, z: 0.0017332432}
       rotation: {x: -0.045526315, y: 0.053794753, z: 0.2921749, w: 0.9537648}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ArmBind2_TopTwist1
       parentName: GRP_L_Arm1
-      position: {x: -0.45673513, y: -0.24018824, z: 0.0017332282}
+      position: {x: -0.45673513, y: -0.24018821, z: 0.0017332282}
       rotation: {x: 0, y: 0.06766421, z: 0.28927812, w: 0.9548507}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Hand1_BotTwist1
       parentName: GRP_L_Arm1
-      position: {x: -0.76083213, y: -0.44419304, z: 0.049451403}
+      position: {x: -0.76083213, y: -0.44419307, z: 0.049451403}
       rotation: {x: -0.020741208, y: 0.08940899, z: 0.27917516, w: 0.9558437}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Arm1
@@ -1036,22 +1045,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmIK1
       parentName: GRP_R_ArmIK1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.029316096, y: -0.011136052, z: 0.2939356, w: 0.9553107}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmIK2
       parentName: JNT_R_ArmIK1
-      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898866}
+      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898863}
       rotation: {x: 0.0000027411372, y: 0.048318073, z: 0.0000019983179, w: 0.998832}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmIK3
       parentName: JNT_R_ArmIK2
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.034839146, y: 0.02720505, z: -0.010054435, w: 0.998972}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ArmPV1Zero1
       parentName: GRP_R_ArmIK1
-      position: {x: 0.43176782, y: 0.1888368, z: 0.5688285}
+      position: {x: 0.43176782, y: 0.18883681, z: 0.5688285}
       rotation: {x: 0.99797285, y: -0.0000001988781, z: -0.0000031186255, w: -0.06364181}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_ArmPV1
@@ -1066,7 +1075,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HandIk1Zero1
       parentName: GRP_R_ArmIK1
-      position: {x: 0.7608266, y: 0.44689766, z: 0.0073678307}
+      position: {x: 0.7608266, y: 0.44689766, z: 0.007367831}
       rotation: {x: 0.99797285, y: 0.00000019726708, z: -0.000003093363, w: -0.06364181}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_HandIk1
@@ -1076,12 +1085,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: IKH_R_ArmIk1
       parentName: CTL_R_HandIk1
-      position: {x: -5.6843423e-16, y: 4.5474737e-16, z: 3.6592954e-16}
+      position: {x: -5.6843423e-16, y: 4.5474737e-16, z: 3.6592956e-16}
       rotation: {x: -2.7755576e-17, y: 2.1285999e-21, z: 0.00000039694984, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HandIkOffset1
       parentName: CTL_R_HandIk1
-      position: {x: -1.1368685e-15, y: 9.094947e-16, z: 7.460699e-16}
+      position: {x: -1.1368685e-15, y: 9.094947e-16, z: 7.4607e-16}
       rotation: {x: 0.9558428, y: -0.27917847, z: 0.0894089, w: 0.020736817}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_ArmFK1
@@ -1091,7 +1100,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ShoulderFk1Zero1
       parentName: GRP_R_ArmFK1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.02950407, y: -0.011077959, z: 0.29392844, w: 0.9553077}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_ShoulderFk1
@@ -1101,7 +1110,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ElbowFk1Zero1
       parentName: CTL_R_ShoulderFk1
-      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898866}
+      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898863}
       rotation: {x: 0.0000027411372, y: 0.048318073, z: 0.0000019983179, w: 0.998832}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_ElbowFk1
@@ -1111,12 +1120,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HandFk1
       parentName: CTL_R_ElbowFk1
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.9537631, y: -0.29218104, z: 0.053795397, w: -0.045522228}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Hand1Zero1
       parentName: CTL_R_ElbowFk1
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.034839146, y: 0.02720505, z: -0.010054435, w: 0.998972}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Hand1
@@ -1126,17 +1135,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmFK1
       parentName: GRP_R_ArmFK1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.02950407, y: -0.011077959, z: 0.29392844, w: 0.9553077}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmFK2
       parentName: JNT_R_ArmFK1
-      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898866}
+      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898863}
       rotation: {x: 0.0000027411372, y: 0.048318073, z: 0.0000019983179, w: 0.998832}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmFK3
       parentName: JNT_R_ArmFK2
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.034839146, y: 0.02720505, z: -0.010054435, w: 0.998972}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_ArmBind1
@@ -1146,28 +1155,28 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmBind1
       parentName: GRP_R_ArmBind1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.02950407, y: -0.011077959, z: 0.29392844, w: 0.9553077}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmBind2
       parentName: JNT_R_ArmBind1
-      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898866}
+      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898863}
       rotation: {x: 0.0000027411372, y: 0.048318073, z: 0.0000019983179, w: 0.998832}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_ArmBind3
       parentName: JNT_R_ArmBind2
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.034839146, y: 0.02720505, z: -0.010054435, w: 0.998972}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Hand1
       parentName: JNT_R_ArmBind3
-      position: {x: -1.1652902e-15, y: 2.5011108e-14, z: 4.8331117e-14}
+      position: {x: -1.1652903e-15, y: 2.501111e-14, z: 4.8331114e-14}
       rotation: {x: -0.00000056118137, y: -0.000000032080873, z: -0.00000006926761,
         w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Index1Zero1
       parentName: GRP_R_Hand1
-      position: {x: 0.06312112, y: -0.0019658532, z: -0.040946227}
+      position: {x: 0.06312112, y: -0.001965853, z: -0.04094622}
       rotation: {x: 0.117996074, y: 0.03723001, z: 0.016593456, w: 0.9921772}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Index1
@@ -1177,17 +1186,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Index2Zero1
       parentName: CTL_R_Index1
-      position: {x: 0.06769675, y: 0.008329512, z: -0.0065297997}
+      position: {x: 0.06769675, y: 0.008329511, z: -0.0065297997}
       rotation: {x: -0.045164637, y: -0.03979901, z: 0.035258107, w: 0.99756354}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Index2
       parentName: NLL_R_Index2Zero1
-      position: {x: 6.7501564e-17, y: -5.684342e-17, z: -4.5474737e-16}
+      position: {x: 6.750156e-17, y: -5.684342e-17, z: -4.5474737e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Index3Zero1
       parentName: CTL_R_Index2
-      position: {x: 0.06482269, y: -0.0000046772793, z: 0.00000034869626}
+      position: {x: 0.06482269, y: -0.000004677279, z: 0.00000034869626}
       rotation: {x: 0.000000014895247, y: 4.1980297e-10, z: 0.028172499, w: 0.9996031}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Index3
@@ -1197,7 +1206,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Index4Zero1
       parentName: CTL_R_Index3
-      position: {x: 0.036080573, y: 0.0000037602442, z: -0.00000039562704}
+      position: {x: 0.036080573, y: 0.000003760244, z: -0.00000039562704}
       rotation: {x: 0.000000023582325, y: -8.158717e-10, z: -0.034576062, w: 0.9994021}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Index4
@@ -1207,7 +1216,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Middle1Zero1
       parentName: GRP_R_Hand1
-      position: {x: 0.063564554, y: -0.016788356, z: -0.01691802}
+      position: {x: 0.063564554, y: -0.016788358, z: -0.01691802}
       rotation: {x: 0.036066547, y: -0.0031451134, z: 0.056279745, w: 0.99775845}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Middle1
@@ -1232,7 +1241,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Middle3
       parentName: NLL_R_Middle3Zero1
-      position: {x: 4.9737997e-16, y: -8.5265136e-17, z: 4.5474737e-16}
+      position: {x: 4.973799e-16, y: -8.5265136e-17, z: 4.5474737e-16}
       rotation: {x: 6.938894e-18, y: 1.3444107e-17, z: -9.328723e-35, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Middle4Zero1
@@ -1247,7 +1256,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Ring1Zero1
       parentName: GRP_R_Hand1
-      position: {x: 0.062313, y: -0.017438881, z: 0.008579818}
+      position: {x: 0.062313, y: -0.017438881, z: 0.008579817}
       rotation: {x: 0.0014465711, y: -0.07830024, z: 0.07371634, w: 0.99419963}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Ring1
@@ -1297,12 +1306,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Pinky2Zero1
       parentName: CTL_R_Pinky1
-      position: {x: 0.079518236, y: 0.02059873, z: 0.0073607718}
+      position: {x: 0.079518236, y: 0.02059873, z: 0.0073607713}
       rotation: {x: -0.021717733, y: 0.05786066, z: 0.06815834, w: 0.9957585}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Pinky2
       parentName: NLL_R_Pinky2Zero1
-      position: {x: 1.1368684e-16, y: -6.7501564e-17, z: -4.5474737e-16}
+      position: {x: 1.1368684e-16, y: -6.750156e-17, z: -4.5474737e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Pinky3Zero1
@@ -1317,7 +1326,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Pinky4Zero1
       parentName: CTL_R_Pinky3
-      position: {x: 0.03339662, y: -0.0000029707287, z: -0.0000009774731}
+      position: {x: 0.03339662, y: -0.000002970729, z: -0.0000009774731}
       rotation: {x: 0.00000002359618, y: -0.0000000010474623, z: -0.04434751, w: 0.99901617}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Pinky4
@@ -1327,7 +1336,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Thumb1Zero1
       parentName: GRP_R_Hand1
-      position: {x: 0.017189596, y: 0.018656122, z: -0.016062768}
+      position: {x: 0.017189596, y: 0.01865612, z: -0.016062768}
       rotation: {x: 0.55224234, y: 0.48200756, z: -0.030633338, w: 0.6795283}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Thumb1
@@ -1337,7 +1346,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Thumb2Zero1
       parentName: CTL_R_Thumb1
-      position: {x: 0.05515012, y: -0.0000036093163, z: 0.0000010019243}
+      position: {x: 0.055150125, y: -0.0000036093163, z: 0.0000010019243}
       rotation: {x: 0.024259327, y: -0.11874559, z: 0.19868673, w: 0.97254026}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Thumb2
@@ -1347,7 +1356,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Thumb3Zero1
       parentName: CTL_R_Thumb2
-      position: {x: 0.0742565, y: -0.0000018124193, z: 0.0000036344568}
+      position: {x: 0.0742565, y: -0.0000018124192, z: 0.0000036344568}
       rotation: {x: -1.400824e-17, y: 1.10135016e-16, z: 0.12617502, w: 0.99200803}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Thumb3
@@ -1357,7 +1366,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HandGrip1
       parentName: JNT_R_ArmBind3
-      position: {x: 0.108368, y: 0.046928003, z: 2.0072835e-16}
+      position: {x: 0.108368, y: 0.046928, z: 2.0072835e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_HandGrip1
@@ -1367,12 +1376,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ArmBind1_TwistExtract
       parentName: GRP_R_ArmBind1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.02950407, y: -0.011077959, z: 0.29392844, w: 0.9553077}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Arm1Twists1
       parentName: CTL_R_Clav1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.02950407, y: -0.011077959, z: 0.29392844, w: 0.9553077}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Arm1Twist1
@@ -1387,7 +1396,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Arm1Twist2
       parentName: GRP_R_Arm1Twists1
-      position: {x: 0.17760001, y: 0.0000034524699, z: 7.105428e-18}
+      position: {x: 0.17760001, y: 0.0000034524694, z: 7.105428e-18}
       rotation: {x: 0, y: 0, z: 0.000009719791, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Arm1Twist2
@@ -1407,7 +1416,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Arm2Twists1
       parentName: CTL_R_Clav1
-      position: {x: 0.45673332, y: 0.2384689, z: 0.028787168}
+      position: {x: 0.45673332, y: 0.2384689, z: 0.028787171}
       rotation: {x: 0.015270151, y: 0.035094354, z: 0.29501268, w: 0.9547265}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Arm2Twist1
@@ -1422,7 +1431,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Arm2Twist2
       parentName: GRP_R_Arm2Twists1
-      position: {x: 0.18560001, y: 0.0000034196685, z: 0.000000002465271}
+      position: {x: 0.18560001, y: 0.000003419668, z: 0.000000002465271}
       rotation: {x: 0.006320609, y: -0.000000058830107, z: -0.000009307479, w: 0.99998003}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Arm2Twist2
@@ -1432,7 +1441,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Arm2Twist3
       parentName: GRP_R_Arm2Twists1
-      position: {x: 0.36960003, y: -0.0000000055527103, z: 0.000000003552353}
+      position: {x: 0.36959997, y: -0.0000000055527094, z: 0.000000003552353}
       rotation: {x: 0.012640966, y: -0.00000011765787, z: -0.000009306922, w: 0.9999201}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Arm2Twist3
@@ -1442,22 +1451,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ArmBind1_TopTwist1
       parentName: GRP_R_Arm1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: -0.0000007021956, y: -0.020139985, z: 0.29343674, w: 0.9557663}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ArmBind2_BotTwist1
       parentName: GRP_R_Arm1
-      position: {x: 0.45673332, y: 0.2384689, z: 0.028787168}
+      position: {x: 0.45673332, y: 0.2384689, z: 0.028787171}
       rotation: {x: 0.015270151, y: 0.035094354, z: 0.29501268, w: 0.9547265}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ArmBind3_TopTwist1
       parentName: GRP_R_Arm1
-      position: {x: 0.7608266, y: 0.44689766, z: 0.0073678307}
+      position: {x: 0.7608266, y: 0.44689766, z: 0.007367831}
       rotation: {x: 0.6195086, y: -0.23884517, z: 0.72667795, w: -0.17635575}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Hand1_BotTwist1
       parentName: GRP_R_Arm1
-      position: {x: 0.7608266, y: 0.44689766, z: 0.0073678307}
+      position: {x: 0.7608266, y: 0.44689766, z: 0.007367831}
       rotation: {x: 0.04013762, y: 0.07146318, z: 0.28430292, w: 0.9552245}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_Spine1
@@ -1482,7 +1491,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SpineFK2Zero1
       parentName: CTL_C_Spine1
-      position: {x: 5.265762e-17, y: 0.11857442, z: 2.2737369e-16}
+      position: {x: 5.2657613e-17, y: 0.1185744, z: 2.2737369e-16}
       rotation: {x: -0.029125307, y: 0, z: -0, w: 0.9995758}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SpineFK2
@@ -1492,7 +1501,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SpineFK3Zero1
       parentName: CTL_C_SpineFK2
-      position: {x: 5.265762e-17, y: 0.11857442, z: 6.394885e-17}
+      position: {x: 5.2657613e-17, y: 0.1185744, z: 6.394885e-17}
       rotation: {x: -0.033240866, y: 0, z: -0, w: 0.9994474}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SpineFK3
@@ -1502,7 +1511,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SpineFK4Zero
       parentName: CTL_C_SpineFK3
-      position: {x: 1.1700367e-10, y: 0.11857442, z: -1.1368684e-16}
+      position: {x: 1.1700367e-10, y: 0.1185744, z: -1.1368684e-16}
       rotation: {x: 6.938894e-18, y: -0.0000031249601, z: -4.786012e-24, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SpineFK4
@@ -1512,7 +1521,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_1Zero1 1
       parentName: CTL_C_SpineFK4
-      position: {x: -0.10511933, y: 0.27507502, z: 0.07653695}
+      position: {x: -0.10511932, y: 0.27507502, z: 0.07653695}
       rotation: {x: -0.3840422, y: -0.018202964, z: 0.50837624, w: 0.77054125}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoFront_1 1
@@ -1522,7 +1531,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_2Zero1 1
       parentName: CTL_L_PonchoFront_1 1
-      position: {x: -0.10464011, y: -0.00032053812, z: 0.00088101765}
+      position: {x: -0.10464011, y: -0.00032053812, z: 0.0008810177}
       rotation: {x: 0.000392479, y: -0.05075222, z: -0.018409466, w: 0.99854153}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoFront_2 1
@@ -1532,7 +1541,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_3Zero1 1
       parentName: CTL_L_PonchoFront_2 1
-      position: {x: -0.10471478, y: -0.00033590983, z: 0.001427964}
+      position: {x: -0.10471477, y: -0.00033590978, z: 0.001427964}
       rotation: {x: -0.015144287, y: -0.08244866, z: -0.020722374, w: 0.99626476}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoFront_3 1
@@ -1542,7 +1551,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoPin1Zero1
       parentName: CTL_L_PonchoFront_1 1
-      position: {x: -0.10728298, y: -0.092521735, z: 0.0024677007}
+      position: {x: -0.10728297, y: -0.092521735, z: 0.0024677007}
       rotation: {x: 0.14121968, y: 0.13757817, z: -0.55392367, w: 0.80888677}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoPin1
@@ -1562,7 +1571,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoSide_2Zero1 1
       parentName: CTL_L_PonchoSide_1 1
-      position: {x: -0.0856812, y: 4.618528e-17, z: 0}
+      position: {x: -0.0856812, y: 4.6185275e-17, z: 0}
       rotation: {x: -5.637851e-17, y: 5.0279876e-18, z: 2.94903e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoSide_2 1
@@ -1603,7 +1612,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoBack_3Zero1 1
       parentName: CTL_L_PonchoBack_2 1
-      position: {x: -0.1196546, y: 0.00026571532, z: 0.0002000099}
+      position: {x: -0.1196546, y: 0.0002657153, z: 0.0002000099}
       rotation: {x: -0.017374793, y: -0.022109972, z: 0.028334325, w: 0.9992029}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoBack_3 1
@@ -1613,7 +1622,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoFront_1Zero1 1
       parentName: CTL_C_SpineFK4
-      position: {x: 0.10512032, y: 0.27506816, z: 0.07653516}
+      position: {x: 0.10512031, y: 0.27506816, z: 0.07653516}
       rotation: {x: 0.77054113, y: -0.50837386, z: -0.018207781, w: 0.3840454}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoFront_1 1
@@ -1643,7 +1652,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoSide_1Zero1 1
       parentName: CTL_C_SpineFK4
-      position: {x: 0.18145232, y: 0.306647, z: -0.07724462}
+      position: {x: 0.18145232, y: 0.30664697, z: -0.07724462}
       rotation: {x: 0.69958127, y: -0.18143268, z: -0.18046781, w: 0.66715795}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoSide_1 1
@@ -1663,7 +1672,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoSide_3Zero1 1
       parentName: CTL_R_PonchoSide_2 1
-      position: {x: 0.085698046, y: -0.00000025541118, z: 0.000007142597}
+      position: {x: 0.085698046, y: -0.00000025541118, z: 0.0000071425966}
       rotation: {x: 0.0000004068908, y: -1.3159493e-17, z: 2.6020857e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoSide_3 1
@@ -1673,7 +1682,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoBack_1Zero1 1
       parentName: CTL_C_SpineFK4
-      position: {x: 0.07252242, y: 0.34748408, z: -0.17708915}
+      position: {x: 0.07252242, y: 0.34748405, z: -0.17708915}
       rotation: {x: 0.22508128, y: 0.029805157, z: -0.54492295, w: 0.8071611}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoBack_1 1
@@ -1693,7 +1702,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoBack_3Zero1 1
       parentName: CTL_R_PonchoBack_2 1
-      position: {x: 0.11965786, y: -0.00026626643, z: -0.0001989664}
+      position: {x: 0.11965786, y: -0.00026626643, z: -0.00019896637}
       rotation: {x: -0.017374793, y: -0.022109972, z: 0.028334325, w: 0.9992029}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoBack_3 1
@@ -1723,7 +1732,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtFront_3Zero1 1
       parentName: CTL_L_SkirtFront_2 1
-      position: {x: -0.10850812, y: 0.00021230317, z: -0.000053168205}
+      position: {x: -0.10850811, y: 0.00021230317, z: -0.000053168205}
       rotation: {x: -0.017180866, y: -0.017995318, z: 0.004152416, w: 0.99968183}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtFront_3 1
@@ -1733,7 +1742,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtSide_1Zero1 1
       parentName: CTL_C_Spine1
-      position: {x: -0.20278208, y: 0.12194836, z: -0.033814363}
+      position: {x: -0.20278208, y: 0.12194837, z: -0.033814363}
       rotation: {x: -0.62177116, y: -0.35687494, z: 0.3793622, w: 0.58491474}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtSide_1 1
@@ -1773,7 +1782,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtBack_2Zero1 1
       parentName: CTL_L_SkirtBack_1 1
-      position: {x: -0.10694838, y: 0.0002076829, z: 0.0007756059}
+      position: {x: -0.10694838, y: 0.00020768288, z: 0.0007756059}
       rotation: {x: 0.043596283, y: -0.031058779, z: 0.009793199, w: 0.99851835}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtBack_2 1
@@ -1783,7 +1792,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtBack_3Zero1 1
       parentName: CTL_L_SkirtBack_2 1
-      position: {x: -0.106998414, y: 0.00072478934, z: 0.0010659498}
+      position: {x: -0.10699841, y: 0.00072478934, z: 0.0010659497}
       rotation: {x: -0.016754966, y: -0.043818142, z: 0.028705202, w: 0.9984865}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtBack_3 1
@@ -1813,7 +1822,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtFront_3Zero1
       parentName: CTL_R_SkirtFront_2 1
-      position: {x: 0.10850812, y: -0.00021230317, z: 0.000053168205}
+      position: {x: 0.10850811, y: -0.00021230317, z: 0.000053168205}
       rotation: {x: -0.017180866, y: -0.017995318, z: 0.004152416, w: 0.99968183}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtFront_3 1
@@ -1833,7 +1842,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtSide_2Zero1 1
       parentName: CTL_R_SkirtSide_1 1
-      position: {x: 0.116381295, y: 0.00000009239508, z: -0.000005249537}
+      position: {x: 0.116381295, y: 0.00000009239508, z: -0.000005249536}
       rotation: {x: 0.000000011709968, y: -0.029499866, z: 0.00000039677712, w: 0.9995648}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtSide_2 1
@@ -1843,7 +1852,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtSide_3Zero1 1
       parentName: CTL_R_SkirtSide_2 1
-      position: {x: 0.11639712, y: 0.00000009240764, z: 0.0000028629481}
+      position: {x: 0.11639712, y: 0.00000009240764, z: 0.0000028629477}
       rotation: {x: -0.017036766, y: -0.027105756, z: 0.011583383, w: 0.9994203}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtSide_3 1
@@ -1863,7 +1872,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtBack_2Zero1
       parentName: CTL_R_SkirtBack_1 1
-      position: {x: 0.10694838, y: -0.0002076829, z: -0.0007756059}
+      position: {x: 0.10694838, y: -0.00020768288, z: -0.0007756059}
       rotation: {x: 0.043596283, y: -0.031058779, z: 0.009793199, w: 0.99851835}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtBack_2 1
@@ -1873,7 +1882,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtBack_3Zero1
       parentName: CTL_R_SkirtBack_2 1
-      position: {x: 0.106998414, y: -0.00072478934, z: -0.0010659498}
+      position: {x: 0.10699841, y: -0.00072478934, z: -0.0010659497}
       rotation: {x: -0.016754966, y: -0.043818142, z: 0.028705202, w: 0.9984865}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtBack_3 1
@@ -1883,7 +1892,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_BeltSide1Zero1
       parentName: CTL_C_Spine1
-      position: {x: 0.21173951, y: 0.16279726, z: 0.0007832565}
+      position: {x: 0.21173951, y: 0.16279726, z: 0.00078325643}
       rotation: {x: -0.10763174, y: 0.6938046, z: 0.0967572, w: 0.70547056}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_BeltSide1
@@ -1893,7 +1902,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PouchFront1Zero1
       parentName: CTL_R_BeltSide1
-      position: {x: -0.10074586, y: 0.026696216, z: -0.044813566}
+      position: {x: -0.10074584, y: 0.026696213, z: -0.044813566}
       rotation: {x: -0.5888045, y: 0.7195191, z: -0.2972235, w: 0.2173931}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PouchFront1
@@ -1943,7 +1952,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_BeltFront1Zero1
       parentName: NLL_R_BeltFront1Zero1
-      position: {x: -0.21424994, y: 0.001124742, z: -0.14576355}
+      position: {x: -0.21424994, y: 0.0011247419, z: -0.14576353}
       rotation: {x: -0.0000006780087, y: -0.56236976, z: -0.004339824, w: 0.82687455}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_BeltFront1
@@ -1968,7 +1977,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Pelvis1Zero1
       parentName: GRP_C_Pelvis1
-      position: {x: -0, y: -0.0016000001, z: 0}
+      position: {x: -0, y: -0.0016000002, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_Pelvis1
@@ -1988,27 +1997,27 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegIK1
       parentName: GRP_L_LegIK1
-      position: {x: 4.5474737e-16, y: 2.7000626e-16, z: -3.552714e-18}
+      position: {x: 4.5474737e-16, y: 2.7000623e-16, z: -3.552714e-18}
       rotation: {x: 0.0000077162895, y: 0.000016929287, z: 0.0000004951394, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegIK2
       parentName: JNT_L_LegIK1
-      position: {x: -0.7407791, y: 0.000000018120678, z: 0.000000087446594}
+      position: {x: -0.7407791, y: 0.000000018120678, z: 0.0000000874466}
       rotation: {x: -0.0000000088082, y: -0.06371821, z: -0.00000006790759, w: 0.99796796}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegIK3
       parentName: JNT_L_LegIK2
-      position: {x: -0.6585661, y: -0.00000013559576, z: 0.000000062941936}
+      position: {x: -0.6585661, y: -0.00000013559574, z: 0.000000062941936}
       rotation: {x: -0.0035934641, y: 0.74924845, z: -0.006140176, w: 0.6622508}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegIK4
       parentName: JNT_L_LegIK3
-      position: {x: -0.14557913, y: 0.005273, z: -0.16113617}
+      position: {x: -0.14557913, y: 0.005273, z: -0.16113614}
       rotation: {x: 0.0000000989698, y: -0.04990297, z: -0.0000000092601, w: 0.9987541}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_FootIK1
       parentName: GRP_L_LegIK1
-      position: {x: -1.6050565, y: -0.00014947598, z: -0.16522364}
+      position: {x: -1.6050565, y: -0.00014947596, z: -0.16522363}
       rotation: {x: -0.0032320097, y: -0.0063081677, z: -0.7086678, w: 0.70550674}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_FootIK1
@@ -2023,12 +2032,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Tip1
       parentName: NLL_L_Heel1
-      position: {x: -1.4210855e-17, y: -1.2621775e-32, z: 0.34811598}
+      position: {x: -1.4210855e-17, y: -1.2621775e-32, z: 0.348116}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ToeIk1Zero1
       parentName: NLL_L_Tip1
-      position: {x: -0.0052800006, y: 0.051868957, z: -0.121938705}
+      position: {x: -0.0052800006, y: 0.05186896, z: -0.121938705}
       rotation: {x: 2.1684043e-18, y: -1.7347235e-18, z: -5.8784087e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_ToeIk1
@@ -2038,7 +2047,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Ball1
       parentName: NLL_L_Tip1
-      position: {x: -0.005273, y: 0.051868957, z: -0.121938705}
+      position: {x: -0.005273, y: 0.05186896, z: -0.121938705}
       rotation: {x: 2.1684043e-18, y: -1.7347235e-18, z: -5.8784087e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Ball1
@@ -2048,7 +2057,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: IKH_L_LegIk1
       parentName: CTL_L_Ball1
-      position: {x: 0.0052729934, y: 0.15953778, z: -0.14557907}
+      position: {x: 0.0052729934, y: 0.15953778, z: -0.14557905}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: IKH_L_BallIk1
@@ -2088,7 +2097,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_KneeFk1Zero1
       parentName: CTL_L_HipFk1
-      position: {x: -0.7407791, y: 0.000000018120678, z: 0.000000087446594}
+      position: {x: -0.7407791, y: 0.000000018120678, z: 0.0000000874466}
       rotation: {x: -0.000000024814709, y: -0.063682295, z: -0.0000000015834717, w: 0.9979702}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_KneeFk1
@@ -2108,7 +2117,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_ToeFk1Zero1
       parentName: CTL_L_FootFk1
-      position: {x: -0.14557913, y: 0.005273, z: -0.16113617}
+      position: {x: -0.14557913, y: 0.005273, z: -0.16113614}
       rotation: {x: -1.0329104e-16, y: -0.04990558, z: 1.1938838e-17, w: 0.99875396}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_ToeFk1
@@ -2128,17 +2137,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegBind2
       parentName: JNT_L_LegBind1
-      position: {x: -0.7407791, y: 0.000000018120678, z: 0.000000087446594}
+      position: {x: -0.7407791, y: 0.000000018120678, z: 0.0000000874466}
       rotation: {x: -0.0000000088082, y: -0.06371821, z: -0.00000006790759, w: 0.99796796}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegBind3
       parentName: JNT_L_LegBind2
-      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215415}
+      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215408}
       rotation: {x: -0.0035934772, y: 0.749239, z: -0.006140422, w: 0.6622615}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_LegBind4
       parentName: JNT_L_LegBind3
-      position: {x: -0.14557913, y: 0.005273, z: -0.16113617}
+      position: {x: -0.14557913, y: 0.005273, z: -0.16113614}
       rotation: {x: 0.000000076323985, y: -0.04990297, z: 0.000000010271742, w: 0.9987541}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind3Orient1
@@ -2148,7 +2157,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind3Orient1_TwistExtractNull1
       parentName: JNT_L_LegBind2
-      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215415}
+      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215408}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind3Orient1_TwistExtract1
@@ -2158,7 +2167,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind1_TwistExtractNull1
       parentName: JNT_L_LegBind1
-      position: {x: -0.7407791, y: 0.000000018120678, z: 0.000000087446594}
+      position: {x: -0.7407791, y: 0.000000018120678, z: 0.0000000874466}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind1_TwistExtract1
@@ -2173,7 +2182,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Leg1Twist1
       parentName: GRP_L_Leg1Twists1
-      position: {x: -0.0016000001, y: 1.099538e-11, z: -1.3180569e-14}
+      position: {x: -0.0016000002, y: 1.099538e-11, z: -1.3180567e-14}
       rotation: {x: 0.0022820127, y: -1.2449979e-10, z: -0.000000054556875, w: 0.99999744}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Leg1Twist1
@@ -2183,7 +2192,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Leg1Twist2
       parentName: GRP_L_Leg1Twists1
-      position: {x: -0.37040004, y: 0.0000000025454316, z: -3.0543359e-12}
+      position: {x: -0.37040007, y: 0.0000000025454316, z: -3.0543359e-12}
       rotation: {x: 0.001141007, y: -6.224993e-11, z: -0.000000054556978, w: 0.99999934}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Leg1Twist2
@@ -2193,7 +2202,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Leg1Twist3
       parentName: GRP_L_Leg1Twists1
-      position: {x: -0.73920006, y: 0.000000005079868, z: -6.0954657e-12}
+      position: {x: -0.73919994, y: 0.000000005079868, z: -6.0954657e-12}
       rotation: {x: 0, y: -0, z: -0.000000054557013, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Leg1Twist3
@@ -2208,7 +2217,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Leg2Twist1
       parentName: GRP_L_Leg2Twists1
-      position: {x: -0.0016000001, y: 0.000000005078349, z: -6.0720565e-12}
+      position: {x: -0.0016000002, y: 0.0000000050783493, z: -6.0720565e-12}
       rotation: {x: -6.57484e-33, y: 0.00003255703, z: 2.019484e-28, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Leg2Twist1
@@ -2218,7 +2227,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Leg2Twist2
       parentName: GRP_L_Leg2Twists1
-      position: {x: -0.32960007, y: 0.0000000025424562, z: -8.791106e-12}
+      position: {x: -0.3296, y: 0.0000000025424558, z: -8.791106e-12}
       rotation: {x: -1.8027511e-12, y: 0.00003255703, z: 5.869222e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Leg2Twist2
@@ -2248,7 +2257,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_BootFlap2Zero1
       parentName: CTL_L_BootFlap1
-      position: {x: -0.12077898, y: -1.9840466e-17, z: 2.842171e-17}
+      position: {x: -0.120778985, y: -1.9840466e-17, z: 2.842171e-17}
       rotation: {x: -6.9809855e-17, y: 0.09677743, z: 1.0045463e-16, w: 0.9953061}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_BootFlap2
@@ -2263,7 +2272,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind2_TopTwist1
       parentName: GRP_L_Leg1
-      position: {x: -0.7407791, y: -0.000000715652, z: 0.000025169164}
+      position: {x: -0.7407791, y: -0.00000071565205, z: 0.000025169164}
       rotation: {x: 0.06836614, y: -0.06355168, z: 0.004363314, w: 0.99562454}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_LegBind2_BotTwist1
@@ -2278,7 +2287,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Leg1
       parentName: CTL_C_Pelvis1
-      position: {x: 0.12694545, y: -0.065565236, z: -0.012427439}
+      position: {x: 0.12694545, y: -0.065565236, z: -0.012427437}
       rotation: {x: -0.7055068, y: 0.70866776, z: -0.006308168, w: 0.0032320092}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_LegIK1
@@ -2293,7 +2302,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_LegIK2
       parentName: JNT_R_LegIK1
-      position: {x: 0.7407745, y: -0.000000009220461, z: -0.00000018802965}
+      position: {x: 0.7407744, y: -0.000000009220461, z: -0.00000018802965}
       rotation: {x: 0.000000037611862, y: -0.063718215, z: -0.00000008621271, w: 0.99796796}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_LegIK3
@@ -2323,12 +2332,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Tip1
       parentName: NLL_R_Heel1
-      position: {x: 1.4210855e-17, y: 6.796827e-16, z: 0.34811202}
+      position: {x: 1.4210855e-17, y: 6.7968274e-16, z: 0.34811196}
       rotation: {x: 0, y: -0, z: -5.5954996e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_ToeIk1Zero1
       parentName: NLL_R_Tip1
-      position: {x: 0.0052800006, y: 0.051872, z: -0.12193601}
+      position: {x: 0.0052800006, y: 0.051871996, z: -0.12193601}
       rotation: {x: 2.94903e-17, y: 8.6736174e-19, z: -5.5954996e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_ToeIk1
@@ -2338,7 +2347,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Ball1
       parentName: NLL_R_Tip1
-      position: {x: 0.0052800006, y: 0.051872, z: -0.12193601}
+      position: {x: 0.0052800006, y: 0.051871996, z: -0.12193601}
       rotation: {x: 2.94903e-17, y: 8.6736174e-19, z: -5.5954996e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Ball1
@@ -2353,7 +2362,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: IKH_R_LegIk1
       parentName: CTL_R_Ball1
-      position: {x: -0.0052800644, y: 0.1595344, z: -0.14557788}
+      position: {x: -0.0052800644, y: 0.15953438, z: -0.14557786}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegPV1
@@ -2388,7 +2397,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_KneeFk1Zero1
       parentName: CTL_R_HipFk1
-      position: {x: 0.7407745, y: -0.000000009220461, z: -0.00000018803053}
+      position: {x: 0.7407744, y: -0.000000009220461, z: -0.00000018803053}
       rotation: {x: 0.000000023490713, y: -0.063682295, z: 0.0000000014989852, w: 0.9979702}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_KneeFk1
@@ -2428,7 +2437,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_LegBind2
       parentName: JNT_R_LegBind1
-      position: {x: 0.7407745, y: -0.000000009220462, z: -0.00000018803053}
+      position: {x: 0.7407744, y: -0.000000009220462, z: -0.00000018803053}
       rotation: {x: 0.000000029119168, y: -0.063718215, z: -0.00000008675495, w: 0.99796796}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_LegBind3
@@ -2458,7 +2467,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegBind1_TwistExtractNull1
       parentName: JNT_R_LegBind1
-      position: {x: 0.7407745, y: -0.000000009220462, z: -0.00000018803053}
+      position: {x: 0.7407744, y: -0.000000009220462, z: -0.00000018803053}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegBind1_TwistExtract1
@@ -2474,7 +2483,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg1Twist1
       parentName: GRP_R_Leg1Twists1
-      position: {x: 0.0016000001, y: -1.278977e-15, z: 3.552714e-18}
+      position: {x: 0.0016000002, y: -1.278977e-15, z: 3.552714e-18}
       rotation: {x: -0.0000039288516, y: 4.822899e-13, z: -0.00000012275594, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg1Twist1
@@ -2484,7 +2493,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg1Twist2
       parentName: GRP_R_Leg1Twists1
-      position: {x: 0.37040004, y: -2.9490367e-13, z: -1.8651748e-15}
+      position: {x: 0.37040007, y: -2.9490367e-13, z: -1.8651746e-15}
       rotation: {x: -0.0000019644258, y: 2.4114494e-13, z: -0.00000012275594, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg1Twist2
@@ -2494,7 +2503,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg1Twist3
       parentName: GRP_R_Leg1Twists1
-      position: {x: 0.73920006, y: -5.886847e-13, z: -1.8047786e-15}
+      position: {x: 0.73919994, y: -5.8868465e-13, z: -1.8047786e-15}
       rotation: {x: -6.197591e-36, y: -5.04871e-29, z: -0.00000012275594, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg1Twist3
@@ -2504,12 +2513,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_Leg2Twists1
       parentName: GRP_R_Leg1
-      position: {x: 0.7407745, y: 0.00000078186395, z: -0.000025276673}
+      position: {x: 0.7407744, y: 0.00000078186383, z: -0.000025276673}
       rotation: {x: 0.00000790486, y: -0.06370132, z: -0.000000054695914, w: 0.99796903}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg2Twist1
       parentName: GRP_R_Leg2Twists1
-      position: {x: 0.0016000001, y: -5.888268e-13, z: 1.5631941e-16}
+      position: {x: 0.0016000002, y: -5.888268e-13, z: 1.5631941e-16}
       rotation: {x: -3.502428e-13, y: 0.000004535811, z: 0.00000007721724, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg2Twist1
@@ -2519,7 +2528,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg2Twist2
       parentName: GRP_R_Leg2Twists1
-      position: {x: 0.32960007, y: -2.9479e-13, z: -2.2737369e-16}
+      position: {x: 0.3296, y: -2.9479e-13, z: -2.2737369e-16}
       rotation: {x: 3.9961077e-12, y: 0.000004535811, z: -1.812559e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg2Twist2
@@ -2529,7 +2538,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Leg2Twist3
       parentName: GRP_R_Leg2Twists1
-      position: {x: 0.6576, y: -6.9633197e-16, z: -7.105428e-16}
+      position: {x: 0.6576, y: -6.9633197e-16, z: -7.105427e-16}
       rotation: {x: 7.641973e-12, y: 0.000004535811, z: 0.00000007721724, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Leg2Twist3
@@ -2539,7 +2548,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_BootFlap1Zero1
       parentName: GRP_R_Leg1
-      position: {x: 0.39880797, y: -0.17479394, z: 0.017951397}
+      position: {x: 0.39880797, y: -0.17479394, z: 0.017951395}
       rotation: {x: -0.7112863, y: -0.031166801, z: 0.02853819, w: 0.70163095}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_BootFlap1
@@ -2549,7 +2558,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_BootFlap2Zero1
       parentName: CTL_R_BootFlap1
-      position: {x: 0.120779656, y: 3.2160723e-17, z: -0.0000006327133}
+      position: {x: 0.12077964, y: 3.2160723e-17, z: -0.0000006327133}
       rotation: {x: 0.000000014831216, y: 0.09677743, z: -0.000000001442096, w: 0.9953061}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_BootFlap2
@@ -2564,12 +2573,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegBind2_BotTwist1
       parentName: GRP_R_Leg1
-      position: {x: 0.7407745, y: 0.00000078186395, z: -0.000025276673}
+      position: {x: 0.7407744, y: 0.00000078186383, z: -0.000025276673}
       rotation: {x: 0.00000790486, y: -0.06370132, z: -0.000000054695914, w: 0.99796903}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegBind2_TopTwist1
       parentName: GRP_R_Leg1
-      position: {x: 0.7407745, y: 0.00000078186457, z: -0.000025276682}
+      position: {x: 0.7407744, y: 0.00000078186457, z: -0.000025276684}
       rotation: {x: 0.99562454, y: 0.004363649, z: 0.06355169, w: -0.06836633}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LegBind3Orient1_BotTwist1
@@ -2579,7 +2588,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_Head1
       parentName: CTL_C_Root1
-      position: {x: 0.00000000122874, y: 0.6600744, z: -0.09459427}
+      position: {x: 0.00000000122874, y: 0.66007435, z: -0.094594255}
       rotation: {x: 0.029668571, y: 0.029668571, z: -0.70648414, w: 0.70648414}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Neck1Zero1
@@ -2604,7 +2613,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Head1Zero1
       parentName: CTL_C_Neck2
-      position: {x: -0.089762315, y: 4.9122024e-16, z: 0.0012155595}
+      position: {x: -0.0897623, y: 4.9122024e-16, z: 0.0012155595}
       rotation: {x: -8.7485665e-11, y: -0.040192675, z: -3.5192405e-12, w: 0.99919194}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_Head1
@@ -2614,7 +2623,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_Eye1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.034428705, y: 0.052104384, z: 0.096288}
+      position: {x: -0.034428705, y: 0.052104384, z: 0.096287996}
       rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_Eye1
@@ -2624,7 +2633,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_Eye1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.034428705, y: -0.05210437, z: 0.096288}
+      position: {x: -0.034428705, y: -0.05210437, z: 0.096287996}
       rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_Eye1
@@ -2654,7 +2663,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_UpperEyelid1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.035229713, y: 0.052104324, z: 0.09709407}
+      position: {x: -0.035229713, y: 0.052104324, z: 0.09709406}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_UpperEyelid1
@@ -2664,7 +2673,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_LowerEyelid1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.033629708, y: 0.052104324, z: 0.09709407}
+      position: {x: -0.033629708, y: 0.052104324, z: 0.09709406}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_LowerEyelid1
@@ -2704,7 +2713,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_MouthLower1Zero1
       parentName: CTL_C_Jaw1
-      position: {x: 0.045043647, y: 3.937235e-11, z: 0.10583451}
+      position: {x: 0.045043644, y: 3.937235e-11, z: 0.10583451}
       rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_MouthLower1
@@ -2714,7 +2723,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_MouthLower1Zero1
       parentName: CTL_C_Jaw1
-      position: {x: 0.043474402, y: -0.011192563, z: 0.101561695}
+      position: {x: 0.043474402, y: -0.011192563, z: 0.10156169}
       rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_MouthLower1
@@ -2724,7 +2733,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_MouthLower2Zero1
       parentName: CTL_C_Jaw1
-      position: {x: 0.042197816, y: -0.022372013, z: 0.09545087}
+      position: {x: 0.04219782, y: -0.022372013, z: 0.09545088}
       rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_MouthLower2
@@ -2754,7 +2763,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_BrowInner1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.055425197, y: -0.024654014, z: 0.13346152}
+      position: {x: -0.055425197, y: -0.024654016, z: 0.1334615}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_BrowInner1
@@ -2764,7 +2773,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_BrowMid1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.06802018, y: -0.056269657, z: 0.1239783}
+      position: {x: -0.06802018, y: -0.05626965, z: 0.1239783}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_BrowMid1
@@ -2774,7 +2783,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_BrowOuter1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.063464545, y: -0.08288094, z: 0.09839196}
+      position: {x: -0.063464545, y: -0.08288094, z: 0.09839195}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_BrowOuter1
@@ -2814,7 +2823,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_MouthUpper1Zero1
       parentName: CTL_C_Head1
-      position: {x: 0.047449082, y: -9.176627e-18, z: 0.14392753}
+      position: {x: 0.047449082, y: -9.176627e-18, z: 0.14392751}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_MouthUpper1
@@ -2864,7 +2873,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_MouthUpper2Zero1
       parentName: CTL_C_Head1
-      position: {x: 0.047442295, y: 0.02525232, z: 0.13039231}
+      position: {x: 0.047442295, y: 0.025252318, z: 0.1303923}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_MouthUpper2
@@ -2874,7 +2883,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_MouthUpper1Zero1
       parentName: CTL_C_Head1
-      position: {x: 0.0468823, y: 0.014190705, z: 0.13924271}
+      position: {x: 0.046882294, y: 0.014190704, z: 0.1392427}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_MouthUpper1
@@ -2884,7 +2893,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HairFront2_1Zero1
       parentName: CTL_C_Head1
-      position: {x: -0.18954784, y: 0.06871822, z: 0.16536574}
+      position: {x: -0.18954782, y: 0.06871822, z: 0.16536573}
       rotation: {x: 0.7635218, y: 0.18892504, z: 0.09826765, w: 0.60965997}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_HairFront2_1
@@ -2894,7 +2903,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_HairFront2_2Zero1
       parentName: CTL_R_HairFront2_1
-      position: {x: 0.09304001, y: 3.4106054e-16, z: 9.094947e-16}
+      position: {x: 0.09304002, y: 3.4106054e-16, z: 9.094947e-16}
       rotation: {x: -3.2043802e-16, y: -6.777738e-17, z: -0.41376352, w: 0.9103844}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_HairFront2_2
@@ -2944,7 +2953,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_HairSide1_1Zero1
       parentName: CTL_C_Head1
-      position: {x: 0.10677137, y: -0.12038966, z: 0.07665801}
+      position: {x: 0.10677136, y: -0.12038966, z: 0.07665801}
       rotation: {x: 1.2266348e-17, y: 1.7172888e-17, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_HairSide1_1
@@ -2994,7 +3003,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Hair2Zero1
       parentName: CTL_C_Hair1
-      position: {x: -0.14490353, y: 2.2737369e-16, z: -2.7239875e-17}
+      position: {x: -0.14490351, y: 2.2737369e-16, z: -2.7239875e-17}
       rotation: {x: 8.461331e-17, y: 8.551164e-17, z: -0.020480007, w: 0.99979025}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_Hair2
@@ -3004,7 +3013,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Hair3Zero1
       parentName: CTL_C_Hair2
-      position: {x: -0.15979145, y: -0.0000014761443, z: -7.486946e-16}
+      position: {x: -0.15979145, y: -0.0000014761445, z: -7.486946e-16}
       rotation: {x: 8.449159e-17, y: 8.563191e-17, z: 0.019057842, w: 0.9998184}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_Hair3
@@ -3054,12 +3063,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_EyeAim1
       parentName: CTL_C_Head1
-      position: {x: -0.034428705, y: -0.05210437, z: 0.096288}
+      position: {x: -0.034428705, y: -0.05210437, z: 0.096287996}
       rotation: {x: 0, y: 6.28037e-18, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_EyeAim1
       parentName: CTL_C_Head1
-      position: {x: -0.034428705, y: 0.052104384, z: 0.096288}
+      position: {x: -0.034428705, y: 0.052104384, z: 0.096287996}
       rotation: {x: 2.0097184e-16, y: 6.28037e-18, z: 0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_Collision1
@@ -3104,7 +3113,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_EyeLookAt1Zero1
       parentName: CTL_C_World1
-      position: {x: -2.9842797e-16, y: 2.550271, z: 1.6442895}
+      position: {x: -2.9842797e-16, y: 2.550271, z: 1.6442894}
       rotation: {x: -2.0816682e-17, y: -3.469447e-18, z: 5.551115e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_EyeLookAt1
@@ -3234,7 +3243,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtSide_2Zero1
       parentName: CTL_L_SkirtSide_1
-      position: {x: -0.107108, y: 1.1368684e-16, z: -3.552714e-18}
+      position: {x: -0.107108004, y: 1.1368684e-16, z: -3.552714e-18}
       rotation: {x: -0.000025005014, y: -0.0030249052, z: -0.007259995, w: 0.99996907}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtSide_2
@@ -3279,7 +3288,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_SkirtBack_2Zero1
       parentName: CTL_L_SkirtBack_1
-      position: {x: -0.10417047, y: -1.1368684e-16, z: 2.842171e-17}
+      position: {x: -0.104170464, y: -1.1368684e-16, z: 2.842171e-17}
       rotation: {x: -0.033204667, y: 0.0001560053, z: -0.012025566, w: 0.99937624}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_SkirtBack_2
@@ -3314,7 +3323,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtFront_1Zero1
       parentName: NLL_C_SkirtControls1
-      position: {x: 0.1261291, y: 1.8386908, z: 0.14974369}
+      position: {x: 0.1261291, y: 1.8386909, z: 0.14974368}
       rotation: {x: 0.5386835, y: 0.75472873, z: 0.2868634, w: 0.2406536}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtFront_1
@@ -3359,7 +3368,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtSide_1Zero1
       parentName: NLL_C_SkirtControls1
-      position: {x: 0.17831215, y: 1.8388262, z: 0.026441138}
+      position: {x: 0.17831215, y: 1.838826, z: 0.026441138}
       rotation: {x: 0.5444642, y: 0.8386282, z: 0.008831788, w: -0.013547403}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtSide_1
@@ -3389,7 +3398,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtSide_4Zero1
       parentName: CTL_R_SkirtSide_3
-      position: {x: -0.106772125, y: -1.1368684e-16, z: 5.684342e-17}
+      position: {x: -0.10677213, y: -1.1368684e-16, z: 5.684342e-17}
       rotation: {x: -0.00020377176, y: 0.0002581987, z: 0.008950328, w: 0.9999599}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtSide_4
@@ -3404,7 +3413,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtBack_1
       parentName: NLL_C_SkirtControls1
-      position: {x: 0.12611426, y: 1.8387343, z: -0.09685688}
+      position: {x: 0.12611426, y: 1.8387343, z: -0.09685686}
       rotation: {x: 0.5287588, y: 0.76195246, z: -0.26544127, w: -0.2634075}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtBack_1
@@ -3424,7 +3433,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_SkirtBack_3
       parentName: CTL_R_SkirtBack_2
-      position: {x: -0.09028884, y: 1.1368684e-16, z: -5.684342e-17}
+      position: {x: -0.090288825, y: 1.1368684e-16, z: -5.684342e-17}
       rotation: {x: 0.026081903, y: -0.004648753, z: 0.014373633, w: 0.9995457}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_SkirtBack_3
@@ -3449,7 +3458,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtFront_1Zero1
       parentName: NLL_C_SkirtControls1
-      position: {x: 0.0000014117012, y: 1.8397876, z: 0.20072049}
+      position: {x: 0.0000014117012, y: 1.8397875, z: 0.20072049}
       rotation: {x: 0.4758979, y: 0.52299476, z: 0.4760474, w: 0.52285427}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtFront_1
@@ -3459,7 +3468,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtFront_2Zero1
       parentName: CTL_C_SkirtFront_1
-      position: {x: -0.0993631, y: 0, z: -2.3758773e-17}
+      position: {x: -0.0993631, y: 0, z: -2.3758771e-17}
       rotation: {x: 0.000028618699, y: 0.00032838073, z: -0.0047166552, w: 0.99998885}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtFront_2
@@ -3469,7 +3478,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtFront_2Zero1 1
       parentName: CTL_C_SkirtFront_2
-      position: {x: -0.08961627, y: -5.684342e-17, z: -1.8873792e-17}
+      position: {x: -0.08961627, y: -5.684342e-17, z: -1.887379e-17}
       rotation: {x: 0.00012851955, y: 0.00023884431, z: 0.011898277, w: 0.9999292}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtFront_3
@@ -3479,7 +3488,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtFront_4Zero1
       parentName: CTL_C_SkirtFront_3
-      position: {x: -0.116453595, y: 5.684342e-17, z: 3.641532e-17}
+      position: {x: -0.116453595, y: 5.684342e-17, z: 3.6415323e-17}
       rotation: {x: 0.00021571392, y: -0.00019966337, z: -0.0032409166, w: 0.9999947}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtFront_4
@@ -3489,7 +3498,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtFront_5Zero1
       parentName: CTL_C_SkirtFront_4
-      position: {x: -0.10189998, y: 0, z: 4.4408924e-18}
+      position: {x: -0.10189999, y: 0, z: 4.4408924e-18}
       rotation: {x: 0.0007116738, y: 0.9999995, z: 0.000042660078, w: -0.000713102}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtBack_1Zero1
@@ -3504,7 +3513,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtBack_2Zero1
       parentName: CTL_C_SkirtBack_1
-      position: {x: -0.10034623, y: 0, z: 2.5424109e-17}
+      position: {x: -0.10034623, y: 0, z: 2.5424106e-17}
       rotation: {x: 0.00014309703, y: 0.00018682213, z: -0.008191232, w: 0.99996644}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtBack_2
@@ -3514,7 +3523,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtBack_3Zero1
       parentName: CTL_C_SkirtBack_2
-      position: {x: -0.09063973, y: -5.684342e-17, z: 1.4543923e-17}
+      position: {x: -0.09063972, y: -5.684342e-17, z: 1.4543923e-17}
       rotation: {x: 0.000056746478, y: 0.00007605143, z: 0.02029257, w: 0.99979407}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtBack_3
@@ -3524,7 +3533,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_SkirtBack_4Zero1
       parentName: CTL_C_SkirtBack_3
-      position: {x: -0.11706742, y: -5.684342e-17, z: 2.353673e-17}
+      position: {x: -0.11706742, y: -5.684342e-17, z: 2.3536726e-17}
       rotation: {x: 0.000095203315, y: 0.00022338924, z: -0.005594114, w: 0.9999843}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_SkirtBack_4
@@ -3544,7 +3553,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_1Zero1
       parentName: NLL_C_PonchoControls1
-      position: {x: -0.1132583, y: 2.3538136, z: 0.053536594}
+      position: {x: -0.1132583, y: 2.3538136, z: 0.053536586}
       rotation: {x: 0.2888198, y: 0.3039563, z: 0.46772334, w: 0.778093}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoFront_1
@@ -3574,7 +3583,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_4Zero1
       parentName: CTL_L_PonchoFront_3
-      position: {x: -0.07541654, y: -2.2737369e-16, z: 0}
+      position: {x: -0.075416535, y: -2.2737369e-16, z: 0}
       rotation: {x: 0.041755717, y: -0.040313866, z: 0.114184245, w: 0.9917627}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoFront_4
@@ -3584,12 +3593,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoFront_5Zero1
       parentName: CTL_L_PonchoFront_4
-      position: {x: -0.07933531, y: 2.2737369e-16, z: -2.2737369e-16}
+      position: {x: -0.079335295, y: 2.2737369e-16, z: -2.2737369e-16}
       rotation: {x: -0.010774232, y: 0.9988162, z: 0.044097904, w: 0.01748015}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoSide_1Zero1
       parentName: NLL_C_PonchoControls1
-      position: {x: -0.16017143, y: 2.3866014, z: -0.04958777}
+      position: {x: -0.1601714, y: 2.3866014, z: -0.049587768}
       rotation: {x: 0.050761085, y: 0.0014179804, z: 0.47963825, w: 0.87599576}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoSide_1
@@ -3629,7 +3638,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoSide_5Zero1
       parentName: CTL_L_PonchoSide_4
-      position: {x: -0.068097584, y: 0, z: 0}
+      position: {x: -0.06809759, y: 0, z: 0}
       rotation: {x: 0.05784559, y: 0.9977788, z: -0.015139181, w: 0.029365424}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoBack_1Zero1
@@ -3654,7 +3663,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoBack_3Zero1
       parentName: CTL_L_PonchoBack_2
-      position: {x: -0.08998919, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998918, y: 1.1368684e-16, z: 0}
       rotation: {x: -0.077755965, y: 0.023777174, z: -0.040788088, w: 0.9958539}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_L_PonchoBack_3
@@ -3674,7 +3683,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_L_PonchoBack_5Zero1
       parentName: CTL_L_PonchoBack_4
-      position: {x: -0.08103179, y: 0, z: 0}
+      position: {x: -0.08103178, y: 0, z: 0}
       rotation: {x: 0.029671585, y: 0.9964943, z: -0.07795993, w: -0.0064048558}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoFront_1Zero1
@@ -3689,7 +3698,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoFront_2Zero1
       parentName: CTL_R_PonchoFront_1
-      position: {x: -0.113414146, y: 0, z: 0}
+      position: {x: -0.11341413, y: 0, z: 0}
       rotation: {x: -0.008689097, y: 0.025910586, z: -0.14379443, w: 0.98923016}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoFront_2
@@ -3724,7 +3733,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoSide_1Zero1
       parentName: NLL_C_PonchoControls1
-      position: {x: 0.16017143, y: 2.386602, z: -0.04958934}
+      position: {x: 0.1601714, y: 2.386602, z: -0.04958934}
       rotation: {x: 0.47964448, y: 0.8759928, z: 0.050752625, w: 0.0014173404}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoSide_1
@@ -3754,7 +3763,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoSide_4Zero1
       parentName: CTL_R_PonchoSide_3
-      position: {x: -0.06906786, y: 0, z: -1.4210855e-17}
+      position: {x: -0.06906785, y: 0, z: -1.4210855e-17}
       rotation: {x: 0.010974003, y: 0.091209576, z: -0.021732394, w: 0.99553406}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoSide_4
@@ -3764,7 +3773,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoSide_5Zero1
       parentName: CTL_R_PonchoSide_4
-      position: {x: -0.06809503, y: 0, z: 0}
+      position: {x: -0.06809502, y: 0, z: 0}
       rotation: {x: 0.05784453, y: 0.99777883, z: 0.015139879, w: -0.02936298}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoBack_1Zero1
@@ -3789,7 +3798,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_R_PonchoBack_3Zero1
       parentName: CTL_R_PonchoBack_2
-      position: {x: -0.089989126, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998913, y: 1.1368684e-16, z: 0}
       rotation: {x: 0.077754386, y: -0.023788996, z: -0.040790297, w: 0.99585366}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_R_PonchoBack_3
@@ -3854,12 +3863,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_PonchoFront_5Zero1
       parentName: CTL_C_PonchoFront_4
-      position: {x: -0.11079682, y: -1.1368684e-16, z: -6.1447298e-18}
+      position: {x: -0.11079681, y: -1.1368684e-16, z: -6.1447298e-18}
       rotation: {x: -0.017866438, y: 0.99984044, z: 0.0000000010684593, w: 0.00000002838914}
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_PonchoBack_1Zero1
       parentName: NLL_C_PonchoControls1
-      position: {x: -2.234822e-11, y: 2.4081054, z: -0.19145325}
+      position: {x: -2.234822e-11, y: 2.4081051, z: -0.19145325}
       rotation: {x: -0.48374104, y: -0.51574665, z: 0.48374104, w: 0.51574665}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_PonchoBack_1
@@ -3889,7 +3898,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_PonchoBack_4Zero1
       parentName: CTL_C_PonchoBack_3
-      position: {x: -0.09808551, y: -1.9895199e-16, z: 4.1193996e-18}
+      position: {x: -0.09808549, y: -1.9895199e-16, z: 4.1193996e-18}
       rotation: {x: 0, y: 0, z: 0.027771756, w: 0.9996143}
       scale: {x: 1, y: 1, z: 1}
     - name: CTL_C_PonchoBack_4
@@ -3899,7 +3908,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NLL_C_PonchoBack_5Zero1
       parentName: CTL_C_PonchoBack_4
-      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987617e-17}
+      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987614e-17}
       rotation: {x: -0.002954462, y: 0.99999565, z: 7.2129064e-10, w: -0.000000015029503}
       scale: {x: 1, y: 1, z: 1}
     - name: joints
@@ -3924,27 +3933,27 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: BND_C_Spine2
       parentName: BND_C_Spine1
-      position: {x: 5.265762e-17, y: 0.11857442, z: 2.2737369e-16}
+      position: {x: 5.2657613e-17, y: 0.1185744, z: 2.2737369e-16}
       rotation: {x: -0.029125305, y: -0, z: -0, w: 0.9995758}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_C_Spine3
       parentName: BND_C_Spine2
-      position: {x: 5.265762e-17, y: 0.11857442, z: 1.4921399e-16}
+      position: {x: 5.2657613e-17, y: 0.1185744, z: 1.4921399e-16}
       rotation: {x: -0.033240873, y: -0, z: -0, w: 0.99944735}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_C_Spine4
       parentName: BND_C_Spine3
-      position: {x: 1.1700367e-10, y: 0.11857442, z: 2.842171e-17}
+      position: {x: 1.1700367e-10, y: 0.1185744, z: 2.842171e-17}
       rotation: {x: -0, y: -0.0000031249601, z: -7.105427e-14, w: 1}
       scale: {x: 1, y: 0.9999998, z: 0.9999998}
     - name: BND_L_Clav1
       parentName: BND_C_Spine4
-      position: {x: -0.044872265, y: 0.25498253, z: -0.08325437}
+      position: {x: -0.04487226, y: 0.25498253, z: -0.08325437}
       rotation: {x: 0.031837054, y: 0.0000031233762, z: -0.00000009948945, w: 0.9994931}
       scale: {x: 1, y: 1, z: 1}
     - name: BND_L_Arm1
       parentName: BND_L_Clav1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.03279383, y: 0.0007382259, z: 0.02838077, w: 0.99905884}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: BND_L_Arm2
@@ -3964,7 +3973,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1, z: 1.0000001}
     - name: BND_L_Thumb2
       parentName: BND_L_Thumb1
-      position: {x: -0.055153143, y: -2.5011106e-15, z: 8.185453e-15}
+      position: {x: -0.05515315, y: -2.5011106e-15, z: 8.185453e-15}
       rotation: {x: 0.024923766, y: -0.016297398, z: 0.027266989, w: 0.9991846}
       scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
     - name: BND_L_Thumb3
@@ -3974,27 +3983,27 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000005, z: 1.0000005}
     - name: BND_L_Thumb4
       parentName: BND_L_Thumb3
-      position: {x: -0.046178065, y: -1.9437534e-30, z: -3.1263883e-16}
+      position: {x: -0.046178065, y: -1.9437533e-30, z: -3.1263883e-16}
       rotation: {x: -0, y: -1.7763558e-15, z: -5.2180427e-15, w: 1}
       scale: {x: 0.9999999, y: 1.0000002, z: 1}
     - name: BND_L_Index1
       parentName: BND_L_Arm3
-      position: {x: -0.06312369, y: 0.001963081, z: 0.04094578}
+      position: {x: -0.06312369, y: 0.0019630813, z: 0.04094578}
       rotation: {x: 0.09613169, y: 0.060806796, z: -0.12852138, w: 0.9851617}
       scale: {x: 1.0000001, y: 1.0000004, z: 1}
     - name: BND_L_Index2
       parentName: BND_L_Index1
-      position: {x: -0.06769266, y: -0.008324222, z: 0.0065294434}
+      position: {x: -0.06769266, y: -0.008324222, z: 0.0065294444}
       rotation: {x: -0.04746642, y: 0.0076007256, z: 0.05098179, w: 0.997542}
       scale: {x: 1.0000001, y: 0.99999976, z: 1.0000002}
     - name: BND_L_Index3
       parentName: BND_L_Index2
-      position: {x: -0.06482597, y: -1.5916159e-15, z: 1.0516034e-15}
+      position: {x: -0.06482597, y: -1.5916159e-15, z: 1.0516035e-15}
       rotation: {x: 0.000000037252903, y: 0.0000000037252903, z: 0.028172469, w: 0.99960315}
       scale: {x: 0.99999976, y: 1.0000001, z: 0.99999976}
     - name: BND_L_Index4
       parentName: BND_L_Index3
-      position: {x: -0.036078326, y: 1.5916159e-15, z: -1.0516034e-15}
+      position: {x: -0.036078326, y: 1.5916159e-15, z: -1.0516035e-15}
       rotation: {x: -0.000000033924263, y: -0.000000018964073, z: -0.034575973, w: 0.99940205}
       scale: {x: 0.99999994, y: 1.0000005, z: 1}
     - name: BND_L_Index5
@@ -4014,22 +4023,22 @@ ModelImporter:
       scale: {x: 1.0000001, y: 0.9999999, z: 1}
     - name: BND_L_Middle3
       parentName: BND_L_Middle2
-      position: {x: -0.0667993, y: -2.0463632e-15, z: -4.9071864e-16}
+      position: {x: -0.0667993, y: -2.0463632e-15, z: -4.907187e-16}
       rotation: {x: 0.000000011175866, y: -0.000000023283054, z: 0.04124036, w: 0.9991493}
       scale: {x: 1, y: 1.0000001, z: 0.9999998}
     - name: BND_L_Middle4
       parentName: BND_L_Middle3
-      position: {x: -0.048303436, y: 2.5011106e-15, z: -4.0589755e-16}
+      position: {x: -0.048303433, y: 2.5011106e-15, z: -4.0589755e-16}
       rotation: {x: -0.0000000035976697, y: 0.000000018609773, z: -0.05086281, w: 0.9987057}
       scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
     - name: BND_L_Middle5
       parentName: BND_L_Middle4
-      position: {x: -0.03741829, y: -6.821211e-16, z: -9.769964e-17}
+      position: {x: -0.03741829, y: -6.821211e-16, z: -9.7699645e-17}
       rotation: {x: -0, y: -1.7763562e-15, z: 6.695181e-17, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
     - name: BND_L_Ring1
       parentName: BND_L_Arm3
-      position: {x: -0.06231438, y: 0.017437864, z: -0.008580135}
+      position: {x: -0.062314373, y: 0.017437864, z: -0.008580135}
       rotation: {x: -0.03157029, y: 0.082057424, z: -0.17574841, w: 0.98050106}
       scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
     - name: BND_L_Ring2
@@ -4059,12 +4068,12 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000005, z: 1}
     - name: BND_L_Pinky2
       parentName: BND_L_Pinky1
-      position: {x: -0.079514615, y: -0.020591816, z: -0.007359681}
+      position: {x: -0.079514615, y: -0.020591818, z: -0.007359681}
       rotation: {x: -0.014493387, y: -0.013637868, z: 0.10759697, w: 0.9939954}
       scale: {x: 0.99999976, y: 0.99999976, z: 0.9999999}
     - name: BND_L_Pinky3
       parentName: BND_L_Pinky2
-      position: {x: -0.06205262, y: -1.1368685e-15, z: 8.5265137e-16}
+      position: {x: -0.062052626, y: -1.1368685e-15, z: 8.5265137e-16}
       rotation: {x: 0.000000016763803, y: -0.000000007450579, z: 0.020335265, w: 0.9997933}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
     - name: BND_L_Pinky4
@@ -4074,22 +4083,22 @@ ModelImporter:
       scale: {x: 0.99999976, y: 0.9999998, z: 0.9999998}
     - name: BND_L_Pinky5
       parentName: BND_L_Pinky4
-      position: {x: -0.029376, y: -9.094947e-16, z: -5.684342e-17}
+      position: {x: -0.029375996, y: -9.094947e-16, z: -5.684342e-17}
       rotation: {x: -0, y: -0, z: -6.7182915e-18, w: 1}
       scale: {x: 0.9999999, y: 1.0000001, z: 1}
     - name: BND_L_Arm2Twist1
       parentName: BND_L_Arm2
-      position: {x: 1.05387704e-13, y: 0.00000027371254, z: -1.2391867e-14}
+      position: {x: 1.0538769e-13, y: 0.00000027371254, z: -1.2391867e-14}
       rotation: {x: 0.000000012863101, y: 0.000000007450579, z: 0.0000003894378, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 0.9999998}
     - name: BND_L_Arm2Twist2
       parentName: BND_L_Arm2
-      position: {x: -0.18480001, y: 0.00000013650077, z: -2.092179e-12}
+      position: {x: -0.18479998, y: 0.00000013650077, z: -2.092179e-12}
       rotation: {x: 0.01730388, y: 0.000000026077029, z: 0.00000060858787, w: 0.9998503}
       scale: {x: 0.9999998, y: 1, z: 1}
     - name: BND_L_Arm2Twist3
       parentName: BND_L_Arm2
-      position: {x: -0.36960003, y: -7.1100936e-10, z: -4.1699482e-12}
+      position: {x: -0.36959997, y: -7.1100936e-10, z: -4.169948e-12}
       rotation: {x: 0.034602605, y: 0.000000026077029, z: 0.00000050328015, w: 0.99940115}
       scale: {x: 0.9999999, y: 0.9999999, z: 0.9999998}
     - name: BND_L_Arm1Twist1
@@ -4109,12 +4118,12 @@ ModelImporter:
       scale: {x: 1.0000002, y: 0.9999999, z: 1}
     - name: BND_L_Arm1_noTwist
       parentName: BND_L_Clav1
-      position: {x: -0.16424292, y: -0.041672196, z: -0.00995641}
+      position: {x: -0.16424292, y: -0.041672204, z: -0.00995641}
       rotation: {x: -0.000000005587935, y: 0.017290091, z: 0.29362422, w: 0.9557646}
       scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
     - name: BND_C_Neck1
       parentName: BND_C_Spine4
-      position: {x: -0.00000046780113, y: 0.31021675, z: -0.075027026}
+      position: {x: -0.00000046780113, y: 0.31021675, z: -0.07502703}
       rotation: {x: 0.05214369, y: 0.052148104, z: -0.70518166, w: 0.7051812}
       scale: {x: 1.0000008, y: 1.0000005, z: 1.0000002}
     - name: BND_C_Neck2
@@ -4124,7 +4133,7 @@ ModelImporter:
       scale: {x: 1, y: 1.0000001, z: 0.99999976}
     - name: BND_C_Head
       parentName: BND_C_Neck2
-      position: {x: -0.089762315, y: 4.7322153e-16, z: 0.0012155595}
+      position: {x: -0.0897623, y: 4.7322153e-16, z: 0.0012155595}
       rotation: {x: -0.0000000018306177, y: -0.04019269, z: 0.000000088485585, w: 0.99919194}
       scale: {x: 1.0000015, y: 1.0000014, z: 1}
     - name: BND_C_Hair1
@@ -4134,12 +4143,12 @@ ModelImporter:
       scale: {x: 1.0000005, y: 1.0000004, z: 1.0000004}
     - name: BND_C_Hair2
       parentName: BND_C_Hair1
-      position: {x: -0.14490353, y: 3.4106054e-16, z: -5.5197054e-17}
+      position: {x: -0.14490351, y: 3.4106054e-16, z: -5.5197054e-17}
       rotation: {x: -0.000000025145704, y: -0.000000029802315, z: -0.020479994, w: 0.9997903}
       scale: {x: 0.99999976, y: 0.9999998, z: 0.9999998}
     - name: BND_C_Hair3
       parentName: BND_C_Hair2
-      position: {x: -0.15979145, y: -0.0000014761443, z: -7.79086e-16}
+      position: {x: -0.15979145, y: -0.0000014761445, z: -7.79086e-16}
       rotation: {x: -0.000000040060012, y: 0.000000073216086, z: 0.019057859, w: 0.9998184}
       scale: {x: 1.0000006, y: 1.0000001, z: 1.0000001}
     - name: BND_C_Hair4
@@ -4164,12 +4173,12 @@ ModelImporter:
       scale: {x: 0.99999976, y: 0.99999994, z: 1}
     - name: BND_L_Eye1
       parentName: BND_C_Head
-      position: {x: -0.034428705, y: -0.05210437, z: 0.096288}
+      position: {x: -0.034428705, y: -0.05210437, z: 0.096287996}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000002, y: 1.0000002, z: 1}
     - name: BND_R_Eye1
       parentName: BND_C_Head
-      position: {x: -0.034428705, y: 0.052104384, z: 0.096288}
+      position: {x: -0.034428705, y: 0.052104384, z: 0.096287996}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000002, y: 1.0000002, z: 1}
     - name: BND_C_Jaw1
@@ -4184,7 +4193,7 @@ ModelImporter:
       scale: {x: 0.99999976, y: 1.000001, z: 1.0000007}
     - name: BND_C_Tongue2
       parentName: BND_C_Tongue1
-      position: {x: -0.018865025, y: 0, z: 1.7966816e-17}
+      position: {x: -0.018865025, y: 0, z: 1.7966818e-17}
       rotation: {x: -0.00000017881395, y: 0.00000005960465, z: 0.07523737, w: 0.9971657}
       scale: {x: 1.0000005, y: 0.99999964, z: 1.0000001}
     - name: BND_L_UpperEyelid1
@@ -4199,27 +4208,27 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_UpperEyelid1
       parentName: BND_C_Head
-      position: {x: -0.035229713, y: 0.052104324, z: 0.09709407}
+      position: {x: -0.035229713, y: 0.052104324, z: 0.09709406}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_LowerEyelid1
       parentName: BND_C_Head
-      position: {x: -0.033629708, y: 0.052104324, z: 0.09709407}
+      position: {x: -0.033629708, y: 0.052104324, z: 0.09709406}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_L_BrowInner1
       parentName: BND_C_Head
-      position: {x: -0.055425197, y: -0.024654014, z: 0.13346152}
+      position: {x: -0.055425197, y: -0.024654016, z: 0.1334615}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_L_BrowMid1
       parentName: BND_C_Head
-      position: {x: -0.06802018, y: -0.056269657, z: 0.1239783}
+      position: {x: -0.06802018, y: -0.05626965, z: 0.1239783}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_L_BrowOuter1
       parentName: BND_C_Head
-      position: {x: -0.063464545, y: -0.08288094, z: 0.09839196}
+      position: {x: -0.063464545, y: -0.08288094, z: 0.09839195}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_BrowInner1
@@ -4239,7 +4248,7 @@ ModelImporter:
       scale: {x: 1, y: 1.0000001, z: 1.0000004}
     - name: BND_C_MouthUpper1
       parentName: BND_C_Head
-      position: {x: 0.047449082, y: 2.255469e-18, z: 0.14392753}
+      position: {x: 0.047449082, y: 2.255469e-18, z: 0.14392751}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_L_MouthUpper1
@@ -4274,7 +4283,7 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_MouthLower1
       parentName: BND_C_Head
-      position: {x: 0.060194302, y: 0.022372, z: 0.12680718}
+      position: {x: 0.060194302, y: 0.022372, z: 0.12680717}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_MouthLower2
@@ -4289,22 +4298,22 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_MouthUpper2
       parentName: BND_C_Head
-      position: {x: 0.047442295, y: 0.02525232, z: 0.13039231}
+      position: {x: 0.047442295, y: 0.025252318, z: 0.1303923}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_MouthUpper1
       parentName: BND_C_Head
-      position: {x: 0.0468823, y: 0.014190705, z: 0.13924271}
+      position: {x: 0.046882294, y: 0.014190704, z: 0.1392427}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_HairFront2_1
       parentName: BND_C_Head
-      position: {x: -0.18954784, y: 0.06871822, z: 0.16536574}
+      position: {x: -0.18954782, y: 0.06871822, z: 0.16536573}
       rotation: {x: 0.76352185, y: 0.18892501, z: 0.09826764, w: 0.60965997}
       scale: {x: 1.0000011, y: 1.0000007, z: 1.0000008}
     - name: BND_R_HairFront2_2
       parentName: BND_R_HairFront2_1
-      position: {x: 0.09304001, y: 4.5474737e-16, z: 9.094947e-16}
+      position: {x: 0.09304002, y: 4.5474737e-16, z: 9.094947e-16}
       rotation: {x: 0.000000059604645, y: 0.00000008195639, z: -0.41376364, w: 0.9103844}
       scale: {x: 1, y: 0.99999934, z: 0.9999994}
     - name: BND_R_HairFront1_1
@@ -4329,7 +4338,7 @@ ModelImporter:
       scale: {x: 1.000001, y: 0.9999993, z: 1.0000001}
     - name: BND_L_HairSide1_1
       parentName: BND_C_Head
-      position: {x: 0.10677137, y: -0.12038966, z: 0.07665801}
+      position: {x: 0.10677136, y: -0.12038966, z: 0.07665801}
       rotation: {x: 0.000000010606622, y: 0.0000000055879354, z: 0.7071067, w: 0.7071068}
       scale: {x: 1.0000002, y: 1.0000005, z: 1.0000001}
     - name: BND_R_HairSide1_1
@@ -4349,22 +4358,22 @@ ModelImporter:
       scale: {x: 1.0000012, y: 1.0000001, z: 1.0000004}
     - name: BND_R_Clav1
       parentName: BND_C_Spine4
-      position: {x: 0.044871163, y: 0.25498882, z: -0.08325461}
+      position: {x: 0.044871163, y: 0.25498882, z: -0.0832546}
       rotation: {x: 0.99949306, y: 1.2789768e-13, z: -0.000006246752, w: 0.031837024}
       scale: {x: 1, y: 1.0000017, z: 1.0000017}
     - name: BND_R_Arm1
       parentName: BND_R_Clav1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.03085547, y: -0.0010694116, z: 0.028374951, w: 0.9991205}
       scale: {x: 0.9999999, y: 0.9999998, z: 0.9999996}
     - name: BND_R_Arm2
       parentName: BND_R_Arm1
-      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898866}
+      position: {x: 0.35368738, y: -0.0000035879323, z: -0.0000021898863}
       rotation: {x: -0.00036691688, y: 0.035387337, z: -0.0076466803, w: 0.9993444}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_R_Arm3
       parentName: BND_R_Arm2
-      position: {x: 0.36928856, y: 0.000009652693, z: -0.00000062238}
+      position: {x: 0.36928856, y: 0.000009652692, z: -0.00000062238007}
       rotation: {x: 0.033139337, y: 0.025085527, z: 0.0516534, w: 0.9977998}
       scale: {x: 1.0000001, y: 1, z: 1.0000002}
     - name: BND_R_Thumb1
@@ -4374,12 +4383,12 @@ ModelImporter:
       scale: {x: 0.9999992, y: 0.9999996, z: 1.0000006}
     - name: BND_R_Thumb2
       parentName: BND_R_Thumb1
-      position: {x: 0.05515012, y: -0.0000036093163, z: 0.0000010019243}
+      position: {x: 0.055150125, y: -0.0000036093163, z: 0.0000010019243}
       rotation: {x: -0.02493524, y: 0.01628184, z: -0.027247394, w: -0.999185}
       scale: {x: 1.0000004, y: 1.0000004, z: 0.9999999}
     - name: BND_R_Thumb3
       parentName: BND_R_Thumb2
-      position: {x: 0.0742565, y: -0.0000018124193, z: 0.0000036344568}
+      position: {x: 0.0742565, y: -0.0000018124192, z: 0.0000036344568}
       rotation: {x: 0.000002747401, y: -0.000014131885, z: 0.0372184, w: 0.9993072}
       scale: {x: 1.0000001, y: 0.99999994, z: 1.0000002}
     - name: BND_R_Thumb4
@@ -4389,32 +4398,32 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
     - name: BND_R_Index1
       parentName: BND_R_Arm3
-      position: {x: 0.06312112, y: -0.0019659079, z: -0.040946227}
+      position: {x: 0.06312112, y: -0.0019659079, z: -0.04094622}
       rotation: {x: 0.09612476, y: 0.060812313, z: -0.12856208, w: 0.9851568}
       scale: {x: 0.9999999, y: 0.9999998, z: 1}
     - name: BND_R_Index2
       parentName: BND_R_Index1
-      position: {x: 0.06769675, y: 0.008329512, z: -0.0065297997}
+      position: {x: 0.06769675, y: 0.008329511, z: -0.0065297997}
       rotation: {x: -0.047465056, y: 0.0076133404, z: 0.051025163, w: 0.99753976}
       scale: {x: 0.9999999, y: 0.9999997, z: 0.9999995}
     - name: BND_R_Index3
       parentName: BND_R_Index2
-      position: {x: 0.06482269, y: -0.0000046772793, z: 0.00000034869626}
+      position: {x: 0.06482269, y: -0.000004677279, z: 0.00000034869626}
       rotation: {x: 0.000000011175871, y: -0.000000007450581, z: 0.028172577, w: 0.99960315}
       scale: {x: 1.0000001, y: 1.0000005, z: 1.0000001}
     - name: BND_R_Index4
       parentName: BND_R_Index3
-      position: {x: 0.036080573, y: 0.0000037602442, z: -0.00000039562704}
+      position: {x: 0.036080573, y: 0.000003760244, z: -0.00000039562704}
       rotation: {x: 0.000000018252264, y: -0.0000000046322155, z: -0.034576144, w: 0.9994021}
       scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
     - name: BND_R_Index5
       parentName: BND_R_Index4
-      position: {x: 0.030112457, y: 0.000004030593, z: 0.00000006932318}
+      position: {x: 0.030112455, y: 0.000004030593, z: 0.00000006932318}
       rotation: {x: 0.000000055878203, y: 3.58002e-10, z: 0.0000000037252894, w: 1}
       scale: {x: 0.99999994, y: 1.0000005, z: 1.0000005}
     - name: BND_R_Middle1
       parentName: BND_R_Arm3
-      position: {x: 0.063564554, y: -0.016788382, z: -0.016917996}
+      position: {x: 0.063564554, y: -0.016788382, z: -0.016917998}
       rotation: {x: 0.010169274, y: 0.08586899, z: -0.15384139, w: 0.98430485}
       scale: {x: 0.99999964, y: 1.0000001, z: 1.0000002}
     - name: BND_R_Middle2
@@ -4459,18 +4468,18 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1.0000006, z: 1.0000008}
     - name: BND_R_Ring5
       parentName: BND_R_Ring4
-      position: {x: 0.034794882, y: 0.0000015871602, z: 0.00000028609657}
+      position: {x: 0.03479488, y: 0.0000015871602, z: 0.00000028609657}
       rotation: {x: 0.000000037296044, y: 0.0000000044278403, z: -0.000000029802315,
         w: 1}
       scale: {x: 0.99999994, y: 0.99999964, z: 0.99999976}
     - name: BND_R_Pinky1
       parentName: BND_R_Arm3
-      position: {x: 0.043358408, y: -0.0014178603, z: 0.028137183}
+      position: {x: 0.04335841, y: -0.0014178602, z: 0.028137183}
       rotation: {x: -0.13490704, y: 0.11538303, z: -0.1978864, w: 0.9640165}
       scale: {x: 1.0000001, y: 0.99999994, z: 0.9999999}
     - name: BND_R_Pinky2
       parentName: BND_R_Pinky1
-      position: {x: 0.079518236, y: 0.02059873, z: 0.0073607718}
+      position: {x: 0.079518236, y: 0.02059873, z: 0.0073607713}
       rotation: {x: -0.014492938, y: -0.013662021, z: 0.10765326, w: 0.993989}
       scale: {x: 1, y: 1.0000008, z: 1.0000005}
     - name: BND_R_Pinky3
@@ -4480,27 +4489,27 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000004, z: 1.0000006}
     - name: BND_R_Pinky4
       parentName: BND_R_Pinky3
-      position: {x: 0.03339662, y: -0.0000029707287, z: -0.0000009774731}
+      position: {x: 0.03339662, y: -0.000002970729, z: -0.0000009774731}
       rotation: {x: 0.00000002333845, y: -3.7008077e-10, z: -0.04434753, w: 0.99901617}
       scale: {x: 1, y: 1.0000004, z: 1.0000006}
     - name: BND_R_Pinky5
       parentName: BND_R_Pinky4
-      position: {x: 0.029376, y: 0.0000054835614, z: 0.0000015634263}
+      position: {x: 0.029375996, y: 0.0000054835614, z: 0.0000015634264}
       rotation: {x: 0.000000029793718, y: 7.1594497e-10, z: 0.000000029802315, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000002}
     - name: BND_R_Arm2Twist1
       parentName: BND_R_Arm2
-      position: {x: -1.0404176e-10, y: 0.000006874673, z: 0.0000000013687368}
+      position: {x: -1.04041754e-10, y: 0.000006874673, z: 0.0000000013687368}
       rotation: {x: 0.00000003003879, y: -0.000000007450581, z: -0.000009371732, w: 1}
       scale: {x: 1, y: 1.0000004, z: 1}
     - name: BND_R_Arm2Twist2
       parentName: BND_R_Arm2
-      position: {x: 0.18560001, y: 0.0000034196685, z: 0.0000000024652713}
+      position: {x: 0.18560001, y: 0.000003419668, z: 0.0000000024652713}
       rotation: {x: 0.00000003003879, y: -0.000000007450581, z: -0.000009371732, w: 1}
       scale: {x: 1, y: 1.0000001, z: 0.9999998}
     - name: BND_R_Arm2Twist3
       parentName: BND_R_Arm2
-      position: {x: 0.36960003, y: -0.0000000055527103, z: 0.000000003552353}
+      position: {x: 0.36959997, y: -0.0000000055527094, z: 0.000000003552353}
       rotation: {x: 0.00000003003879, y: -0.000000007450581, z: -0.000009371732, w: 1}
       scale: {x: 1, y: 1.0000004, z: 1.0000002}
     - name: BND_R_Arm1Twist1
@@ -4510,7 +4519,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1, z: 1.0000001}
     - name: BND_R_Arm1Twist2
       parentName: BND_R_Arm1
-      position: {x: 0.17760001, y: 0.0000034524699, z: 6.394885e-17}
+      position: {x: 0.17760001, y: 0.0000034524694, z: 6.394885e-17}
       rotation: {x: -0.0077183377, y: -0.00000007171184, z: 0.000009687297, w: 0.99997026}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
     - name: BND_R_Arm1Twist3
@@ -4520,12 +4529,12 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
     - name: BND_R_Arm1_noTwist
       parentName: BND_R_Clav1
-      position: {x: 0.16424362, y: 0.040077664, z: 0.015169067}
+      position: {x: 0.1642436, y: 0.040077664, z: 0.015169067}
       rotation: {x: 0.000000011175871, y: -0.020142617, z: 0.2934418, w: 0.9557647}
       scale: {x: 1, y: 0.9999998, z: 0.99999976}
     - name: BND_L_PonchoFront_1
       parentName: BND_C_Spine4
-      position: {x: -0.113258004, y: 0.32325146, z: 0.047874436}
+      position: {x: -0.113258004, y: 0.3232514, z: 0.047874436}
       rotation: {x: 0.3134471, y: 0.2889137, z: 0.47716236, w: 0.7685024}
       scale: {x: 1.0000004, y: 1.0000001, z: 0.9999999}
     - name: BND_L_PonchoFront_2
@@ -4540,12 +4549,12 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000002, z: 0.99999994}
     - name: BND_L_PonchoFront_4
       parentName: BND_L_PonchoFront_3
-      position: {x: -0.07541654, y: -2.2737369e-16, z: -1.1368684e-16}
+      position: {x: -0.075416535, y: -2.2737369e-16, z: -1.1368684e-16}
       rotation: {x: 0.04175565, y: -0.040313873, z: 0.11418428, w: 0.99176276}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
     - name: BND_L_PonchoFront_5
       parentName: BND_L_PonchoFront_4
-      position: {x: -0.07933531, y: 0, z: -2.2737369e-16}
+      position: {x: -0.079335295, y: 0, z: -2.2737369e-16}
       rotation: {x: -0.010774139, y: 0.9988162, z: 0.044097893, w: 0.01748023}
       scale: {x: 1, y: 1.0000005, z: 1.0000002}
     - name: BND_L_PonchoSide_1
@@ -4570,12 +4579,12 @@ ModelImporter:
       scale: {x: 1.0000006, y: 1, z: 1.0000005}
     - name: BND_L_PonchoSide_5
       parentName: BND_L_PonchoSide_4
-      position: {x: -0.068097584, y: 0, z: 2.842171e-17}
+      position: {x: -0.06809759, y: 0, z: 2.842171e-17}
       rotation: {x: 0.05784554, y: 0.9977788, z: -0.015139181, w: 0.02936542}
       scale: {x: 1.0000001, y: 0.99999976, z: 1.0000005}
     - name: BND_L_PonchoBack_1
       parentName: BND_C_Spine4
-      position: {x: -0.113259256, y: 0.38627934, z: -0.15230492}
+      position: {x: -0.11325924, y: 0.38627934, z: -0.15230492}
       rotation: {x: -0.2716723, y: -0.27782485, z: 0.5047985, w: 0.7708347}
       scale: {x: 1.0000004, y: 1.0000002, z: 0.9999999}
     - name: BND_L_PonchoBack_2
@@ -4585,7 +4594,7 @@ ModelImporter:
       scale: {x: 0.99999976, y: 0.9999995, z: 0.9999996}
     - name: BND_L_PonchoBack_3
       parentName: BND_L_PonchoBack_2
-      position: {x: -0.08998919, y: 0, z: -3.4106054e-16}
+      position: {x: -0.08998918, y: 0, z: -3.4106054e-16}
       rotation: {x: -0.07775606, y: 0.023777168, z: -0.04078803, w: 0.9958539}
       scale: {x: 1.0000001, y: 1.0000005, z: 1.0000001}
     - name: BND_L_PonchoBack_4
@@ -4595,7 +4604,7 @@ ModelImporter:
       scale: {x: 1.0000005, y: 1.0000004, z: 1.0000002}
     - name: BND_L_PonchoBack_5
       parentName: BND_L_PonchoBack_4
-      position: {x: -0.08103179, y: 1.1368684e-16, z: 2.2737369e-16}
+      position: {x: -0.08103178, y: 1.1368684e-16, z: 2.2737369e-16}
       rotation: {x: 0.029671645, y: 0.9964943, z: -0.07795988, w: -0.0064049447}
       scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
     - name: BND_R_PonchoFront_1
@@ -4605,7 +4614,7 @@ ModelImporter:
       scale: {x: 1.0000011, y: 1.0000002, z: 1.0000012}
     - name: BND_R_PonchoFront_2
       parentName: BND_R_PonchoFront_1
-      position: {x: -0.113414146, y: 0, z: -5.684342e-17}
+      position: {x: -0.11341413, y: 0, z: -5.684342e-17}
       rotation: {x: -0.008689165, y: 0.025910586, z: -0.1437945, w: 0.98923016}
       scale: {x: 0.9999995, y: 0.99999994, z: 0.99999964}
     - name: BND_R_PonchoFront_3
@@ -4640,17 +4649,17 @@ ModelImporter:
       scale: {x: 1.0000014, y: 1.0000004, z: 1.0000012}
     - name: BND_R_PonchoSide_4
       parentName: BND_R_PonchoSide_3
-      position: {x: -0.06906786, y: -4.5474737e-16, z: 1.4210855e-17}
+      position: {x: -0.06906785, y: -4.5474737e-16, z: 1.4210855e-17}
       rotation: {x: 0.0109739965, y: 0.09120957, z: -0.021732403, w: 0.99553406}
       scale: {x: 1.0000008, y: 1, z: 1.000001}
     - name: BND_R_PonchoSide_5
       parentName: BND_R_PonchoSide_4
-      position: {x: -0.06809503, y: 4.5474737e-16, z: 0}
+      position: {x: -0.06809502, y: 4.5474737e-16, z: 0}
       rotation: {x: -0.057844512, y: -0.99777883, z: -0.015139872, w: 0.02936298}
       scale: {x: 1, y: 0.9999999, z: 0.9999999}
     - name: BND_R_PonchoBack_1
       parentName: BND_C_Spine4
-      position: {x: 0.11325805, y: 0.38627377, z: -0.15230754}
+      position: {x: 0.11325805, y: 0.38627377, z: -0.15230756}
       rotation: {x: 0.5047927, y: 0.77083343, z: -0.27168027, w: -0.277831}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000004}
     - name: BND_R_PonchoBack_2
@@ -4660,7 +4669,7 @@ ModelImporter:
       scale: {x: 0.9999999, y: 0.99999994, z: 1.0000001}
     - name: BND_R_PonchoBack_3
       parentName: BND_R_PonchoBack_2
-      position: {x: -0.089989126, y: -3.4106054e-16, z: 5.6843423e-16}
+      position: {x: -0.08998913, y: -3.4106054e-16, z: 5.6843423e-16}
       rotation: {x: 0.077754356, y: -0.023789022, z: -0.040790327, w: 0.99585366}
       scale: {x: 1.0000005, y: 1.0000002, z: 1.0000006}
     - name: BND_R_PonchoBack_4
@@ -4675,7 +4684,7 @@ ModelImporter:
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
     - name: BND_C_PonchoFront_1
       parentName: BND_C_Spine4
-      position: {x: 0.000000564035, y: 0.30034417, z: 0.09026929}
+      position: {x: 0.00000056403496, y: 0.30034417, z: 0.09026929}
       rotation: {x: 0.40481958, y: 0.5797622, z: 0.40481707, w: 0.5797586}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
     - name: BND_C_PonchoFront_2
@@ -4685,7 +4694,7 @@ ModelImporter:
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: BND_C_PonchoFront_3
       parentName: BND_C_PonchoFront_2
-      position: {x: -0.07428882, y: 0, z: 2.734472e-17}
+      position: {x: -0.07428882, y: 0, z: 2.7344722e-17}
       rotation: {x: -0.00000007503009, y: -0.00000020790316, z: 0.10287975, w: 0.9946939}
       scale: {x: 1, y: 1.0000004, z: 0.99999976}
     - name: BND_C_PonchoFront_4
@@ -4695,7 +4704,7 @@ ModelImporter:
       scale: {x: 1.0000001, y: 0.99999976, z: 1}
     - name: BND_C_PonchoFront_5
       parentName: BND_C_PonchoFront_4
-      position: {x: -0.11079682, y: -1.7053027e-16, z: -6.078119e-17}
+      position: {x: -0.11079681, y: -1.7053027e-16, z: -6.078119e-17}
       rotation: {x: 0.017866468, y: -0.9998404, z: -0.000000010305622, w: -0.0000000314371}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000007}
     - name: BND_C_PonchoBack_1
@@ -4710,12 +4719,12 @@ ModelImporter:
       scale: {x: 1.0000005, y: 1.0000005, z: 1.0000001}
     - name: BND_C_PonchoBack_3
       parentName: BND_C_PonchoBack_2
-      position: {x: -0.095615566, y: 5.684342e-17, z: -9.7903815e-18}
+      position: {x: -0.095615566, y: 5.684342e-17, z: -9.79038e-18}
       rotation: {x: -0.000000029443841, y: -0.000000029207534, z: 0.021410812, w: 0.9997708}
       scale: {x: 1.0000006, y: 1.0000006, z: 1.0000001}
     - name: BND_C_PonchoBack_4
       parentName: BND_C_PonchoBack_3
-      position: {x: -0.09808551, y: -1.7053027e-16, z: 7.6742955e-18}
+      position: {x: -0.09808549, y: -1.7053027e-16, z: 7.6742955e-18}
       rotation: {x: -2.1555907e-10, y: -0.000000060063726, z: 0.02777171, w: 0.9996143}
       scale: {x: 0.9999999, y: 0.9999999, z: 0.9999998}
     - name: BND_C_PonchoBack_5
@@ -4725,7 +4734,7 @@ ModelImporter:
       scale: {x: 0.9999997, y: 0.99999994, z: 0.9999998}
     - name: BND_C_Pelvis1
       parentName: BND_C_Spine2
-      position: {x: -5.265762e-17, y: -0.11997324, z: -0.006899608}
+      position: {x: -5.2657613e-17, y: -0.11997324, z: -0.006899608}
       rotation: {x: -0.0014045667, y: -0, z: -0, w: 0.99999905}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_L_Leg1
@@ -4735,27 +4744,27 @@ ModelImporter:
       scale: {x: 0.99999994, y: 0.99999994, z: 0.99999976}
     - name: BND_L_Leg2
       parentName: BND_L_Leg1
-      position: {x: -0.7407791, y: 0.000000018120678, z: 0.000000087446594}
+      position: {x: -0.7407791, y: 0.000000018120678, z: 0.0000000874466}
       rotation: {x: -0.0000000016298143, y: -0.063718215, z: -0.000000058382277, w: 0.997968}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: BND_L_Leg3
       parentName: BND_L_Leg2
-      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215415}
+      position: {x: -0.6585658, y: -0.00000014773148, z: 0.000000042215408}
       rotation: {x: -0.0035934877, y: 0.74923897, z: -0.0061403844, w: 0.6622615}
       scale: {x: 1.0000001, y: 0.99999976, z: 0.99999994}
     - name: BND_L_Toe1
       parentName: BND_L_Leg3
-      position: {x: -0.14557913, y: 0.005273, z: -0.16113617}
+      position: {x: -0.14557913, y: 0.005273, z: -0.16113614}
       rotation: {x: 0.000000008381901, y: -0.049902905, z: 0.00000007147899, w: 0.99875414}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
     - name: BND_L_Leg2Twist1
       parentName: BND_L_Leg2
-      position: {x: -0.0016000001, y: 0.000000005078349, z: -6.072015e-12}
+      position: {x: -0.0016000002, y: 0.0000000050783493, z: -6.072015e-12}
       rotation: {x: 0.000000004697754, y: 0.000032559034, z: 0.000000015141959, w: 1}
       scale: {x: 1, y: 0.99999976, z: 1.0000001}
     - name: BND_L_Leg2Twist2
       parentName: BND_L_Leg2
-      position: {x: -0.32960007, y: 0.0000000025424562, z: -8.791091e-12}
+      position: {x: -0.3296, y: 0.0000000025424558, z: -8.791091e-12}
       rotation: {x: 0.000000004697754, y: 0.000032559034, z: 0.000000015141959, w: 1}
       scale: {x: 1, y: 0.99999976, z: 1.0000001}
     - name: BND_L_Leg2Twist3
@@ -4765,37 +4774,37 @@ ModelImporter:
       scale: {x: 1, y: 0.99999976, z: 1.0000001}
     - name: BND_L_Leg1Twist1
       parentName: BND_L_Leg1
-      position: {x: -0.0016000001, y: 1.09953505e-11, z: -1.318412e-14}
+      position: {x: -0.0016000002, y: 1.09953505e-11, z: -1.31841195e-14}
       rotation: {x: 0.0022820125, y: 4.6566123e-10, z: 0.000000010984876, w: 0.99999744}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: BND_L_Leg1Twist2
       parentName: BND_L_Leg1
-      position: {x: -0.37040004, y: 0.0000000025454319, z: -3.0543428e-12}
+      position: {x: -0.37040007, y: 0.0000000025454319, z: -3.0543428e-12}
       rotation: {x: 0.00114101, y: 4.6566123e-10, z: -0.0000000035797707, w: 0.99999934}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: PRC_L_Leg1Twist3
       parentName: BND_L_Leg1
-      position: {x: -0.73920006, y: 0.0000000050798685, z: -6.095473e-12}
+      position: {x: -0.73919994, y: 0.0000000050798685, z: -6.095473e-12}
       rotation: {x: -9.3132235e-10, y: 0.0000000013969835, z: -0.00000007770539, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_L_BootFlap1
       parentName: BND_L_Leg1
-      position: {x: -0.39881134, y: 0.17479418, z: -0.017978119}
+      position: {x: -0.39881128, y: 0.17479418, z: -0.017978117}
       rotation: {x: -0.7112926, y: -0.03118735, z: 0.028516667, w: 0.70162463}
       scale: {x: 1.0000002, y: 1.0000005, z: 1.0000004}
     - name: BND_L_BootFlap2
       parentName: BND_L_BootFlap1
-      position: {x: -0.12077898, y: -8.196699e-15, z: 5.928484e-13}
+      position: {x: -0.120778985, y: -8.196699e-15, z: 5.928484e-13}
       rotation: {x: -0.000000059604638, y: 0.096777394, z: 0.00000006146728, w: 0.9953061}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_Leg1
       parentName: BND_C_Pelvis1
-      position: {x: 0.12694545, y: -0.065565236, z: -0.012427439}
+      position: {x: 0.12694545, y: -0.065565236, z: -0.012427437}
       rotation: {x: -0.70550627, y: 0.7086682, z: -0.0063256808, w: 0.0032255545}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.9999998}
     - name: BND_R_Leg2
       parentName: BND_R_Leg1
-      position: {x: 0.7407745, y: -0.000000009220462, z: -0.00000018803053}
+      position: {x: 0.7407744, y: -0.000000009220462, z: -0.00000018803053}
       rotation: {x: 0.000000029802319, y: -0.06371822, z: -0.000000059604638, w: 0.99796796}
       scale: {x: 0.99999994, y: 1, z: 1.0000001}
     - name: BND_R_Leg3
@@ -4810,34 +4819,34 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1, z: 1.0000004}
     - name: BND_R_Leg2Twist1
       parentName: BND_R_Leg2
-      position: {x: 0.0016000001, y: -5.888126e-13, z: 1.1368684e-16}
+      position: {x: 0.0016000002, y: -5.888126e-13, z: 1.1368684e-16}
       rotation: {x: -0.000000003717998, y: 0.0000045299525, z: 2.3725108e-10, w: 1}
       scale: {x: 1.0000001, y: 1.0000002, z: 1.0000007}
     - name: BND_R_Leg2Twist2
       parentName: BND_R_Leg2
-      position: {x: 0.32960007, y: -2.9498894e-13, z: -2.9842797e-16}
+      position: {x: 0.3296, y: -2.9498891e-13, z: -2.9842797e-16}
       rotation: {x: -0.000000013132569, y: 0.0000045448537, z: -0.00000008875065,
         w: 1}
       scale: {x: 1.0000001, y: 1.0000002, z: 1.0000006}
     - name: BND_R_Leg2Twist3
       parentName: BND_R_Leg2
-      position: {x: 0.6576, y: -1.1226576e-15, z: -7.815971e-16}
+      position: {x: 0.6576, y: -1.1226576e-15, z: -7.8159716e-16}
       rotation: {x: -0.000000003717998, y: 0.0000045299525, z: 2.3725108e-10, w: 1}
       scale: {x: 1.0000001, y: 1.0000002, z: 1.0000007}
     - name: BND_R_Leg1Twist1
       parentName: BND_R_Leg1
-      position: {x: 0.0016000001, y: -1.2647662e-15, z: 1.0658142e-17}
+      position: {x: 0.0016000002, y: -1.2647662e-15, z: 1.0658142e-17}
       rotation: {x: -0.000003926455, y: -6.9849176e-10, z: -0.00000023841852, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
     - name: BND_R_Leg1Twist2
       parentName: BND_R_Leg1
-      position: {x: 0.37040004, y: -2.9515949e-13, z: -1.8580695e-15}
+      position: {x: 0.37040007, y: -2.9515949e-13, z: -1.8580695e-15}
       rotation: {x: -0.000001965323, y: 0.0000000020954753, z: -0.00000017881389,
         w: 1}
       scale: {x: 1, y: 1.0000002, z: 1.0000004}
     - name: BND_R_Leg1Twist3
       parentName: BND_R_Leg1
-      position: {x: 0.73920006, y: -5.8919633e-13, z: -1.801226e-15}
+      position: {x: 0.73919994, y: -5.891964e-13, z: -1.8012257e-15}
       rotation: {x: -2.3283062e-10, y: 4.6566123e-10, z: -0.00000008940696, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: BND_R_BootFlap1
@@ -4847,12 +4856,12 @@ ModelImporter:
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: BND_R_BootFlap2
       parentName: BND_R_BootFlap1
-      position: {x: 0.120779656, y: 2.0691782e-17, z: -0.0000006327133}
+      position: {x: 0.12077964, y: 2.0691782e-17, z: -0.0000006327133}
       rotation: {x: 0.00000005960463, y: -0.096777454, z: 0.000000011175868, w: -0.995306}
       scale: {x: 1.0000001, y: 1, z: 1.0000002}
     - name: BND_L_SkirtFlapFront1
       parentName: BND_C_Pelvis1
-      position: {x: -0.13580838, y: 0.048338387, z: 0.15711324}
+      position: {x: -0.13580836, y: 0.048338383, z: 0.15711324}
       rotation: {x: -0.16115281, y: -0.010716668, z: 0.64729255, w: 0.74493444}
       scale: {x: 1, y: 1.0000001, z: 0.99999994}
     - name: BND_L_SkirtFlapFront2
@@ -4872,12 +4881,12 @@ ModelImporter:
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_R_SkirtFlapFront2
       parentName: BND_R_SkirtFlapFront1
-      position: {x: 0.1276961, y: -0.00000011410542, z: 0.00000026475007}
+      position: {x: 0.12769608, y: -0.00000011410542, z: 0.00000026475007}
       rotation: {x: -0.010796077, y: -0.03627086, z: 0.054299198, w: 0.9978074}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000006}
     - name: BND_R_SkirtFlapFront3
       parentName: BND_R_SkirtFlapFront2
-      position: {x: 0.1395606, y: 0.0000003937289, z: 0.0000001314435}
+      position: {x: 0.13956061, y: 0.0000003937289, z: 0.0000001314435}
       rotation: {x: -0, y: -0, z: 8.731147e-10, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: BND_L_SkirtFlapBack1
@@ -4887,12 +4896,12 @@ ModelImporter:
       scale: {x: 0.99999994, y: 1, z: 0.9999998}
     - name: BND_L_SkirtFlapBack2
       parentName: BND_L_SkirtFlapBack1
-      position: {x: -0.1381425, y: -0.0015847004, z: 0.00421386}
+      position: {x: -0.13814248, y: -0.0015847004, z: 0.00421386}
       rotation: {x: 0.01433417, y: -0.094453864, z: -0.03840166, w: 0.99468505}
       scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
     - name: BND_L_SkirtFlapBack3
       parentName: BND_L_SkirtFlapBack2
-      position: {x: -0.12306265, y: 1.4210855e-17, z: -5.684342e-17}
+      position: {x: -0.123062655, y: 1.4210855e-17, z: -5.684342e-17}
       rotation: {x: 9.3132246e-10, y: -0, z: -0.000000001513399, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: BND_R_SkirtFlapBack1
@@ -4912,27 +4921,27 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: BND_R_PouchFront1
       parentName: BND_C_Pelvis1
-      position: {x: 0.159304, y: 0.17198852, z: 0.11100743}
+      position: {x: 0.159304, y: 0.17198853, z: 0.11100743}
       rotation: {x: 0.72589827, y: -0.56485254, z: -0.15974307, w: 0.35846272}
       scale: {x: 1, y: 0.99999994, z: 1.0000001}
     - name: BND_R_PouchBack1
       parentName: BND_C_Pelvis1
-      position: {x: 0.1557835, y: 0.17696823, z: -0.10330379}
+      position: {x: 0.1557835, y: 0.17696823, z: -0.103303775}
       rotation: {x: 0.4002985, y: -0.13497043, z: -0.51601446, w: 0.74516666}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: BND_L_BeltFront1
       parentName: BND_C_Pelvis1
-      position: {x: -0.15924044, y: 0.048586637, z: 0.20159149}
+      position: {x: -0.15924041, y: 0.048586637, z: 0.20159149}
       rotation: {x: 0.060517896, y: -0.28779107, z: 0.12812568, w: 0.9471525}
       scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
     - name: BND_L_BeltSide1
       parentName: BND_C_Pelvis1
-      position: {x: -0.28630072, y: 0.020628214, z: 0.011451438}
+      position: {x: -0.28630072, y: 0.020628212, z: 0.011451437}
       rotation: {x: 0.11476656, y: -0.6972002, z: 0.08180625, w: 0.70288575}
       scale: {x: 1.0000002, y: 0.99999994, z: 1.0000004}
     - name: BND_L_BeltBack1
       parentName: BND_C_Pelvis1
-      position: {x: -0.16474195, y: 0.06574321, z: -0.17898832}
+      position: {x: -0.16474196, y: 0.06574321, z: -0.17898832}
       rotation: {x: -0.14181535, y: 0.94466233, z: -0.015950197, w: -0.29537606}
       scale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
     - name: BND_R_BeltFront1
@@ -4947,7 +4956,7 @@ ModelImporter:
       scale: {x: 0.9999997, y: 0.99999994, z: 0.99999994}
     - name: BND_R_BeltBack1
       parentName: BND_C_Pelvis1
-      position: {x: 0.084679164, y: 0.13608775, z: -0.17942272}
+      position: {x: 0.08467915, y: 0.13608775, z: -0.17942272}
       rotation: {x: -0.1342892, y: 0.9559444, z: 0.057173777, w: 0.25469154}
       scale: {x: 0.99999994, y: 0.99999994, z: 1.0000002}
     - name: BND_L_SkirtFront_1
@@ -4982,7 +4991,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1.0000001, z: 1}
     - name: BND_L_SkirtSide_2
       parentName: BND_L_SkirtSide_1
-      position: {x: -0.107108, y: 3.4106054e-16, z: -3.552714e-18}
+      position: {x: -0.107108004, y: 3.4106054e-16, z: -3.552714e-18}
       rotation: {x: -0.000025005076, y: -0.0030249045, z: -0.0072599533, w: 0.99996907}
       scale: {x: 1.0000002, y: 0.99999994, z: 1}
     - name: BND_L_SkirtSide_3
@@ -5002,12 +5011,12 @@ ModelImporter:
       scale: {x: 1.0000005, y: 1.0000002, z: 1.0000004}
     - name: BND_L_SkirtBack_1
       parentName: BND_C_Spine2
-      position: {x: -0.12611564, y: 0.047014635, z: -0.1305352}
+      position: {x: -0.12611564, y: 0.047014635, z: -0.13053519}
       rotation: {x: -0.26663145, y: -0.2625069, z: 0.52942985, w: 0.7613815}
       scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
     - name: BND_L_SkirtBack_2
       parentName: BND_L_SkirtBack_1
-      position: {x: -0.10417047, y: 1.1368684e-16, z: 2.842171e-17}
+      position: {x: -0.104170464, y: 1.1368684e-16, z: 2.842171e-17}
       rotation: {x: -0.03320451, y: 0.00015601514, z: -0.012025684, w: 0.9993762}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: BND_L_SkirtBack_3
@@ -5027,7 +5036,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1, z: 1.0000001}
     - name: BND_R_SkirtFront_1
       parentName: BND_C_Spine2
-      position: {x: 0.1261291, y: 0.047754236, z: 0.116064586}
+      position: {x: 0.1261291, y: 0.047754236, z: 0.11606459}
       rotation: {x: 0.53834486, y: 0.75513095, z: 0.28580302, w: 0.24140997}
       scale: {x: 1, y: 1.0000001, z: 1.0000004}
     - name: BND_R_SkirtFront_2
@@ -5057,7 +5066,7 @@ ModelImporter:
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
     - name: BND_R_SkirtSide_2
       parentName: BND_R_SkirtSide_1
-      position: {x: -0.10685395, y: 0, z: -3.8014037e-16}
+      position: {x: -0.10685395, y: 0, z: -3.8014034e-16}
       rotation: {x: 0.00007068179, y: 0.003402229, z: -0.007024049, w: 0.99996954}
       scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
     - name: BND_R_SkirtSide_3
@@ -5067,7 +5076,7 @@ ModelImporter:
       scale: {x: 1, y: 1.0000005, z: 1.0000008}
     - name: BND_R_SkirtSide_4
       parentName: BND_R_SkirtSide_3
-      position: {x: -0.106772125, y: -1.1368684e-16, z: 6.394885e-17}
+      position: {x: -0.10677213, y: -1.1368684e-16, z: 6.394885e-17}
       rotation: {x: -0.00020376962, y: 0.00025819775, z: 0.008950397, w: 0.9999599}
       scale: {x: 0.9999999, y: 0.9999995, z: 0.9999992}
     - name: BND_R_SkirtSide_5
@@ -5077,7 +5086,7 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000004, z: 1}
     - name: BND_R_SkirtBack_1
       parentName: BND_C_Spine2
-      position: {x: 0.12611426, y: 0.047104847, z: -0.13053514}
+      position: {x: 0.12611426, y: 0.047104843, z: -0.13053513}
       rotation: {x: 0.52912825, y: 0.7615789, z: -0.26651123, w: -0.26266456}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000005}
     - name: BND_R_SkirtBack_2
@@ -5087,7 +5096,7 @@ ModelImporter:
       scale: {x: 0.9999998, y: 0.9999997, z: 0.99999994}
     - name: BND_R_SkirtBack_3
       parentName: BND_R_SkirtBack_2
-      position: {x: -0.09028884, y: 1.1368684e-16, z: 5.684342e-17}
+      position: {x: -0.090288825, y: 1.1368684e-16, z: 5.684342e-17}
       rotation: {x: 0.026081856, y: -0.004648754, z: 0.014373634, w: 0.9995457}
       scale: {x: 1.0000001, y: 1, z: 1.0000002}
     - name: BND_R_SkirtBack_4
@@ -5107,7 +5116,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
     - name: BND_C_SkirtFront_2
       parentName: BND_C_SkirtFront_1
-      position: {x: -0.0993631, y: 0, z: -2.3758773e-17}
+      position: {x: -0.0993631, y: 0, z: -2.3758771e-17}
       rotation: {x: 0.00002866983, y: 0.00032830235, z: -0.0047166343, w: 0.9999888}
       scale: {x: 1.0000006, y: 1.0000005, z: 1.0000004}
     - name: BND_C_SkirtFront_3
@@ -5117,17 +5126,17 @@ ModelImporter:
       scale: {x: 0.99999994, y: 1, z: 1.0000002}
     - name: BND_C_SkirtFront_4
       parentName: BND_C_SkirtFront_3
-      position: {x: -0.116453595, y: 5.684342e-17, z: 3.641532e-17}
+      position: {x: -0.116453595, y: 5.684342e-17, z: 3.6415323e-17}
       rotation: {x: 0.00021563991, y: -0.00019969583, z: -0.0032409655, w: 0.9999947}
       scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
     - name: BND_C_SkirtFront_5
       parentName: BND_C_SkirtFront_4
-      position: {x: -0.10189998, y: 0, z: 5.1070263e-18}
+      position: {x: -0.10189999, y: 0, z: 5.1070263e-18}
       rotation: {x: -0.00071159523, y: -0.99999946, z: -0.000042725045, w: 0.00071312574}
       scale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
     - name: BND_C_SkirtBack_1
       parentName: BND_C_Spine2
-      position: {x: -0.00000003640914, y: 0.048052315, z: -0.1814351}
+      position: {x: -0.00000003640914, y: 0.04805231, z: -0.1814351}
       rotation: {x: -0.45851156, y: -0.53826094, z: 0.4584193, w: 0.5384181}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
     - name: BND_C_SkirtBack_2
@@ -5137,12 +5146,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: BND_C_SkirtBack_3
       parentName: BND_C_SkirtBack_2
-      position: {x: -0.09063973, y: 1.1368684e-16, z: 3.663736e-18}
+      position: {x: -0.09063972, y: 1.1368684e-16, z: 3.663736e-18}
       rotation: {x: 0.000056802506, y: 0.0000761271, z: 0.020292543, w: 0.9997941}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000005}
     - name: BND_C_SkirtBack_4
       parentName: BND_C_SkirtBack_3
-      position: {x: -0.11706742, y: -5.684342e-17, z: 1.154632e-17}
+      position: {x: -0.11706742, y: -5.684342e-17, z: 1.1546319e-17}
       rotation: {x: 0.00009521161, y: 0.00022341852, z: -0.005594154, w: 0.9999843}
       scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
     - name: BND_C_SkirtBack_5
@@ -5157,7 +5166,7 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: BND_L_HandGrip1
       parentName: BND_C_World1
-      position: {x: 0.87022144, y: 1.7361232, z: -0.0042319437}
+      position: {x: 0.87022144, y: 1.7361231, z: -0.0042319437}
       rotation: {x: 0.95584273, y: -0.2791789, z: 0.089408904, w: 0.020736855}
       scale: {x: 1, y: 1.0000005, z: 1.0000007}
     - name: BND_C_Weapon1
@@ -5267,7 +5276,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoFrontDriven_1
       parentName: GRP_C_PonchoDriverJoints1
-      position: {x: -0.1132583, y: 2.3538136, z: 0.053536594}
+      position: {x: -0.1132583, y: 2.3538136, z: 0.053536586}
       rotation: {x: 0.2888198, y: 0.3039563, z: 0.46772334, w: 0.778093}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoFrontDriven_2
@@ -5282,17 +5291,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoFrontDriven_4
       parentName: JNT_L_PonchoFrontDriven_3
-      position: {x: -0.07541654, y: -2.2737369e-16, z: 0}
+      position: {x: -0.075416535, y: -2.2737369e-16, z: 0}
       rotation: {x: 0.041755717, y: -0.040313866, z: 0.114184245, w: 0.9917627}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoFrontDriven_5
       parentName: JNT_L_PonchoFrontDriven_4
-      position: {x: -0.07933531, y: 2.2737369e-16, z: -2.2737369e-16}
+      position: {x: -0.079335295, y: 2.2737369e-16, z: -2.2737369e-16}
       rotation: {x: -0.010774232, y: 0.9988162, z: 0.044097904, w: 0.01748015}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSideDriven_1
       parentName: GRP_C_PonchoDriverJoints1
-      position: {x: -0.16017143, y: 2.3866014, z: -0.04958777}
+      position: {x: -0.1601714, y: 2.3866014, z: -0.049587768}
       rotation: {x: 0.050761085, y: 0.0014179804, z: 0.47963825, w: 0.87599576}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSideDriven_2
@@ -5312,7 +5321,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSideDriven_5
       parentName: JNT_L_PonchoSideDriven_4
-      position: {x: -0.068097584, y: 0, z: 0}
+      position: {x: -0.06809759, y: 0, z: 0}
       rotation: {x: 0.05784559, y: 0.9977788, z: -0.015139181, w: 0.029365424}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoBackDriven_1
@@ -5327,7 +5336,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoBackDriven_3
       parentName: JNT_L_PonchoBackDriven_2
-      position: {x: -0.08998919, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998918, y: 1.1368684e-16, z: 0}
       rotation: {x: -0.077755965, y: 0.023777174, z: -0.040788088, w: 0.9958539}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoBackDriven_4
@@ -5337,7 +5346,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoBackDriven_5
       parentName: JNT_L_PonchoBackDriven_4
-      position: {x: -0.08103179, y: 0, z: 0}
+      position: {x: -0.08103178, y: 0, z: 0}
       rotation: {x: 0.029671585, y: 0.9964943, z: -0.07795993, w: -0.0064048558}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoFrontDriven_1
@@ -5347,7 +5356,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoFrontDriven_2
       parentName: JNT_R_PonchoFrontDriven_1
-      position: {x: -0.113414146, y: 0, z: 0}
+      position: {x: -0.11341413, y: 0, z: 0}
       rotation: {x: -0.008689097, y: 0.025910586, z: -0.14379443, w: 0.98923016}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoFrontDriven_3
@@ -5367,7 +5376,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSideDriven_1
       parentName: GRP_C_PonchoDriverJoints1
-      position: {x: 0.16017143, y: 2.386602, z: -0.04958934}
+      position: {x: 0.1601714, y: 2.386602, z: -0.04958934}
       rotation: {x: 0.47964448, y: 0.8759928, z: 0.050752625, w: 0.0014173404}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSideDriven_2
@@ -5382,12 +5391,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSideDriven_4
       parentName: JNT_R_PonchoSideDriven_3
-      position: {x: -0.06906786, y: 0, z: -1.4210855e-17}
+      position: {x: -0.06906785, y: 0, z: -1.4210855e-17}
       rotation: {x: 0.010974003, y: 0.091209576, z: -0.021732394, w: 0.99553406}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSideDriven_5
       parentName: JNT_R_PonchoSideDriven_4
-      position: {x: -0.06809503, y: 0, z: 0}
+      position: {x: -0.06809502, y: 0, z: 0}
       rotation: {x: 0.05784453, y: 0.99777883, z: 0.015139879, w: -0.02936298}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoBackDriven_1
@@ -5402,7 +5411,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoBackDriven_3
       parentName: JNT_R_PonchoBackDriven_2
-      position: {x: -0.089989126, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998913, y: 1.1368684e-16, z: 0}
       rotation: {x: 0.077754386, y: -0.023788996, z: -0.040790297, w: 0.99585366}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoBackDriven_4
@@ -5437,12 +5446,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoFrontDriven_5
       parentName: JNT_C_PonchoFrontDriven_4
-      position: {x: -0.11079682, y: -1.1368684e-16, z: -6.1447298e-18}
+      position: {x: -0.11079681, y: -1.1368684e-16, z: -6.1447298e-18}
       rotation: {x: -0.017866438, y: 0.99984044, z: 0.0000000010684593, w: 0.00000002838914}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoBackDriven_1
       parentName: GRP_C_PonchoDriverJoints1
-      position: {x: -2.234822e-11, y: 2.4081054, z: -0.19145325}
+      position: {x: -2.234822e-11, y: 2.4081051, z: -0.19145325}
       rotation: {x: -0.48374104, y: -0.51574665, z: 0.48374104, w: 0.51574665}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoBackDriven_2
@@ -5457,12 +5466,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoBackDriven_4
       parentName: JNT_C_PonchoBackDriven_3
-      position: {x: -0.09808551, y: -1.9895199e-16, z: 4.1193996e-18}
+      position: {x: -0.09808549, y: -1.9895199e-16, z: 4.1193996e-18}
       rotation: {x: 0, y: 0, z: 0.027771756, w: 0.9996143}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoBackDriven_5
       parentName: JNT_C_PonchoBackDriven_4
-      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987617e-17}
+      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987614e-17}
       rotation: {x: -0.002954462, y: 0.99999565, z: 7.2129064e-10, w: -0.000000015029503}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_PonchoSurfaceJoints1
@@ -5477,22 +5486,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceFront_1
       parentName: GRP_L_PonchoSurfaceFrontJoints1
-      position: {x: -2.234822e-11, y: 2.4081054, z: -0.19145325}
+      position: {x: -2.234822e-11, y: 2.4081051, z: -0.19145325}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceFront_2
       parentName: GRP_L_PonchoSurfaceFrontJoints1
-      position: {x: 1.1761805e-10, y: 2.280061, z: -0.19966215}
+      position: {x: 1.1761805e-10, y: 2.2800608, z: -0.19966215}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceFront_3
       parentName: GRP_L_PonchoSurfaceFrontJoints1
-      position: {x: 0.0000000020540325, y: 2.184541, z: -0.20393813}
+      position: {x: 0.0000000020540327, y: 2.1845407, z: -0.20393813}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceFront_4
       parentName: GRP_L_PonchoSurfaceFrontJoints1
-      position: {x: 0.000000008269001, y: 2.0864558, z: -0.20412552}
+      position: {x: 0.000000008269001, y: 2.086456, z: -0.2041255}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceFront_5
@@ -5507,17 +5516,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceSide_1
       parentName: GRP_L_PonchoSurfaceSideJoints1
-      position: {x: -0.16017143, y: 2.3866014, z: -0.04958777}
+      position: {x: -0.1601714, y: 2.3866014, z: -0.049587768}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceSide_2
       parentName: GRP_L_PonchoSurfaceSideJoints1
-      position: {x: -0.22075018, y: 2.2922964, z: -0.054772753}
+      position: {x: -0.22075018, y: 2.2922964, z: -0.054772746}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceSide_3
       parentName: GRP_L_PonchoSurfaceSideJoints1
-      position: {x: -0.2813289, y: 2.2536004, z: -0.051311594}
+      position: {x: -0.28132886, y: 2.2536004, z: -0.051311586}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceSide_4
@@ -5527,7 +5536,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceSide_5
       parentName: GRP_L_PonchoSurfaceSideJoints1
-      position: {x: -0.40248635, y: 2.1910481, z: -0.058831584}
+      position: {x: -0.40248635, y: 2.1910481, z: -0.05883159}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_PonchoSurfaceBackJoints1
@@ -5542,7 +5551,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceBack_2
       parentName: GRP_L_PonchoSurfaceBackJoints1
-      position: {x: -0.15609394, y: 2.2844987, z: -0.16230766}
+      position: {x: -0.15609394, y: 2.2844987, z: -0.16230763}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceBack_3
@@ -5552,12 +5561,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceBack_4
       parentName: GRP_L_PonchoSurfaceBackJoints1
-      position: {x: -0.24176516, y: 2.1398547, z: -0.17132135}
+      position: {x: -0.24176516, y: 2.1398547, z: -0.17132132}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_PonchoSurfaceBack_5
       parentName: GRP_L_PonchoSurfaceBackJoints1
-      position: {x: -0.28460076, y: 2.0725641, z: -0.18557742}
+      position: {x: -0.28460073, y: 2.0725641, z: -0.18557742}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_PonchoSurfaceFrontJoints1
@@ -5577,17 +5586,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceFront_3
       parentName: GRP_R_PonchoSurfaceFrontJoints1
-      position: {x: 0.19893025, y: 2.1939373, z: 0.10521883}
+      position: {x: 0.19893022, y: 2.193937, z: 0.10521883}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceFront_4
       parentName: GRP_R_PonchoSurfaceFrontJoints1
-      position: {x: 0.24176538, y: 2.1383529, z: 0.13284397}
+      position: {x: 0.2417654, y: 2.1383529, z: 0.13284397}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceFront_5
       parentName: GRP_R_PonchoSurfaceFrontJoints1
-      position: {x: 0.2845998, y: 2.0725634, z: 0.14427887}
+      position: {x: 0.2845998, y: 2.0725634, z: 0.14427885}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_PonchoSurfaceSideJoints1
@@ -5597,22 +5606,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceSide_1
       parentName: GRP_R_PonchoSurfaceSideJoints1
-      position: {x: 0.16017143, y: 2.386602, z: -0.04958934}
+      position: {x: 0.1601714, y: 2.386602, z: -0.04958934}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceSide_2
       parentName: GRP_R_PonchoSurfaceSideJoints1
-      position: {x: 0.22074668, y: 2.292299, z: -0.054773424}
+      position: {x: 0.22074668, y: 2.2922988, z: -0.054773424}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceSide_3
       parentName: GRP_R_PonchoSurfaceSideJoints1
-      position: {x: 0.28132945, y: 2.2536, z: -0.051311526}
+      position: {x: 0.28132945, y: 2.2536, z: -0.051311523}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceSide_4
       parentName: GRP_R_PonchoSurfaceSideJoints1
-      position: {x: 0.3419099, y: 2.220517, z: -0.048881266}
+      position: {x: 0.34190983, y: 2.220517, z: -0.048881263}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceSide_5
@@ -5642,7 +5651,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceBack_4
       parentName: GRP_R_PonchoSurfaceBackJoints1
-      position: {x: 0.24176468, y: 2.139856, z: -0.17132108}
+      position: {x: 0.24176466, y: 2.139856, z: -0.17132108}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_PonchoSurfaceBack_5
@@ -5662,12 +5671,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceFront_2
       parentName: GRP_C_PonchoSurfaceFrontJoints1
-      position: {x: 6.916821e-10, y: 2.2262464, z: 0.14467384}
+      position: {x: 6.91682e-10, y: 2.2262466, z: 0.14467384}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceFront_3
       parentName: GRP_C_PonchoSurfaceFrontJoints1
-      position: {x: 0.000000004256448, y: 2.1620457, z: 0.18205099}
+      position: {x: 0.0000000042564476, y: 2.162046, z: 0.18205097}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceFront_4
@@ -5687,27 +5696,27 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceBack_1
       parentName: GRP_C_PonchoSurfaceBackJoints1
-      position: {x: -0.1132583, y: 2.3538136, z: 0.053536594}
+      position: {x: -0.1132583, y: 2.3538136, z: 0.053536586}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceBack_2
       parentName: GRP_C_PonchoSurfaceBackJoints1
-      position: {x: -0.15609394, y: 2.2513502, z: 0.07654126}
+      position: {x: -0.15609394, y: 2.2513502, z: 0.07654125}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceBack_3
       parentName: GRP_C_PonchoSurfaceBackJoints1
-      position: {x: -0.19892955, y: 2.1939392, z: 0.10521752}
+      position: {x: -0.19892953, y: 2.1939392, z: 0.1052175}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceBack_4
       parentName: GRP_C_PonchoSurfaceBackJoints1
-      position: {x: -0.24176516, y: 2.1383548, z: 0.1328428}
+      position: {x: -0.24176516, y: 2.1383548, z: 0.13284278}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_PonchoSurfaceBack_5
       parentName: GRP_C_PonchoSurfaceBackJoints1
-      position: {x: -0.28460076, y: 2.0725641, z: 0.14427814}
+      position: {x: -0.28460073, y: 2.0725641, z: 0.14427814}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_PonchoConstraints1
@@ -5787,7 +5796,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_a5IKJNT
       parentName: poncho_C_a4IKJNT
-      position: {x: -0.11079682, y: -1.1368684e-16, z: -6.1447298e-18}
+      position: {x: -0.11079681, y: -1.1368684e-16, z: -6.1447298e-18}
       rotation: {x: -0.017866438, y: 0.99984044, z: 0.0000000010684593, w: 0.00000002838914}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_a1JNT
@@ -5812,7 +5821,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_a5JNT
       parentName: poncho_C_a4JNT
-      position: {x: -0.11079682, y: -1.1368684e-16, z: -6.1447298e-18}
+      position: {x: -0.11079681, y: -1.1368684e-16, z: -6.1447298e-18}
       rotation: {x: -0.017866438, y: 0.99984044, z: 0.0000000010684593, w: 0.00000002838914}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho02SrfIKJNTGRP
@@ -5822,7 +5831,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b1IKJNT
       parentName: poncho02SrfIKJNTGRP
-      position: {x: -2.234822e-11, y: 2.4081054, z: -0.19145325}
+      position: {x: -2.234822e-11, y: 2.4081051, z: -0.19145325}
       rotation: {x: -0.48374104, y: -0.51574665, z: 0.48374104, w: 0.51574665}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b2IKJNT
@@ -5837,17 +5846,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b4IKJNT
       parentName: poncho_C_b3IKJNT
-      position: {x: -0.09808551, y: -1.9895199e-16, z: 4.1193996e-18}
+      position: {x: -0.09808549, y: -1.9895199e-16, z: 4.1193996e-18}
       rotation: {x: 0.0000000023589557, y: -0.000000010211287, z: 0.027771756, w: 0.9996143}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b5IKJNT
       parentName: poncho_C_b4IKJNT
-      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987617e-17}
+      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987614e-17}
       rotation: {x: -0.002954462, y: 0.99999565, z: 7.2129064e-10, w: -0.000000015029503}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b1JNT
       parentName: poncho02SrfIKJNTGRP
-      position: {x: -2.234822e-11, y: 2.4081054, z: -0.19145325}
+      position: {x: -2.234822e-11, y: 2.4081051, z: -0.19145325}
       rotation: {x: -0.48374104, y: -0.51574665, z: 0.48374104, w: 0.51574665}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b2JNT
@@ -5862,12 +5871,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b4JNT
       parentName: poncho_C_b3JNT
-      position: {x: -0.09808551, y: -1.9895199e-16, z: 4.1193996e-18}
+      position: {x: -0.09808549, y: -1.9895199e-16, z: 4.1193996e-18}
       rotation: {x: 0, y: 0, z: 0.027771756, w: 0.9996143}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_C_b5JNT
       parentName: poncho_C_b4JNT
-      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987617e-17}
+      position: {x: -0.11381678, y: -4.689582e-16, z: 4.4987614e-17}
       rotation: {x: -0.002954462, y: 0.99999565, z: 7.2129064e-10, w: -0.000000015029503}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho03SrfIKJNTGRP
@@ -5877,7 +5886,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a1IKJNT
       parentName: poncho03SrfIKJNTGRP
-      position: {x: -0.1132583, y: 2.3538136, z: 0.053536594}
+      position: {x: -0.1132583, y: 2.3538136, z: 0.053536586}
       rotation: {x: 0.2888198, y: 0.3039563, z: 0.46772334, w: 0.778093}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a2IKJNT
@@ -5892,17 +5901,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a4IKJNT
       parentName: poncho_L_a3IKJNT
-      position: {x: -0.07541654, y: -2.2737369e-16, z: 0}
+      position: {x: -0.075416535, y: -2.2737369e-16, z: 0}
       rotation: {x: 0.041755717, y: -0.040313866, z: 0.114184245, w: 0.9917627}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a5IKJNT
       parentName: poncho_L_a4IKJNT
-      position: {x: -0.07933531, y: 2.2737369e-16, z: -2.2737369e-16}
+      position: {x: -0.079335295, y: 2.2737369e-16, z: -2.2737369e-16}
       rotation: {x: -0.010774232, y: 0.9988162, z: 0.044097904, w: 0.01748015}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a1JNT
       parentName: poncho03SrfIKJNTGRP
-      position: {x: -0.1132583, y: 2.3538136, z: 0.053536594}
+      position: {x: -0.1132583, y: 2.3538136, z: 0.053536586}
       rotation: {x: 0.2888198, y: 0.3039563, z: 0.46772334, w: 0.778093}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a2JNT
@@ -5917,12 +5926,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a4JNT
       parentName: poncho_L_a3JNT
-      position: {x: -0.07541654, y: -2.2737369e-16, z: 0}
+      position: {x: -0.075416535, y: -2.2737369e-16, z: 0}
       rotation: {x: 0.041755717, y: -0.040313866, z: 0.114184245, w: 0.9917627}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_a5JNT
       parentName: poncho_L_a4JNT
-      position: {x: -0.07933531, y: 2.2737369e-16, z: -2.2737369e-16}
+      position: {x: -0.079335295, y: 2.2737369e-16, z: -2.2737369e-16}
       rotation: {x: -0.010774232, y: 0.9988162, z: 0.044097904, w: 0.01748015}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho04SrfIKJNTGRP
@@ -5932,7 +5941,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b1IKJNT
       parentName: poncho04SrfIKJNTGRP
-      position: {x: -0.16017143, y: 2.3866014, z: -0.04958777}
+      position: {x: -0.1601714, y: 2.3866014, z: -0.049587768}
       rotation: {x: 0.050761085, y: 0.0014179804, z: 0.47963825, w: 0.87599576}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b2IKJNT
@@ -5952,12 +5961,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b5IKJNT
       parentName: poncho_L_b4IKJNT
-      position: {x: -0.068097584, y: 0, z: 0}
+      position: {x: -0.06809759, y: 0, z: 0}
       rotation: {x: 0.05784559, y: 0.9977788, z: -0.015139181, w: 0.029365424}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b1JNT
       parentName: poncho04SrfIKJNTGRP
-      position: {x: -0.16017143, y: 2.3866014, z: -0.04958777}
+      position: {x: -0.1601714, y: 2.3866014, z: -0.049587768}
       rotation: {x: 0.050761085, y: 0.0014179804, z: 0.47963825, w: 0.87599576}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b2JNT
@@ -5977,7 +5986,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_b5JNT
       parentName: poncho_L_b4JNT
-      position: {x: -0.068097584, y: 0, z: 0}
+      position: {x: -0.06809759, y: 0, z: 0}
       rotation: {x: 0.05784559, y: 0.9977788, z: -0.015139181, w: 0.029365424}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho05SrfIKJNTGRP
@@ -5997,7 +6006,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c3IKJNT
       parentName: poncho_L_c2IKJNT
-      position: {x: -0.08998919, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998918, y: 1.1368684e-16, z: 0}
       rotation: {x: -0.077755965, y: 0.023777174, z: -0.040788088, w: 0.9958539}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c4IKJNT
@@ -6007,7 +6016,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c5IKJNT
       parentName: poncho_L_c4IKJNT
-      position: {x: -0.08103179, y: 0, z: 0}
+      position: {x: -0.08103178, y: 0, z: 0}
       rotation: {x: 0.029671585, y: 0.9964943, z: -0.07795993, w: -0.0064048558}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c1JNT
@@ -6022,7 +6031,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c3JNT
       parentName: poncho_L_c2JNT
-      position: {x: -0.08998919, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998918, y: 1.1368684e-16, z: 0}
       rotation: {x: -0.077755965, y: 0.023777174, z: -0.040788088, w: 0.9958539}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c4JNT
@@ -6032,7 +6041,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_L_c5JNT
       parentName: poncho_L_c4JNT
-      position: {x: -0.08103179, y: 0, z: 0}
+      position: {x: -0.08103178, y: 0, z: 0}
       rotation: {x: 0.029671585, y: 0.9964943, z: -0.07795993, w: -0.0064048558}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho06SrfIKJNTGRP
@@ -6047,7 +6056,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_a2IKJNT
       parentName: poncho_R_a1IKJNT
-      position: {x: -0.113414146, y: 0, z: 0}
+      position: {x: -0.11341413, y: 0, z: 0}
       rotation: {x: -0.008689097, y: 0.025910586, z: -0.14379443, w: 0.98923016}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_a3IKJNT
@@ -6072,7 +6081,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_a2JNT
       parentName: poncho_R_a1JNT
-      position: {x: -0.113414146, y: 0, z: 0}
+      position: {x: -0.11341413, y: 0, z: 0}
       rotation: {x: -0.008689097, y: 0.025910586, z: -0.14379443, w: 0.98923016}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_a3JNT
@@ -6097,7 +6106,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b1IKJNT
       parentName: poncho07SrfIKJNTGRP
-      position: {x: 0.16017143, y: 2.386602, z: -0.04958934}
+      position: {x: 0.1601714, y: 2.386602, z: -0.04958934}
       rotation: {x: 0.47964448, y: 0.8759928, z: 0.050752625, w: 0.0014173404}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b2IKJNT
@@ -6112,17 +6121,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b4IKJNT
       parentName: poncho_R_b3IKJNT
-      position: {x: -0.06906786, y: 0, z: -1.4210855e-17}
+      position: {x: -0.06906785, y: 0, z: -1.4210855e-17}
       rotation: {x: 0.010974003, y: 0.091209576, z: -0.021732394, w: 0.99553406}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b5IKJNT
       parentName: poncho_R_b4IKJNT
-      position: {x: -0.06809503, y: 0, z: 0}
+      position: {x: -0.06809502, y: 0, z: 0}
       rotation: {x: 0.05784453, y: 0.99777883, z: 0.015139879, w: -0.02936298}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b1JNT
       parentName: poncho07SrfIKJNTGRP
-      position: {x: 0.16017143, y: 2.386602, z: -0.04958934}
+      position: {x: 0.1601714, y: 2.386602, z: -0.04958934}
       rotation: {x: 0.47964448, y: 0.8759928, z: 0.050752625, w: 0.0014173404}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b2JNT
@@ -6137,12 +6146,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b4JNT
       parentName: poncho_R_b3JNT
-      position: {x: -0.06906786, y: 0, z: -1.4210855e-17}
+      position: {x: -0.06906785, y: 0, z: -1.4210855e-17}
       rotation: {x: 0.010974003, y: 0.091209576, z: -0.021732394, w: 0.99553406}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_b5JNT
       parentName: poncho_R_b4JNT
-      position: {x: -0.06809503, y: 0, z: 0}
+      position: {x: -0.06809502, y: 0, z: 0}
       rotation: {x: 0.05784453, y: 0.99777883, z: 0.015139879, w: -0.02936298}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho08SrfIKJNTGRP
@@ -6162,7 +6171,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_c3IKJNT
       parentName: poncho_R_c2IKJNT
-      position: {x: -0.089989126, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998913, y: 1.1368684e-16, z: 0}
       rotation: {x: 0.077754386, y: -0.023788996, z: -0.040790297, w: 0.99585366}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_c4IKJNT
@@ -6187,7 +6196,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_c3JNT
       parentName: poncho_R_c2JNT
-      position: {x: -0.089989126, y: 1.1368684e-16, z: 0}
+      position: {x: -0.08998913, y: 1.1368684e-16, z: 0}
       rotation: {x: 0.077754386, y: -0.023788996, z: -0.040790297, w: 0.99585366}
       scale: {x: 1, y: 1, z: 1}
     - name: poncho_R_c4JNT
@@ -6212,12 +6221,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: NBS_SkirtPelvisSkin
       parentName: GRP_SkirtSurfaces1
-      position: {x: -0, y: 1.6096637, z: 0}
+      position: {x: -0, y: 1.6096635, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: NBS_SkirtLegsSkin
       parentName: GRP_SkirtSurfaces1
-      position: {x: -0, y: 1.6096637, z: 0}
+      position: {x: -0, y: 1.6096635, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_SkirtDriverJoints1
@@ -6257,7 +6266,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSideDriven_2
       parentName: JNT_L_SkirtSideDriven_1
-      position: {x: -0.107108, y: 1.1368684e-16, z: -3.552714e-18}
+      position: {x: -0.107108004, y: 1.1368684e-16, z: -3.552714e-18}
       rotation: {x: -0.000025005014, y: -0.0030249052, z: -0.007259995, w: 0.99996907}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSideDriven_3
@@ -6282,7 +6291,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtBackDriven_2
       parentName: JNT_L_SkirtBackDriven_1
-      position: {x: -0.10417047, y: -1.1368684e-16, z: 2.842171e-17}
+      position: {x: -0.104170464, y: -1.1368684e-16, z: 2.842171e-17}
       rotation: {x: -0.033204667, y: 0.0001560053, z: -0.012025566, w: 0.99937624}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtBackDriven_3
@@ -6302,7 +6311,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtFrontDriven_1
       parentName: GRP_C_SkirtDriverJoints1
-      position: {x: 0.1261291, y: 1.8386908, z: 0.14974369}
+      position: {x: 0.1261291, y: 1.8386909, z: 0.14974368}
       rotation: {x: 0.5386835, y: 0.75472873, z: 0.2868634, w: 0.2406536}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtFrontDriven_2
@@ -6327,7 +6336,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSideDriven_1
       parentName: GRP_C_SkirtDriverJoints1
-      position: {x: 0.17831215, y: 1.8388262, z: 0.026441138}
+      position: {x: 0.17831215, y: 1.838826, z: 0.026441138}
       rotation: {x: 0.5444642, y: 0.8386282, z: 0.008831788, w: -0.013547403}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSideDriven_2
@@ -6342,7 +6351,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSideDriven_4
       parentName: JNT_R_SkirtSideDriven_3
-      position: {x: -0.106772125, y: -1.1368684e-16, z: 5.684342e-17}
+      position: {x: -0.10677213, y: -1.1368684e-16, z: 5.684342e-17}
       rotation: {x: -0.00020377176, y: 0.0002581987, z: 0.008950328, w: 0.9999599}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSideDriven_5
@@ -6352,7 +6361,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtBackDriven_1
       parentName: GRP_C_SkirtDriverJoints1
-      position: {x: 0.12611426, y: 1.8387343, z: -0.09685688}
+      position: {x: 0.12611426, y: 1.8387343, z: -0.09685686}
       rotation: {x: 0.5287588, y: 0.76195246, z: -0.26544127, w: -0.2634075}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtBackDriven_2
@@ -6362,7 +6371,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtBackDriven_3
       parentName: JNT_R_SkirtBackDriven_2
-      position: {x: -0.09028884, y: 1.1368684e-16, z: -5.684342e-17}
+      position: {x: -0.090288825, y: 1.1368684e-16, z: -5.684342e-17}
       rotation: {x: 0.026081903, y: -0.004648753, z: 0.014373633, w: 0.9995457}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtBackDriven_4
@@ -6377,27 +6386,27 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtFrontDriven_1
       parentName: GRP_C_SkirtDriverJoints1
-      position: {x: 0.0000014117012, y: 1.8397876, z: 0.20072049}
+      position: {x: 0.0000014117012, y: 1.8397875, z: 0.20072049}
       rotation: {x: 0.4758979, y: 0.52299476, z: 0.4760474, w: 0.52285427}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtFrontDriven_2
       parentName: JNT_C_SkirtFrontDriven_1
-      position: {x: -0.0993631, y: 0, z: -2.3758773e-17}
+      position: {x: -0.0993631, y: 0, z: -2.3758771e-17}
       rotation: {x: 0.000028618699, y: 0.00032838073, z: -0.0047166552, w: 0.99998885}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtFrontDriven_3
       parentName: JNT_C_SkirtFrontDriven_2
-      position: {x: -0.08961627, y: -5.684342e-17, z: -1.8873792e-17}
+      position: {x: -0.08961627, y: -5.684342e-17, z: -1.887379e-17}
       rotation: {x: 0.00012851955, y: 0.00023884431, z: 0.011898277, w: 0.9999292}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtFrontDriven_4
       parentName: JNT_C_SkirtFrontDriven_3
-      position: {x: -0.116453595, y: 5.684342e-17, z: 3.641532e-17}
+      position: {x: -0.116453595, y: 5.684342e-17, z: 3.6415323e-17}
       rotation: {x: 0.00021571392, y: -0.00019966337, z: -0.0032409166, w: 0.9999947}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtFrontDriven_5
       parentName: JNT_C_SkirtFrontDriven_4
-      position: {x: -0.10189998, y: 0, z: 4.4408924e-18}
+      position: {x: -0.10189999, y: 0, z: 4.4408924e-18}
       rotation: {x: 0.0007116738, y: 0.9999995, z: 0.000042660078, w: -0.000713102}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtBackDriven_1
@@ -6407,17 +6416,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtBackDriven_2
       parentName: JNT_C_SkirtBackDriven_1
-      position: {x: -0.10034623, y: 0, z: 2.5424109e-17}
+      position: {x: -0.10034623, y: 0, z: 2.5424106e-17}
       rotation: {x: 0.00014309703, y: 0.00018682213, z: -0.008191232, w: 0.99996644}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtBackDriven_3
       parentName: JNT_C_SkirtBackDriven_2
-      position: {x: -0.09063973, y: -5.684342e-17, z: 1.4543923e-17}
+      position: {x: -0.09063972, y: -5.684342e-17, z: 1.4543923e-17}
       rotation: {x: 0.000056746478, y: 0.00007605143, z: 0.02029257, w: 0.99979407}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtBackDriven_4
       parentName: JNT_C_SkirtBackDriven_3
-      position: {x: -0.11706742, y: -5.684342e-17, z: 2.353673e-17}
+      position: {x: -0.11706742, y: -5.684342e-17, z: 2.3536726e-17}
       rotation: {x: 0.000095203315, y: 0.00022338924, z: -0.005594114, w: 0.9999843}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtBackDriven_5
@@ -6442,12 +6451,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceFront_2
       parentName: GRP_L_SkirtSurfaceFrontJoints1
-      position: {x: -0.15743928, y: 1.7402107, z: 0.15538044}
+      position: {x: -0.15743926, y: 1.7402107, z: 0.15538043}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceFront_3
       parentName: GRP_L_SkirtSurfaceFrontJoints1
-      position: {x: -0.18593168, y: 1.6553634, z: 0.16101323}
+      position: {x: -0.18593167, y: 1.6553634, z: 0.16101323}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceFront_4
@@ -6472,22 +6481,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceSide_2
       parentName: GRP_L_SkirtSurfaceSideJoints1
-      position: {x: -0.22176917, y: 1.7408692, z: 0.023049429}
+      position: {x: -0.22176917, y: 1.7408689, z: 0.023049425}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceSide_3
       parentName: GRP_L_SkirtSurfaceSideJoints1
-      position: {x: -0.2587629, y: 1.6607479, z: 0.019715568}
+      position: {x: -0.2587629, y: 1.660748, z: 0.019715568}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceSide_4
       parentName: GRP_L_SkirtSurfaceSideJoints1
-      position: {x: -0.3039848, y: 1.5641539, z: 0.016495336}
+      position: {x: -0.30398482, y: 1.5641539, z: 0.016495334}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceSide_5
       parentName: GRP_L_SkirtSurfaceSideJoints1
-      position: {x: -0.34370294, y: 1.4753863, z: 0.013518296}
+      position: {x: -0.34370294, y: 1.4753863, z: 0.013518294}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_L_SkirtSurfaceBackJoints1
@@ -6502,7 +6511,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceBack_2
       parentName: GRP_L_SkirtSurfaceBackJoints1
-      position: {x: -0.15753222, y: 1.7401146, z: -0.10936473}
+      position: {x: -0.15753222, y: 1.7401146, z: -0.109364726}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceBack_3
@@ -6512,12 +6521,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceBack_4
       parentName: GRP_L_SkirtSurfaceBackJoints1
-      position: {x: -0.22090204, y: 1.5486665, z: -0.13402298}
+      position: {x: -0.22090206, y: 1.5486664, z: -0.13402298}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_L_SkirtSurfaceBack_5
       parentName: GRP_L_SkirtSurfaceBackJoints1
-      position: {x: -0.2513599, y: 1.454101, z: -0.14547175}
+      position: {x: -0.2513599, y: 1.4541007, z: -0.14547175}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_SkirtSurfaceFrontJoints1
@@ -6527,7 +6536,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceFront_1
       parentName: GRP_R_SkirtSurfaceFrontJoints1
-      position: {x: 0.1261291, y: 1.8386908, z: 0.14974369}
+      position: {x: 0.1261291, y: 1.8386909, z: 0.14974368}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceFront_2
@@ -6537,17 +6546,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceFront_3
       parentName: GRP_R_SkirtSurfaceFrontJoints1
-      position: {x: 0.18612874, y: 1.6556928, z: 0.16087225}
+      position: {x: 0.1861287, y: 1.6556928, z: 0.16087222}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceFront_4
       parentName: GRP_R_SkirtSurfaceFrontJoints1
-      position: {x: 0.22072853, y: 1.5488658, z: 0.16640449}
+      position: {x: 0.22072853, y: 1.5488658, z: 0.16640447}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceFront_5
       parentName: GRP_R_SkirtSurfaceFrontJoints1
-      position: {x: 0.25104514, y: 1.4543352, z: 0.17159133}
+      position: {x: 0.25104514, y: 1.454335, z: 0.17159133}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_SkirtSurfaceSideJoints1
@@ -6557,7 +6566,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceSide_1
       parentName: GRP_R_SkirtSurfaceSideJoints1
-      position: {x: 0.17831215, y: 1.8388262, z: 0.026441138}
+      position: {x: 0.17831215, y: 1.838826, z: 0.026441138}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceSide_2
@@ -6577,7 +6586,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceSide_5
       parentName: GRP_R_SkirtSurfaceSideJoints1
-      position: {x: 0.34370664, y: 1.4757047, z: 0.012891099}
+      position: {x: 0.34370664, y: 1.4757047, z: 0.0128911}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_R_SkirtSurfaceBackJoints1
@@ -6587,7 +6596,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceBack_1
       parentName: GRP_R_SkirtSurfaceBackJoints1
-      position: {x: 0.12611426, y: 1.8387343, z: -0.09685688}
+      position: {x: 0.12611426, y: 1.8387343, z: -0.09685686}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceBack_2
@@ -6607,7 +6616,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_R_SkirtSurfaceBack_5
       parentName: GRP_R_SkirtSurfaceBackJoints1
-      position: {x: 0.25091827, y: 1.4544005, z: -0.14588332}
+      position: {x: 0.2509183, y: 1.4544004, z: -0.14588332}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_SkirtSurfaceFrontJoints1
@@ -6617,12 +6626,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceFront_1
       parentName: GRP_C_SkirtSurfaceFrontJoints1
-      position: {x: 0.0000014117012, y: 1.8397876, z: 0.20072049}
+      position: {x: 0.0000014117012, y: 1.8397875, z: 0.20072049}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceFront_2
       parentName: GRP_C_SkirtSurfaceFrontJoints1
-      position: {x: 0.00003015073, y: 1.7408628, z: 0.21004078}
+      position: {x: 0.00003015073, y: 1.740863, z: 0.21004078}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceFront_3
@@ -6632,7 +6641,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceFront_4
       parentName: GRP_C_SkirtSurfaceFrontJoints1
-      position: {x: 0.00028025647, y: 1.5356399, z: 0.22854497}
+      position: {x: 0.00028025644, y: 1.5356398, z: 0.22854497}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceFront_5
@@ -6652,7 +6661,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceBack_2
       parentName: GRP_C_SkirtSurfaceBackJoints1
-      position: {x: -0.000025503912, y: 1.7408038, z: -0.1640111}
+      position: {x: -0.00002550391, y: 1.7408038, z: -0.1640111}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceBack_3
@@ -6662,12 +6671,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceBack_4
       parentName: GRP_C_SkirtSurfaceBackJoints1
-      position: {x: -0.00017239177, y: 1.5356683, z: -0.19632356}
+      position: {x: -0.00017239175, y: 1.5356684, z: -0.19632354}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JNT_C_SkirtSurfaceBack_5
       parentName: GRP_C_SkirtSurfaceBackJoints1
-      position: {x: -0.00029763888, y: 1.4341204, z: -0.21164092}
+      position: {x: -0.00029763888, y: 1.4341205, z: -0.2116409}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: GRP_C_SkirtConstraints1
@@ -6787,7 +6796,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_b2IKJNT
       parentName: skirt_L_b1IKJNT
-      position: {x: -0.107108, y: 1.1368684e-16, z: -3.552714e-18}
+      position: {x: -0.107108004, y: 1.1368684e-16, z: -3.552714e-18}
       rotation: {x: -0.000025005014, y: -0.0030249052, z: -0.007259995, w: 0.99996907}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_b3IKJNT
@@ -6812,7 +6821,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_b2JNT
       parentName: skirt_L_b1JNT
-      position: {x: -0.107108, y: 1.1368684e-16, z: -3.552714e-18}
+      position: {x: -0.107108004, y: 1.1368684e-16, z: -3.552714e-18}
       rotation: {x: -0.000025005014, y: -0.0030249052, z: -0.007259995, w: 0.99996907}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_b3JNT
@@ -6842,7 +6851,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_c2IKJNT
       parentName: skirt_L_c1IKJNT
-      position: {x: -0.10417047, y: -1.1368684e-16, z: 2.842171e-17}
+      position: {x: -0.104170464, y: -1.1368684e-16, z: 2.842171e-17}
       rotation: {x: -0.033204667, y: 0.0001560053, z: -0.012025566, w: 0.99937624}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_c3IKJNT
@@ -6867,7 +6876,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_c2JNT
       parentName: skirt_L_c1JNT
-      position: {x: -0.10417047, y: -1.1368684e-16, z: 2.842171e-17}
+      position: {x: -0.104170464, y: -1.1368684e-16, z: 2.842171e-17}
       rotation: {x: -0.033204667, y: 0.0001560053, z: -0.012025566, w: 0.99937624}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_L_c3JNT
@@ -6892,7 +6901,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_a1IKJNT
       parentName: skirt06SrfIKJNTGRP
-      position: {x: 0.1261291, y: 1.8386908, z: 0.14974369}
+      position: {x: 0.1261291, y: 1.8386909, z: 0.14974368}
       rotation: {x: 0.5386835, y: 0.75472873, z: 0.2868634, w: 0.2406536}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_a2IKJNT
@@ -6917,7 +6926,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_a1JNT
       parentName: skirt06SrfIKJNTGRP
-      position: {x: 0.1261291, y: 1.8386908, z: 0.14974369}
+      position: {x: 0.1261291, y: 1.8386909, z: 0.14974368}
       rotation: {x: 0.5386835, y: 0.75472873, z: 0.2868634, w: 0.2406536}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_a2JNT
@@ -6947,7 +6956,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b1IKJNT
       parentName: skirt07SrfIKJNTGRP
-      position: {x: 0.17831215, y: 1.8388262, z: 0.026441138}
+      position: {x: 0.17831215, y: 1.838826, z: 0.026441138}
       rotation: {x: 0.5444642, y: 0.8386282, z: 0.008831788, w: -0.013547403}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b2IKJNT
@@ -6962,7 +6971,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b4IKJNT
       parentName: skirt_R_b3IKJNT
-      position: {x: -0.106772125, y: -1.1368684e-16, z: 5.684342e-17}
+      position: {x: -0.10677213, y: -1.1368684e-16, z: 5.684342e-17}
       rotation: {x: -0.00020377176, y: 0.0002581987, z: 0.008950328, w: 0.9999599}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b5IKJNT
@@ -6972,7 +6981,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b1JNT
       parentName: skirt07SrfIKJNTGRP
-      position: {x: 0.17831215, y: 1.8388262, z: 0.026441138}
+      position: {x: 0.17831215, y: 1.838826, z: 0.026441138}
       rotation: {x: 0.5444642, y: 0.8386282, z: 0.008831788, w: -0.013547403}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b2JNT
@@ -6987,7 +6996,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b4JNT
       parentName: skirt_R_b3JNT
-      position: {x: -0.106772125, y: -1.1368684e-16, z: 5.684342e-17}
+      position: {x: -0.10677213, y: -1.1368684e-16, z: 5.684342e-17}
       rotation: {x: -0.00020377176, y: 0.0002581987, z: 0.008950328, w: 0.9999599}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_b5JNT
@@ -7002,7 +7011,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c1IKJNT
       parentName: skirt08SrfIKJNTGRP
-      position: {x: 0.12611426, y: 1.8387343, z: -0.09685688}
+      position: {x: 0.12611426, y: 1.8387343, z: -0.09685686}
       rotation: {x: 0.5287588, y: 0.76195246, z: -0.26544127, w: -0.2634075}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c2IKJNT
@@ -7012,7 +7021,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c3IKJNT
       parentName: skirt_R_c2IKJNT
-      position: {x: -0.09028884, y: 1.1368684e-16, z: -5.684342e-17}
+      position: {x: -0.090288825, y: 1.1368684e-16, z: -5.684342e-17}
       rotation: {x: 0.026081903, y: -0.004648753, z: 0.014373633, w: 0.9995457}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c4IKJNT
@@ -7027,7 +7036,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c1JNT
       parentName: skirt08SrfIKJNTGRP
-      position: {x: 0.12611426, y: 1.8387343, z: -0.09685688}
+      position: {x: 0.12611426, y: 1.8387343, z: -0.09685686}
       rotation: {x: 0.5287588, y: 0.76195246, z: -0.26544127, w: -0.2634075}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c2JNT
@@ -7037,7 +7046,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c3JNT
       parentName: skirt_R_c2JNT
-      position: {x: -0.09028884, y: 1.1368684e-16, z: -5.684342e-17}
+      position: {x: -0.090288825, y: 1.1368684e-16, z: -5.684342e-17}
       rotation: {x: 0.026081903, y: -0.004648753, z: 0.014373633, w: 0.9995457}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_R_c4JNT
@@ -7057,52 +7066,52 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a1IKJNT
       parentName: skirt02SrfIKJNTGRP
-      position: {x: 0.0000014117012, y: 1.8397876, z: 0.20072049}
+      position: {x: 0.0000014117012, y: 1.8397875, z: 0.20072049}
       rotation: {x: 0.4758979, y: 0.52299476, z: 0.4760474, w: 0.52285427}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a2IKJNT
       parentName: skirt_C_a1IKJNT
-      position: {x: -0.0993631, y: 0, z: -2.3758773e-17}
+      position: {x: -0.0993631, y: 0, z: -2.3758771e-17}
       rotation: {x: 0.000028618699, y: 0.00032838073, z: -0.0047166552, w: 0.99998885}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a3IKJNT
       parentName: skirt_C_a2IKJNT
-      position: {x: -0.08961627, y: -5.684342e-17, z: -1.8873792e-17}
+      position: {x: -0.08961627, y: -5.684342e-17, z: -1.887379e-17}
       rotation: {x: 0.00012851955, y: 0.00023884431, z: 0.011898277, w: 0.9999292}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a4IKJNT
       parentName: skirt_C_a3IKJNT
-      position: {x: -0.116453595, y: 5.684342e-17, z: 3.641532e-17}
+      position: {x: -0.116453595, y: 5.684342e-17, z: 3.6415323e-17}
       rotation: {x: 0.00021571392, y: -0.00019966337, z: -0.0032409166, w: 0.9999947}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a5IKJNT
       parentName: skirt_C_a4IKJNT
-      position: {x: -0.10189998, y: 0, z: 4.4408924e-18}
+      position: {x: -0.10189999, y: 0, z: 4.4408924e-18}
       rotation: {x: 0.0007116738, y: 0.9999995, z: 0.000042660078, w: -0.000713102}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a1JNT
       parentName: skirt02SrfIKJNTGRP
-      position: {x: 0.0000014117012, y: 1.8397876, z: 0.20072049}
+      position: {x: 0.0000014117012, y: 1.8397875, z: 0.20072049}
       rotation: {x: 0.4758979, y: 0.52299476, z: 0.4760474, w: 0.52285427}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a2JNT
       parentName: skirt_C_a1JNT
-      position: {x: -0.0993631, y: 0, z: -2.3758773e-17}
+      position: {x: -0.0993631, y: 0, z: -2.3758771e-17}
       rotation: {x: 0.000028618699, y: 0.00032838073, z: -0.0047166552, w: 0.99998885}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a3JNT
       parentName: skirt_C_a2JNT
-      position: {x: -0.08961627, y: -5.684342e-17, z: -1.8873792e-17}
+      position: {x: -0.08961627, y: -5.684342e-17, z: -1.887379e-17}
       rotation: {x: 0.00012851955, y: 0.00023884431, z: 0.011898277, w: 0.9999292}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a4JNT
       parentName: skirt_C_a3JNT
-      position: {x: -0.116453595, y: 5.684342e-17, z: 3.641532e-17}
+      position: {x: -0.116453595, y: 5.684342e-17, z: 3.6415323e-17}
       rotation: {x: 0.00021571392, y: -0.00019966337, z: -0.0032409166, w: 0.9999947}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_a5JNT
       parentName: skirt_C_a4JNT
-      position: {x: -0.10189998, y: 0, z: 4.4408924e-18}
+      position: {x: -0.10189999, y: 0, z: 4.4408924e-18}
       rotation: {x: 0.0007116738, y: 0.9999995, z: 0.000042660078, w: -0.000713102}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt03SrfIKJNTGRP
@@ -7117,17 +7126,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b2IKJNT
       parentName: skirt_C_b1IKJNT
-      position: {x: -0.10034623, y: 0, z: 2.5424109e-17}
+      position: {x: -0.10034623, y: 0, z: 2.5424106e-17}
       rotation: {x: 0.00014309703, y: 0.00018682213, z: -0.008191232, w: 0.99996644}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b3IKJNT
       parentName: skirt_C_b2IKJNT
-      position: {x: -0.09063973, y: -5.684342e-17, z: 1.4543923e-17}
+      position: {x: -0.09063972, y: -5.684342e-17, z: 1.4543923e-17}
       rotation: {x: 0.000056746478, y: 0.00007605143, z: 0.02029257, w: 0.99979407}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b4IKJNT
       parentName: skirt_C_b3IKJNT
-      position: {x: -0.11706742, y: -5.684342e-17, z: 2.353673e-17}
+      position: {x: -0.11706742, y: -5.684342e-17, z: 2.3536726e-17}
       rotation: {x: 0.000095203315, y: 0.00022338924, z: -0.005594114, w: 0.9999843}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b5IKJNT
@@ -7142,17 +7151,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b2JNT
       parentName: skirt_C_b1JNT
-      position: {x: -0.10034623, y: 0, z: 2.5424109e-17}
+      position: {x: -0.10034623, y: 0, z: 2.5424106e-17}
       rotation: {x: 0.00014309703, y: 0.00018682213, z: -0.008191232, w: 0.99996644}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b3JNT
       parentName: skirt_C_b2JNT
-      position: {x: -0.09063973, y: -5.684342e-17, z: 1.4543923e-17}
+      position: {x: -0.09063972, y: -5.684342e-17, z: 1.4543923e-17}
       rotation: {x: 0.000056746478, y: 0.00007605143, z: 0.02029257, w: 0.99979407}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b4JNT
       parentName: skirt_C_b3JNT
-      position: {x: -0.11706742, y: -5.684342e-17, z: 2.353673e-17}
+      position: {x: -0.11706742, y: -5.684342e-17, z: 2.3536726e-17}
       rotation: {x: 0.000095203315, y: 0.00022338924, z: -0.005594114, w: 0.9999843}
       scale: {x: 1, y: 1, z: 1}
     - name: skirt_C_b5JNT
