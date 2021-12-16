@@ -18,22 +18,22 @@ MonoBehaviour:
     baseValue: 1.2
     minBaseValue: 1.2
     maxBaseValue: 3.4028235e+38
-    statModifiers: []
+    attachedStatModifiers: []
   - statType: 300
-    initialBaseValue: 10
-    baseValue: 10
+    initialBaseValue: 5
+    baseValue: 5
     minBaseValue: 0
     maxBaseValue: 3.4028235e+38
-    statModifiers: []
+    attachedStatModifiers: []
   - statType: 301
     initialBaseValue: 0
     baseValue: 0
     minBaseValue: 0
     maxBaseValue: 100
-    statModifiers: []
+    attachedStatModifiers: []
   - statType: 302
     initialBaseValue: 1
     baseValue: 1
     minBaseValue: 1
     maxBaseValue: 3.4028235e+38
-    statModifiers: []
+    attachedStatModifiers: []

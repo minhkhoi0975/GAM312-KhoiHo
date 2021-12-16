@@ -348,8 +348,9 @@ public class Character : MonoBehaviour
 
     void OnCharacterDead(GameObject gameObject)
     {
-        // Disable collision.
+        // Disable physics
         rigidBodyComponent.isKinematic = true;
+        rigidBodyComponent.detectCollisions = false;
 
         animator.SetTrigger("isDead");
     }

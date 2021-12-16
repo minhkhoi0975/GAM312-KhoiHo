@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47d72d284e5703c49a0bca4e0ba90ffc
+guid: 5eff2dc8b6d252447b311ac1141baede
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
@@ -30,7 +30,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -51,8 +51,8 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlend: 1
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
