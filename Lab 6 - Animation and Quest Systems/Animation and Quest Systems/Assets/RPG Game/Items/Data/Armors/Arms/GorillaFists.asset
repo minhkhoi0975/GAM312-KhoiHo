@@ -19,7 +19,7 @@ MonoBehaviour:
   mesh: {fileID: 7445754547994923273, guid: b8b9f2dd0e1766b408fec28a91b8442d, type: 3}
   consumeStatChanges: []
   equipStatChanges:
-  - statType: 100
+  - statType: 300
     statModifierType: 1
-    value: 60
+    value: 50
   armorSlot: 2

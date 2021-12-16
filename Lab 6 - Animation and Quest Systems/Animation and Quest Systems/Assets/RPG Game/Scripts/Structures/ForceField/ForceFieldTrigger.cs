@@ -11,10 +11,10 @@ using UnityEngine;
 public class ForceFieldTrigger : MonoBehaviour
 {
     // Reference to the force field.
-    public ForceField forceField;
+    [HideInInspector] public ForceField forceField;
 
     // Reference to the collider of the trigger.
-    [SerializeField] Collider collider;
+    Collider collider;
 
     // The trigger is active if there is at least 1 object in the trigger.
     private bool isActive;
