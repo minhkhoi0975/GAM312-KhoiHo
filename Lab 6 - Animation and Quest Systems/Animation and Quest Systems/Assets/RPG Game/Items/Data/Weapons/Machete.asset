@@ -24,7 +24,7 @@ MonoBehaviour:
     value: 2.5
   - statType: 300
     statModifierType: 1
-    value: 20
+    value: 10
   - statType: 301
     statModifierType: 1
     value: 40
