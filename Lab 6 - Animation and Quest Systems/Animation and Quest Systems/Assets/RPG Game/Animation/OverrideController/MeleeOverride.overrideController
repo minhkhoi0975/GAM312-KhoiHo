@@ -9,10 +9,11 @@ AnimatorOverrideController:
   m_Name: MeleeOverride
   m_Controller: {fileID: 9100000, guid: f0881e125042145409f3d4fe225b26a8, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 051177e68877d234b9e63d54b0364ade, type: 2}
-    m_OverrideClip: {fileID: 1827226128182048838, guid: dec76a826d686e845bd56d98c93beec2,
-      type: 3}
   - m_OriginalClip: {fileID: 1827226128182048838, guid: d69663cad704cc14d9418b38ff8c6add,
       type: 3}
     m_OverrideClip: {fileID: 1827226128182048838, guid: 636532e8da6d6a5488b28e57ce67fde7,
+      type: 3}
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: 6864cee1d88e40e48a8d2f34da153556,
+      type: 3}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: dec76a826d686e845bd56d98c93beec2,
       type: 3}
