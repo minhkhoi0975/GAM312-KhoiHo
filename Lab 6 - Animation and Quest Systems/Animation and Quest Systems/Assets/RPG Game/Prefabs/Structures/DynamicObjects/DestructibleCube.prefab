@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3103456178988602765}
   - component: {fileID: 3139861719348138983}
   - component: {fileID: 5274157834773322445}
+  - component: {fileID: 6396617448580641390}
   m_Layer: 0
   m_Name: DestructibleCube
   m_TagString: Untagged
@@ -127,3 +128,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingStatLists:
   - {fileID: 11400000, guid: 8bd45cdd0ef74a94e8eceab24728bdd7, type: 2}
+--- !u!208 &6396617448580641390
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186197543345189718}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
