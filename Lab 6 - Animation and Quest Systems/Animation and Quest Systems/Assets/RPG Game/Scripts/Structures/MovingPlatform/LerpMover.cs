@@ -50,7 +50,7 @@ public class LerpMover : MonoBehaviour
         if (other.gameObject.transform.parent && other.gameObject.transform.parent.CompareTag("Character"))
         {
             other.gameObject.transform.parent.parent = movingPlatform.transform;
-            Debug.Log("Player enters platform.");
+            //Debug.Log("Player enters platform.");
         }
 
         // Attach a movable object to the moving platform.
@@ -66,7 +66,7 @@ public class LerpMover : MonoBehaviour
         if (other.gameObject.transform.parent && other.gameObject.transform.parent.CompareTag("Character"))
         {
             other.gameObject.transform.parent.parent = null;
-            Debug.Log("Player leaves platform.");
+            //Debug.Log("Player leaves platform.");
         }
 
         // Detach the movable object from the platform.

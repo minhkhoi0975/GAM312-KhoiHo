@@ -145,22 +145,27 @@ public class InventoryPanelLogic : MonoBehaviour
         if (headItemSlot)
         {
             Destroy(headItemSlot);
+            headItemSlot = null;
         }
         if (bodyItemSlot)
         {
             Destroy(bodyItemSlot);
+            bodyItemSlot = null;
         }
         if (armsItemSlot)
         {
             Destroy(armsItemSlot);
+            armsItemSlot = null;
         }
         if (legsItemSlot)
         {
             Destroy(legsItemSlot);
+            legsItemSlot = null;
         }
         if (weaponItemSlot)
         {
             Destroy(weaponItemSlot);
+            weaponItemSlot = null;
         }
 
         // Backpack
