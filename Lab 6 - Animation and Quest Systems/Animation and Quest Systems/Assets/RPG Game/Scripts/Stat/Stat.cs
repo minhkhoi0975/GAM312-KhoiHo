@@ -23,7 +23,6 @@ public enum StatType
 
     // Health
     CurrentHealth = 200,
-    MaxHealth,
     DamageResistance = 202,
 
     // Combat
